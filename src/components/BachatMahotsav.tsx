@@ -111,7 +111,7 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
                       src={bachatMahotsavImages[currentImageIndex]}
                       alt={`Bachat Mahotsav jewelry offer ${currentImageIndex + 1}`}
                       className=""
-                      style={{ maxHeight: '401px', width: '100%', objectFit: 'cover' }}
+                      style={{ maxHeight: '377px', width: '100%', objectFit: 'cover' }}
                       loading="lazy"
                     />
                   )}

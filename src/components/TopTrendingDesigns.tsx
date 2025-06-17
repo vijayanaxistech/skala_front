@@ -7,14 +7,16 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Configure base URL for API
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/';
+
 interface TrendingDesign {
   _id: string;
   name: string;
   image?: string;
   instaLink: string;
+  priority: number;
 }
-
-const baseUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/Uploads`;
 
 const responsive = {
   superLargeDesktop: { breakpoint: { max: 4000, min: 1441 }, items: 4 },
@@ -32,8 +34,8 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
   const [designs, setDesigns] = useState<TrendingDesign[]>(initialDesigns);
 
   useEffect(() => {
-    // Sort designs by _id (MongoDB ObjectId) in descending order (newest first)
-    const sortedDesigns = [...initialDesigns].sort((a, b) => b._id.localeCompare(a._id));
+    // Sort designs by priority in descending order
+    const sortedDesigns = [...initialDesigns].sort((a, b) => b.priority - a.priority);
     setDesigns(sortedDesigns);
   }, [initialDesigns]);
 
@@ -48,9 +50,7 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
       position: index + 1,
       name: design.name,
       image: design.image
-        ? design.image.startsWith('http')
-          ? design.image
-          : `${baseUrl}/${design.image}`
+        ? `${BASE_URL}${design.image}`
         : 'https://via.placeholder.com/300x300?text=No+Image',
       description: `Suvarnakala ${design.name} trending jewelry design.`,
       brand: { '@type': 'Brand', name: 'Suvarnakala' },
@@ -84,7 +84,7 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
           property="og:image"
           content={
             designs.length > 0 && designs[0].image
-              ? `${baseUrl}/${designs[0].image}`
+              ? `${BASE_URL}${designs[0].image}`
               : 'https://via.placeholder.com/300x300?text=No+Image'
           }
         />
@@ -139,7 +139,7 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
         }
       `}</style>
 
-      <div className="p-5  pb-0" aria-label="Suvarnakala Top Trending Designs Section">
+      <div className="p-5 pb-0" aria-label="Suvarnakala Top Trending Designs Section">
         <div className="custom-heading-wrapper d-flex align-items-center mb-4">
           <h2 className="m-0 custom-heading text-wrap me-3">
             <span>
@@ -170,9 +170,9 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
               aria-live="polite"
             >
               {designs.map((item) => {
-                const imageUrl = item.image?.startsWith('http')
-                  ? item.image
-                  : `${baseUrl}/${item.image}`;
+                const imageUrl = item.image
+                  ? `${BASE_URL}${item.image}`
+                  : 'https://via.placeholder.com/300x300?text=No+Image';
 
                 return (
                   <div
@@ -195,7 +195,10 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
                           sizes="(max-width: 576px) 100vw, 300px"
                           style={{ objectFit: 'cover', transition: 'filter 0.3s ease' }}
                           loading="lazy"
-                          unoptimized
+                          onError={(e) => {
+                            e.currentTarget.src =
+                              'https://via.placeholder.com/300x300?text=No+Image';
+                          }}
                         />
                         <span className="link-icon">
                           <svg

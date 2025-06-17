@@ -53,9 +53,7 @@ const ShopbyStyle = () => {
               <Link
                 href={`/collections/category/${encodeURIComponent(item.name)}`}
                 key={item._id}
-                className={`category-item text-decoration-none ${
-                  index < 4 ? 'top-row' : 'bottom-row'
-                }`}
+                className={`category-item text-decoration-none ${index < 4 ? 'top-row' : 'bottom-row'}`}
                 role="group"
                 aria-label={`Category: ${item.name}`}
               >
@@ -69,7 +67,7 @@ const ShopbyStyle = () => {
                 >
                   <Image
                     src={
-                      item.image
+                      item.image && item.image.startsWith('uploads/')
                         ? `${BASE_URL}/${item.image}`
                         : 'https://via.placeholder.com/250x250?text=No+Image'
                     }
@@ -87,18 +85,20 @@ const ShopbyStyle = () => {
                     loading="lazy"
                   />
                 </div>
-                <p className="text-red mt-2 fs-5 sm:fs-5 text-center">{item.name}</p>
+                <p className="text-red mt-2 fs-5 sm:fs-5 text-center">
+                  {item.name === 'Managalsutra' ? 'Mangalsutra' : item.name}
+                </p>
               </Link>
             ))}
 
             <Link
               href="/collections"
-              className=" text-decoration-none bottom-row"
+              className="text-decoration-none bottom-row"
               role="group"
               aria-label="Explore Additional Categories"
             >
               <div
-                className="d-flex flex-column justify-content-center align-items-center text-center "
+                className="d-flex flex-column justify-content-center align-items-center text-center"
                 style={{
                   background: 'linear-gradient(135deg, #F5E7D6 0%, #F5E7D6 100%)',
                   aspectRatio: '1/1',

@@ -77,7 +77,8 @@ const HeroCarousel: React.FC = () => {
           aria-live="polite"
         >
           {sortedHeroes.map(({ title, description, image, link }, idx) => {
-            const imageUrl = image.startsWith('http') ? image : `${BASE_URL}${image}`;
+            // Fixed image URL construction by adding a leading slash
+            const imageUrl = image.startsWith('http') ? image : `${BASE_URL}/${image}`;
             const validLink = link?.startsWith('http') ? link : '#';
             return (
               <div

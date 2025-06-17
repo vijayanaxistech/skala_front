@@ -27,9 +27,11 @@ export const fetchGoldRates = async () => {
   return res.json();
 };
 
+
 export const getCategories = async () => {
-  const res = await API.get('/api/productscategories');
-  return Array.isArray(res.data) ? res.data : [];
+  const res = await fetch(`${BASE_URL}/api/productscategories`);
+  if (!res.ok) throw new Error('Failed to fetch categories');
+  return res.json();
 };
 
 export const getMoments = async () => {
