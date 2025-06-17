@@ -27,6 +27,18 @@ export const fetchGoldRates = async () => {
   return res.json();
 };
 
+// lib/api.ts
+export async function getProductBySlug(slug: string) {
+  const res = await fetch(`${BASE_URL}/api/products`);
+  if (!res.ok) return null;
+  const products = await res.json();
+  // Find product where title (converted to slug) matches the provided slug
+  const product = products.find(
+    (p: any) => p.title.toLowerCase().replace(/\s+/g, '-') === slug
+  );
+  return product || null;
+}
+
 export const getCategories = async () => {
   const res = await fetch(`${BASE_URL}/api/productscategories`);
   if (!res.ok) throw new Error('Failed to fetch categories');

@@ -54,11 +54,17 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       return;
     }
     // Create new filter object with the updated filter
-    const newFilters = { ...selectedFilters, [filterType]: filterValue };
-    // Build URL with all active filters
+    const newFilters = { ...selectedFilters };
+    // Map 'jewellery' section to 'category' internally
+    const internalFilterType = filterType === 'jewellery' ? 'category' : filterType;
+    newFilters[internalFilterType] = filterValue;
+    // Build URL with 'jewelry' instead of 'category'
     const segments = Object.entries(newFilters)
       .filter(([_, value]) => value)
-      .flatMap(([type, value]) => [encodeURIComponent(type), encodeURIComponent(value)]);
+      .flatMap(([type, value]) => [
+        encodeURIComponent(type === 'category' ? 'jewelry' : type),
+        encodeURIComponent(value),
+      ]);
     const url = segments.length > 0 ? `/collections/${segments.join('/')}` : '/collections';
     console.log('Navigating to:', url);
     router.push(url);
@@ -69,10 +75,13 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     // Remove the specified filter
     const newFilters = { ...selectedFilters };
     delete newFilters[filterType];
-    // Build URL with remaining filters
+    // Build URL with 'jewelry' instead of 'category'
     const segments = Object.entries(newFilters)
       .filter(([_, value]) => value)
-      .flatMap(([type, value]) => [encodeURIComponent(type), encodeURIComponent(value)]);
+      .flatMap(([type, value]) => [
+        encodeURIComponent(type === 'category' ? 'jewelry' : type),
+        encodeURIComponent(value),
+      ]);
     const url = segments.length > 0 ? `/collections/${segments.join('/')}` : '/collections';
     console.log('Removing filter:', filterType, 'Navigating to:', url);
     router.push(url);
@@ -91,7 +100,9 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
           key={item}
           onClick={() => updateFilter(filterType, item)}
           className={`px-3 py-1 rounded-pill border ${
-            selectedFilters[filterType] === item ? 'bg-dark text-white' : 'bg-light text-dark'
+            selectedFilters[filterType === 'jewellery' ? 'category' : filterType] === item
+              ? 'bg-dark text-white'
+              : 'bg-light text-dark'
           }`}
           style={{ cursor: 'pointer', fontSize: '14px' }}
         >
@@ -182,7 +193,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
                 }}
               />
             </div>
-            {expanded === 'jewellery' && renderChips(categories, 'category')}
+            {expanded === 'jewellery' && renderChips(categories, 'jewellery')}
           </div>
 
           {/* Metal */}

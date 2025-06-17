@@ -25,7 +25,7 @@ const GoldRates = () => {
   }, []);
 
   const formatRate = (type: string, value: number) => {
-    return `${type} Gold: ₹${value.toLocaleString('en-IN')}.00 (10 gram)`;
+    return `${type} Gold: ₹${value.toLocaleString('en-IN')}.00 `;
   };
 
   return (

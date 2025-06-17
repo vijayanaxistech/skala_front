@@ -1,29 +1,25 @@
-// app/product_detail/[id]/page.tsx
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { IoLogoWhatsapp } from 'react-icons/io';
-import defaultBreadcrumbImage from '../../../../public/assets/collections.png'; // Renamed for clarity
-import shopnowbg from '../../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
-import shopWomen from '../../../../public/assets/shopWomwn.png';
-import styles from '../../page.module.css';
-import { getProductById, getProducts, BASE_URL } from '../../../lib/api';
-import WhatsAppButton from '../../collections/WhatsAppButton';
-import MoreInfoButton from '../../collections/MoreInfo';
-import ProductImageGallery from '../ProductImageGallery';
+import defaultBreadcrumbImage from '../../../../../public/assets/collections.png';
+import shopnowbg from '../../../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
+import shopWomen from '../../../../../public/assets/shopWomwn.png';
+import styles from '../../../page.module.css';
+import { getProductBySlug, getProducts, BASE_URL } from '../../../../lib/api';
+import WhatsAppButton from '../../../collections/WhatsAppButton';
+import MoreInfoButton from '../../../collections/MoreInfo';
+import ProductImageGallery from '../../ProductImageGallery';
 import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'Collections | Suvarnakala Pvt. Ltd',
-};
-
+// Define interfaces
 interface Category {
   _id: string;
   name: string;
   image: string;
-  banner?: string; // Add banner field
+  banner?: string;
   createdAt: string;
   updatedAt: string;
   __v: number;
@@ -60,30 +56,38 @@ interface Product {
   subImages: string[];
 }
 
-export async function generateStaticParams() {
-  const res = await fetch(`${BASE_URL}/api/products`);
+export const metadata: Metadata = {
+  title: 'Collections | Suvarnakala Pvt. Ltd',
+};
 
-  const products = await res.json();
-
-  return products.map((product: any) => ({
-    id: product._id,
-  }));
-}
-
+// Transform raw product data
 const transformProduct = (raw: RawProduct): Product => ({
   ...raw,
   subImages: [raw.subImage1, raw.subImage2, raw.subImage3].filter(Boolean),
 });
 
-const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
+// Generate static paths for jewelry/[category]/[slug]
+export async function generateStaticParams() {
+  const products = await getProducts();
+  return products.map((product: RawProduct) => ({
+    category: product.category.name.toLowerCase().replace(/\s+/g, '-'),
+    slug: product.title.toLowerCase().replace(/\s+/g, '-'),
+  }));
+}
 
-  // Fetch single product
-  const rawProduct = await getProductById(id);
+const ProductDetailPage = async ({ params }: { params: { category: string; slug: string } }) => {
+  const { category, slug } = params;
+
+  // Fetch single product by slug (title-based)
+  const rawProduct = await getProductBySlug(slug);
   let product: Product | null = null;
 
   if (rawProduct) {
     product = transformProduct(rawProduct);
+    // Verify category matches
+    if (product.category.name.toLowerCase().replace(/\s+/g, '-') !== category) {
+      notFound();
+    }
   } else {
     notFound();
   }
@@ -202,7 +206,7 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
                 {similarProducts.map((item) => (
                   <Col key={item._id}>
                     <Link
-                      href={`/product_detail/${item._id}`}
+                      href={`/jewelry/${item.category.name.toLowerCase().replace(/\s+/g, '-')}/${item.title.toLowerCase().replace(/\s+/g, '-')}`}
                       className="text-decoration-none text-dark"
                     >
                       <div className="product-card h-100 border-0">

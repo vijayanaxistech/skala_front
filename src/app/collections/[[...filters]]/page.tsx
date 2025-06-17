@@ -11,7 +11,7 @@ import chainsImage from '../../../../public/assets/3.jpg';
 import earringsImage from '../../../../public/assets/4.jpg';
 import mangalsutraImage from '../../../../public/assets/5.jpg';
 import necklessImage from '../../../../public/assets/6.jpg';
-import pendantImage from '../../../../public/assets//women-s-earings_8408-3.avif';
+import pendantImage from '../../../../public/assets/women-s-earings_8408-3.avif';
 import ringImage from '../../../../public/assets/cf111899016362517bb2fe4c9508dfd5281ec129.png';
 import styles from '@/app/page.module.css';
 import FilterDropdown from './FilterDropdown';
@@ -62,8 +62,13 @@ const categoryImages: { [key: string]: any } = {
 };
 
 export async function generateStaticParams() {
+  const categories = await getCategories();
+  const paths = categories.map((category: Category) => ({
+    filters: ['jewelry', category.name],
+  }));
   return [
-    { filters: [] }, // fallback route like /collections
+    { filters: [] }, // Fallback route for /collections
+    ...paths,
   ];
 }
 
@@ -73,7 +78,7 @@ export default async function ProductsPage({ params }: { params: { filters?: str
   const [products, categories] = await Promise.all([getProducts(), getCategories()]);
 
   // Normalize products
-  const normalizedProducts = products.map((product) => ({
+  const normalizedProducts = products.map((product: Product) => ({
     ...product,
     purity: product.purity || product.metalPurity || '',
     metalPurity: undefined,
@@ -96,7 +101,9 @@ export default async function ProductsPage({ params }: { params: { filters?: str
   for (let i = 0; i < filters.length - 1; i += 2) {
     const type = decodeURIComponent(filters[i]);
     const value = decodeURIComponent(filters[i + 1]);
-    if (['category', 'metal', 'purity', 'occasion'].includes(type)) {
+    if (type === 'jewelry') {
+      filterPairs['category'] = value;
+    } else if (['metal', 'purity', 'occasion'].includes(type)) {
       filterPairs[type] = value;
     }
   }
@@ -128,7 +135,7 @@ export default async function ProductsPage({ params }: { params: { filters?: str
   // Determine breadcrumb image based on category banner
   let breadcrumbImageSrc = defaultBreadcrumbImage;
   if (filterPairs.category) {
-    const selectedCategory = categories.find((cat) => cat.name === filterPairs.category);
+    const selectedCategory = categories.find((cat: Category) => cat.name === filterPairs.category);
     if (selectedCategory?.banner) {
       breadcrumbImageSrc = `${BASE_URL}/${selectedCategory.banner}`;
     }
@@ -167,9 +174,12 @@ export default async function ProductsPage({ params }: { params: { filters?: str
           <div className="text-center">No products found.</div>
         ) : (
           <Row xs={1} sm={2} md={3} lg={4} className="g-4 mt-4">
-            {filteredProducts.map((product) => (
+            {filteredProducts.map((product: Product) => (
               <Col key={product._id}>
-                <Link href={`/product_detail/${product._id}`} className="text-decoration-none">
+                <Link
+                  href={`/jewelry/${product.category.name.toLowerCase().replace(/\s+/g, '-')}/${product.title.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="text-decoration-none"
+                >
                   <div className="product-card h-100 border-0">
                     <div className="product-image imageWrapper">
                       <Image

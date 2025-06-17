@@ -51,7 +51,7 @@ const ShopbyStyle = () => {
           <>
             {displayedCategories.map((item, index) => (
               <Link
-                href={`/collections/category/${encodeURIComponent(item.name)}`}
+                href={`/collections/jewelry/${encodeURIComponent(item.name)}`}
                 key={item._id}
                 className={`category-item text-decoration-none ${index < 4 ? 'top-row' : 'bottom-row'}`}
                 role="group"
