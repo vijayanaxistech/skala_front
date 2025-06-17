@@ -23,7 +23,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ product }) => {
       return;
     }
 
-    // Validate phone number format (basic validation)
+    // Validate phone number format
     const phoneRegex = /^\+\d{10,15}$/;
     if (!phoneRegex.test(phone)) {
       alert('Please enter a valid phone number starting with "+" followed by 10-15 digits.');
