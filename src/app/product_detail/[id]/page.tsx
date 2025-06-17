@@ -61,7 +61,8 @@ interface Product {
 }
 
 export async function generateStaticParams() {
-  const res = await fetch('https://skalaapi.anaxistech.com/api/products');
+  const res = await fetch(`${BASE_URL}/api/products`);
+
   const products = await res.json();
 
   return products.map((product: any) => ({

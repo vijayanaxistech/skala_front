@@ -8,7 +8,9 @@ import 'react-multi-carousel/lib/styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Configure base URL for API
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/';
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+console.log('BASE_URL', BASE_URL);
 
 interface TrendingDesign {
   _id: string;
@@ -50,7 +52,7 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
       position: index + 1,
       name: design.name,
       image: design.image
-        ? `${BASE_URL}${design.image}`
+        ? `${BASE_URL}/${design.image}`
         : 'https://via.placeholder.com/300x300?text=No+Image',
       description: `Suvarnakala ${design.name} trending jewelry design.`,
       brand: { '@type': 'Brand', name: 'Suvarnakala' },
@@ -84,7 +86,7 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
           property="og:image"
           content={
             designs.length > 0 && designs[0].image
-              ? `${BASE_URL}${designs[0].image}`
+              ? `${BASE_URL}/${designs[0].image}`
               : 'https://via.placeholder.com/300x300?text=No+Image'
           }
         />
@@ -171,7 +173,7 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
             >
               {designs.map((item) => {
                 const imageUrl = item.image
-                  ? `${BASE_URL}${item.image}`
+                  ? `${BASE_URL}/${item.image}`
                   : 'https://via.placeholder.com/300x300?text=No+Image';
 
                 return (
