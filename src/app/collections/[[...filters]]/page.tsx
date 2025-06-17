@@ -214,17 +214,17 @@ export default async function ProductsPage({ params }: { params: { filters?: str
                               mainImage: product.mainImage
                                 ? `${BASE_URL}/${product.mainImage}`
                                 : 'https://via.placeholder.com/300x300?text=No+Image',
+                              category: product.category, // Add category object
                             }}
                           />
                           <WhatsAppButton
                             product={{
+                              id: product._id,
                               title: product.title,
                               metal: product.metal,
                               purity: product.purity,
                               grossWeight: product.grossWeight,
-                              mainImage: product.mainImage
-                                ? `${BASE_URL}/${product.mainImage}`
-                                : 'https://via.placeholder.com/300x300?text=No+Image',
+                              category: product.category,
                             }}
                           />
                         </div>

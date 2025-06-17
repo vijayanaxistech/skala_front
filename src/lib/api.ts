@@ -33,9 +33,7 @@ export async function getProductBySlug(slug: string) {
   if (!res.ok) return null;
   const products = await res.json();
   // Find product where title (converted to slug) matches the provided slug
-  const product = products.find(
-    (p: any) => p.title.toLowerCase().replace(/\s+/g, '-') === slug
-  );
+  const product = products.find((p: any) => p.title.toLowerCase().replace(/\s+/g, '-') === slug);
   return product || null;
 }
 

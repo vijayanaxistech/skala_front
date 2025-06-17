@@ -1,73 +1,44 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import { IoLogoWhatsapp } from 'react-icons/io';
 
 interface WhatsAppButtonProps {
   product: {
+    id: string;
     title: string;
     metal: string;
     purity: string;
     grossWeight: string;
-    mainImage: string;
+    category: { name: string };
   };
 }
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ product }) => {
-  const [userPhone, setUserPhone] = useState<string>('');
+  // Generate slug from title without _id suffix
+  const slug = product.title.toLowerCase().replace(/\s+/g, '-');
+  // Construct product page URL with fallback for category
+  const categoryName = product.category?.name || 'unknown';
+  const productPageUrl = `http://localhost:3000/jewelry/${categoryName.toLowerCase().replace(/\s+/g, '-')}/${slug}`;
 
-  const handleWhatsAppClick = async () => {
-    // Prompt user for their WhatsApp number
-    const phone = prompt('Please enter your WhatsApp number for inquiry (e.g., +1234567890):');
-    if (!phone) {
-      alert('Phone number is required to send the inquiry.');
-      return;
-    }
+  const messageBody =
+    `Product Inquiry:%0A` +
+    `Product Name: ${product.title}%0A` +
+    `Metal Type: ${product.metal}%0A` +
+    `Purity (Karat): ${product.purity}%0A` +
+    `Gross Weight (g): ${product.grossWeight}%0A` +
+    `View Product: ${productPageUrl}`;
 
-    // Validate phone number format (basic validation)
-    const phoneRegex = /^\+\d{10,15}$/;
-    if (!phoneRegex.test(phone)) {
-      alert('Please enter a valid phone number starting with "+" followed by 10-15 digits.');
-      return;
-    }
+  const phoneNumber = '919429439061';
 
-    setUserPhone(phone);
+  const whatsappUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${messageBody}`;
 
-    const messageBody =
-      `Product Inquiry:\n\n` +
-      `From: ${phone}\n` +
-      `Product Name: ${product.title}\n` +
-      `Metal Type: ${product.metal}\n` +
-      `Purity (Karat): ${product.purity}\n` +
-      `Gross Weight (g): ${product.grossWeight}\n` +
-      `Product Image URL: ${product.mainImage}`;
-
-    try {
-      const response = await fetch('/api/send-whatsapp', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          to: '+919429439061', // Replace with your desired number or make dynamic
-          body: messageBody,
-        }),
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        alert('Message sent successfully via WhatsApp!');
-      } else {
-        alert('Failed to send message: ' + data.message);
-      }
-    } catch (error) {
-      console.error('Error sending WhatsApp message:', error);
-      alert('An error occurred while sending the message.');
-    }
+  const handleClick = () => {
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
     <button
-      onClick={handleWhatsAppClick}
+      onClick={handleClick}
       className="btn btn-link p-0 m-0 fs-5"
       style={{ color: '#33CC33' }}
     >

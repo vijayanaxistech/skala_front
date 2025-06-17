@@ -207,18 +207,22 @@ export default function Footer() {
             </div>
 
             {/* Copyright */}
-<div className="d-flex flex-column flex-md-row justify-content-between align-items-center text-center px-3 ">
-  <p className="text-blue mb-1 mb-md-0">
-    © {currentYear} Suvarnakala. All Rights Reserved.
-  </p>
-  <p className="mb-1 mb-md-0 text-blue">
-    Design and Developed by{' '}
-    <a href="https://anaxistech.com/" target="_blank" rel="noopener noreferrer" className="text-decoration-none fw-medium text-red">
-      Anaxistech
-    </a>
-  </p>
-</div>
-
+            <div className="d-flex flex-column flex-md-row justify-content-between align-items-center text-center px-3 ">
+              <p className="text-blue mb-1 mb-md-0">
+                © {currentYear} Suvarnakala. All Rights Reserved.
+              </p>
+              <p className="mb-1 mb-md-0 text-blue">
+                Design and Developed by{' '}
+                <a
+                  href="https://anaxistech.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-decoration-none fw-medium text-red"
+                >
+                  Anaxistech
+                </a>
+              </p>
+            </div>
           </div>
         </footer>
       </div>

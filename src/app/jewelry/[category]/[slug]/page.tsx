@@ -237,9 +237,19 @@ const ProductDetailPage = async ({ params }: { params: { category: string; slug:
                                   mainImage: item.mainImage
                                     ? `${BASE_URL}/${item.mainImage}`
                                     : 'https://via.placeholder.com/300x300?text=No+Image',
+                                  category: item.category, // Add category object
                                 }}
                               />
-                              <WhatsAppButton product={item} />
+                              <WhatsAppButton
+                                product={{
+                                  id: item._id,
+                                  title: item.title,
+                                  metal: item.metal,
+                                  purity: item.purity,
+                                  grossWeight: item.grossWeight,
+                                  category: item.category,
+                                }}
+                              />
                             </div>
                           </div>
                           <p className="card-text text-dark mb-1">

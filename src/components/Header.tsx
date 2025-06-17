@@ -12,7 +12,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { sendAppointment } from '../lib/api';
 import { Box, TextField } from '@mui/material';
-import Goldrate from "./GoldRate"
+import Goldrate from './GoldRate';
 import logo from '../../public/assets/Suvarnakala.png';
 import BookImage from '../../public/assets/Book_A.png';
 
@@ -203,7 +203,7 @@ const Header: React.FC = () => {
           2025 | Today's Rate: 24K Gold: ₹6,700.00 (10 gram) | 22K Gold: ₹6,670.00 (10 gram) 
           18K Gold: ₹6,670.00 (10 gram)        </Marquee>
       </div> */}
-      <Goldrate/>
+      <Goldrate />
 
       <Navbar expand="lg" expanded={expanded} className="custom-navbar shadow-sm" sticky="top">
         <Container fluid className="d-flex align-items-center justify-content-between">
@@ -232,8 +232,8 @@ const Header: React.FC = () => {
                     ? pathname === href || pathname.startsWith(href + '/')
                     : dropdown
                       ? pathname === href ||
-                      pathname.startsWith(href + '/') ||
-                      pathname.includes(href + '#')
+                        pathname.startsWith(href + '/') ||
+                        pathname.includes(href + '#')
                       : false;
 
                 if (dropdown) {
@@ -330,242 +330,242 @@ const Header: React.FC = () => {
         </Container>
       </Navbar>
 
-<Modal
-  show={showModal}
-  onHide={handleCloseModal}
-  centered
-  size="lg"
-  dialogClassName="custom-modal"
-  autoFocus={false}
->
-  <Modal.Body
-    className="p-0 d-flex align-items-center justify-content-center"
-    style={{ width: '1200px', height: '300px', maxWidth: '100vw' }}
-  >
-    <div className="row no-gutters m-0 w-100" style={{ height: '100%' }}>
-      <div className="col-md-6 d-none d-md-block p-0" style={{ height: '100%' }}>
-        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-          <Image
-            src={BookImage}
-            alt="Appointment"
-            fill
-            priority
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
-      </div>
-
-      <div
-        className="col-md-6 p-4 position-relative"
-        style={{ height: '100%', overflowY: 'auto', backgroundColor: 'black' }}
+      <Modal
+        show={showModal}
+        onHide={handleCloseModal}
+        centered
+        size="lg"
+        dialogClassName="custom-modal"
+        autoFocus={false}
       >
-        {/* Close Icon */}
-        <FaTimes
-          onClick={handleCloseModal}
-          style={{
-            position: 'absolute',
-            top: '10px',
-            right: '10px',
-            color: '#fff',
-            fontSize: '24px',
-            cursor: 'pointer',
-          }}
-        />
-        <h4 className="mb-4 text-center text-white fw-bold">Book an Appointment</h4>
-        <div className="pt-5">
-          <div className="row">
-            <div className="mb-3 col-md-6">
-              <input
-                className="form-control text-white bg-black w-100 border-white"
-                type="text"
-                name="name"
-                placeholder="Name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-              />
-              {errors.name && <span className="error-text">{errors.name}</span>}
-            </div>
-            <div className="mb-3 col-md-6">
-              <input
-                className="form-control text-white bg-black w-100 border-white"
-                type="email"
-                name="email"
-                placeholder="Email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-              />
-              {errors.email && <span className="error-text">{errors.email}</span>}
-            </div>
-          </div>
-          <div className="row">
-            <div className="mb-3 col-md-6">
-              <input
-                className="form-control text-white bg-black w-100 border-white"
-                type="text"
-                name="mobile"
-                placeholder="Mobile Number"
-                required
-                value={formData.mobile}
-                onChange={handleChange}
-              />
-              {errors.mobile && <span className="error-text">{errors.mobile}</span>}
-            </div>
-            <div className="mb-3 col-md-6">
-              <input
-                className="form-control text-white bg-black w-100 border-white"
-                type="text"
-                name="city"
-                placeholder="City"
-                required
-                value={formData.city}
-                onChange={handleChange}
-              />
-              {errors.city && <span className="error-text">{errors.city}</span>}
-            </div>
-          </div>
-          <div className="row">
-            <div className="mb-3 col-md-6">
-              <select
-                className="form-control text-white-50 bg-black w-100 border-white"
-                name="store"
-                required
-                value={formData.store}
-                onChange={handleChange}
-              >
-                <option value="">Select Store</option>
-                <option value="Jodhpur Cross Roads, Satellite">
-                  Jodhpur Cross Roads, Satellite
-                </option>
-                <option value="C.G. Road">C.G. Road</option>
-                <option value="Maninagar">Maninagar</option>
-              </select>
-              {errors.store && <span className="error-text">{errors.store}</span>}
-            </div>
-            <div className="mb-3 col-md-6">
-              <div className="w-100">
-                <DatePicker
-                  selected={formData.date ? new Date(formData.date) : null}
-                  onChange={(date) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      date: date?.toISOString().split('T')[0] || '',
-                    }))
-                  }
-                  dateFormat="dd/MM/yyyy"
-                  className="form-control bg-black text-white w-100 border-white"
-                  placeholderText="Select Appointment Date"
-                  wrapperClassName="w-100"
+        <Modal.Body
+          className="p-0 d-flex align-items-center justify-content-center"
+          style={{ width: '1200px', height: '300px', maxWidth: '100vw' }}
+        >
+          <div className="row no-gutters m-0 w-100" style={{ height: '100%' }}>
+            <div className="col-md-6 d-none d-md-block p-0" style={{ height: '100%' }}>
+              <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+                <Image
+                  src={BookImage}
+                  alt="Appointment"
+                  fill
+                  priority
+                  style={{ objectFit: 'cover' }}
                 />
-                {errors.date && <span className="error-text">{errors.date}</span>}
+              </div>
+            </div>
+
+            <div
+              className="col-md-6 p-4 position-relative"
+              style={{ height: '100%', overflowY: 'auto', backgroundColor: 'black' }}
+            >
+              {/* Close Icon */}
+              <FaTimes
+                onClick={handleCloseModal}
+                style={{
+                  position: 'absolute',
+                  top: '10px',
+                  right: '10px',
+                  color: '#fff',
+                  fontSize: '24px',
+                  cursor: 'pointer',
+                }}
+              />
+              <h4 className="mb-4 text-center text-white fw-bold">Book an Appointment</h4>
+              <div className="pt-5">
+                <div className="row">
+                  <div className="mb-3 col-md-6">
+                    <input
+                      className="form-control text-white bg-black w-100 border-white"
+                      type="text"
+                      name="name"
+                      placeholder="Name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
+                    {errors.name && <span className="error-text">{errors.name}</span>}
+                  </div>
+                  <div className="mb-3 col-md-6">
+                    <input
+                      className="form-control text-white bg-black w-100 border-white"
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                    {errors.email && <span className="error-text">{errors.email}</span>}
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="mb-3 col-md-6">
+                    <input
+                      className="form-control text-white bg-black w-100 border-white"
+                      type="text"
+                      name="mobile"
+                      placeholder="Mobile Number"
+                      required
+                      value={formData.mobile}
+                      onChange={handleChange}
+                    />
+                    {errors.mobile && <span className="error-text">{errors.mobile}</span>}
+                  </div>
+                  <div className="mb-3 col-md-6">
+                    <input
+                      className="form-control text-white bg-black w-100 border-white"
+                      type="text"
+                      name="city"
+                      placeholder="City"
+                      required
+                      value={formData.city}
+                      onChange={handleChange}
+                    />
+                    {errors.city && <span className="error-text">{errors.city}</span>}
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="mb-3 col-md-6">
+                    <select
+                      className="form-control text-white-50 bg-black w-100 border-white"
+                      name="store"
+                      required
+                      value={formData.store}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select Store</option>
+                      <option value="Jodhpur Cross Roads, Satellite">
+                        Jodhpur Cross Roads, Satellite
+                      </option>
+                      <option value="C.G. Road">C.G. Road</option>
+                      <option value="Maninagar">Maninagar</option>
+                    </select>
+                    {errors.store && <span className="error-text">{errors.store}</span>}
+                  </div>
+                  <div className="mb-3 col-md-6">
+                    <div className="w-100">
+                      <DatePicker
+                        selected={formData.date ? new Date(formData.date) : null}
+                        onChange={(date) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            date: date?.toISOString().split('T')[0] || '',
+                          }))
+                        }
+                        dateFormat="dd/MM/yyyy"
+                        className="form-control bg-black text-white w-100 border-white"
+                        placeholderText="Select Appointment Date"
+                        wrapperClassName="w-100"
+                      />
+                      {errors.date && <span className="error-text">{errors.date}</span>}
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="mb-3 col-md-12">
+                    <input
+                      className="form-control text-white bg-black w-100 border-white"
+                      type="text"
+                      name="jewelry"
+                      placeholder="Interested Jewelry"
+                      required
+                      value={formData.jewelry}
+                      onChange={handleChange}
+                    />
+                    {errors.jewelry && <span className="error-text">{errors.jewelry}</span>}
+                  </div>
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    className="form-control text-white bg-black w-100 border-white"
+                    rows={3}
+                    name="message"
+                    placeholder="Message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    style={{ width: '100%', height: '120px' }}
+                  />
+                </div>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    alignItems: 'center',
+                    gap: 2,
+                    mt: 3,
+                    mb: 3,
+                  }}
+                >
+                  <canvas
+                    ref={canvasRef}
+                    width={200}
+                    height={40}
+                    style={{
+                      border: '1px solid #dee2e6',
+                      borderRadius: '4px',
+                      backgroundColor: '#f0f0f0',
+                      height: '40px', // Small and same height
+                      maxWidth: '100%',
+                    }}
+                  />
+                  <Button
+                    variant="outlined"
+                    onClick={generateCaptcha}
+                    className="rounded-1"
+                    style={{
+                      borderColor: '#fff',
+                      color: '#fff',
+                      minWidth: '40px',
+                      height: '40px', // Same height
+                      padding: 0,
+                      flexShrink: 0,
+                    }}
+                  >
+                    <TbRefresh size={20} />
+                  </Button>
+                  <TextField
+                    id="captchaAnswer"
+                    name="captchaAnswer"
+                    label="Enter CAPTCHA Code"
+                    variant="outlined"
+                    size="small" // Smaller padding
+                    value={formData.captchaAnswer}
+                    onChange={handleChange}
+                    error={!!errors.captchaAnswer}
+                    helperText={errors.captchaAnswer}
+                    fullWidth
+                    sx={{
+                      flex: 1,
+                      '& .MuiInputBase-root': {
+                        height: '40px', // Match canvas and button
+                      },
+                      input: { color: '#fff' },
+                      label: { color: '#fff' },
+                      '& .MuiOutlinedInput-root': {
+                        '& fieldset': { borderColor: '#fff' },
+                        '&:hover fieldset': { borderColor: '#fff' },
+                        '&.Mui-focused fieldset': { borderColor: '#fff' },
+                      },
+                    }}
+                    inputProps={{ autoComplete: 'off' }}
+                  />
+                </Box>
+
+                <div className="text-center pt-4">
+                  <Button
+                    onClick={handleSubmit}
+                    className="px-4 py-2 rounded-pill fw-bold"
+                    style={{ backgroundColor: '#033A79', border: 'none', color: 'white' }}
+                  >
+                    Book Appointment
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-          <div className="row">
-            <div className="mb-3 col-md-12">
-              <input
-                className="form-control text-white bg-black w-100 border-white"
-                type="text"
-                name="jewelry"
-                placeholder="Interested Jewelry"
-                required
-                value={formData.jewelry}
-                onChange={handleChange}
-              />
-              {errors.jewelry && <span className="error-text">{errors.jewelry}</span>}
-            </div>
-          </div>
-          <div className="mb-3">
-            <textarea
-              className="form-control text-white bg-black w-100 border-white"
-              rows={3}
-              name="message"
-              placeholder="Message"
-              value={formData.message}
-              onChange={handleChange}
-              style={{ width: '100%', height: '120px' }}
-            />
-          </div>
-          <Box
-            sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-              gap: 2,
-              mt: 3,
-              mb: 3,
-            }}
-          >
-            <canvas
-              ref={canvasRef}
-              width={200}
-              height={40}
-              style={{
-                border: '1px solid #dee2e6',
-                borderRadius: '4px',
-                backgroundColor: '#f0f0f0',
-                height: '40px', // Small and same height
-                maxWidth: '100%',
-              }}
-            />
-            <Button
-              variant="outlined"
-              onClick={generateCaptcha}
-              className="rounded-1"
-              style={{
-                borderColor: '#fff',
-                color: '#fff',
-                minWidth: '40px',
-                height: '40px', // Same height
-                padding: 0,
-                flexShrink: 0,
-              }}
-            >
-              <TbRefresh size={20} />
-            </Button>
-            <TextField
-              id="captchaAnswer"
-              name="captchaAnswer"
-              label="Enter CAPTCHA Code"
-              variant="outlined"
-              size="small" // Smaller padding
-              value={formData.captchaAnswer}
-              onChange={handleChange}
-              error={!!errors.captchaAnswer}
-              helperText={errors.captchaAnswer}
-              fullWidth
-              sx={{
-                flex: 1,
-                '& .MuiInputBase-root': {
-                  height: '40px', // Match canvas and button
-                },
-                input: { color: '#fff' },
-                label: { color: '#fff' },
-                '& .MuiOutlinedInput-root': {
-                  '& fieldset': { borderColor: '#fff' },
-                  '&:hover fieldset': { borderColor: '#fff' },
-                  '&.Mui-focused fieldset': { borderColor: '#fff' },
-                },
-              }}
-              inputProps={{ autoComplete: 'off' }}
-            />
-          </Box>
-
-          <div className="text-center pt-4">
-            <Button
-              onClick={handleSubmit}
-              className="px-4 py-2 rounded-pill fw-bold"
-              style={{ backgroundColor: '#033A79', border: 'none', color: 'white' }}
-            >
-              Book Appointment
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </Modal.Body>
-</Modal>
+        </Modal.Body>
+      </Modal>
 
       <style jsx>{`
         .error-text {

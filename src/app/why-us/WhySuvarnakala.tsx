@@ -8,7 +8,7 @@ import shopnowbg from '../../../public/assets/dark-brown-colour-flower-pattern-b
 import shopWomen from '../../../public/assets/shopWomwn.png';
 import styles from '../page.module.css';
 import Link from 'next/link';
-import { IoIosCheckmarkCircleOutline } from "react-icons/io";
+import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 
 const features = [
   {
