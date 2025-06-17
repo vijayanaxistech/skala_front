@@ -60,13 +60,13 @@ export default function Home() {
       <Hero />
       <CredibilitySection />
       <VideoSection />
-      <ShopbyStyle /> {/* Now client-side rendered */}
+      <ShopbyStyle />
       <Products />
       <TopTrendingDesigns initialDesigns={trendingDesigns} />
       <GiftCard />
       <Moments moments={moments} />
       <BachatMahotsav bachatMahotsavImages={bachatMahotsavImages} />
-      <Testimonials /> {/* Now client-side rendered */}
+      <Testimonials />
     </>
   );
 }
