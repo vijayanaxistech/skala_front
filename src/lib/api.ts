@@ -124,5 +124,27 @@ export const sendAppointment = async (formData: {
     throw err;
   }
 };
+//navbar api
+export const getNavbar = async () => {
+  try {
+    const res = await API.get('/api/navbar');
+    // Filter for links with show: true
+    return Array.isArray(res.data) ? res.data.filter((link: any) => link.show === true) : [];
+  } catch (err) {
+    console.error('Error fetching navbar data:', err);
+    return [];
+  }
+};
+//meta  data api
+export const getMetadataByPage = async (page: string) => {
+  try {
+    const res = await API.get(`/api/metadata/${page}`);
+    return res.data || null;
+  } catch (err) {
+    console.error(`Error fetching metadata for page "${page}":`, err);
+    return null;
+  }
+};
+
 
 export default API;

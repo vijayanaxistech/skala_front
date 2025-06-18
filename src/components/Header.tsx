@@ -7,20 +7,27 @@ import { usePathname } from 'next/navigation';
 import { Navbar, Nav, Container, Modal, Button } from 'react-bootstrap';
 import { FaWhatsapp, FaTwitter, FaFacebook, FaInstagram, FaBars, FaTimes } from 'react-icons/fa';
 import { TbRefresh } from 'react-icons/tb';
-import Marquee from 'react-fast-marquee';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { sendAppointment } from '../lib/api';
+import { sendAppointment, getNavbar } from '../lib/api';
 import { Box, TextField } from '@mui/material';
 import Goldrate from './GoldRate';
 import logo from '../../public/assets/Suvarnakala.png';
 import BookImage from '../../public/assets/Book_A.png';
+
+interface NavLink {
+  _id: string;
+  name: string;
+  path: string;
+  show: boolean;
+}
 
 const Header: React.FC = () => {
   const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showShowroomDropdown, setShowShowroomDropdown] = useState(false);
+  const [navLinks, setNavLinks] = useState<NavLink[]>([]);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -88,6 +95,20 @@ const Header: React.FC = () => {
       return () => clearTimeout(timer);
     }
   }, [showModal]);
+
+  useEffect(() => {
+    // Fetch navbar links
+    const fetchNavLinks = async () => {
+      try {
+        const data = await getNavbar();
+        setNavLinks(data);
+      } catch (error) {
+        console.error('Error fetching navbar data:', error);
+        setNavLinks([]);
+      }
+    };
+    fetchNavLinks();
+  }, []);
 
   const handleToggle = () => setExpanded((prev) => !prev);
 
@@ -177,32 +198,15 @@ const Header: React.FC = () => {
     }
   };
 
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About Us' },
-    { href: '/collections', label: 'Collections' },
-    {
-      href: '/our-showrooms',
-      label: 'Our Showrooms ',
-      dropdown: [
-        { href: '/our-showrooms#satellite', label: 'Satellite' },
-        { href: '/our-showrooms#cgroad', label: 'C.G. Road' },
-        { href: '/our-showrooms#maninagar', label: 'Maninagar' },
-      ],
-    },
-    { href: '/events', label: 'Events' },
-    { href: '/why-us', label: 'Why Us' },
-    { href: '/contact', label: 'Contact Us' },
-    { href: '#', label: 'Book an Appointment', onClick: handleShowModal },
+  // Static dropdown for Our Showrooms
+  const showroomDropdown = [
+    { href: '/showrooms#satellite', label: 'Satellite' },
+    { href: '/showrooms#cgroad', label: 'C.G. Road' },
+    { href: '/showrooms#maninagar', label: 'Maninagar' },
   ];
 
   return (
     <>
-      {/* <div className="header-marquee text-white py-1">
-        <Marquee speed={50} gradient={false} pauseOnHover>
-          2025 | Today's Rate: 24K Gold: ₹6,700.00 (10 gram) | 22K Gold: ₹6,670.00 (10 gram) 
-          18K Gold: ₹6,670.00 (10 gram)        </Marquee>
-      </div> */}
       <Goldrate />
 
       <Navbar expand="lg" expanded={expanded} className="custom-navbar shadow-sm" sticky="top">
@@ -225,28 +229,30 @@ const Header: React.FC = () => {
 
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
             <Nav className="gap-3 text-center flex-column flex-lg-row align-items-center">
-              {navLinks.map(({ href, label, onClick, dropdown }, idx) => {
-                // Determine if the link is active
+              {navLinks.map(({ _id, name, path }) => {
+                const isShowroom = name === 'Our Showrooms';
+                const isBookAppointment = name === 'Book an Appointment';
+
                 const isActive =
-                  !onClick && !dropdown
-                    ? pathname === href || pathname.startsWith(href + '/')
-                    : dropdown
-                      ? pathname === href ||
-                        pathname.startsWith(href + '/') ||
-                        pathname.includes(href + '#')
+                  !isBookAppointment && !isShowroom
+                    ? pathname === path || pathname.startsWith(path + '/')
+                    : isShowroom
+                      ? pathname === path ||
+                        pathname.startsWith(path + '/') ||
+                        pathname.includes(path + '#')
                       : false;
 
-                if (dropdown) {
+                if (isShowroom) {
                   return (
                     <div
-                      key={idx}
+                      key={_id}
                       className="custom-nav-link position-relative"
                       onMouseEnter={() => setShowShowroomDropdown(true)}
                       onMouseLeave={() => setShowShowroomDropdown(false)}
                       onClick={() => setShowShowroomDropdown((prev) => !prev)}
                     >
                       <Link
-                        href={href}
+                        href={path}
                         passHref
                         legacyBehavior={false}
                         className="custom-nav-link"
@@ -261,12 +267,12 @@ const Header: React.FC = () => {
                           className={isActive ? 'text-danger active-link' : 'text-dark'}
                           style={{ cursor: 'pointer' }}
                         >
-                          {label}
+                          {name}
                         </Nav.Link>
                       </Link>
                       {showShowroomDropdown && (
                         <div className="card-dropdown">
-                          {dropdown.map((item, subIdx) => (
+                          {showroomDropdown.map((item, subIdx) => (
                             <Link
                               key={subIdx}
                               href={item.href}
@@ -275,7 +281,7 @@ const Header: React.FC = () => {
                                 setExpanded(false);
                                 setShowShowroomDropdown(false);
                               }}
-                              style={{ color: '#d41b1f', textDecoration: 'none' }} // apply styles here
+                              style={{ color: '#d41b1f', textDecoration: 'none' }}
                             >
                               {item.label}
                             </Link>
@@ -285,17 +291,18 @@ const Header: React.FC = () => {
                     </div>
                   );
                 }
+
                 return (
                   <Link
-                    key={idx}
-                    href={href}
+                    key={_id}
+                    href={path}
                     passHref
                     legacyBehavior={false}
                     className="custom-nav-link"
                     onClick={(e) => {
-                      if (onClick) {
+                      if (isBookAppointment) {
                         e.preventDefault();
-                        onClick();
+                        handleShowModal();
                       }
                       setExpanded(false);
                     }}
@@ -305,7 +312,7 @@ const Header: React.FC = () => {
                       as="span"
                       className={isActive ? 'text-danger active-link' : 'text-dark'}
                     >
-                      {label}
+                      {name}
                     </Nav.Link>
                   </Link>
                 );
@@ -606,10 +613,6 @@ const Header: React.FC = () => {
         }
         .custom-nav-link:hover {
           color: #d41b1f !important;
-        }
-        .header-marquee {
-          background-color: #d41b1f;
-          font-size: 14px;
         }
         .social-icons a {
           color: #333;

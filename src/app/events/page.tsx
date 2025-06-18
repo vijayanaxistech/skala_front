@@ -8,13 +8,8 @@ import shopnowbg from '../../../public/assets/dark-brown-colour-flower-pattern-b
 import shopWomen from '../../../public/assets/shopWomwn.png';
 import styles from '../page.module.css';
 import { Button, Container, Row, Col } from 'react-bootstrap';
-import { getEvents } from '../../lib/api';
+import { getEvents, getMetadataByPage } from '../../lib/api';
 import Link from 'next/link';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Events | Suvarnakala Pvt. Ltd',
-};
 
 interface Event {
   _id: string;
@@ -22,6 +17,36 @@ interface Event {
   address: string;
   startDate: string;
   endDate: string;
+}
+
+export async function generateMetadata() {
+  try {
+    const metadata = await getMetadataByPage('events');
+    if (!metadata) {
+      // Fallback metadata if API returns null
+      return {
+        title: 'Events | Suvarnakala Pvt. Ltd',
+        description: 'Discover upcoming and past events hosted by Suvarnakala Pvt. Ltd.',
+      };
+    }
+    return {
+      title: metadata.title,
+      description: metadata.description,
+      keywords: metadata.keywords,
+      openGraph: {
+        title: metadata.ogTitle,
+        description: metadata.ogDescription,
+        images: metadata.ogImage ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${metadata.ogImage}` : undefined,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching metadata for events page:', error);
+    // Fallback metadata in case of error
+    return {
+      title: 'Events | Suvarnakala Pvt. Ltd',
+      description: 'Discover upcoming and past events hosted by Suvarnakala Pvt. Ltd.',
+    };
+  }
 }
 
 const formatDateRange = (start: string, end: string) => {
@@ -64,18 +89,11 @@ const customStyles = `
     text-transform: uppercase;
     margin-bottom: 1rem;
   }
-
   .coming-soon-text {
     font-size: 1.2rem;
     color: #555;
     margin-bottom: 2rem;
   }
-
-
-
-
-
-
 `;
 
 const EventsPage = async () => {
@@ -85,10 +103,6 @@ const EventsPage = async () => {
   const upcomingEvents = events
     .filter((e) => new Date(e.startDate) >= today)
     .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
-
-  const pastEvents = events
-    .filter((e) => new Date(e.endDate) < today)
-    .sort((a, b) => new Date(b.endDate).getTime() - new Date(b.endDate).getTime());
 
   return (
     <>
@@ -159,9 +173,6 @@ const EventsPage = async () => {
               </div>
             )}
           </div>
-
-          {/* Past Events (Commented out as per original code) */}
-          {/* ... Past Events code ... */}
         </div>
       </div>
 

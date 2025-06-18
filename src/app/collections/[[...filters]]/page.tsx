@@ -17,7 +17,7 @@ import styles from '@/app/page.module.css';
 import FilterDropdown from './FilterDropdown';
 import WhatsAppButton from '../WhatsAppButton';
 import MoreInfoButton from '../MoreInfo';
-import { getProducts, getCategories, BASE_URL } from '@/lib/api';
+import { getProducts, getCategories, getMetadataByPage, BASE_URL } from '@/lib/api';
 import { Metadata } from 'next';
 
 // Define interfaces for TypeScript
@@ -45,9 +45,35 @@ interface Product {
   metalPurity?: string;
 }
 
-export const metadata: Metadata = {
-  title: 'Collections | Suvarnakala Pvt. Ltd',
-};
+export async function generateMetadata() {
+  try {
+    const metadata = await getMetadataByPage('collections');
+    if (!metadata) {
+      // Fallback metadata if API returns null
+      return {
+        title: 'Collections | Suvarnakala Pvt. Ltd',
+        description: 'Explore the exquisite jewellery collections at Suvarnakala Pvt. Ltd.',
+      };
+    }
+    return {
+      title: metadata.title,
+      description: metadata.description,
+      keywords: metadata.keywords,
+      openGraph: {
+        title: metadata.ogTitle,
+        description: metadata.ogDescription,
+        images: metadata.ogImage ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${metadata.ogImage}` : undefined,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching metadata for collections page:', error);
+    // Fallback metadata in case of error
+    return {
+      title: 'Collections | Suvarnakala Pvt. Ltd',
+      description: 'Explore the exquisite jewellery collections at Suvarnakala Pvt. Ltd.',
+    };
+  }
+}
 
 // Category image mapping for product cards
 const categoryImages: { [key: string]: any } = {

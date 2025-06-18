@@ -31,7 +31,7 @@ const GoldRates = () => {
   return (
     <div className="header-marquee text-white py-1">
       <Marquee speed={50} gradient={false} pauseOnHover>
-        <span style={{ fontWeight: '500', marginRight: '2rem' }}>2025 | Today's Rate:</span>
+        <span style={{ fontWeight: '500', marginRight: '2rem' }}>2025 | Today&apos;s Rate:</span>
         {rates.map((rate, index) => (
           <span key={rate.id} style={{ marginRight: '2rem', fontWeight: '400' }}>
             {formatRate(rate.type, rate.value)}

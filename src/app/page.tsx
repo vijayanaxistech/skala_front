@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 
 import Popup from '../components/Popup';
 import Hero from '../components/HeroCarousel';
@@ -19,6 +20,7 @@ import {
   getHeroes,
   getMoments,
   getTrendingDesigns,
+  getMetadataByPage,
   BASE_URL,
 } from '../lib/api';
 
@@ -26,22 +28,34 @@ export default function Home() {
   const [heroes, setHeroes] = useState([]);
   const [moments, setMoments] = useState([]);
   const [trendingDesigns, setTrendingDesigns] = useState([]);
-  const [bachatMahotsavImages, setBachatMahotsavImages] = useState([]);
+  const [bachatMahotsavImages, setBachatMahotsavImages] = useState<string[]>([]);
+  type Metadata = {
+    title: string;
+    description: string;
+    keywords: string;
+    ogTitle: string;
+    ogDescription: string;
+    ogImage: string;
+  };
+
+  const [metadata, setMetadata] = useState<Metadata | null>(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const [heroData, momentData, trendingData, bachatData] = await Promise.all([
+        const [heroData, momentData, trendingData, bachatData, metadataData] = await Promise.all([
           getHeroes(),
           getMoments(),
           getTrendingDesigns(),
           getBachatMahotsavImages(),
+          getMetadataByPage('home'),
         ]);
 
         setHeroes(heroData);
         setMoments(momentData);
         setTrendingDesigns(trendingData);
         setBachatMahotsavImages(bachatData);
+        setMetadata(metadataData);
       } catch (error) {
         console.error('Error fetching home page data:', error);
       }
@@ -56,17 +70,27 @@ export default function Home() {
 
   return (
     <>
+      {metadata && (
+        <Head>
+          <title>{metadata.title}</title>
+          <meta name="description" content={metadata.description} />
+          <meta name="keywords" content={metadata.keywords} />
+          <meta property="og:title" content={metadata.ogTitle} />
+          <meta property="og:description" content={metadata.ogDescription} />
+          <meta property="og:image" content={`${BASE_URL}${metadata.ogImage}`} />
+        </Head>
+      )}
       <Popup />
       <Hero />
       <CredibilitySection />
       <VideoSection />
-      <ShopbyStyle /> {/* Now client-side rendered */}
+      <ShopbyStyle />
       <Products />
       <TopTrendingDesigns initialDesigns={trendingDesigns} />
       <GiftCard />
       <Moments moments={moments} />
       <BachatMahotsav bachatMahotsavImages={bachatMahotsavImages} />
-      <Testimonials /> {/* Now client-side rendered */}
+      <Testimonials />
     </>
   );
 }

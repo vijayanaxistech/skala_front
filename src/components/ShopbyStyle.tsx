@@ -9,6 +9,7 @@ interface Category {
   _id: string;
   name: string;
   image?: string;
+  isActive: boolean;
 }
 
 const ShopbyStyle = () => {
@@ -17,8 +18,15 @@ const ShopbyStyle = () => {
 
   useEffect(() => {
     getCategories()
-      .then((data) => setCategories(data))
-      .catch((err) => console.error('Failed to fetch categories:', err))
+      .then((data) => {
+        // Filter only active categories
+        const activeCategories = data.filter((category: Category) => category.isActive === true);
+        setCategories(activeCategories);
+      })
+      .catch((err) => {
+        console.error('Failed to fetch categories:', err);
+        setCategories([]);
+      })
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -47,6 +55,8 @@ const ShopbyStyle = () => {
       <div className="categories-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
         {isLoading ? (
           <div className="text-center col-span-full">Loading...</div>
+        ) : categories.length === 0 ? (
+          <div className="text-center col-span-full">No active categories available</div>
         ) : (
           <>
             {displayedCategories.map((item, index) => (

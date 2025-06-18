@@ -56,7 +56,7 @@ const WhySuvarnakala = () => {
   return (
     <>
       {/* Banner Image */}
-      <div style={{ position: 'relative', width: '100%', height: '500px' }}>
+      <div style={{ position: 'relative', width: '100%', height: '600px',}}>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
