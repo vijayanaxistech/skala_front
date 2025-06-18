@@ -69,7 +69,7 @@ const About = () => {
                 innovation of Lab-Grown Diamonds. Whether you seek classic luxury, natural sparkle,
                 or sustainable sophistication, our carefully curated collection offers something for
                 every style and occasion. Crafted to perfection, each piece reflects purity, beauty,
-                and value you can treasure forever.
+                and value you can treasure forever .
               </p>
             </div>
           </div>
