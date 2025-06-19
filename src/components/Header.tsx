@@ -11,6 +11,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { sendAppointment, getNavbar } from '../lib/api';
 import { Box, TextField } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+
 import Goldrate from './GoldRate';
 import logo from '../../public/assets/Suvarnakala.png';
 import BookImage from '../../public/assets/Book_A.png';
@@ -172,13 +174,21 @@ const Header: React.FC = () => {
 
   const handleSubmit = async () => {
     if (!validateForm()) {
-      alert('Please fill in all required fields correctly.');
+      // alert('Please fill in all required fields correctly.');
       return;
     }
 
     try {
       await sendAppointment(formData);
-      alert('Appointment request sent successfully!');
+      // alert('Appointment request sent successfully!');
+      toast.success('Message sent successfully!', {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
       setFormData({
         name: '',
         email: '',
@@ -194,7 +204,7 @@ const Header: React.FC = () => {
       setShowModal(false);
     } catch (error) {
       console.error('Error sending appointment request:', error);
-      alert('Failed to send appointment. Please try again later.');
+      // alert('Failed to send appointment. Please try again later.');
     }
   };
 
@@ -238,8 +248,8 @@ const Header: React.FC = () => {
                     ? pathname === path || pathname.startsWith(path + '/')
                     : isShowroom
                       ? pathname === path ||
-                        pathname.startsWith(path + '/') ||
-                        pathname.includes(path + '#')
+                      pathname.startsWith(path + '/') ||
+                      pathname.includes(path + '#')
                       : false;
 
                 if (isShowroom) {

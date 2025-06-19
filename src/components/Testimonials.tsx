@@ -12,6 +12,7 @@ interface Testimonial {
   description: string;
   createdAt: string;
   updatedAt: string;
+  isActive: boolean; // Add isActive to the interface
 }
 
 const responsive = {
@@ -27,7 +28,11 @@ const Testimonials: React.FC = () => {
 
   useEffect(() => {
     getTestimonials()
-      .then((data) => setTestimonials(data))
+      .then((data) => {
+        // Filter testimonials to include only those with isActive: true
+        const activeTestimonials = data.filter((testimonial: Testimonial) => testimonial.isActive);
+        setTestimonials(activeTestimonials);
+      })
       .catch((err) => console.error('Failed to fetch testimonials:', err))
       .finally(() => setIsLoading(false));
   }, []);

@@ -14,12 +14,12 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
-        port: '5000',
+        port: '4000',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'skalaapi.anaxistech.com',
+        hostname: 'skalaapi.anaxaaistech.com',
         pathname: '/**',
       },
     ],

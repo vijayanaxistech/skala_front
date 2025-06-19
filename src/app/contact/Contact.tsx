@@ -12,6 +12,7 @@ import shopnowbg from '../../../public/assets/dark-brown-colour-flower-pattern-b
 import shopWomen from '../../../public/assets/shopWomwn.png';
 import locationIcon from '../../../public/assets/google-maps.png';
 import { TbRefresh } from 'react-icons/tb';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import API from '../../lib/api';
@@ -140,7 +141,14 @@ const Contact: NextPage = () => {
       const res = await API.post('/api/contact', formData);
 
       if (res.status === 200 || res.status === 201) {
-        setSubmitStatus('Message sent successfully!');
+        toast.success('Message sent successfully!', {
+          position: 'bottom-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
         setFormData({ name: '', email: '', phone: '', message: '', captchaAnswer: '' });
         setErrors({});
         generateCaptcha();
@@ -163,6 +171,9 @@ const Contact: NextPage = () => {
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
         />
       </Head>
+
+      {/* Toast Container */}
+      <ToastContainer />
 
       {/* Hero Section */}
       <main style={{ backgroundColor: '#f5f0e6' }}>
@@ -349,20 +360,6 @@ const Contact: NextPage = () => {
                       Send Message
                     </Button>
                   </Box>
-
-                  {submitStatus && (
-                    <Box
-                      sx={{
-                        mt: 2,
-                        textAlign: 'center',
-                        color: submitStatus.includes('success') ? 'green' : 'red',
-                        fontWeight: '600',
-                        fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
-                      }}
-                    >
-                      {submitStatus}
-                    </Box>
-                  )}
                 </Box>
               </div>
             </div>

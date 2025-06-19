@@ -10,6 +10,7 @@ interface Hero {
   image: string;
   priority: number;
   link: string;
+  isActive: boolean; // Add isActive to the interface
 }
 
 const HeroCarousel: React.FC = () => {
@@ -30,7 +31,10 @@ const HeroCarousel: React.FC = () => {
     fetchHeroes();
   }, []);
 
-  const sortedHeroes = [...heroes].sort((a, b) => a.priority - b.priority);
+  // Filter active heroes and sort by priority
+  const sortedHeroes = [...heroes]
+    .filter(hero => hero.isActive)
+    .sort((a, b) => a.priority - b.priority);
 
   useEffect(() => {
     const updateWidth = () => {
@@ -77,7 +81,6 @@ const HeroCarousel: React.FC = () => {
           aria-live="polite"
         >
           {sortedHeroes.map(({ title, description, image, link }, idx) => {
-            // Fixed image URL construction by adding a leading slash
             const imageUrl = image.startsWith('http') ? image : `${BASE_URL}/${image}`;
             const validLink = link?.startsWith('http') ? link : '#';
             return (
