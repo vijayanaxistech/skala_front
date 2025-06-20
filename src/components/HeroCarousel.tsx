@@ -59,7 +59,7 @@ const HeroCarousel: React.FC = () => {
 
   useEffect(() => {
     if (slideWidth === 0 || sortedHeroes.length === 0) return;
-    const interval = setInterval(() => goNext(), 10000);
+    const interval = setInterval(() => goNext(), 7000);
     return () => clearInterval(interval);
   }, [slideWidth, goNext, sortedHeroes.length]);
 
