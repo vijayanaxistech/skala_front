@@ -259,15 +259,7 @@ const About = () => {
 
       {/* Trust Section */}
       <div style={{ backgroundColor: 'rgb(246, 245, 245)', padding: '30px 0' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-evenly',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: '30px',
-          }}
-        >
+        <div className="d-flex flex-wrap align-items-center gap-3 justify-content-start justify-content-md-evenly">
           {[
             { img: certified, text: '100% Certified Jewelry' },
             { img: hallmark, text: 'BIS Hallmarked Gold' },
@@ -276,13 +268,8 @@ const About = () => {
           ].map((item, index) => (
             <div
               key={index}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                minWidth: '250px',
-                padding: '10px',
-              }}
+              className="d-flex align-items-center p-2"
+              style={{ minWidth: '250px' }}
             >
               <Image src={item.img} alt={item.text} width={40} height={40} />
               <span
@@ -298,6 +285,7 @@ const About = () => {
             </div>
           ))}
         </div>
+
       </div>
 
       {/* Animation Keyframes */}
