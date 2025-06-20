@@ -308,6 +308,15 @@ export default async function ProductsPage({ params }: { params: { filters?: str
           </Container>
         </div>
       </div>
+      <style>{`
+        
+          @media (max-width: 767px) {
+          .banner {
+            height: 215px !important;
+          }
+          
+        }
+      `}</style>
     </>
   );
 }

@@ -109,7 +109,7 @@ const EventsPage = async () => {
       {/* Inject custom styles */}
       <style>{customStyles}</style>
 
-      <div style={{ position: 'relative', width: '100%', height: '434px' }}>
+      <div style={{ position: 'relative', width: '100%', height: '434px' }} className="banner">
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
@@ -215,6 +215,15 @@ const EventsPage = async () => {
           </Container>
         </div>
       </div>
+      <style>{`
+        
+          @media (max-width: 767px) {
+          .banner {
+            height: 215px !important;
+          }
+          
+        }
+      `}</style>
     </>
   );
 };

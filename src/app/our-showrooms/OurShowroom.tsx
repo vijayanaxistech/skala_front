@@ -96,7 +96,7 @@ const WhySuvarnakala = () => {
 
   return (
     <>
-      <div style={{ position: 'relative', width: '100%', height: '500px' }}>
+      <div style={{ position: 'relative', width: '100%', height: '500px' }} className="banner">
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
@@ -218,6 +218,15 @@ const WhySuvarnakala = () => {
           )}
         </Modal.Body>
       </Modal>
+      <style>{`
+        
+          @media (max-width: 767px) {
+          .banner {
+            height: 215px !important;
+          }
+          
+        }
+      `}</style>
     </>
   );
 };

@@ -178,7 +178,7 @@ const Contact: NextPage = () => {
       {/* Hero Section */}
       <main style={{ backgroundColor: '#f5f0e6' }}>
         <div
-          className="position-relative text-white d-flex align-items-center"
+          className="position-relative text-white d-flex align-items-center contact-banner"
           style={{
             backgroundImage: `url(${contactUs.src})`,
             backgroundSize: 'cover',
@@ -245,6 +245,7 @@ const Contact: NextPage = () => {
                 >
                   <TextField
                     id="name"
+                    className="input"
                     label="Name"
                     variant="outlined"
                     size="medium"
@@ -257,6 +258,7 @@ const Contact: NextPage = () => {
                   />
                   <TextField
                     id="email"
+                    className="input"
                     label="Email"
                     variant="outlined"
                     size="medium"
@@ -270,6 +272,7 @@ const Contact: NextPage = () => {
                   />
                   <TextField
                     id="phone"
+                    className="input"
                     label="Phone"
                     variant="outlined"
                     size="medium"
@@ -283,6 +286,7 @@ const Contact: NextPage = () => {
                   />
                   <TextField
                     id="message"
+                    className="input"
                     label="Message"
                     variant="outlined"
                     size="medium"
@@ -513,6 +517,16 @@ const Contact: NextPage = () => {
           </Container>
         </div>
       </div>
+      <style>{`
+          @media (max-width: 767px) {
+          .contact-banner {
+            height: 280px !important;
+            min-height:auto !important;
+          }
+          .input{
+          padding:10px}
+        }
+      `}</style>
     </div>
   );
 };

@@ -59,7 +59,10 @@ const About = () => {
   return (
     <>
       {/* Breadcrumb Section */}
-      <div style={{ position: 'relative', width: '100%', height: '434px' }}>
+      <div
+        style={{ position: 'relative', width: '100%', height: '434px' }}
+        className="about-banner"
+      >
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
@@ -302,6 +305,12 @@ const About = () => {
         @keyframes rotateCircle {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
+        }
+          @media (max-width: 767px) {
+          .about-banner {
+            height: 320px !important;
+          }
+          
         }
       `}</style>
     </>

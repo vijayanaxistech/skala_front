@@ -66,7 +66,7 @@ const HeroCarousel: React.FC = () => {
   return (
     <div
       ref={containerRef}
-      className="position-relative overflow-hidden"
+      className="position-relative overflow-hidden hero-section"
       style={{ width: '100%', maxWidth: '100vw', height: '600px', margin: 'auto' }}
       aria-label="Suvarnakala Hero Section Carousel"
     >
@@ -88,14 +88,15 @@ const HeroCarousel: React.FC = () => {
                 key={idx}
                 style={{
                   width: `${slideWidth}px`,
-                  height: '600px',
                   position: 'relative',
+                  height: '600px',
                   flexShrink: 0,
                   backgroundImage: `url(${imageUrl || '/fallback-image.jpg'})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backgroundColor: '#f0f0f0',
                 }}
+                className="hero-banner"
                 role="group"
                 aria-label={`Slide ${idx + 1}: ${title}`}
               >
@@ -138,7 +139,7 @@ const HeroCarousel: React.FC = () => {
 
                 {/* Overlay for Mobile */}
                 <div
-                  className="d-flex d-md-none flex-column justify-content-center align-items-center text-center"
+                  className="d-flex d-md-none flex-column justify-content-center align-items-center text-center hero-mobile"
                   style={{
                     position: 'absolute',
                     top: 0,
@@ -223,6 +224,16 @@ const HeroCarousel: React.FC = () => {
           </button>
         </>
       )}
+      <style jsx>{`
+        @media (max-width: 767px) {
+          .hero-banner {
+            height: 450px !important;
+          }
+          .hero-section {
+            height: 450px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

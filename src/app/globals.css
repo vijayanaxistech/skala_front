@@ -20,6 +20,8 @@
   font-style: normal;
 }
 
+
+
 /* ==================== Utility Classes ==================== */
 .text-red {
   color: #d41b1f;
@@ -786,9 +788,25 @@ textarea::placeholder {
     left: 14%;
   }
 
+  .popup-image {
+    height: 250px !important;
+}
+
+.modal{
+  height: auto;
+  top: 20%;
+  padding: 20px;
+}
+
   .about_main_image img {
     width: 300px !important;
   }
+
+  .btn-close-white{
+    --bs-btn-close-filter:none;
+  }
+
+   
 
   .about_section {
     padding: 0;

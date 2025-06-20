@@ -56,7 +56,7 @@ const WhySuvarnakala = () => {
   return (
     <>
       {/* Banner Image */}
-      <div style={{ position: 'relative', width: '100%', height: '600px',}}>
+      <div style={{ position: 'relative', width: '100%', height: '600px',}} className='banner'>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
@@ -67,7 +67,7 @@ const WhySuvarnakala = () => {
       </div>
 
       {/* Features Section */}
-      <div style={{ backgroundColor: '#F5E7D6', padding: '40px 0' }}>
+      <div style={{ backgroundColor: '#F5E7D6', padding: '40px 0' }} className='why'>
         <Container
           style={{
             backgroundColor: '#fff',
@@ -149,6 +149,18 @@ const WhySuvarnakala = () => {
           </Container>
         </div>
       </div>
+      <style>{`
+        
+          @media (max-width: 767px) {
+          .banner {
+            height: 215px !important;
+          }
+            .why{
+            paddingtop: 0 ;
+            }
+          
+        }
+      `}</style>
     </>
   );
 };

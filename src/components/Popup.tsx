@@ -16,7 +16,7 @@ export default function Popup() {
       const timer = setTimeout(() => {
         setShow(true);
         sessionStorage.setItem('popupShown', 'true');
-      }, 10000); // 10-second delay
+      }, 1000); // 10-second delay
       return () => clearTimeout(timer);
     }
   }, []);
@@ -32,27 +32,29 @@ export default function Popup() {
         size="lg"
         contentClassName="border-0"
         dialogClassName="rounded-3 overflow-hidden"
+        className="full-box"
       >
-        <div className="d-flex flex-column flex-md-row">
+        <div className="d-flex flex-column flex-md-row popup">
+          {/* Close Icon */}
+          <button
+            onClick={handleClose}
+            className="btn-close btn-close-white position-absolute"
+            style={{ top: '12px', right: '12px', zIndex: 1 }}
+            aria-label="Close"
+          ></button>
+
           {/* Left Side Image */}
           <div className="col-12 col-md-6 p-0">
             <Image
               src={popupImage}
               alt="Suvarnakala Welcome"
+              className="popup-image"
               style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: '200px' }}
             />
           </div>
 
           {/* Right Side Content */}
           <div className="col-12 col-md-6 bg-dark text-white p-3 p-md-4 d-flex flex-column position-relative">
-            {/* Close Icon */}
-            <button
-              onClick={handleClose}
-              className="btn-close btn-close-white position-absolute"
-              style={{ top: '12px', right: '12px', zIndex: 1 }}
-              aria-label="Close"
-            ></button>
-
             {/* Content */}
             <div className="d-flex flex-column justify-content-between flex-grow-1">
               <div>
@@ -61,7 +63,7 @@ export default function Popup() {
                 <p className="mt-3 mb-2">Get ₹1,000 off after signup</p>
                 <p>Get started by registering on the app</p>
                 <div className="mt-3 mt-md-4">
-                  <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-start gap-2 gap-sm-3">
+                  <div className="d-flex flex-column flex-sm-row justify-content-start justify-content-sm-start gap-2 gap-sm-3">
                     <a
                       href="https://play.google.com/store"
                       target="_blank"
@@ -128,7 +130,7 @@ export default function Popup() {
             padding: 1.5rem !important;
           }
           .d-flex.gap-2.gap-sm-3 {
-            flex-direction: column;
+            flex-direction: row !important;
             align-items: center;
             gap: 1rem !important;
           }
@@ -145,7 +147,7 @@ export default function Popup() {
         /* Small Screens (576px and up) */
         @media (min-width: 576px) and (max-width: 767.98px) {
           .modal-dialog {
-            width: 90%;
+            width: 80%;
           }
           h2 {
             font-size: 1.5rem;
@@ -158,7 +160,7 @@ export default function Popup() {
             line-height: 1.4;
           }
           .d-flex.gap-2.gap-sm-3 {
-            flex-direction: row;
+            flex-direction: row !important;
             justify-content: center;
             gap: 1.5rem !important;
           }

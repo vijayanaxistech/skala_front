@@ -13,6 +13,7 @@ const VideoSection: React.FC = () => {
       className="rounded-0  "
     >
       <video
+        className="video"
         style={{
           backgroundColor: '#000',
           display: 'block',
@@ -30,6 +31,13 @@ const VideoSection: React.FC = () => {
         <source src="/1724486881975.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      <style jsx>
+        {`
+          .video {
+            height: 230px !important;
+          }
+        `}
+      </style>
     </div>
   );
 };
