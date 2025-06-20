@@ -18,7 +18,6 @@ import FilterDropdown from './FilterDropdown';
 import WhatsAppButton from '../WhatsAppButton';
 import MoreInfoButton from '../MoreInfo';
 import { getProducts, getCategories, getMetadataByPage, BASE_URL } from '@/lib/api';
-import { Metadata } from 'next';
 
 // Define interfaces for TypeScript
 interface Category {

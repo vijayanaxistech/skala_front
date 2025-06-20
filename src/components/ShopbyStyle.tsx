@@ -103,14 +103,17 @@ const ShopbyStyle = () => {
 
             <Link
               href="/collections"
-              className="text-decoration-none bottom-row"
+              key="view-all"
+              className="category-item text-decoration-none bottom-row"
               role="group"
               aria-label="Explore Additional Categories"
             >
               <div
-                className="d-flex flex-column justify-content-center align-items-center text-center"
+                className="image-wrapper d-flex flex-column justify-content-center align-items-center text-center"
                 style={{
                   background: 'linear-gradient(135deg, #F5E7D6 0%, #F5E7D6 100%)',
+                  overflow: 'hidden',
+                  borderRadius: '0.80rem',
                   aspectRatio: '1/1',
                   width: '100%',
                   color: '#6b4c2d',
@@ -118,7 +121,6 @@ const ShopbyStyle = () => {
                   padding: '1.5rem',
                   letterSpacing: '0.05em',
                   userSelect: 'none',
-                  borderRadius: '0.80rem',
                 }}
               >
                 <p
@@ -131,7 +133,6 @@ const ShopbyStyle = () => {
                   Exclusive Collections
                 </p>
               </div>
-
               <p className="text-red mt-2 fs-5 sm:fs-5 text-center">View all</p>
             </Link>
           </>
@@ -162,11 +163,9 @@ const ShopbyStyle = () => {
           .top-row:nth-child(4) {
             grid-column: 2;
           }
-          .bottom-row:nth-child(5) {
-            grid-column: 1;
-          }
+          .bottom-row:nth-child(5),
           .bottom-row:nth-child(6) {
-            grid-column: 2;
+            grid-column: 1;
           }
           .extra-category {
             grid-column: 1 / -1;

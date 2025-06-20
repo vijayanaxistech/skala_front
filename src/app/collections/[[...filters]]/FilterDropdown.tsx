@@ -67,7 +67,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       ]);
     const url = segments.length > 0 ? `/collections/${segments.join('/')}` : '/collections';
     console.log('Navigating to:', url);
-    router.push(url);
+    router.push(url, { scroll: false });
     setDropdownOpen(false);
   };
 
@@ -84,12 +84,12 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       ]);
     const url = segments.length > 0 ? `/collections/${segments.join('/')}` : '/collections';
     console.log('Removing filter:', filterType, 'Navigating to:', url);
-    router.push(url);
+    router.push(url, { scroll: false });
   };
 
   const clearAllFilters = () => {
     console.log('Clearing all filters, navigating to /collections');
-    router.push('/collections');
+    router.push('/collections', { scroll: false });
     setDropdownOpen(false);
   };
 
@@ -111,9 +111,9 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       ))}
     </div>
   );
-
+  
   return (
-    <div className="position-relative" ref={dropdownRef}>
+    <div className="position-relative" ref={dropdownRef} >
       <Button
         variant="outline-dark"
         className="d-flex align-items-center gap-2 rounded-pill px-4 py-2"

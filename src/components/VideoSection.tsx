@@ -33,8 +33,10 @@ const VideoSection: React.FC = () => {
       </video>
       <style jsx>
         {`
-          .video {
-            height: 230px !important;
+          @media (max-width: 767px) {
+            .video {
+              height: 230px !important;
+            }
           }
         `}
       </style>
