@@ -12,7 +12,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { sendAppointment, getNavbar } from '../lib/api';
 import { Box, TextField } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
-
 import Goldrate from './GoldRate';
 import logo from '../../public/assets/Suvarnakala.png';
 import BookImage from '../../public/assets/Book_A.png';
@@ -44,6 +43,18 @@ const Header: React.FC = () => {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [captchaText, setCaptchaText] = useState('');
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Desired order of navigation menu items
+  const desiredOrder = [
+    'Home',
+    'About Us',
+    'Collections',
+    'Our Showrooms',
+    'Events',
+    'Why Us',
+    'Contact Us',
+    'Book an Appointment',
+  ];
 
   const generateCaptcha = () => {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -103,7 +114,14 @@ const Header: React.FC = () => {
     const fetchNavLinks = async () => {
       try {
         const data = await getNavbar();
-        setNavLinks(data);
+        // Sort navLinks based on desiredOrder
+        const sortedLinks = data.sort((a: NavLink, b: NavLink) => {
+          const aIndex = desiredOrder.indexOf(a.name);
+          const bIndex = desiredOrder.indexOf(b.name);
+          // If not found in desiredOrder, push to the end
+          return (aIndex === -1 ? desiredOrder.length : aIndex) - (bIndex === -1 ? desiredOrder.length : bIndex);
+        });
+        setNavLinks(sortedLinks);
       } catch (error) {
         console.error('Error fetching navbar data:', error);
         setNavLinks([]);
@@ -174,13 +192,11 @@ const Header: React.FC = () => {
 
   const handleSubmit = async () => {
     if (!validateForm()) {
-      // alert('Please fill in all required fields correctly.');
       return;
     }
 
     try {
       await sendAppointment(formData);
-      // alert('Appointment request sent successfully!');
       toast.success('Message sent successfully!', {
         position: 'bottom-right',
         autoClose: 3000,
@@ -204,20 +220,20 @@ const Header: React.FC = () => {
       setShowModal(false);
     } catch (error) {
       console.error('Error sending appointment request:', error);
-      // alert('Failed to send appointment. Please try again later.');
     }
   };
 
   // Static dropdown for Our Showrooms
   const showroomDropdown = [
-    { href: '/showrooms#satellite', label: 'Satellite' },
-    { href: '/showrooms#cgroad', label: 'C.G. Road' },
-    { href: '/showrooms#maninagar', label: 'Maninagar' },
+    { href: '/our-showrooms#satellite', label: 'Satellite' },
+    { href: '/our-showrooms#cgroad', label: 'C.G. Road' },
+    { href: '/our-showrooms#maninagar', label: 'Maninagar' },
   ];
 
   return (
     <>
       <Goldrate />
+      <ToastContainer />
 
       <Navbar expand="lg" expanded={expanded} className="custom-navbar shadow-sm" sticky="top">
         <Container fluid className="d-flex align-items-center justify-content-between">
@@ -247,10 +263,10 @@ const Header: React.FC = () => {
                   !isBookAppointment && !isShowroom
                     ? pathname === path || pathname.startsWith(path + '/')
                     : isShowroom
-                      ? pathname === path ||
+                    ? pathname === path ||
                       pathname.startsWith(path + '/') ||
                       pathname.includes(path + '#')
-                      : false;
+                    : false;
 
                 if (isShowroom) {
                   return (
@@ -376,7 +392,6 @@ const Header: React.FC = () => {
               className="col-md-6 p-4 position-relative"
               style={{ height: '100%', overflowY: 'auto', backgroundColor: 'black' }}
             >
-              {/* Close Icon */}
               <FaTimes
                 onClick={handleCloseModal}
                 style={{
@@ -522,7 +537,7 @@ const Header: React.FC = () => {
                       border: '1px solid #dee2e6',
                       borderRadius: '4px',
                       backgroundColor: '#f0f0f0',
-                      height: '40px', // Small and same height
+                      height: '40px',
                       maxWidth: '100%',
                     }}
                   />
@@ -534,7 +549,7 @@ const Header: React.FC = () => {
                       borderColor: '#fff',
                       color: '#fff',
                       minWidth: '40px',
-                      height: '40px', // Same height
+                      height: '40px',
                       padding: 0,
                       flexShrink: 0,
                     }}
@@ -546,7 +561,7 @@ const Header: React.FC = () => {
                     name="captchaAnswer"
                     label="Enter CAPTCHA Code"
                     variant="outlined"
-                    size="small" // Smaller padding
+                    size="small"
                     value={formData.captchaAnswer}
                     onChange={handleChange}
                     error={!!errors.captchaAnswer}
@@ -555,7 +570,7 @@ const Header: React.FC = () => {
                     sx={{
                       flex: 1,
                       '& .MuiInputBase-root': {
-                        height: '40px', // Match canvas and button
+                        height: '40px',
                       },
                       input: { color: '#fff' },
                       label: { color: '#fff' },

@@ -28,6 +28,11 @@ const GoldRates = () => {
     return `${type} Gold: ₹${value.toLocaleString('en-IN')}.00 `;
   };
 
+  // If no rates, do not render anything
+  if (rates.length === 0) {
+    return null;
+  }
+
   return (
     <div className="header-marquee text-white py-1">
       <Marquee speed={50} gradient={false} pauseOnHover>
