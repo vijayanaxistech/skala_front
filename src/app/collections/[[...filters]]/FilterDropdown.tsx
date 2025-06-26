@@ -60,7 +60,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     newFilters[internalFilterType] = filterValue;
     // Build URL with 'jewelry' instead of 'category'
     const segments = Object.entries(newFilters)
-      .filter(([_, value]) => value)
+      .filter(([, value]) => value)
       .flatMap(([type, value]) => [
         encodeURIComponent(type === 'category' ? 'jewelry' : type),
         encodeURIComponent(value),
@@ -77,7 +77,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     delete newFilters[filterType];
     // Build URL with 'jewelry' instead of 'category'
     const segments = Object.entries(newFilters)
-      .filter(([_, value]) => value)
+      .filter(([, value]) => value)
       .flatMap(([type, value]) => [
         encodeURIComponent(type === 'category' ? 'jewelry' : type),
         encodeURIComponent(value),

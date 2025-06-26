@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import { IoLogoWhatsapp } from 'react-icons/io';
 
 interface MoreInfoButtonProps {
   product: {

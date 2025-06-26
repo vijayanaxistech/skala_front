@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "dist-sitemap",
+    "target": "es2017",
+    "noEmit": true
+  },
+  "include": ["scripts/generate-sitemap.ts"]
+}

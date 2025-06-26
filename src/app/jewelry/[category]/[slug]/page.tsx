@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import { IoLogoWhatsapp } from 'react-icons/io';
 import defaultBreadcrumbImage from '../../../../../public/assets/collections.png';
 import shopnowbg from '../../../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
 import shopWomen from '../../../../../public/assets/shopWomwn.png';
