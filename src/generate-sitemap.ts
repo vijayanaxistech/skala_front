@@ -4,7 +4,7 @@ import { Readable } from 'stream';
 import path from 'path';
 import { getProducts } from '../src/lib/api'; // Adjust if needed
 
-const BASE_URL = 'https://skalafront.anaxistech.com';
+const BASE_URL = 'http://skplsite.anaxistech.com';
 const APP_DIR = path.join(process.cwd(), 'src', 'app');
 
 // 1. Get static page routes
