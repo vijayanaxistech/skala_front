@@ -20,6 +20,7 @@ import styles from '../page.module.css';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Link from 'next/link';
+import Loader from '@/components/Loader';
 
 const locations = [
   {
@@ -55,11 +56,15 @@ const Contact: NextPage = () => {
   const [submitStatus, setSubmitStatus] = useState<string | null>(null);
   const [captchaCode, setCaptchaCode] = useState<string>('');
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [loading, setLoading] = useState(true);
 
   // Generate 6-character alphanumeric CAPTCHA on component mount
   useEffect(() => {
+  if (!loading) {
     generateCaptcha();
-  }, []);
+  }
+}, [loading]);
+
 
   const generateCaptcha = () => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -160,6 +165,12 @@ const Contact: NextPage = () => {
     }
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
   return (
     <div>
       <Head>

@@ -35,7 +35,7 @@ const HeroCarousel: React.FC = () => {
 
   // Filter active heroes and sort by priority
   const sortedHeroes = [...heroes]
-    .filter(hero => hero.isActive)
+    .filter((hero) => hero.isActive)
     .sort((a, b) => a.priority - b.priority);
 
   useEffect(() => {
@@ -171,6 +171,7 @@ const HeroCarousel: React.FC = () => {
           })}
         </div>
       ) : (
+        // loading animation skala
         <div
           style={{
             width: '100%',
@@ -179,9 +180,10 @@ const HeroCarousel: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: '#f0f0f0',
+            opacity: 0.4,
           }}
         >
-          <img
+          {/* <img
             src="/assets/Suvarnakala.png"
             alt="Suvarnakala Loading Logo"
             className="loading-logo"
@@ -194,7 +196,7 @@ const HeroCarousel: React.FC = () => {
               e.currentTarget.src = '/fallback-image.jpg'; // Fallback image
               console.error('Failed to load Suvarnakala.png, using fallback image');
             }}
-          />
+          /> */}
           {/* Optional: Using next/image (uncomment to use) */}
           {/*
           <Image
@@ -255,30 +257,26 @@ const HeroCarousel: React.FC = () => {
           </button>
         </>
       )}
-<style jsx>{`
-  @media (max-width: 767px) {
-    .hero-banner {
-      height: 450px !important;
-    }
-    .hero-section {
-      height: 450px !important;
-    }
-  }
+      <style jsx>{`
+        @media (max-width: 767px) {
+          .hero-banner {
+            height: 450px !important;
+          }
+          .hero-section {
+            height: 450px !important;
+          }
+        }
 
-  .loading-logo {
-    animation: zoom 2s ease-in-out infinite;
-  }
-
-  @keyframes zoom {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-  }
-`}</style>
-
+        @keyframes zoom {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.2);
+          }
+        }
+      `}</style>
     </div>
   );
 };

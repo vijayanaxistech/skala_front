@@ -18,6 +18,8 @@ import FilterDropdown from './FilterDropdown';
 import WhatsAppButton from '../WhatsAppButton';
 import MoreInfoButton from '../MoreInfo';
 import { getProducts, getCategories, getMetadataByPage, BASE_URL } from '@/lib/api';
+import dynamic from 'next/dynamic';
+const EventsClientWrapper = dynamic(() => import('@/components/LoadingWrapper'));
 
 // Define interfaces for TypeScript
 interface Category {
@@ -61,7 +63,9 @@ export async function generateMetadata() {
       openGraph: {
         title: metadata.ogTitle,
         description: metadata.ogDescription,
-        images: metadata.ogImage ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${metadata.ogImage}` : undefined,
+        images: metadata.ogImage
+          ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${metadata.ogImage}`
+          : undefined,
       },
     };
   } catch (error) {
@@ -168,146 +172,147 @@ export default async function ProductsPage({ params }: { params: { filters?: str
 
   return (
     <>
-      {/* Banner Image */}
-      <div className="banner" style={{ position: 'relative', width: '100%', height: '400px' }}>
-        <Image
-          src={breadcrumbImageSrc}
-          alt={`${filterPairs.category || 'Collections'} Banner`}
-          layout="fill"
-          objectFit="cover"
-          priority
-        />
-      </div>
-
-      <div className="py-5 p-5">
-        <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-          <h3 className="mb-0 fs-5 fs-md-4">
-            {displayTitle} ({filteredProducts.length})
-          </h3>
-          <div className="ms-auto">
-            <FilterDropdown
-              categories={uniqueCategories}
-              metals={uniqueMetals}
-              purities={uniquePurities}
-              occasions={uniqueOccasions}
-              selectedFilters={filterPairs}
-            />
-          </div>
+      <EventsClientWrapper>
+        {/* Banner Image */}
+        <div className="banner" style={{ position: 'relative', width: '100%', height: '400px' }}>
+          <Image
+            src={breadcrumbImageSrc}
+            alt={`${filterPairs.category || 'Collections'} Banner`}
+            layout="fill"
+            objectFit="cover"
+            priority
+          />
         </div>
 
-        {filteredProducts.length === 0 ? (
-          <div className="text-center">No products found.</div>
-        ) : (
-          <Row xs={1} sm={2} md={3} lg={4} className="g-4 mt-4">
-            {filteredProducts.map((product: Product) => (
-              <Col key={product._id}>
-                <Link
-                  href={`/jewelry/${product.category.name.toLowerCase().replace(/\s+/g, '-')}/${product.title.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="text-decoration-none"
-                >
-                  <div className="product-card h-100 border-0">
-                    <div className="product-image imageWrapper">
-                      <Image
-                        src={
-                          product.mainImage
-                            ? `${BASE_URL}/${product.mainImage}`
-                            : 'https://via.placeholder.com/300x300?text=No+Image'
-                        }
-                        alt={product.title}
-                        width={350}
-                        height={350}
-                        className="categoryImage"
-                        style={{ objectFit: 'cover' }}
-                      />
-                    </div>
+        <div className="py-5 p-5">
+          <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+            <h3 className="mb-0 fs-5 fs-md-4">
+              {displayTitle} ({filteredProducts.length})
+            </h3>
+            <div className="ms-auto">
+              <FilterDropdown
+                categories={uniqueCategories}
+                metals={uniqueMetals}
+                purities={uniquePurities}
+                occasions={uniqueOccasions}
+                selectedFilters={filterPairs}
+              />
+            </div>
+          </div>
 
-                    <div className="p-1">
-                      <div className="d-flex justify-content-between align-items-center">
-                        <h6 className="card-title text-dark text-truncate mb-0">
-                          {product.title.length > 20
-                            ? product.title.substring(0, 20) + '...'
-                            : product.title}
-                        </h6>
-
-                        <div className="d-flex align-items-center gap-2">
-                          <MoreInfoButton
-                            product={{
-                              title: product.title,
-                              metal: product.metal,
-                              purity: product.purity,
-                              grossWeight: product.grossWeight,
-                              mainImage: product.mainImage
-                                ? `${BASE_URL}/${product.mainImage}`
-                                : 'https://via.placeholder.com/300x300?text=No+Image',
-                              category: product.category, // Add category object
-                            }}
-                          />
-                          <WhatsAppButton
-                            product={{
-                              id: product._id,
-                              title: product.title,
-                              metal: product.metal,
-                              purity: product.purity,
-                              grossWeight: product.grossWeight,
-                              category: product.category,
-                            }}
-                          />
-                        </div>
+          {filteredProducts.length === 0 ? (
+            <div className="text-center">No products found.</div>
+          ) : (
+            <Row xs={1} sm={2} md={3} lg={4} className="g-4 mt-4">
+              {filteredProducts.map((product: Product) => (
+                <Col key={product._id}>
+                  <Link
+                    href={`/jewelry/${product.category.name.toLowerCase().replace(/\s+/g, '-')}/${product.title.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="text-decoration-none"
+                  >
+                    <div className="product-card h-100 border-0">
+                      <div className="product-image imageWrapper">
+                        <Image
+                          src={
+                            product.mainImage
+                              ? `${BASE_URL}/${product.mainImage}`
+                              : 'https://via.placeholder.com/300x300?text=No+Image'
+                          }
+                          alt={product.title}
+                          width={350}
+                          height={350}
+                          className="categoryImage"
+                          style={{ objectFit: 'cover' }}
+                        />
                       </div>
 
-                      <p className="card-text text-dark mb-1">
-                        Metal Purity: {product.metal} {product.purity}
-                      </p>
-                      <p className="card-text text-dark mb-0">Gross Wt: {product.grossWeight}</p>
-                    </div>
-                  </div>
-                </Link>
-              </Col>
-            ))}
-          </Row>
-        )}
-      </div>
+                      <div className="p-1">
+                        <div className="d-flex justify-content-between align-items-center">
+                          <h6 className="card-title text-dark text-truncate mb-0">
+                            {product.title.length > 20
+                              ? product.title.substring(0, 20) + '...'
+                              : product.title}
+                          </h6>
 
-      {/* Shop Now Section */}
-      <div style={{ position: 'relative', width: '100%', height: '300px' }}>
-        <Image src={shopnowbg} alt="Shop Now Banner" layout="fill" objectFit="cover" priority />
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-          }}
-        >
-          <Container>
-            <Row className="align-items-center">
-              <Col md={6} className="d-none d-md-flex justify-content-start">
-                <Image src={shopWomen} alt="Shop Girl" width={300} height={300} />
-              </Col>
-              <Col xs={12} md={6} className="text-center text-md-start text-white">
-                <h1 className="fs-4 fs-md-3 fw-semibold lh-tight mb-4">
-                  Elevate Every Moment with Timeless Jewellery
-                </h1>
-                <Link href="/collections">
-                  <Button
-                    variant="outline-light rounded-0"
-                    className={styles.shopNowBtn}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    Shop Now
-                  </Button>
-                </Link>
-              </Col>
+                          <div className="d-flex align-items-center gap-2">
+                            <MoreInfoButton
+                              product={{
+                                title: product.title,
+                                metal: product.metal,
+                                purity: product.purity,
+                                grossWeight: product.grossWeight,
+                                mainImage: product.mainImage
+                                  ? `${BASE_URL}/${product.mainImage}`
+                                  : 'https://via.placeholder.com/300x300?text=No+Image',
+                                category: product.category, // Add category object
+                              }}
+                            />
+                            <WhatsAppButton
+                              product={{
+                                id: product._id,
+                                title: product.title,
+                                metal: product.metal,
+                                purity: product.purity,
+                                grossWeight: product.grossWeight,
+                                category: product.category,
+                              }}
+                            />
+                          </div>
+                        </div>
+
+                        <p className="card-text text-dark mb-1">
+                          Metal Purity: {product.metal} {product.purity}
+                        </p>
+                        <p className="card-text text-dark mb-0">Gross Wt: {product.grossWeight}</p>
+                      </div>
+                    </div>
+                  </Link>
+                </Col>
+              ))}
             </Row>
-          </Container>
+          )}
         </div>
-      </div>
-      <style>{`
+
+        {/* Shop Now Section */}
+        <div style={{ position: 'relative', width: '100%', height: '300px' }}>
+          <Image src={shopnowbg} alt="Shop Now Banner" layout="fill" objectFit="cover" priority />
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+            }}
+          >
+            <Container>
+              <Row className="align-items-center">
+                <Col md={6} className="d-none d-md-flex justify-content-start">
+                  <Image src={shopWomen} alt="Shop Girl" width={300} height={300} />
+                </Col>
+                <Col xs={12} md={6} className="text-center text-md-start text-white">
+                  <h1 className="fs-4 fs-md-3 fw-semibold lh-tight mb-4">
+                    Elevate Every Moment with Timeless Jewellery
+                  </h1>
+                  <Link href="/collections">
+                    <Button
+                      variant="outline-light rounded-0"
+                      className={styles.shopNowBtn}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      Shop Now
+                    </Button>
+                  </Link>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </div>
+        <style>{`
         
           @media (max-width: 767px) {
           .banner {
@@ -316,6 +321,7 @@ export default async function ProductsPage({ params }: { params: { filters?: str
           
         }
       `}</style>
+      </EventsClientWrapper>
     </>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import breadcrumbImage from '../../../public/assets/why-choose.jpg';
@@ -9,6 +9,7 @@ import shopWomen from '../../../public/assets/shopWomwn.png';
 import styles from '../page.module.css';
 import Link from 'next/link';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
+import Loader from '@/components/Loader';
 
 const features = [
   {
@@ -53,6 +54,15 @@ const features = [
 ];
 
 const WhySuvarnakala = () => {
+
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
   return (
     <>
       {/* Banner Image */}

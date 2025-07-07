@@ -10,6 +10,8 @@ import styles from '../page.module.css';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { getEvents, getMetadataByPage } from '../../lib/api';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+const EventsClientWrapper = dynamic(() => import('@/components/LoadingWrapper'));
 
 interface Event {
   _id: string;
@@ -104,8 +106,8 @@ const EventsPage = async () => {
     .filter((e) => new Date(e.startDate) >= today)
     .sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
 
-  return (
-    <>
+   return (
+    <><EventsClientWrapper>
       {/* Inject custom styles */}
       <style>{customStyles}</style>
 
@@ -223,7 +225,7 @@ const EventsPage = async () => {
           }
           
         }
-      `}</style>
+      `}</style></EventsClientWrapper>
     </>
   );
 };

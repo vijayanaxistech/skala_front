@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { FaFilter } from 'react-icons/fa';
 import { IoIosArrowDown, IoMdClose } from 'react-icons/io';
 import { useRouter } from 'next/navigation';
+import Loader from '@/components/Loader';
 
 interface FilterDropdownProps {
   categories: string[];
@@ -24,6 +25,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>('jewellery');
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   // Log for debugging
   useEffect(() => {
@@ -111,9 +113,15 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       ))}
     </div>
   );
-  
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
   return (
-    <div className="position-relative" ref={dropdownRef} >
+    <div className="position-relative" ref={dropdownRef}>
       <Button
         variant="outline-dark"
         className="d-flex align-items-center gap-2 rounded-pill px-4 py-2"

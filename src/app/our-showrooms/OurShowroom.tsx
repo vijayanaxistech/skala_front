@@ -40,6 +40,7 @@ import mn3 from '../../../public/assets/showrooms/Maninagar/3.png';
 import mn4 from '../../../public/assets/showrooms/Maninagar/4.png';
 import mn5 from '../../../public/assets/showrooms/Maninagar/5.png';
 import mn6 from '../../../public/assets/showrooms/Maninagar/6.png';
+import Loader from '@/components/Loader';
 
 // Image arrays
 const St1 = [st1, st2, st3, st4, st5, st6, st7, st8, st9];
@@ -49,6 +50,8 @@ const Maninagar = [mn1, mn2, mn3, mn4, mn5, mn6];
 const WhySuvarnakala = () => {
   const [showModal, setShowModal] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -93,7 +96,12 @@ const WhySuvarnakala = () => {
         </div>
       </Col>
     ));
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
+  if (loading) return <Loader />;
   return (
     <>
       <div style={{ position: 'relative', width: '100%', height: '500px' }} className="banner">

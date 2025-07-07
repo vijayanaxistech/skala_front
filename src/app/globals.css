@@ -772,7 +772,18 @@ textarea::placeholder {
   align-items: center;
   position: relative;
 }
+@keyframes zoom {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
 
+.loading-logo {
+  animation: zoom 2s ease-in-out infinite;
+}
 .about_main_image {
   position: absolute;
   left: 26%;
