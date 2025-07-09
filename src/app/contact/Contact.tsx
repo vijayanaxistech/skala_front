@@ -11,23 +11,18 @@ import hrline from '../../../public/assets/Line 467.png';
 import shopnowbg from '../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
 import shopWomen from '../../../public/assets/shopWomwn.png';
 import locationIcon from '../../../public/assets/google-maps.png';
-import { TbRefresh } from 'react-icons/tb';
+// import { TbRefresh } from 'react-icons/tb';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import API from '../../lib/api';
+// import API from '../../lib/api';
 import styles from '../page.module.css';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
+// import TextField from '@mui/material/TextField';
+// import Box from '@mui/material/Box';
 import Link from 'next/link';
+import Loader from '@/components/Loader';
 
 const locations = [
-  {
-    title: 'Jodhpur Cross Roads, Satellite',
-    address: 'Venus Amadeus, Jodhpur Cross Road, B.R.T.S Bus Stand, Satellite, Ahmedabad',
-    phone: '+91 7874011144',
-    mapLink: 'https://maps.app.goo.gl/sMtWFAF2yPUSwYXZ6',
-  },
   {
     title: 'C G Road',
     address: '101 National Plaza, Opp. Lal Bunglow, C. G. Road, Ahmedabad, Gujarat - 380 006',
@@ -35,31 +30,41 @@ const locations = [
     mapLink: 'https://maps.app.goo.gl/xN92n1Y9FetfUznd8',
   },
   {
+    title: 'Jodhpur Cross Roads, Satellite',
+    address: 'Venus Amadeus, Jodhpur Cross Road, B.R.T.S Bus Stand, Satellite, Ahmedabad',
+    phone: '+91 9924902223',
+    mapLink: 'https://maps.app.goo.gl/sMtWFAF2yPUSwYXZ6',
+  },
+  {
     title: 'Maninagar',
     address: 'Opp. Pintoo Garments, Maninagar Cross Rd, Maninagar, Ahmedabad, Gujarat - 380 008',
-    phone: '+91 8511755799',
+    phone: '+91 9924902223',
     mapLink: 'https://maps.app.goo.gl/h7oETcXHRToqzaDT8',
   },
 ];
 
 const Contact: NextPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-    captchaAnswer: '',
-  });
+  // const [formData, setFormData] = useState({
+  //   name: '',
+  //   email: '',
+  //   phone: '',
+  //   message: '',
+  //   captchaAnswer: '',
+  // });
 
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [submitStatus, setSubmitStatus] = useState<string | null>(null);
+  // const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  // const [submitStatus, setSubmitStatus] = useState<string | null>(null);
   const [captchaCode, setCaptchaCode] = useState<string>('');
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [loading, setLoading] = useState(true);
 
   // Generate 6-character alphanumeric CAPTCHA on component mount
   useEffect(() => {
+  if (!loading) {
     generateCaptcha();
-  }, []);
+  }
+}, [loading]);
+
 
   const generateCaptcha = () => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -105,61 +110,67 @@ const Contact: NextPage = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
-  };
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.id]: e.target.value,
+  //   });
+  // };
 
-  const validate = () => {
-    const newErrors: { [key: string]: string } = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
-      newErrors.email = 'Email is invalid';
-    if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
-    else if (!/^\+?[1-9]\d{1,14}$/.test(formData.phone))
-      newErrors.phone = 'Phone number is invalid';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
-    if (!formData.captchaAnswer.trim()) newErrors.captchaAnswer = 'CAPTCHA is required';
-    else if (formData.captchaAnswer !== captchaCode)
-      newErrors.captchaAnswer = 'Incorrect CAPTCHA code';
+  // const validate = () => {
+  //   const newErrors: { [key: string]: string } = {};
+  //   if (!formData.name.trim()) newErrors.name = 'Name is required';
+  //   if (!formData.email.trim()) newErrors.email = 'Email is required';
+  //   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+  //     newErrors.email = 'Email is invalid';
+  //   if (!formData.phone.trim()) newErrors.phone = 'Phone is required';
+  //   else if (!/^\+?[1-9]\d{1,14}$/.test(formData.phone))
+  //     newErrors.phone = 'Phone number is invalid';
+  //   if (!formData.message.trim()) newErrors.message = 'Message is required';
+  //   if (!formData.captchaAnswer.trim()) newErrors.captchaAnswer = 'CAPTCHA is required';
+  //   else if (formData.captchaAnswer !== captchaCode)
+  //     newErrors.captchaAnswer = 'Incorrect CAPTCHA code';
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+  //   setErrors(newErrors);
+  //   return Object.keys(newErrors).length === 0;
+  // };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
 
-    if (!validate()) return;
+  //   if (!validate()) return;
 
-    try {
-      setSubmitStatus(null);
+  //   try {
+  //     setSubmitStatus(null);
 
-      const res = await API.post('/api/contact', formData);
+  //     const res = await API.post('/api/contact', formData);
 
-      if (res.status === 200 || res.status === 201) {
-        toast.success('Message sent successfully!', {
-          position: 'bottom-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        });
-        setFormData({ name: '', email: '', phone: '', message: '', captchaAnswer: '' });
-        setErrors({});
-        generateCaptcha();
-      } else {
-        setSubmitStatus(res.data.error || 'Something went wrong');
-      }
-    } catch (error) {
-      setSubmitStatus('Failed to send message');
-    }
-  };
+  //     if (res.status === 200 || res.status === 201) {
+  //       toast.success('Message sent successfully!', {
+  //         position: 'bottom-right',
+  //         autoClose: 3000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //       });
+  //       setFormData({ name: '', email: '', phone: '', message: '', captchaAnswer: '' });
+  //       setErrors({});
+  //       generateCaptcha();
+  //     } else {
+  //       setSubmitStatus(res.data.error || 'Something went wrong');
+  //     }
+  //   } catch (error) {
+  //     setSubmitStatus('Failed to send message');
+  //   }
+  // };
 
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
   return (
     <div>
       <Head>
@@ -209,18 +220,18 @@ const Contact: NextPage = () => {
 
         {/* Contact Info & Form Section */}
         <div className="p-3 p-md-5">
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <h2
               className="fw-bold text-center text-md-start"
               style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)' }}
             >
               Get in Touch with Us
             </h2>
-          </div>
+          </div> */}
 
           <div className="row gx-3 gx-md-5 gy-4">
             {/* Contact Form */}
-            <div className="col-12 col-lg-6 d-flex">
+            {/* <div className="col-12 col-lg-6 d-flex">
               <div
                 className="card shadow-sm w-100 d-flex flex-column"
                 style={{
@@ -366,7 +377,7 @@ const Contact: NextPage = () => {
                   </Box>
                 </Box>
               </div>
-            </div>
+            </div> */}
 
             {/* Contact Details */}
             <div className="col-12 col-lg-6 d-flex">

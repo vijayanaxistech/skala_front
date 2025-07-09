@@ -15,40 +15,44 @@ import { useRouter } from 'next/navigation';
 import st1 from '../../../public/assets/showrooms/Satellite/1.png';
 import st2 from '../../../public/assets/showrooms/Satellite/2.png';
 import st3 from '../../../public/assets/showrooms/Satellite/3.png';
-import st4 from '../../../public/assets/showrooms/Satellite/4.png';
-import st5 from '../../../public/assets/showrooms/Satellite/5.png';
-import st6 from '../../../public/assets/showrooms/Satellite/6.png';
-import st7 from '../../../public/assets/showrooms/Satellite/7.png';
-import st8 from '../../../public/assets/showrooms/Satellite/8.png';
-import st9 from '../../../public/assets/showrooms/Satellite/9.png';
+// import st4 from '../../../public/assets/showrooms/Satellite/4.png';
+// import st5 from '../../../public/assets/showrooms/Satellite/5.png';
+// import st6 from '../../../public/assets/showrooms/Satellite/6.png';
+// import st7 from '../../../public/assets/showrooms/Satellite/7.png';
+// import st8 from '../../../public/assets/showrooms/Satellite/8.png';
+// import st9 from '../../../public/assets/showrooms/Satellite/9.png';
 
 // CG Road
 import cg1 from '../../../public/assets/showrooms/Cgroad/1.png';
 import cg2 from '../../../public/assets/showrooms/Cgroad/2.png';
 import cg3 from '../../../public/assets/showrooms/Cgroad/3.png';
-import cg4 from '../../../public/assets/showrooms/Cgroad/4.png';
-import cg5 from '../../../public/assets/showrooms/Cgroad/5.png';
-import cg6 from '../../../public/assets/showrooms/Cgroad/6.png';
-import cg7 from '../../../public/assets/showrooms/Cgroad/7.png';
-import cg8 from '../../../public/assets/showrooms/Cgroad/8.png';
-import cg9 from '../../../public/assets/showrooms/Cgroad/9.png';
+// import cg4 from '../../../public/assets/showrooms/Cgroad/4.png';
+// import cg5 from '../../../public/assets/showrooms/Cgroad/5.png';
+// import cg6 from '../../../public/assets/showrooms/Cgroad/6.png';
+// import cg7 from '../../../public/assets/showrooms/Cgroad/7.png';
+// import cg8 from '../../../public/assets/showrooms/Cgroad/8.png';
+// import cg9 from '../../../public/assets/showrooms/Cgroad/9.png';
 
 // Maninagar
 import mn1 from '../../../public/assets/showrooms/Maninagar/1.png';
 import mn2 from '../../../public/assets/showrooms/Maninagar/2.png';
 import mn3 from '../../../public/assets/showrooms/Maninagar/3.png';
-import mn4 from '../../../public/assets/showrooms/Maninagar/4.png';
-import mn5 from '../../../public/assets/showrooms/Maninagar/5.png';
-import mn6 from '../../../public/assets/showrooms/Maninagar/6.png';
+// import mn4 from '../../../public/assets/showrooms/Maninagar/4.png';
+// import mn5 from '../../../public/assets/showrooms/Maninagar/5.png';
+// import mn6 from '../../../public/assets/showrooms/Maninagar/6.png';
+
+import Loader from '@/components/Loader';
 
 // Image arrays
-const St1 = [st1, st2, st3, st4, st5, st6, st7, st8, st9];
-const Cgroad = [cg1, cg2, cg3, cg4, cg5, cg6, cg7, cg8, cg9];
-const Maninagar = [mn1, mn2, mn3, mn4, mn5, mn6];
+const St1 = [st1, st2, st3];
+const Cgroad = [cg1, cg2, cg3];
+const Maninagar = [mn1, mn2, mn3];
 
 const WhySuvarnakala = () => {
   const [showModal, setShowModal] = useState(false);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -93,7 +97,12 @@ const WhySuvarnakala = () => {
         </div>
       </Col>
     ));
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
+  if (loading) return <Loader />;
   return (
     <>
       <div style={{ position: 'relative', width: '100%', height: '500px' }} className="banner">
@@ -107,7 +116,22 @@ const WhySuvarnakala = () => {
       </div>
 
       <div className="bg-color p-5">
-        <Row className="g-4" id="satellite">
+        <Row className="mt-4 g-4" id="cgroad">
+          <div className="custom-heading-wrapper text-center justify-content-center d-flex align-items-center mb-1">
+            <h2 className="m-0 custom-heading text-wrap me-3">
+              <p className="text-red mb-1 fs-3">C.G. Road</p>
+              <Image
+                src={hrline}
+                alt="Horizontal Line"
+                className="mb-0"
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
+            </h2>
+          </div>
+          <p className="text-blue mt-0 text-center">National Plaza, Opp. Lal Bungalow, C.G. Road</p>
+          {renderImageGrid(Cgroad)}
+        </Row>
+        <Row className="g-4 mt-4" id="satellite">
           <div className="custom-heading-wrapper text-center justify-content-center d-flex align-items-center mb-1">
             <h2 className="m-0 custom-heading text-wrap me-3">
               <p className="text-red mb-1 fs-3">Jodhpur Cross Roads, Satellite</p>
@@ -124,23 +148,6 @@ const WhySuvarnakala = () => {
           </p>
           {renderImageGrid(St1)}
         </Row>
-
-        <Row className="mt-4 g-4" id="cgroad">
-          <div className="custom-heading-wrapper text-center justify-content-center d-flex align-items-center mb-1">
-            <h2 className="m-0 custom-heading text-wrap me-3">
-              <p className="text-red mb-1 fs-3">C.G. Road</p>
-              <Image
-                src={hrline}
-                alt="Horizontal Line"
-                className="mb-0"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-            </h2>
-          </div>
-          <p className="text-blue mt-0 text-center">National Plaza, Opp. Lal Bungalow, C.G. Road</p>
-          {renderImageGrid(Cgroad)}
-        </Row>
-
         <Row className="mt-4 g-4" id="maninagar">
           <div className="custom-heading-wrapper text-center justify-content-center d-flex align-items-center mb-1">
             <h2 className="m-0 custom-heading text-wrap me-3">
