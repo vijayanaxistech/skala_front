@@ -598,7 +598,6 @@ const Header: React.FC = () => {
           </div>
         </Modal.Body>
       </Modal>
-      {/* css */}
       <style jsx>{`
         .error-text {
           color: #ff4d4d;
