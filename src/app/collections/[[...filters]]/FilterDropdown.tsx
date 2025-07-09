@@ -193,7 +193,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
               onClick={() => toggleSection('jewellery')}
               style={{ cursor: 'pointer' }}
             >
-              <strong>Jewellery Type</strong>
+              <strong>Products</strong>
               <IoIosArrowDown
                 style={{
                   transform: expanded === 'jewellery' ? 'rotate(180deg)' : 'rotate(0)',
@@ -211,7 +211,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
               onClick={() => toggleSection('metal')}
               style={{ cursor: 'pointer' }}
             >
-              <strong>Metal</strong>
+              <strong>Jewellery Type</strong>
               <IoIosArrowDown
                 style={{
                   transform: expanded === 'metal' ? 'rotate(180deg)' : 'rotate(0)',
@@ -237,7 +237,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
                 }}
               />
             </div>
-            {expanded === 'purity' && renderChips(purities, 'purity')}
+            {expanded === 'purity' && renderChips([...purities].sort(), 'purity')}
           </div>
 
           {/* Occasion */}

@@ -161,13 +161,13 @@ const About = () => {
                   <p className="text-danger fw-semibold small">Amazing Value Everyday</p>
                 </div>
               </div>
-              <Link
+              {/* <Link
                 href="/collections"
                 className="custom-btn btn-lg text-white w-auto px-4"
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 View Collection
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

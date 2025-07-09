@@ -225,8 +225,8 @@ const Header: React.FC = () => {
 
   // Static dropdown for Our Showrooms
   const showroomDropdown = [
-    { href: '/our-showrooms#satellite', label: 'Satellite' },
     { href: '/our-showrooms#cgroad', label: 'C.G. Road' },
+    { href: '/our-showrooms#satellite', label: 'Satellite' },
     { href: '/our-showrooms#maninagar', label: 'Maninagar' },
   ];
 
