@@ -37,18 +37,7 @@ import cg3 from '../../../public/assets/showrooms/Cgroad/3.png';
 import mn1 from '../../../public/assets/showrooms/Maninagar/1.png';
 import mn2 from '../../../public/assets/showrooms/Maninagar/2.png';
 import mn3 from '../../../public/assets/showrooms/Maninagar/3.png';
-<<<<<<< HEAD
-import mn4 from '../../../public/assets/showrooms/Maninagar/4.png';
-import mn5 from '../../../public/assets/showrooms/Maninagar/5.png';
-import mn6 from '../../../public/assets/showrooms/Maninagar/6.png';
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
-=======
-// import mn4 from '../../../public/assets/showrooms/Maninagar/4.png';
-// import mn5 from '../../../public/assets/showrooms/Maninagar/5.png';
-// import mn6 from '../../../public/assets/showrooms/Maninagar/6.png';
-
-import Loader from '@/components/Loader';
->>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
 
 // Image arrays
 const St1 = [st1, st2, st3];
@@ -109,10 +98,8 @@ const WhySuvarnakala = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) return <Loader />;
   return (
     <>
-<<<<<<< HEAD
       <ClientLayoutWrapper>
         <div style={{ position: 'relative', width: '100%', height: '500px' }} className="banner">
           <Image
@@ -122,112 +109,6 @@ const WhySuvarnakala = () => {
             style={{ objectFit: 'cover' }}
             priority
           />
-=======
-      <div style={{ position: 'relative', width: '100%', height: '500px' }} className="banner">
-        <Image
-          src={breadcrumbImage}
-          alt="Suvarnakala Banner"
-          layout="fill"
-          style={{ objectFit: 'cover' }}
-          priority
-        />
-      </div>
-
-      <div className="bg-color p-5">
-        <Row className="mt-4 g-4" id="cgroad">
-          <div className="custom-heading-wrapper text-center justify-content-center d-flex align-items-center mb-1">
-            <h2 className="m-0 custom-heading text-wrap me-3">
-              <p className="text-red mb-1 fs-3">C.G. Road</p>
-              <Image
-                src={hrline}
-                alt="Horizontal Line"
-                className="mb-0"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-            </h2>
-          </div>
-          <p className="text-blue mt-0 text-center">National Plaza, Opp. Lal Bungalow, C.G. Road</p>
-          {renderImageGrid(Cgroad)}
-        </Row>
-        <Row className="g-4 mt-4" id="satellite">
-          <div className="custom-heading-wrapper text-center justify-content-center d-flex align-items-center mb-1">
-            <h2 className="m-0 custom-heading text-wrap me-3">
-              <p className="text-red mb-1 fs-3">Jodhpur Cross Roads, Satellite</p>
-              <Image
-                src={hrline}
-                alt="Horizontal Line"
-                className="mb-0"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-            </h2>
-          </div>
-          <p className="text-blue mt-0 text-center">
-            Venus Amadeus Jodhpur Cross Road, B.R.T.S Bus Stand, Satellite
-          </p>
-          {renderImageGrid(St1)}
-        </Row>
-        <Row className="mt-4 g-4" id="maninagar">
-          <div className="custom-heading-wrapper text-center justify-content-center d-flex align-items-center mb-1">
-            <h2 className="m-0 custom-heading text-wrap me-3">
-              <p className="text-red mb-1 fs-3">Maninagar</p>
-              <Image
-                src={hrline}
-                alt="Horizontal Line"
-                className="mb-0"
-                style={{ width: '100%', height: 'auto', display: 'block' }}
-              />
-            </h2>
-          </div>
-          <p className="text-blue mt-0 text-center">
-            Opp. Pintoo Garments, Maninagar Cross Rd, Maninagar
-          </p>
-          {renderImageGrid(Maninagar)}
-        </Row>
-      </div>
-
-      <div style={{ position: 'relative', width: '100%', height: '300px' }}>
-        <Image
-          src={shopnowbg}
-          alt="Shop Now Banner"
-          layout="fill"
-          style={{ objectFit: 'cover' }}
-          priority
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-          }}
-        >
-          <Container>
-            <Row className="align-items-center">
-              <Col md={6} className="d-none d-md-flex justify-content-start">
-                <Image src={shopWomen} alt="Shop Girl" width={300} height={300} />
-              </Col>
-              <Col xs={12} md={6} className="text-center text-md-start text-white">
-                <h1 className="fs-4 fs-md-3 fw-semibold lh-tight mb-4">
-                  Elevate Every Moment with Timeless Jewellery
-                </h1>
-                <Link href="/collections">
-                  <Button
-                    variant="outline-light rounded-0"
-                    className={styles.shopNowBtn}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    Shop Now
-                  </Button>
-                </Link>
-              </Col>
-            </Row>
-          </Container>
->>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
         </div>
 
         <div className="bg-color p-5">

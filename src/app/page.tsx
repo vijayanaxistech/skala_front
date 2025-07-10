@@ -14,7 +14,6 @@ import GiftCard from '../components/GiftCard';
 import Moments from '../components/Moments';
 import BachatMahotsav from '../components/BachatMahotsav';
 import Testimonials from '../components/Testimonials';
-import Loader from '../components/Loader'; // 👈 import Loader
 
 import {
   getBachatMahotsavImages,
@@ -43,14 +42,10 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [bachatMahotsavImages, setBachatMahotsavImages] = useState<string[]>([]);
   const [metadata, setMetadata] = useState<Metadata | null>(null);
-<<<<<<< HEAD
-  const [loading, setLoading] = useState(true); // 👈 loading state
-=======
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1200); // Show loader for 1.2 seconds
->>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
 
     return () => clearTimeout(timer);
   }, []);
@@ -83,15 +78,7 @@ export default function Home() {
   if (!BASE_URL) {
     throw new Error('Missing NEXT_PUBLIC_API_BASE_URL in .env.local');
   }
-<<<<<<< HEAD
-
-  if (loading) {
-    return <Loader />; // 👈 render loader during fetch
-  }
-
-=======
   if (loading) return <Loader />;
->>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
   return (
     <>
       {metadata && (

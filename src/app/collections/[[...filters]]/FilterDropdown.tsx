@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap';
 import { FaFilter } from 'react-icons/fa';
 import { IoIosArrowDown, IoMdClose } from 'react-icons/io';
 import { useRouter } from 'next/navigation';
-import Loader from '@/components/Loader';
 
 interface FilterDropdownProps {
   categories: string[];
@@ -26,8 +25,6 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>('jewellery');
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -50,7 +47,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       encodeURIComponent(type === 'category' ? 'jewelry' : type),
       encodeURIComponent(value),
     ]);
-    router.push(`/collections/${segments.join('/')}`,{ scroll: false });
+    router.push(`/collections/${segments.join('/')}`, { scroll: false });
     setDropdownOpen(false);
   };
 
@@ -61,11 +58,13 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       encodeURIComponent(t === 'category' ? 'jewelry' : t),
       encodeURIComponent(value),
     ]);
-    router.push(segments.length ? `/collections/${segments.join('/')}` : '/collections',{ scroll: false });
+    router.push(segments.length ? `/collections/${segments.join('/')}` : '/collections', {
+      scroll: false,
+    });
   };
 
   const clearAllFilters = () => {
-    router.push('/collections',{ scroll: false });
+    router.push('/collections', { scroll: false });
     setDropdownOpen(false);
   };
 
@@ -88,15 +87,6 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     </div>
   );
 
-<<<<<<< HEAD
-=======
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (loading) return <Loader />;
->>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
   return (
     <div className="position-relative" ref={dropdownRef}>
       <Button

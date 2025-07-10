@@ -1,11 +1,7 @@
 // next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-<<<<<<< HEAD
   // output: 'standalone', // or just remove "output" entirely
-=======
-  //output: 'standalone', // or just remove "output" entirely
->>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
   eslint: {
     ignoreDuringBuilds: true,
   },
