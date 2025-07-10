@@ -1,7 +1,7 @@
 // next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone', // or just remove "output" entirely
+  // output: 'standalone', // or just remove "output" entirely
   eslint: {
     ignoreDuringBuilds: true,
   },

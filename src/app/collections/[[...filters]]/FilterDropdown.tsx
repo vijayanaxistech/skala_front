@@ -1,3 +1,4 @@
+// components/FilterDropdown.tsx
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
@@ -25,23 +26,14 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
   const [expanded, setExpanded] = useState<string | null>('jewellery');
   const router = useRouter();
 
-  // Log for debugging
-  useEffect(() => {
-    console.log('Selected Filters:', selectedFilters);
-  }, [selectedFilters]);
-
-  // Handle click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setDropdownOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const toggleSection = (section: string) => {
@@ -49,58 +41,40 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
   };
 
   const updateFilter = (filterType: string, filterValue: string) => {
-    if (!filterValue) {
-      console.warn('Empty filter value for type:', filterType);
-      return;
-    }
-    // Create new filter object with the updated filter
     const newFilters = { ...selectedFilters };
-    // Map 'jewellery' section to 'category' internally
-    const internalFilterType = filterType === 'jewellery' ? 'category' : filterType;
-    newFilters[internalFilterType] = filterValue;
-    // Build URL with 'jewelry' instead of 'category'
-    const segments = Object.entries(newFilters)
-      .filter(([, value]) => value)
-      .flatMap(([type, value]) => [
-        encodeURIComponent(type === 'category' ? 'jewelry' : type),
-        encodeURIComponent(value),
-      ]);
-    const url = segments.length > 0 ? `/collections/${segments.join('/')}` : '/collections';
-    console.log('Navigating to:', url);
-    router.push(url, { scroll: false });
+    const internalType = filterType === 'jewellery' ? 'category' : filterType;
+    newFilters[internalType] = filterValue;
+    const segments = Object.entries(newFilters).flatMap(([type, value]) => [
+      encodeURIComponent(type === 'category' ? 'jewelry' : type),
+      encodeURIComponent(value),
+    ]);
+    router.push(`/collections/${segments.join('/')}`,{ scroll: false });
     setDropdownOpen(false);
   };
 
-  const removeFilter = (filterType: string) => {
-    // Remove the specified filter
+  const removeFilter = (type: string) => {
     const newFilters = { ...selectedFilters };
-    delete newFilters[filterType];
-    // Build URL with 'jewelry' instead of 'category'
-    const segments = Object.entries(newFilters)
-      .filter(([, value]) => value)
-      .flatMap(([type, value]) => [
-        encodeURIComponent(type === 'category' ? 'jewelry' : type),
-        encodeURIComponent(value),
-      ]);
-    const url = segments.length > 0 ? `/collections/${segments.join('/')}` : '/collections';
-    console.log('Removing filter:', filterType, 'Navigating to:', url);
-    router.push(url, { scroll: false });
+    delete newFilters[type];
+    const segments = Object.entries(newFilters).flatMap(([t, value]) => [
+      encodeURIComponent(t === 'category' ? 'jewelry' : t),
+      encodeURIComponent(value),
+    ]);
+    router.push(segments.length ? `/collections/${segments.join('/')}` : '/collections',{ scroll: false });
   };
 
   const clearAllFilters = () => {
-    console.log('Clearing all filters, navigating to /collections');
-    router.push('/collections', { scroll: false });
+    router.push('/collections',{ scroll: false });
     setDropdownOpen(false);
   };
 
-  const renderChips = (items: string[], filterType: string) => (
+  const renderChips = (items: string[], type: string) => (
     <div className="d-flex flex-wrap gap-2 mt-2">
       {items.map((item) => (
         <span
           key={item}
-          onClick={() => updateFilter(filterType, item)}
+          onClick={() => updateFilter(type, item)}
           className={`px-3 py-1 rounded-pill border ${
-            selectedFilters[filterType === 'jewellery' ? 'category' : filterType] === item
+            selectedFilters[type === 'jewellery' ? 'category' : type] === item
               ? 'bg-dark text-white'
               : 'bg-light text-dark'
           }`}
@@ -111,17 +85,15 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       ))}
     </div>
   );
-  
+
   return (
-    <div className="position-relative" ref={dropdownRef} >
+    <div className="position-relative" ref={dropdownRef}>
       <Button
         variant="outline-dark"
         className="d-flex align-items-center gap-2 rounded-pill px-4 py-2"
         onClick={() => setDropdownOpen((prev) => !prev)}
       >
-        <FaFilter />
-        Filters
-        <IoIosArrowDown />
+        <FaFilter /> Filters <IoIosArrowDown />
       </Button>
 
       {dropdownOpen && (
@@ -146,7 +118,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
                   className="me-2"
                   onClick={clearAllFilters}
                 >
-                  Clear All Filters
+                  Clear All
                 </Button>
               )}
               <IoMdClose
@@ -156,7 +128,6 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
             </div>
           </div>
 
-          {/* Active Filters */}
           {Object.keys(selectedFilters).length > 0 && (
             <div className="mb-3">
               <strong>Active Filters</strong>
@@ -178,14 +149,13 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
             </div>
           )}
 
-          {/* Jewellery Type */}
           <div className="mb-3">
             <div
               className="d-flex justify-content-between align-items-center"
               onClick={() => toggleSection('jewellery')}
               style={{ cursor: 'pointer' }}
             >
-              <strong>Jewellery Type</strong>
+              <strong>Products</strong>
               <IoIosArrowDown
                 style={{
                   transform: expanded === 'jewellery' ? 'rotate(180deg)' : 'rotate(0)',
@@ -196,14 +166,13 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
             {expanded === 'jewellery' && renderChips(categories, 'jewellery')}
           </div>
 
-          {/* Metal */}
           <div className="mb-3">
             <div
               className="d-flex justify-content-between align-items-center"
               onClick={() => toggleSection('metal')}
               style={{ cursor: 'pointer' }}
             >
-              <strong>Metal</strong>
+              <strong>Jewellery Type</strong>
               <IoIosArrowDown
                 style={{
                   transform: expanded === 'metal' ? 'rotate(180deg)' : 'rotate(0)',
@@ -211,10 +180,9 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
                 }}
               />
             </div>
-            {expanded === 'metal' && renderChips(metals, 'metal')}
+            {expanded === 'metal' && renderChips(metals, 'jewelleryType')}
           </div>
 
-          {/* Purity */}
           <div className="mb-3">
             <div
               className="d-flex justify-content-between align-items-center"
@@ -232,8 +200,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
             {expanded === 'purity' && renderChips(purities, 'purity')}
           </div>
 
-          {/* Occasion */}
-          <div>
+          <div className="mb-3">
             <div
               className="d-flex justify-content-between align-items-center"
               onClick={() => toggleSection('occasion')}

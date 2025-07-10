@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 import aboutImage from '../../../public/assets/About.jpg';
 import qualityBadge from '../../../public/assets/Quality.png';
@@ -16,45 +16,60 @@ import certified from '../../../public/assets/certified.png';
 import hallmark from '../../../public/assets/hallmark.png';
 import billed from '../../../public/assets/billed.png';
 import premium from '../../../public/assets/premium.png';
+import Loader from '@/components/Loader';
 
 const totalYears = new Date().getFullYear() - 1970;
 
 const About = () => {
   const [animatedYears, setAnimatedYears] = useState(0);
+  const [loading, setLoading] = useState(true);
   const counterRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
+  // Simulate loading (e.g., data/image loading)
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          let start = 0;
-          const end = totalYears;
-          const duration = 2500;
-          const stepTime = Math.max(10, Math.floor(duration / end));
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1200); // Show loader for 1.2 seconds
 
-          const timer = setInterval(() => {
-            start += 1;
-            setAnimatedYears(start);
-            if (start >= end) clearInterval(timer);
-          }, stepTime);
-        }
-      },
-      { threshold: 0.6 }
-    );
-
-    if (counterRef.current) {
-      observer.observe(counterRef.current);
-    }
-
-    return () => {
-      if (counterRef.current) {
-        observer.unobserve(counterRef.current);
-      }
-    };
+    return () => clearTimeout(timer);
   }, []);
+
+  // Animated counter (trigger after loading)
+  useEffect(() => {
+    if (!loading && counterRef.current) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          if (entry.isIntersecting && !hasAnimated.current) {
+            hasAnimated.current = true;
+            let start = 0;
+            const end = totalYears;
+            const duration = 2500;
+            const stepTime = Math.max(10, Math.floor(duration / end));
+
+            const timer = setInterval(() => {
+              start += 1;
+              setAnimatedYears(start);
+              if (start >= end) clearInterval(timer);
+            }, stepTime);
+          }
+        },
+        { threshold: 0.6 }
+      );
+
+      observer.observe(counterRef.current);
+
+      return () => {
+        if (counterRef.current) {
+          observer.unobserve(counterRef.current);
+        }
+      };
+    }
+  }, [loading]);
+
+  // Show loader while loading
+  if (loading) return <Loader />;
 
   return (
     <>
@@ -146,13 +161,13 @@ const About = () => {
                   <p className="text-danger fw-semibold small">Amazing Value Everyday</p>
                 </div>
               </div>
-              <Link
+              {/* <Link
                 href="/collections"
                 className="custom-btn btn-lg text-white w-auto px-4"
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 View Collection
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
@@ -285,7 +300,6 @@ const About = () => {
             </div>
           ))}
         </div>
-
       </div>
 
       {/* Animation Keyframes */}

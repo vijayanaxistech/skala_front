@@ -15,6 +15,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Goldrate from './GoldRate';
 import logo from '../../public/assets/Suvarnakala.png';
 import BookImage from '../../public/assets/Book_A.png';
+import { styleText } from 'util';
 
 interface NavLink {
   _id: string;
@@ -119,7 +120,10 @@ const Header: React.FC = () => {
           const aIndex = desiredOrder.indexOf(a.name);
           const bIndex = desiredOrder.indexOf(b.name);
           // If not found in desiredOrder, push to the end
-          return (aIndex === -1 ? desiredOrder.length : aIndex) - (bIndex === -1 ? desiredOrder.length : bIndex);
+          return (
+            (aIndex === -1 ? desiredOrder.length : aIndex) -
+            (bIndex === -1 ? desiredOrder.length : bIndex)
+          );
         });
         setNavLinks(sortedLinks);
       } catch (error) {
@@ -225,8 +229,8 @@ const Header: React.FC = () => {
 
   // Static dropdown for Our Showrooms
   const showroomDropdown = [
-    { href: '/our-showrooms#satellite', label: 'Satellite' },
     { href: '/our-showrooms#cgroad', label: 'C.G. Road' },
+    { href: '/our-showrooms#satellite', label: 'Satellite' },
     { href: '/our-showrooms#maninagar', label: 'Maninagar' },
   ];
 
@@ -263,16 +267,16 @@ const Header: React.FC = () => {
                   !isBookAppointment && !isShowroom
                     ? pathname === path || pathname.startsWith(path + '/')
                     : isShowroom
-                    ? pathname === path ||
-                      pathname.startsWith(path + '/') ||
-                      pathname.includes(path + '#')
-                    : false;
+                      ? pathname === path ||
+                        pathname.startsWith(path + '/') ||
+                        pathname.includes(path + '#')
+                      : false;
 
                 if (isShowroom) {
                   return (
                     <div
                       key={_id}
-                      className="custom-nav-link position-relative"
+                      className="custom-nav-link position-relative scroll-smooth"
                       onMouseEnter={() => setShowShowroomDropdown(true)}
                       onMouseLeave={() => setShowShowroomDropdown(false)}
                       onClick={() => setShowShowroomDropdown((prev) => !prev)}
@@ -281,7 +285,7 @@ const Header: React.FC = () => {
                         href={path}
                         passHref
                         legacyBehavior={false}
-                        className="custom-nav-link"
+                        className="custom-nav-link scroll-smooth"
                         onClick={() => {
                           setExpanded(false);
                           setShowShowroomDropdown(false);

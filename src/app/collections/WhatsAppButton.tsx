@@ -6,7 +6,7 @@ interface WhatsAppButtonProps {
   product: {
     id: string;
     title: string;
-    metal: string;
+    jewelleryType: string;
     purity: string;
     grossWeight: string;
     category: { name: string };
@@ -23,7 +23,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ product }) => {
   const messageBody =
     `Product Inquiry:%0A` +
     `Product Name: ${product.title}%0A` +
-    `Metal Type: ${product.metal}%0A` +
+    `Metal Type: ${product.jewelleryType}%0A` +
     `Purity (Karat): ${product.purity}%0A` +
     `Gross Weight (g): ${product.grossWeight}%0A` +
     `View Product: ${productPageUrl}`;

@@ -14,6 +14,7 @@ import GiftCard from '../components/GiftCard';
 import Moments from '../components/Moments';
 import BachatMahotsav from '../components/BachatMahotsav';
 import Testimonials from '../components/Testimonials';
+import Loader from '../components/Loader'; // 👈 import Loader
 
 import {
   getBachatMahotsavImages,
@@ -24,21 +25,22 @@ import {
   BASE_URL,
 } from '../lib/api';
 
+type Metadata = {
+  title: string;
+  description: string;
+  keywords: string;
+  ogTitle: string;
+  ogDescription: string;
+  ogImage: string;
+};
+
 export default function Home() {
   const [heroes, setHeroes] = useState([]);
   const [moments, setMoments] = useState([]);
   const [trendingDesigns, setTrendingDesigns] = useState([]);
   const [bachatMahotsavImages, setBachatMahotsavImages] = useState<string[]>([]);
-  type Metadata = {
-    title: string;
-    description: string;
-    keywords: string;
-    ogTitle: string;
-    ogDescription: string;
-    ogImage: string;
-  };
-
   const [metadata, setMetadata] = useState<Metadata | null>(null);
+  const [loading, setLoading] = useState(true); // 👈 loading state
 
   useEffect(() => {
     async function fetchData() {
@@ -58,6 +60,8 @@ export default function Home() {
         setMetadata(metadataData);
       } catch (error) {
         console.error('Error fetching home page data:', error);
+      } finally {
+        setLoading(false); // 👈 stop loading
       }
     }
 
@@ -66,6 +70,10 @@ export default function Home() {
 
   if (!BASE_URL) {
     throw new Error('Missing NEXT_PUBLIC_API_BASE_URL in .env.local');
+  }
+
+  if (loading) {
+    return <Loader />; // 👈 render loader during fetch
   }
 
   return (

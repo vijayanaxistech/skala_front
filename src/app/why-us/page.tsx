@@ -1,5 +1,6 @@
 import { getMetadataByPage } from '@/lib/api';
 import WhySuvarnakala from './WhySuvarnakala';
+import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
 
 export async function generateMetadata() {
   try {
@@ -34,5 +35,9 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
-  return <WhySuvarnakala />;
+  return (
+    <ClientLayoutWrapper>
+      <WhySuvarnakala />
+    </ClientLayoutWrapper>
+  );
 }

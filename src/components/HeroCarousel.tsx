@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { getHeroes, BASE_URL } from '../lib/api';
+// import Image from 'next/image';
 // Optional: Use next/image for optimized image loading
 // import Image from 'next/image';
 
@@ -35,7 +36,7 @@ const HeroCarousel: React.FC = () => {
 
   // Filter active heroes and sort by priority
   const sortedHeroes = [...heroes]
-    .filter(hero => hero.isActive)
+    .filter((hero) => hero.isActive)
     .sort((a, b) => a.priority - b.priority);
 
   useEffect(() => {
@@ -181,20 +182,20 @@ const HeroCarousel: React.FC = () => {
             backgroundColor: '#f0f0f0',
           }}
         >
-          <img
-            src="/assets/Suvarnakala.png"
-            alt="Suvarnakala Loading Logo"
-            className="loading-logo"
-            style={{
-              maxWidth: '15%',
-              maxHeight: '15%',
-              objectFit: 'contain',
-            }}
-            onError={(e) => {
-              e.currentTarget.src = '/fallback-image.jpg'; // Fallback image
-              console.error('Failed to load Suvarnakala.png, using fallback image');
-            }}
-          />
+          {/* <Image
+              src="/assets/Suvarnakala.png"
+              alt="Suvarnakala Loading Logo"
+              className="loading-logo"
+              style={{
+                maxWidth: '15%',
+                maxHeight: '15%',
+                objectFit: 'contain',
+              }}
+              onError={(e) => {
+                e.currentTarget.src = '/fallback-image.jpg'; // Fallback image
+                console.error('Failed to load Suvarnakala.png, using fallback image');
+              }}
+            /> */}
           {/* Optional: Using next/image (uncomment to use) */}
           {/*
           <Image
@@ -255,30 +256,16 @@ const HeroCarousel: React.FC = () => {
           </button>
         </>
       )}
-<style jsx>{`
-  @media (max-width: 767px) {
-    .hero-banner {
-      height: 450px !important;
-    }
-    .hero-section {
-      height: 450px !important;
-    }
-  }
-
-  .loading-logo {
-    animation: zoom 2s ease-in-out infinite;
-  }
-
-  @keyframes zoom {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.2);
-    }
-  }
-`}</style>
-
+      <style jsx>{`
+        @media (max-width: 767px) {
+          .hero-banner {
+            height: 450px !important;
+          }
+          .hero-section {
+            height: 450px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };
