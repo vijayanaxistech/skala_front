@@ -300,6 +300,7 @@ const About = () => {
             </div>
           ))}
         </div>
+
       </div>
 
       {/* Animation Keyframes */}

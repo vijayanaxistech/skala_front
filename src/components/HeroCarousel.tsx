@@ -218,46 +218,47 @@ const HeroCarousel: React.FC = () => {
       )}
 
       {/* Navigation Buttons */}
-      {sortedHeroes.length > 0 && (
-        <>
-          <button
-            onClick={goPrev}
-            aria-label="Previous Slide"
-            className="position-absolute top-50 start-0 translate-middle-y btn btn-white rounded-circle d-flex align-items-center justify-content-center"
-            style={{
-              width: '30px',
-              height: '30px',
-              marginLeft: '10px',
-              backgroundColor: 'white',
-              border: 'none',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-              zIndex: 10,
-            }}
-          >
-            <svg viewBox="0 0 24 24" fill="black" width="24px" height="24px">
-              <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-            </svg>
-          </button>
-          <button
-            onClick={goNext}
-            aria-label="Next Slide"
-            className="position-absolute top-50 end-0 translate-middle-y btn btn-white rounded-circle d-flex align-items-center justify-content-center"
-            style={{
-              width: '30px',
-              height: '30px',
-              marginRight: '10px',
-              backgroundColor: 'white',
-              border: 'none',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-              zIndex: 10,
-            }}
-          >
-            <svg viewBox="0 0 24 24" fill="black" width="24px" height="24px">
-              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
-            </svg>
-          </button>
-        </>
-      )}
+{sortedHeroes.length > 0 && (
+  <>
+    <button
+      onClick={goPrev}
+      aria-label="Previous Slide"
+      className="position-absolute top-50 start-0 translate-middle-y btn btn-white rounded-circle d-flex align-items-center justify-content-center"
+      style={{
+        width: '40px',
+        height: '40px',
+        marginLeft: '10px',
+        backgroundColor: 'white',
+        border: 'none',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+        zIndex: 10,
+      }}
+    >
+      <svg viewBox="0 0 24 24" fill="black" width="32px" height="32px">
+        <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+      </svg>
+    </button>
+    <button
+      onClick={goNext}
+      aria-label="Next Slide"
+      className="position-absolute top-50 end-0 translate-middle-y btn btn-white rounded-circle d-flex align-items-center justify-content-center"
+      style={{
+        width: '40px',
+        height: '40px',
+        marginRight: '10px',
+        backgroundColor: 'white',
+        border: 'none',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+        zIndex: 10,
+      }}
+    >
+      <svg viewBox="0 0 24 24" fill="black" width="32px" height="32px">
+        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+      </svg>
+    </button>
+  </>
+)}
+
       <style jsx>{`
         @media (max-width: 767px) {
           .hero-banner {
@@ -267,19 +268,6 @@ const HeroCarousel: React.FC = () => {
             height: 450px !important;
           }
         }
-<<<<<<< HEAD
-=======
-
-        @keyframes zoom {
-          0%,
-          100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.2);
-          }
-        }
->>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
       `}</style>
     </div>
   );

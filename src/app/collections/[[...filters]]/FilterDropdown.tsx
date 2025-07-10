@@ -44,10 +44,10 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     const internalType = filterType === 'jewellery' ? 'category' : filterType;
     newFilters[internalType] = filterValue;
     const segments = Object.entries(newFilters).flatMap(([type, value]) => [
-      encodeURIComponent(type === 'category' ? 'jewelry' : type),
+      encodeURIComponent(type === 'category' ? 'products' : type),
       encodeURIComponent(value),
     ]);
-    router.push(`/collections/${segments.join('/')}`, { scroll: false });
+    router.push(`/collections/${segments.join('/')}`,{ scroll: false });
     setDropdownOpen(false);
   };
 
@@ -55,16 +55,14 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     const newFilters = { ...selectedFilters };
     delete newFilters[type];
     const segments = Object.entries(newFilters).flatMap(([t, value]) => [
-      encodeURIComponent(t === 'category' ? 'jewelry' : t),
+      encodeURIComponent(t === 'category' ? 'products' : t),
       encodeURIComponent(value),
     ]);
-    router.push(segments.length ? `/collections/${segments.join('/')}` : '/collections', {
-      scroll: false,
-    });
+    router.push(segments.length ? `/collections/${segments.join('/')}` : '/collections',{ scroll: false });
   };
 
   const clearAllFilters = () => {
-    router.push('/collections', { scroll: false });
+    router.push('/collections',{ scroll: false });
     setDropdownOpen(false);
   };
 
