@@ -3,7 +3,7 @@ export const routeDisplayNames: { [key: string]: string } = {
   '/about': 'About Us',
   '/collections': 'Collections',
   '/our-showrooms': 'Our Showrooms',
-  '/events': 'Events',
+  // '/events': 'Events',
   '/why-us': 'Why Us',
   '/contact': 'Contact Us',
 };

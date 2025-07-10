@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap';
 import { FaFilter } from 'react-icons/fa';
 import { IoIosArrowDown, IoMdClose } from 'react-icons/io';
 import { useRouter } from 'next/navigation';
+import Loader from '@/components/Loader';
 
 interface FilterDropdownProps {
   categories: string[];
@@ -25,6 +26,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>('jewellery');
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -86,6 +88,15 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     </div>
   );
 
+<<<<<<< HEAD
+=======
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
+>>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
   return (
     <div className="position-relative" ref={dropdownRef}>
       <Button
@@ -197,7 +208,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
                 }}
               />
             </div>
-            {expanded === 'purity' && renderChips(purities, 'purity')}
+            {expanded === 'purity' && renderChips([...purities].sort(), 'purity')}
           </div>
 
           <div className="mb-3">

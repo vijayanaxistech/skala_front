@@ -172,6 +172,7 @@ const HeroCarousel: React.FC = () => {
           })}
         </div>
       ) : (
+        // loading animation skala
         <div
           style={{
             width: '100%',
@@ -180,8 +181,10 @@ const HeroCarousel: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: '#f0f0f0',
+            opacity: 0.4,
           }}
         >
+<<<<<<< HEAD
           {/* <Image
               src="/assets/Suvarnakala.png"
               alt="Suvarnakala Loading Logo"
@@ -196,6 +199,22 @@ const HeroCarousel: React.FC = () => {
                 console.error('Failed to load Suvarnakala.png, using fallback image');
               }}
             /> */}
+=======
+          {/* <img
+            src="/assets/Suvarnakala.png"
+            alt="Suvarnakala Loading Logo"
+            className="loading-logo"
+            style={{
+              maxWidth: '15%',
+              maxHeight: '15%',
+              objectFit: 'contain',
+            }}
+            onError={(e) => {
+              e.currentTarget.src = '/fallback-image.jpg'; // Fallback image
+              console.error('Failed to load Suvarnakala.png, using fallback image');
+            }}
+          /> */}
+>>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
           {/* Optional: Using next/image (uncomment to use) */}
           {/*
           <Image
@@ -265,6 +284,19 @@ const HeroCarousel: React.FC = () => {
             height: 450px !important;
           }
         }
+<<<<<<< HEAD
+=======
+
+        @keyframes zoom {
+          0%,
+          100% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.2);
+          }
+        }
+>>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
       `}</style>
     </div>
   );

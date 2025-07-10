@@ -18,7 +18,12 @@ import FilterDropdown from './FilterDropdown';
 import WhatsAppButton from '../WhatsAppButton';
 import MoreInfoButton from '../MoreInfo';
 import { getProducts, getCategories, getMetadataByPage, BASE_URL } from '@/lib/api';
+<<<<<<< HEAD
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
+=======
+import dynamic from 'next/dynamic';
+const EventsClientWrapper = dynamic(() => import('@/components/LoadingWrapper'));
+>>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
 
 // Define interfaces for TypeScript
 interface Category {
@@ -175,7 +180,11 @@ export default async function ProductsPage({ params }: { params: { filters?: str
 
   return (
     <>
+<<<<<<< HEAD
       <ClientLayoutWrapper>
+=======
+      <EventsClientWrapper>
+>>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
         {/* Banner Image */}
         <div className="banner" style={{ position: 'relative', width: '100%', height: '400px' }}>
           <Image
@@ -241,7 +250,11 @@ export default async function ProductsPage({ params }: { params: { filters?: str
                             <MoreInfoButton
                               product={{
                                 title: product.title,
+<<<<<<< HEAD
                                 jewelleryType: product.jewelleryType,
+=======
+                                metal: product.metal,
+>>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
                                 purity: product.purity,
                                 grossWeight: product.grossWeight,
                                 mainImage: product.mainImage
@@ -254,7 +267,11 @@ export default async function ProductsPage({ params }: { params: { filters?: str
                               product={{
                                 id: product._id,
                                 title: product.title,
+<<<<<<< HEAD
                                 jewelleryType: product.jewelleryType,
+=======
+                                metal: product.metal,
+>>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
                                 purity: product.purity,
                                 grossWeight: product.grossWeight,
                                 category: product.category,
@@ -264,9 +281,14 @@ export default async function ProductsPage({ params }: { params: { filters?: str
                         </div>
 
                         <p className="card-text text-dark mb-1">
+<<<<<<< HEAD
                           Jewellery Type: {product.jewelleryType}
                         </p>
                         <p className="card-text text-dark mb-1">Purity: {product.purity}</p>
+=======
+                          Metal Purity: {product.metal} {product.purity}
+                        </p>
+>>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
                         <p className="card-text text-dark mb-0">Gross Wt: {product.grossWeight}</p>
                       </div>
                     </div>
@@ -325,7 +347,11 @@ export default async function ProductsPage({ params }: { params: { filters?: str
           
         }
       `}</style>
+<<<<<<< HEAD
       </ClientLayoutWrapper>
+=======
+      </EventsClientWrapper>
+>>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
     </>
   );
 }

@@ -366,7 +366,7 @@ const Header: React.FC = () => {
           </div>
         </Container>
       </Navbar>
-
+   
       <Modal
         show={showModal}
         onHide={handleCloseModal}
@@ -602,7 +602,6 @@ const Header: React.FC = () => {
           </div>
         </Modal.Body>
       </Modal>
-
       <style jsx>{`
         .error-text {
           color: #ff4d4d;

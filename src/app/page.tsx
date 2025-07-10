@@ -24,6 +24,7 @@ import {
   getMetadataByPage,
   BASE_URL,
 } from '../lib/api';
+import Loader from '@/components/Loader';
 
 type Metadata = {
   title: string;
@@ -38,10 +39,21 @@ export default function Home() {
   const [heroes, setHeroes] = useState([]);
   const [moments, setMoments] = useState([]);
   const [trendingDesigns, setTrendingDesigns] = useState([]);
+
+  const [loading, setLoading] = useState(true);
   const [bachatMahotsavImages, setBachatMahotsavImages] = useState<string[]>([]);
   const [metadata, setMetadata] = useState<Metadata | null>(null);
+<<<<<<< HEAD
   const [loading, setLoading] = useState(true); // 👈 loading state
+=======
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1200); // Show loader for 1.2 seconds
+>>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
 
+    return () => clearTimeout(timer);
+  }, []);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -71,11 +83,15 @@ export default function Home() {
   if (!BASE_URL) {
     throw new Error('Missing NEXT_PUBLIC_API_BASE_URL in .env.local');
   }
+<<<<<<< HEAD
 
   if (loading) {
     return <Loader />; // 👈 render loader during fetch
   }
 
+=======
+  if (loading) return <Loader />;
+>>>>>>> 37637087b23a05165ec6a55386ed666da52285c8
   return (
     <>
       {metadata && (
