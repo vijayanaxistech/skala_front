@@ -76,7 +76,7 @@ const WhySuvarnakala = () => {
         />
       </div>
 
-      {/* Features Section */}
+      {/* Features Sectionsss */}
       <div style={{ backgroundColor: '#fff9f3', padding: '40px 0' }} className='why'>
         <Container
           style={{
