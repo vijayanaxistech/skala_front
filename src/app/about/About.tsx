@@ -87,6 +87,7 @@ const About = () => {
         />
       </div>
 
+      
       {/* About Section */}
       <div
         className="position-relative py-4"
