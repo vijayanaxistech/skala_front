@@ -41,8 +41,8 @@ const Testimonials: React.FC = () => {
     <div className="p-5 pt-4 pb-0" aria-label="Suvarnakala Customer Testimonials Section">
       <div className="custom-heading-wrapper d-flex align-items-center mb-4">
         <h2 className="m-0 custom-heading text-wrap me-3">
-          <span>
-            Customer <span className="text-red">Stories :</span>
+          <span className='fraunces'>
+            Customer <span className="text-red fraunces">Stories :</span>
           </span>
           <div className="decorative-line">
             <div className="diamond"></div>
@@ -50,7 +50,7 @@ const Testimonials: React.FC = () => {
             <div className="diamond"></div>
           </div>
         </h2>
-        <span className="heading-extension">Stories Behind Every Sparkle</span>
+        <span className="heading-extension fraunces">Stories Behind Every Sparkle</span>
       </div>
 
       {isLoading ? (

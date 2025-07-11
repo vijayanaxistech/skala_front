@@ -69,8 +69,8 @@ const GiftCard = () => {
             <div className="row align-items-center">
               <div className="custom-heading-wrapper d-flex align-items-center mb-4">
                 <h2 className="m-0 custom-heading text-wrap me-3">
-                  <span className="">
-                    Suvarnakala <span className="text-red">Gift Card </span>
+                  <span className="fraunces">
+                    Suvarnakala <span className="text-red fraunces">Gift Card </span>
                   </span>
                   <div className="decorative-line">
                     <div className="diamond"></div>

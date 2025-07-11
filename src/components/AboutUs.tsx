@@ -50,8 +50,8 @@ const About = () => {
           <div className="col-md-6">
             <div className="custom-heading-wrapper d-flex align-items-center mb-4">
               <h3 className="m-0 custom-heading text-wrap me-3">
-                <span>
-                  Discover Our <span className="text-red">Variety</span>
+                <span className='fraunces'>
+                  Discover Our <span className="text-red fraunces">Variety</span>
                 </span>
                 <div className="decorative-line">
                   <div className="diamond"></div>

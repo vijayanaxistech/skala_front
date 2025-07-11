@@ -77,7 +77,7 @@ const WhySuvarnakala = () => {
       </div>
 
       {/* Features Section */}
-      <div style={{ backgroundColor: '#F5E7D6', padding: '40px 0' }} className='why'>
+      <div style={{ backgroundColor: '#fff9f3', padding: '40px 0' }} className='why'>
         <Container
           style={{
             backgroundColor: '#fff',
@@ -88,7 +88,7 @@ const WhySuvarnakala = () => {
           <div className="custom-heading-wrapper text-center justify-content-center d-flex align-items-center mb-4">
             <h2 className="m-0 custom-heading text-wrap me-3">
               <span className="heading-underline">
-                <span className="text-red">Why Suvarnakala ?</span>
+                <span className="text-red fraunces">Why Suvarnakala ?</span>
               </span>
             </h2>
           </div>
@@ -101,7 +101,7 @@ const WhySuvarnakala = () => {
                     <IoIosCheckmarkCircleOutline />{' '}
                   </div>
                   <div>
-                    <h5 className="fw-bold mb-1">{feature.title}</h5>
+                    <h5 className="fw-bold mb-1 lora">{feature.title}</h5>
                     <p className="text-muted mb-0" style={{ fontSize: '0.95rem' }}>
                       {feature.description}
                     </p>

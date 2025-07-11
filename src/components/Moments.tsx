@@ -46,8 +46,8 @@ const Moments: React.FC<MomentsProps> = ({ moments = [] }) => {
     <div className="p-5 pt-4 pb-0" aria-label="Suvarnakala Defining Moments Section">
       <div className="custom-heading-wrapper d-flex align-items-center mb-4">
         <h2 className="m-0 custom-heading text-wrap me-3">
-          <span>
-            Suvarnakala’s Defining <span className="text-red">Moments : </span>
+          <span className='fraunces'>
+            Suvarnakala’s Defining <span className="text-red fraunces">Moments : </span>
           </span>
           <div className="decorative-line">
             <div className="diamond"></div>
@@ -55,7 +55,7 @@ const Moments: React.FC<MomentsProps> = ({ moments = [] }) => {
             <div className="diamond"></div>
           </div>
         </h2>
-        <span className="heading-extension">Elevate Your Look with the Latest Designs</span>
+        <span className="heading-extension fraunces">Elevate Your Look with the Latest Designs</span>
       </div>
 
       <div className="mt-4">

@@ -72,9 +72,9 @@ export default function CategoryGrid() {
 
       <div className="p-5 pb-0 pt-4" aria-label="Suvarnakala Jewelry Collections">
         <div className="custom-heading-wrapper d-flex align-items-center mb-4">
-          <h2 className="m-0 custom-heading text-wrap me-3">
-            <span>
-              The Right Fit <span className="text-red">for Every Events :</span>
+          <h2 className="m-0 custom-heading  text-wrap me-3">
+            <span className="fraunces">
+              The Right Fit <span className="text-red fraunces">for Every Events :</span>
             </span>
             <div className="decorative-line">
               <div className="diamond"></div>
@@ -82,7 +82,7 @@ export default function CategoryGrid() {
               <div className="diamond"></div>
             </div>
           </h2>
-          <span className="heading-extension">From Casual to Glam, Effortlessly</span>
+          <span className="heading-extension fraunces">From Casual to Glam, Effortlessly</span>
         </div>
 
         <div className="row g-3">
@@ -93,10 +93,12 @@ export default function CategoryGrid() {
                 alt={`Suvarnakala ${categories[0].title} Jewelry Collection`}
                 layout="fill"
                 objectFit="cover"
-                className="rounded"
                 priority
+                style={{ borderRadius: '12px' }}
               />
-              <div className={styles.overlay}>{categories[0].title}</div>
+              <div className={`${styles.overlay} julee-regular text-white text-center  fs-1`}>
+                {categories[0].title}
+              </div>
             </div>
           </div>
           <div className="col-12 col-md-6 d-flex flex-column gap-3">
@@ -107,10 +109,12 @@ export default function CategoryGrid() {
                   alt={`Suvarnakala ${item.title} Jewelry Collection`}
                   layout="fill"
                   objectFit="cover"
-                  className="rounded"
                   loading="lazy"
+                  style={{ borderRadius: '12px' }}
                 />
-                <div className={styles.overlay}>{item.title}</div>
+                <div className={`${styles.overlay} julee-regular fs-1 text-white`}>
+                  {item.title}
+                </div>
               </div>
             ))}
           </div>

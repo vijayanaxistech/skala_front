@@ -8,6 +8,39 @@
   box-sizing: border-box;
 }
 
+.dm-serif-text-regular {
+  font-family: "DM Serif Text", serif;
+  font-style: normal !important;
+  font-weight: 100 !important;                /* Try thin */
+  transform: scaleY(0.9);         /* Slim height */
+  letter-spacing: 0.5px;          /* Space out letters slightly */
+}
+
+.lora {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+
+.fraunces {
+  font-family: "Fraunces", serif;
+  font-optical-sizing: auto;
+  font-weight:400;
+  font-style: normal;
+  font-variation-settings:
+    "SOFT" 0,
+    "WONK" 0;
+}
+
+.julee-regular {
+  font-family: "Julee", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 .oleo-script-regular {
   font-family: 'Oleo Script', system-ui;
   font-weight: 400;
@@ -46,8 +79,12 @@
   color: #033a79;
 }
 
+.text-gray{
+  color: #252525;
+}
+
 .bg-color {
-  background-color: rgb(245, 231, 214);
+  background-color: #fff9f3;
 }
 
 .text-justify {
@@ -66,7 +103,7 @@
 }
 
 .custom-navbar {
-  background-color: #f5e7d6;
+  background-color: #fff9f3;
   padding: 0.5rem 1rem;
 }
 
@@ -102,7 +139,7 @@
 
 /* ==================== Hero Section ==================== */
 .hero-section {
-  background: #f5e7d6;
+  background: #fff9f3;
   padding: 1px 0;
   position: relative;
 }
@@ -159,8 +196,8 @@
 
 .heading-extension {
   font-size: 24px;
-  font-weight: 500;
-  color: #033a79;
+  font-weight: 350;
+  color: #292828;
   margin-bottom: 5px;
 }
 
@@ -289,8 +326,7 @@
 
 .category-item:hover .image-wrapper .category-image {
   transform: scale(1.05);
-  opacity: 0.9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
 }
 
 /* ==================== Gift Section ==================== */
@@ -698,7 +734,7 @@ textarea::placeholder {
 /* -- */
 /* -- */
 .about_section {
-  background: #f5e7d6 url('/assets/simple.png') no-repeat center center / cover;
+  background: #fcf1e3 url('/assets/simple.png') no-repeat center center / cover;
   position: relative;
   overflow: hidden;
 }

@@ -75,8 +75,8 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
                     style={{ marginTop: '-6px' }}
                   >
                     <h2 className="m-0 custom-heading text-wrap me-3">
-                      <span className="">
-                        Celebrate Savings <span className="text-red">with Style! </span>
+                      <span className="fraunces">
+                        Celebrate Savings <span className="text-red fraunces">with Style! </span>
                       </span>
                       <div className="decorative-line">
                         <div className="diamond"></div>
