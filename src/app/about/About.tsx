@@ -122,7 +122,7 @@ const About = () => {
             </div>
 
             <div className="col-md-7">
-              <h5 className="h4 fw-bold text-blue mb-3 lora">Suvarnakala — The Pride of a Woman</h5>
+              <h5 className="h4  text-red mb-3 lora" style={{ fontWeight: 100 }}>Suvarnakala — The Pride of a Woman</h5>
               <p className="text-muted text-justify">
                 Established in 1970, Suvarnakala embarked on a journey of excellence that has grown
                 into one of the most respected names in the world of fine jewellery. Known for our

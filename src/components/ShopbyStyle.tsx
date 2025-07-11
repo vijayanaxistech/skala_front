@@ -113,9 +113,9 @@ const ShopbyStyle = () => {
               aria-label="Explore Additional Categories"
             >
               <div
-                className="image-wrapper d-flex flex-column justify-content-center align-items-center text-center"
+                className="image-wrapper border d-flex flex-column justify-content-center align-items-center text-center"
                 style={{
-                  background: 'linear-gradient(135deg, #F5E7D6 0%, #F5E7D6 100%)',
+                  background: '#fff9f3',
                   overflow: 'hidden',
                   borderRadius: '12px',
                   aspectRatio: '1/1',
@@ -127,12 +127,12 @@ const ShopbyStyle = () => {
                   userSelect: 'none',
                 }}
               >
-                <p
+                {/* <p
                   className="fs-5 fw-bold mb-0 lora"
                   style={{ textTransform: 'uppercase', fontWeight: '300', letterSpacing: '0.1em' }}
                 >
                   Discover
-                </p>
+                </p> */}
                 <p
                   className="fs-4 lora"
                   style={{ fontWeight: '200', marginTop: '0.25rem' }}

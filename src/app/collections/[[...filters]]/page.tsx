@@ -6,14 +6,6 @@ import Link from 'next/link';
 import defaultBreadcrumbImage from '../../../../public/assets/collections.png';
 import shopnowbg from '../../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
 import shopWomen from '../../../../public/assets/shopWomwn.png';
-import banglesImage from '../../../../public/assets/1.jpg';
-import braceletsImage from '../../../../public/assets/2.jpg';
-import chainsImage from '../../../../public/assets/3.jpg';
-import earringsImage from '../../../../public/assets/4.jpg';
-import mangalsutraImage from '../../../../public/assets/5.jpg';
-import necklessImage from '../../../../public/assets/6.jpg';
-import pendantImage from '../../../../public/assets/women-s-earings_8408-3.avif';
-import ringImage from '../../../../public/assets/cf111899016362517bb2fe4c9508dfd5281ec129.png';
 import styles from '@/app/page.module.css';
 import FilterDropdown from './FilterDropdown';
 import WhatsAppButton from '../WhatsAppButton';
@@ -47,16 +39,7 @@ interface Product {
   metalPurity?: string;
 }
 
-const categoryImages: { [key: string]: any } = {
-  Bangles: banglesImage,
-  Bracelets: braceletsImage,
-  Chains: chainsImage,
-  Earrings: earringsImage,
-  Mangalsutra: mangalsutraImage,
-  Necklace: necklessImage,
-  Pendant: pendantImage,
-  Ring: ringImage,
-};
+
 
 const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -99,7 +82,7 @@ const ProductsPage: React.FC = () => {
     for (let i = 0; i < filterSegments.length - 1; i += 2) {
       const key = decodeURIComponent(filterSegments[i]);
       const val = decodeURIComponent(filterSegments[i + 1]);
-      if (key === 'jewelry') pairs['category'] = val;
+      if (key === 'products') pairs['category'] = val;
       else pairs[key] = val;
     }
 

@@ -156,16 +156,16 @@ export default function ProductDetailPage() {
             <div className="col-12 col-md-6 d-flex flex-column justify-content-center order-md-3">
               <div className="px-2 px-md-4">
                 <h6 className="text-muted mb-1">{product.category.name}</h6>
-                <h3 className="fw-bold text-dark mb-1">{product.title}</h3>
-                <div className="mb-2">
+                <h3 className="fw-bold lora  mb-1" style={{fontWeight:'100'}}>{product.title}</h3>
+                {/* <div className="mb-2">
                   {'★★★★★'.split('').map((star, i) => (
                     <span key={i} style={{ color: '#FD7A08', fontSize: '1.2rem' }}>
                       {star}
                     </span>
                   ))}
-                </div>
+                </div> */}
                 <p
-                  className="text-muted"
+                  className="text-muted mt-2"
                   style={{ fontSize: '14px', lineHeight: '1.6', textAlign: 'justify' }}
                 >
                   {product.description
@@ -178,27 +178,27 @@ export default function ProductDetailPage() {
                   className="mb-2"
                   style={{ borderBottom: '1px solid #C4C4C4', paddingBottom: '4px' }}
                 >
-                  <strong>Category :</strong>{' '}
+                  <strong className='dm-serif-text-regular'>Category :</strong>{' '}
                   <span className="text-muted">{product.category.name}</span>
                 </p>
                 <p
                   className="mb-2"
                   style={{ borderBottom: '1px solid #C4C4C4', paddingBottom: '4px' }}
                 >
-                  <strong>Jewellery Type :</strong>{' '}
+                  <strong className='dm-serif-text-regular'>Jewellery Type :</strong>{' '}
                   <span className="text-dark">{product.jewelleryType}</span>
                 </p>
                 <p
                   className="mb-2"
                   style={{ borderBottom: '1px solid #C4C4C4', paddingBottom: '4px' }}
                 >
-                  <strong>Purity :</strong> <span className="text-dark">{product.purity}</span>
+                  <strong className='dm-serif-text-regular'>Purity :</strong> <span className="text-dark">{product.purity}</span>
                 </p>
                 <p
                   className="mb-0"
                   style={{ borderBottom: '1px solid #C4C4C4', paddingBottom: '4px' }}
                 >
-                  <strong>Gross Wt :</strong>{' '}
+                  <strong className='dm-serif-text-regular'>Gross Wt :</strong>{' '}
                   <span className="text-dark">{product.grossWeight}</span>
                 </p>
               </div>
@@ -208,7 +208,7 @@ export default function ProductDetailPage() {
           {/* Description */}
           <div className="row mt-5">
             <div className="col-12">
-              <h5 className="fw-bold text-dark mb-3">Description</h5>
+              <h5 className="fw-bold text-dark mb-3 lora">Description</h5>
               <p
                 className="text-muted"
                 style={{ fontSize: '15px', lineHeight: '1.8', textAlign: 'justify' }}
