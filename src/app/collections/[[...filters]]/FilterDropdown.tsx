@@ -89,10 +89,11 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     <div className="position-relative" ref={dropdownRef}>
       <Button
         variant="outline-dark"
-        className="d-flex align-items-center gap-2 rounded-pill px-4 py-2"
+        className="d-flex align-items-center gap-2 rounded-pill "
         onClick={() => setDropdownOpen((prev) => !prev)}
+        style={{padding: '0.4rem 1.8rem', fontSize: '16px'}}
       >
-        <FaFilter /> Filters <IoIosArrowDown />
+        <FaFilter /> Filters 
       </Button>
 
       {dropdownOpen && (

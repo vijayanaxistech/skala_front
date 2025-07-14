@@ -66,6 +66,37 @@
 }
 
 
+.iconbox {
+  width: 100px;
+  height: 100px;
+  background-color: #d41b1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(45deg);
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+.iconbox:hover {
+  transform: rotate(90deg) scale(1.05);
+}
+
+.iconbox-image {
+  transform: rotate(-45deg);
+  transition: transform 0.5s ease;
+}
+
+.iconbox:hover .iconbox-image {
+  transform: rotate(-90deg);
+}
+
+.iconbox-image:hover {
+  transform: rotate(-45deg);
+}
+
+
+
 /* ==================== Utility Classes ==================== */
 .text-red {
   color: #d41b1f;
@@ -104,7 +135,7 @@
 
 .custom-navbar {
   background-color: #fff9f3;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 2.5rem;
 }
 
 .custom-toggler {
@@ -204,6 +235,69 @@
 .style_sec {
   color: #d41b1f;
 }
+
+
+.navlinks-hover {
+  position: relative;
+  display: inline-block;
+  color: #212529; /* default dark */
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.navlinks-hover::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #d41b1f;
+  transition: width 0.3s ease;
+}
+
+.navlinks-hover:hover {
+  color: #d41b1f !important;
+}
+
+
+
+/* Active link styling */
+.navlinks-hover.active-link {
+  color: #d41b1f !important;
+}
+
+
+
+
+
+.link-hover-red {
+  color: #333; /* normal text color */
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.link-hover-red::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  display: block;
+  margin-top: 5px;
+  right: 0;
+  background: #d41b1f;
+  transition: width 0.4s ease;
+  -webkit-transition: width 0.4s ease;
+}
+
+.link-hover-red:hover {
+  color: #d41b1f !important;
+  letter-spacing: 0.5px;
+}
+
+
+
 
 /* ==================== Product Section ==================== */
 .product-page {

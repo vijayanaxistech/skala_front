@@ -96,7 +96,8 @@ export default function Footer() {
                   height={80}
                   loading="lazy"
                 />
-                <p className="text-dark small footer-description">
+                <p className="text-dark small footer-description" style={{ fontSize: '15px', fontWeight: 400 }}  // 300 = Light/Thin
+                >
                   We offer personalized jewelry experiences, crafted by skilled artisans dedicated
                   to quality and timeless elegance.
                 </p>
@@ -155,9 +156,11 @@ export default function Footer() {
                     <a
                       href="mailto:sales@suvarnakala.com"
                       className="text-dark text-decoration-none"
+                      style={{ fontSize: '17px', fontWeight: 360 }}  // 300 = Light/Thin
                     >
                       sales@suvarnakala.com
                     </a>
+
                   </li>
                 </ul>
               </div>

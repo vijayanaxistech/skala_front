@@ -14,6 +14,7 @@ import GiftCard from '../components/GiftCard';
 import Moments from '../components/Moments';
 import BachatMahotsav from '../components/BachatMahotsav';
 import Testimonials from '../components/Testimonials';
+import EasyGoldScheme from '../components/EasyGoldScheme';
 
 import {
   getBachatMahotsavImages,
@@ -95,6 +96,7 @@ export default function Home() {
       <Hero />
       <CredibilitySection />
       <VideoSection />
+      <EasyGoldScheme />
       <ShopbyStyle />
       <Products />
       <TopTrendingDesigns initialDesigns={trendingDesigns} />
