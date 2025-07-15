@@ -79,16 +79,16 @@ const GiftCard = () => {
                   </div>
                 </h2>
               </div>
-              <p className="text-blue mt-2 text-center text-md-start">
+              <p className=" mt-2 text-center text-md-start">
                 Not sure which piece to choose? Let them decide with the Suvarnakala Gift Card, a
                 perfect way to celebrate special moments with the beauty of fine jewelry.
               </p>
               {/* Text Content */}
               <div className="col-12 col-md-7 mb-4 mb-md-0">
-                <h6 className="fw-bold mt-1 mb-3 text-red text-center text-md-start">
+                <h6 className="lora  mt-1 mb-3 text-red text-center text-md-start">
                   Why a Suvarnakala Gift Card?
                 </h6>
-                <ul className="ps-3 text-blue text-center text-md-start list-unstyled list-md-bullet">
+                <ul className="ps-3  text-center text-md-start list-unstyled list-md-bullet">
                   <li className="mb-2">
                     Perfect for Any Occasion — Birthdays, weddings, anniversaries, or just because.
                   </li>
@@ -112,7 +112,7 @@ const GiftCard = () => {
                       style={{ objectFit: 'contain' }}
                       loading="lazy"
                     />
-                    <span className="mt-3">Gold Rate Booking</span>
+                    <span className="mt-3 lora">Gold Rate Booking</span>
                   </div>
 
                   {/* Monthly Installment */}
@@ -125,11 +125,11 @@ const GiftCard = () => {
                       style={{ objectFit: 'contain' }}
                       loading="lazy"
                     />
-                    <span className="mt-3">Monthly Installment</span>
+                    <span className="mt-3 lora">Monthly Installment</span>
                   </div>
                 </div>
 
-                <p className="mt-4 text-red text-center text-md-start">
+                <p className="mt-4 text-red lora text-center text-md-start">
                   For latest updates and offers, download our app today.
                 </p>
                 <div className="d-flex gap-3 mb-3 align-items-center">

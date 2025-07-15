@@ -8,7 +8,7 @@ import shopnowbg from '../../../public/assets/dark-brown-colour-flower-pattern-b
 import shopWomen from '../../../public/assets/shopWomwn.png';
 import styles from '../page.module.css';
 import Link from 'next/link';
-import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
+import Bullet from '../../../public/assets/bullet.jpg';
 import Loader from '@/components/Loader';
 
 const features = [
@@ -56,7 +56,7 @@ const features = [
 const WhySuvarnakala = () => {
 
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
@@ -66,53 +66,75 @@ const WhySuvarnakala = () => {
   return (
     <>
       {/* Banner Image */}
-      <div style={{ position: 'relative', width: '100%', height: '600px',}} className='banner'>
-        <Image
-          src={breadcrumbImage}
-          alt="Suvarnakala Banner"
-          layout="fill"
-          objectFit="cover"
-          priority
-        />
-      </div>
+            <div
+                style={{ position: 'relative', width: '100%', height: '434px' }}
+                className="about-banner"
+            >
+                <Image
+                    src={breadcrumbImage}
+                    alt="Suvarnakala Banner"
+                    layout="fill"
+                    objectFit="cover"
+                    priority
+                />
+            </div>
 
-      {/* Features Sectionsss */}
-      <div style={{ backgroundColor: '#fff9f3', padding: '40px 0' }} className='why'>
-        <Container
-          style={{
-            backgroundColor: '#fff',
-            padding: '30px',
-            boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
-          }}
-        >
-          <div className="custom-heading-wrapper text-center justify-content-center d-flex align-items-center mb-4">
+      <div
+        className="bg-color pb-5"
+      >
+        <div className="p-5 py-4 ">
+          <div className="custom-heading-wrapper d-flex align-items-center mb-4">
             <h2 className="m-0 custom-heading text-wrap me-3">
-              <span className="heading-underline">
-                <span className="text-red fraunces">Why Suvarnakala ?</span>
+              <span className="fraunces">
+                Why  <span className="text-red fraunces"> Suvarnakala ? </span>
               </span>
+              <div className="decorative-line">
+                <div className="diamond"></div>
+                <div className="line"></div>
+                <div className="diamond"></div>
+              </div>
             </h2>
           </div>
 
-          {features.map((feature, index) => (
-            <Row className="mb-4" key={index}>
-              <Col xs={12}>
-                <div className="d-flex align-items-start">
-                  <div className="me-3 text-red" style={{ fontSize: '1.10rem' }}>
-                    <IoIosCheckmarkCircleOutline />{' '}
-                  </div>
-                  <div>
-                    <h5 className="fw-bold mb-1 lora">{feature.title}</h5>
-                    <p className="text-muted mb-0" style={{ fontSize: '0.95rem' }}>
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          ))}
-        </Container>
-      </div>
+        </div>
+        {/* Features Sectionsss */}
+        <div style={{ backgroundColor: '#fff9f3' }} className='why px-0 px-md-5'>
 
+          <div
+            style={{
+              backgroundColor: '#fff',
+              padding: '30px',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
+            }}
+          >
+
+
+            {features.map((feature, index) => (
+              <Row className="mb-4" key={index}>
+                <Col xs={12}>
+                  <div className="d-flex align-items-start">
+                    <div className="me-3 text-red" style={{ fontSize: '1.10rem' }}>
+                                                  <Image
+                                                src={Bullet}
+                                                alt="Section Icon"
+                                                width={20}
+                                                height={20}
+                                                className="rounded-circle" // Bootstrap for rounded-full
+                                            />   {' '}
+                    </div>
+                    <div>
+                      <h5 className="fw-bold mb-1 lora">{feature.title}</h5>
+                      <p className="text-muted mb-0" style={{ fontSize: '0.95rem' }}>
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            ))}
+          </div>
+        </div>
+      </div>
       {/* Shop Now Section */}
       <div style={{ position: 'relative', width: '100%', height: '300px' }}>
         <Image src={shopnowbg} alt="Shop Now Banner" layout="fill" objectFit="cover" priority />
@@ -142,12 +164,11 @@ const WhySuvarnakala = () => {
                 />
               </Col>
               <Col xs={12} md={6} className="text-center text-md-start text-white">
-                <h1 className="fs-4 fs-md-3 fw-semibold lh-tight mb-4">
-                  Elevate Every Moment with Timeless Jewellery
+                <h1 className="fs-4 fs-md-3  lh-tight mb-4 fraunces">                  Elevate Every Moment with Timeless Jewellery
                 </h1>
                 <Link href="/collections">
                   <Button
-                    variant="outline-light rounded-0"
+                    variant="outline-light fraunces rounded-0"
                     className={styles.shopNowBtn}
                     style={{ textDecoration: 'none' }}
                   >

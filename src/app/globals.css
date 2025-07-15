@@ -11,9 +11,12 @@
 .dm-serif-text-regular {
   font-family: "DM Serif Text", serif;
   font-style: normal !important;
-  font-weight: 100 !important;                /* Try thin */
-  transform: scaleY(0.9);         /* Slim height */
-  letter-spacing: 0.5px;          /* Space out letters slightly */
+  font-weight: 100 !important;
+  /* Try thin */
+  transform: scaleY(0.9);
+  /* Slim height */
+  letter-spacing: 0.5px;
+  /* Space out letters slightly */
 }
 
 .lora {
@@ -27,7 +30,7 @@
 .fraunces {
   font-family: "Fraunces", serif;
   font-optical-sizing: auto;
-  font-weight:400;
+  font-weight: 400;
   font-style: normal;
   font-variation-settings:
     "SOFT" 0,
@@ -95,6 +98,23 @@
   transform: rotate(-45deg);
 }
 
+.directions-btn {
+  border: 1px solid #033a79;
+  color: #033a79;
+  background-color: transparent;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.directions-btn:hover {
+  background-color: #e6eff9;
+  /* light version of #033a79 */
+  color: #033a79;
+  border: 1px solid #033a79;
+}
+
 
 
 /* ==================== Utility Classes ==================== */
@@ -110,7 +130,7 @@
   color: #033a79;
 }
 
-.text-gray{
+.text-gray {
   color: #252525;
 }
 
@@ -124,6 +144,27 @@
 
 .dark_font {
   font-weight: 700;
+}
+
+.custom-tab {
+  background-color: #d41b1f;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-transform: capitalize;
+  flex: 1;
+  position: relative;
+  cursor: pointer;
+}
+
+.active-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 40%;
+  width: 20%;
+  height: 2px;
+  background-color: white;
 }
 
 /* ==================== Header Section ==================== */
@@ -240,7 +281,8 @@
 .navlinks-hover {
   position: relative;
   display: inline-block;
-  color: #212529; /* default dark */
+  color: #212529;
+  /* default dark */
   transition: color 0.3s ease, letter-spacing 0.3s ease;
 }
 
@@ -271,7 +313,8 @@
 
 
 .link-hover-red {
-  color: #333; /* normal text color */
+  color: #333;
+  /* normal text color */
   text-decoration: none;
   position: relative;
   display: inline-block;
@@ -557,6 +600,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -701,7 +745,7 @@ textarea::placeholder {
 }
 
 @media (max-width: 768px) {
-  footer .container > div.d-flex {
+  footer .container>div.d-flex {
     flex-wrap: wrap;
   }
 
@@ -835,25 +879,35 @@ textarea::placeholder {
 
 .about_section .col-md-6:nth-child(2) {
   position: relative;
-  padding-left: 30px; /* space so text doesn't touch the line */
-  height: 100%; /* fill height */
-  display: flex; /* to help center the line */
-  align-items: center; /* vertical center content */
+  padding-left: 30px;
+  /* space so text doesn't touch the line */
+  height: 100%;
+  /* fill height */
+  display: flex;
+  /* to help center the line */
+  align-items: center;
+  /* vertical center content */
 }
 
 .about_section .col-md-6:nth-child(2)::after {
   content: '';
   position: absolute;
-  top: 50%; /* start at middle */
-  left: 10; /* on the left edge */
-  width: 2px; /* thin vertical line */
-  height: 90%; /* 90% height of parent */
+  top: 50%;
+  /* start at middle */
+  left: 10;
+  /* on the left edge */
+  width: 2px;
+  /* thin vertical line */
+  height: 90%;
+  /* 90% height of parent */
   background-color: #d41b1f;
   border-radius: 1px;
-  transform: translateY(-50%); /* move up half its own height to center vertically */
+  transform: translateY(-50%);
+  /* move up half its own height to center vertically */
 }
 
 @media (max-width: 767.98px) {
+
   /* Bootstrap’s breakpoint for small devices */
   .about_section .col-md-6:nth-child(2)::after {
     display: none;
@@ -913,10 +967,14 @@ textarea::placeholder {
   align-items: center;
   position: relative;
 }
+
 @keyframes zoom {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
@@ -925,6 +983,7 @@ textarea::placeholder {
 .loading-logo {
   animation: zoom 2s ease-in-out infinite;
 }
+
 .about_main_image {
   position: absolute;
   left: 26%;
@@ -942,27 +1001,28 @@ textarea::placeholder {
 
   .popup-image {
     height: 250px !important;
-}
+  }
 
-.modal{
-  height: auto;
-  top: 20%;
-  padding: 20px;
-}
+  .modal {
+    height: auto;
+    top: 20%;
+    padding: 20px;
+  }
 
   .about_main_image img {
     width: 300px !important;
   }
 
-  .btn-close-white{
-    --bs-btn-close-filter:none;
+  .btn-close-white {
+    --bs-btn-close-filter: none;
   }
 
-   
+
 
   .about_section {
     padding: 0;
   }
+
   .about_patternshape {
     position: relative;
     margin-left: -210px;
@@ -972,7 +1032,8 @@ textarea::placeholder {
 .more-info-btn-sm {
   background: #033a79;
   color: white;
-  font-size: 0.75rem; /* Small text */
+  font-size: 0.75rem;
+  /* Small text */
   font-weight: 500;
   padding: 4px 10px;
   border: none;
@@ -982,3 +1043,4 @@ textarea::placeholder {
   align-items: center;
   line-height: 1;
 }
+

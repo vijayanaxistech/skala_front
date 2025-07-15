@@ -61,7 +61,7 @@ const About = () => {
               </h3>
             </div>
             <div className="about_title">
-              <h5 className="text-center text-md-start text-sm-center">
+              <h5 className="text-center lora text-md-start text-sm-center">
                 Timeless Elegance, Redefined
               </h5>
               <p className="text-justify mt-3">

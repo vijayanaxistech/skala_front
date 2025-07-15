@@ -200,8 +200,7 @@
 //                 <Image src={shopWomen} alt="Shop Girl" width={300} height={300} />
 //               </Col>
 //               <Col xs={12} md={6} className="text-center text-md-start text-white">
-//                 <h1 className="fs-4 fs-md-3 fw-semibold lh-tight mb-4">
-//                   Elevate Every Moment with Timeless Jewellery
+//                 <h1 className="fs-4 fs-md-3  lh-tight mb-4 fraunces">//                   Elevate Every Moment with Timeless Jewellery
 //                 </h1>
 //                 <Link href="/collections">
 //                   <Button

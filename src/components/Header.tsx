@@ -43,6 +43,7 @@ const Header: React.FC = () => {
   const [navLinks, setNavLinks] = useState<NavLink[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [showCollectionsDropdown, setShowCollectionsDropdown] = useState(false);
+  const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -51,18 +52,27 @@ const Header: React.FC = () => {
     'Home',
     'About Us',
     'Collections',
-    'Our Showrooms',
-    'Events',
     'Why Us',
+    'Our Showrooms',
+    'Investment', // Ensure Investment is in the desired order
+    'Events',
     'Contact Us',
     'Book an Appointment',
+  ];
+
+  const investmentLinks = [
+    { name: 'Digi-Gold', path: '/investment/digi-gold' },
+    { name: 'Book My Gold', path: '/investment/book-my-gold' },
+    { name: 'Monthly Saving Scheme', path: '/investment/monthly-saving-scheme' },
   ];
 
   useEffect(() => {
     const fetchNavLinks = async () => {
       try {
         const data = await getNavbar();
-        const sortedLinks = data.sort((a: NavLink, b: NavLink) => {
+        // Filter out Investment from API data to avoid duplication
+        const filteredLinks = data.filter((link: NavLink) => link.name !== 'Investment');
+        const sortedLinks = filteredLinks.sort((a: NavLink, b: NavLink) => {
           const aIndex = desiredOrder.indexOf(a.name);
           const bIndex = desiredOrder.indexOf(b.name);
           return (
@@ -103,17 +113,25 @@ const Header: React.FC = () => {
     setShowModal(true);
   };
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (dropdown: string) => {
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
     }
-    setShowCollectionsDropdown(true);
+    if (dropdown === 'Collections') {
+      setShowCollectionsDropdown(true);
+    } else if (dropdown === 'Investment') {
+      setShowInvestmentDropdown(true);
+    }
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (dropdown: string) => {
     dropdownTimeoutRef.current = setTimeout(() => {
-      setShowCollectionsDropdown(false);
-    }, 200); // Small delay to allow moving to dropdown
+      if (dropdown === 'Collections') {
+        setShowCollectionsDropdown(false);
+      } else if (dropdown === 'Investment') {
+        setShowInvestmentDropdown(false);
+      }
+    }, 200);
   };
 
   const categories = Array.from(new Set(products.map((p) => p.category.name))).sort();
@@ -140,29 +158,91 @@ const Header: React.FC = () => {
             {expanded ? (
               <FaTimes size={24} color="#D41B1F" />
             ) : (
-              <FaBars size-stage={24} color="#D41B1F" />
+              <FaBars size={24} color="#D41B1F" />
             )}
           </Navbar.Toggle>
 
           <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
             <Nav className="gap-3 text-center flex-column flex-lg-row align-items-center">
-              {navLinks.map(({ _id, name, path }) => {
+              {desiredOrder.map((name, index) => {
+                if (name === 'Investment') {
+                  // Static Investment navlink
+                  return (
+                    <div
+                      key={`investment-${index}`}
+                      className="nav-item position-relative"
+                      onMouseEnter={() => handleMouseEnter('Investment')}
+                      onMouseLeave={() => handleMouseLeave('Investment')}
+                    >
+                      <Link
+                        href="/investment"
+                        passHref
+                        legacyBehavior={false}
+                        className="custom-nav-link navlinks-hover"
+                        style={{ textDecoration: 'none' }}
+                        onClick={() => setExpanded(false)}
+                      >
+                        <Nav.Link
+                          as="span"
+                          className={`navlinks-hover ${
+                            pathname.startsWith('/investment') ? 'active-link' : ''
+                          }`}
+                        >
+                          Investment
+                        </Nav.Link>
+                      </Link>
+                      <div
+                        className={`dropdown-menu-full ${showInvestmentDropdown ? 'show' : ''}`}
+                        onMouseEnter={() => handleMouseEnter('Investment')}
+                        onMouseLeave={() => handleMouseLeave('Investment')}
+                      >
+                        <div className="dropdown-content">
+                          <div className="dropdown-left">
+                            <div className="dropdown-section">
+                              <h6 className="lora">Investment Options</h6>
+                              <ul className="mt-1">
+                                {investmentLinks.map((link) => (
+                                  <li key={link.name}>
+                                    <Link
+                                      href={link.path}
+                                      className="lora link-hover-red text-gray text-decoration-none"
+                                      onClick={() => {
+                                        setShowInvestmentDropdown(false);
+                                        setExpanded(false);
+                                      }}
+                                    >
+                                      {link.name}
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+
+                // Dynamic navlinks from API
+                const navLink = navLinks.find((link) => link.name === name);
+                if (!navLink) return null;
+
                 const isBookAppointment = name === 'Book an Appointment';
                 const isCollections = name === 'Collections';
-                const isActive =
-                  !isBookAppointment && !isCollections
-                    ? pathname === path || pathname.startsWith(path + '/')
-                    : false;
+                const isActive = !isBookAppointment && !isCollections
+                  ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
+                  : false;
 
                 return (
                   <div
-                    key={_id}
+                    key={navLink._id}
                     className="nav-item position-relative"
-                    onMouseEnter={isCollections ? handleMouseEnter : undefined}
-                    onMouseLeave={isCollections ? handleMouseLeave : undefined}
+                    onMouseEnter={isCollections ? () => handleMouseEnter('Collections') : undefined}
+                    onMouseLeave={isCollections ? () => handleMouseLeave('Collections') : undefined}
                   >
                     <Link
-                      href={path}
+                      href={navLink.path}
                       passHref
                       legacyBehavior={false}
                       className="custom-nav-link navlinks-hover"
@@ -179,14 +259,14 @@ const Header: React.FC = () => {
                         as="span"
                         className={`navlinks-hover ${isActive ? 'active-link' : ''}`}
                       >
-                        {name}
+                        {navLink.name}
                       </Nav.Link>
                     </Link>
                     {isCollections && (
                       <div
                         className={`dropdown-menu-full ${showCollectionsDropdown ? 'show' : ''}`}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
+                        onMouseEnter={() => handleMouseEnter('Collections')}
+                        onMouseLeave={() => handleMouseLeave('Collections')}
                       >
                         <div className="dropdown-content">
                           <div className="dropdown-left">
@@ -198,7 +278,10 @@ const Header: React.FC = () => {
                                     <Link
                                       href={`/collections/products/${category}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
-                                      onClick={() => setShowCollectionsDropdown(false)}
+                                      onClick={() => {
+                                        setShowCollectionsDropdown(false);
+                                        setExpanded(false);
+                                      }}
                                     >
                                       {category}
                                     </Link>
@@ -214,7 +297,10 @@ const Header: React.FC = () => {
                                     <Link
                                       href={`/collections/jewelleryType/${type}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
-                                      onClick={() => setShowCollectionsDropdown(false)}
+                                      onClick={() => {
+                                        setShowCollectionsDropdown(false);
+                                        setExpanded(false);
+                                      }}
                                     >
                                       {type}
                                     </Link>
@@ -230,7 +316,10 @@ const Header: React.FC = () => {
                                     <Link
                                       href={`/collections/occasion/${occasion}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
-                                      onClick={() => setShowCollectionsDropdown(false)}
+                                      onClick={() => {
+                                        setShowCollectionsDropdown(false);
+                                        setExpanded(false);
+                                      }}
                                     >
                                       {occasion}
                                     </Link>
@@ -246,7 +335,10 @@ const Header: React.FC = () => {
                                     <Link
                                       href={`/collections/purity/${purity}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
-                                      onClick={() => setShowCollectionsDropdown(false)}
+                                      onClick={() => {
+                                        setShowCollectionsDropdown(false);
+                                        setExpanded(false);
+                                      }}
                                     >
                                       {purity}
                                     </Link>
@@ -294,7 +386,7 @@ const Header: React.FC = () => {
           </div>
         </Container>
       </Navbar>
-
+      
       <style jsx>{`
         .custom-navbar {
           background-color: #fff;
