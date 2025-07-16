@@ -4,19 +4,19 @@ import React from 'react';
 import Head from 'next/head'; // For SEO metadata
 import Image from 'next/image';
 import logo from '../../public/assets/Suvarnakala.png';
-import {
-  FaTwitter,
-  FaFacebook,
-  FaInstagram,
-  FaPhoneAlt,
-  FaEnvelope,
-  FaMapMarkerAlt,
-} from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { Nav } from 'react-bootstrap';
+
 import googleplay from '../../public/assets/googleplay.png';
 import appstore from '../../public/assets/appstore.png';
 import leaf from '../../public/assets/Group 41992.png';
 import Link from 'next/link';
-
+import instagramIcon from '../../public/assets/icons/Instagram.svg';
+import whatsappIcon from '../../public/assets/icons/whatsapp.svg';
+import twitterIcon from '../../public/assets/icons/twitter.svg';
+import facebookIcon from '../../public/assets/icons/facebook.svg';
+import phone from '../../public/assets/icons/phone.svg';
+import mail from '../../public/assets/icons/gmail.svg';
 const currentYear = new Date().getFullYear();
 
 export default function Footer() {
@@ -96,7 +96,9 @@ export default function Footer() {
                   height={80}
                   loading="lazy"
                 />
-                <p className="text-dark small footer-description" style={{ fontSize: '15px', fontWeight: 400 }}  // 300 = Light/Thin
+                <p
+                  className="text-dark small footer-description"
+                  style={{ fontSize: '15px', fontWeight: 400 }} // 300 = Light/Thin
                 >
                   We offer personalized jewelry experiences, crafted by skilled artisans dedicated
                   to quality and timeless elegance.
@@ -122,8 +124,8 @@ export default function Footer() {
               {/* Useful Links */}
 
               <div className="footer-links-section">
-                <h6 className="fw-bold mb-3 text-uppercase footer-title">Useful Links</h6>
-                <ul className="list-unstyled">
+                <h6 className="fw-bold mb-3 text-uppercase lora footer-title">Useful Links</h6>
+                <ul className="list-unstyled ">
                   {[
                     { name: 'Home', href: '/' },
                     { name: 'About Us', href: '/about' },
@@ -133,7 +135,10 @@ export default function Footer() {
                     { name: 'Privacy Policy', href: '/privacy-policy' },
                   ].map((link, index) => (
                     <li key={index} className="mb-1">
-                      <Link href={link.href} className="text-dark text-decoration-none footer-link">
+                      <Link
+                        href={link.href}
+                        className="text-dark text-decoration-none link-hover-red footer-link "
+                      >
                         {link.name}
                       </Link>
                     </li>
@@ -143,53 +148,72 @@ export default function Footer() {
 
               {/* Get In Touch */}
               <div className="footer-contact-section">
-                <h6 className="fw-bold mb-3 text-uppercase footer-title">Get In Touch</h6>
+                <h6 className="fw-bold mb-3 text-uppercase lora footer-title">Get In Touch</h6>
                 <ul className="list-unstyled text-dark small">
                   <li className="mb-2 d-flex align-items-center">
-                    <FaPhoneAlt className="text-red me-2 icon-small" aria-hidden="true" />
-                    <a href="tel:+917874011144" className="text-dark text-decoration-none">
+                    <Image
+                      src={phone}
+                      alt="Mail"
+                      width={25} // or any size you want
+                      height={25}
+                      className="me-2 icon-small"
+                    />{' '}
+                    <a
+                      href="tel:+917874011144"
+                      className="text-dark link-hover-red text-decoration-none"
+                    >
                       +91 7874011144
                     </a>
                   </li>
                   <li className="d-flex align-items-center">
-                    <FaEnvelope className="text-red me-2 icon-small" aria-hidden="true" />
+                    <Image
+                      src={mail}
+                      alt="Mail"
+                      width={25} // or any size you want
+                      height={25}
+                      className="me-2 icon-small"
+                    />{' '}
                     <a
                       href="mailto:sales@suvarnakala.com"
-                      className="text-dark text-decoration-none"
-                      style={{ fontSize: '17px', fontWeight: 360 }}  // 300 = Light/Thin
+                      className="text-dark text-decoration-none link-hover-red"
+                      style={{ fontSize: '17px', fontWeight: 360 }} // 300 = Light/Thin
                     >
                       sales@suvarnakala.com
                     </a>
-
                   </li>
                 </ul>
               </div>
 
               {/* Social Media */}
               <div className="footer-social-section social-media">
-                <h6 className="fw-bold mb-3 text-uppercase footer-title">Social Media</h6>
-                <div className="d-flex gap-3">
-                  <a
-                    href="#"
-                    className="text-red hover-social"
-                    aria-label="Follow Suvarnakala on Twitter"
-                  >
-                    <FaTwitter className="icon-small" />
-                  </a>
-                  <a
-                    href="#"
-                    className="text-red hover-social"
-                    aria-label="Follow Suvarnakala on Facebook"
-                  >
-                    <FaFacebook className="icon-small" />
-                  </a>
-                  <a
-                    href="#"
-                    className="text-red hover-social"
-                    aria-label="Follow Suvarnakala on Instagram"
-                  >
-                    <FaInstagram className="icon-small" />
-                  </a>
+                <h6 className="fw-bold mb-3 lora text-uppercase footer-title">Social Media</h6>
+                <div className="footer-social-icons">
+                  <Nav.Link href="https://wa.me/your-number" target="_blank">
+                    <Image
+                      src={whatsappIcon}
+                      alt="WhatsApp"
+                      className="rounded-5"
+                      width={32}
+                      height={32}
+                    />
+                  </Nav.Link>
+
+                  <Nav.Link href="https://twitter.com/your-profile" target="_blank">
+                    <Image src={twitterIcon} alt="Twitter" width={38} height={38} />
+                  </Nav.Link>
+
+                  <Nav.Link href="https://instagram.com/your-profile" target="_blank">
+                    <Image
+                      src={instagramIcon}
+                      className="rounded-5"
+                      alt="Instagram"
+                      width={31}
+                      height={31}
+                    />
+                  </Nav.Link>
+                  <Nav.Link href="https://facebook.com/your-profile" target="_blank">
+                    <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
+                  </Nav.Link>
                 </div>
               </div>
             </div>
@@ -211,16 +235,16 @@ export default function Footer() {
 
             {/* Copyright */}
             <div className="d-flex flex-column flex-md-row justify-content-between align-items-center text-center px-3 ">
-              <p className="text-blue mb-1 mb-md-0">
+              <p className="text-blue mb-1 fraunces mb-md-0">
                 © {currentYear} Suvarnakala. All Rights Reserved.
               </p>
-              <p className="mb-1 mb-md-0 text-blue">
-                Design and Developed by{' '}
+              <p className="mb-1 mb-md-0 text-blue fraunces">
+                Design and Developed By{' '}
                 <a
                   href="https://anaxistech.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-decoration-none fw-medium text-red"
+                  className="text-decoration-none fraunces fw-medium text-red"
                 >
                   Anaxistech
                 </a>

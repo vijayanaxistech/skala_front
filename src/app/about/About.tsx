@@ -87,12 +87,8 @@ const About = () => {
         />
       </div>
 
-      
       {/* About Section */}
-      <div
-        className="position-relative py-4"
-        style={{ background: '#fff9f3' }}
-      >
+      <div className="position-relative py-4" style={{ background: '#fff9f3' }}>
         <div className="position-absolute top-0 end-0 p-2 d-none d-md-block" style={{ zIndex: 10 }}>
           <Image src={roseImage} alt="Rose" width={100} height={200} className="img-fluid" />
         </div>
@@ -122,7 +118,9 @@ const About = () => {
             </div>
 
             <div className="col-md-7">
-              <h5 className="h4  text-red mb-3 lora" style={{ fontWeight: 100 }}>Suvarnakala — The Pride of a Woman</h5>
+              <h5 className="h4  text-red mb-3 lora" style={{ fontWeight: 100 }}>
+                Suvarnakala — The Pride of a Woman
+              </h5>
               <p className="text-muted text-justify">
                 Established in 1970, Suvarnakala embarked on a journey of excellence that has grown
                 into one of the most respected names in the world of fine jewellery. Known for our
@@ -295,14 +293,13 @@ const About = () => {
                   color: '#033a79',
                   fontSize: '16px',
                 }}
-                className='lora'
+                className="lora"
               >
                 {item.text}
               </span>
             </div>
           ))}
         </div>
-
       </div>
 
       {/* Animation Keyframes */}

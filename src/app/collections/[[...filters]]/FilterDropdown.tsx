@@ -47,7 +47,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       encodeURIComponent(type === 'category' ? 'products' : type),
       encodeURIComponent(value),
     ]);
-    router.push(`/collections/${segments.join('/')}`,{ scroll: false });
+    router.push(`/collections/${segments.join('/')}`, { scroll: false });
     setDropdownOpen(false);
   };
 
@@ -58,11 +58,13 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       encodeURIComponent(t === 'category' ? 'products' : t),
       encodeURIComponent(value),
     ]);
-    router.push(segments.length ? `/collections/${segments.join('/')}` : '/collections',{ scroll: false });
+    router.push(segments.length ? `/collections/${segments.join('/')}` : '/collections', {
+      scroll: false,
+    });
   };
 
   const clearAllFilters = () => {
-    router.push('/collections',{ scroll: false });
+    router.push('/collections', { scroll: false });
     setDropdownOpen(false);
   };
 
@@ -89,11 +91,11 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     <div className="position-relative" ref={dropdownRef}>
       <Button
         variant="outline-dark"
-        className="d-flex align-items-center gap-2 rounded-pill "
+        className="d-flex align-items-center gap-2 rounded-pill lora "
         onClick={() => setDropdownOpen((prev) => !prev)}
-        style={{padding: '0.4rem 1.8rem', fontSize: '16px'}}
+        style={{ padding: '0.4rem 1.8rem', fontSize: '16px' }}
       >
-        <FaFilter /> Filters 
+        <FaFilter /> Filters
       </Button>
 
       {dropdownOpen && (

@@ -3,28 +3,27 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import breadcrumbImage from '../../../public/assets/About breadcumb.png';
 import Bullet from '../../../public/assets/bullet.jpg';
-import {  Row, Col,  Accordion } from 'react-bootstrap';
+import { Row, Col, Accordion } from 'react-bootstrap';
 
 import Loader from '@/components/Loader';
 
-
 const digitalGoldBenefits = [
   {
-    en: "Digital gold provides clients with the convenience of purchasing and trading gold from any location, at any time, without the need to visit physical jewelry stores.",
-    hi: "डिजिटल सोना ग्राहकों को भौतिक आभूषण दुकानों पर जाने की आवश्यकता के बिना, किसी भी समय, किसी भी स्थान से सोना खरीदने और व्यापार करने की सुविधा प्रदान करता है।"
+    en: 'Digital gold provides clients with the convenience of purchasing and trading gold from any location, at any time, without the need to visit physical jewelry stores.',
+    hi: 'डिजिटल सोना ग्राहकों को भौतिक आभूषण दुकानों पर जाने की आवश्यकता के बिना, किसी भी समय, किसी भी स्थान से सोना खरीदने और व्यापार करने की सुविधा प्रदान करता है।',
   },
   {
     en: "Digital gold is securely stored in a jeweler's vault, mitigating the risk of theft or loss commonly associated with physical gold.",
-    hi: "डिजिटल सोने को जौहरी की तिजोरी में सुरक्षित रूप से संग्रहीत किया जाता है, जिससे आमतौर पर भौतिक सोने से जुड़ी चोरी या हानि का जोखिम कम हो जाता है।"
+    hi: 'डिजिटल सोने को जौहरी की तिजोरी में सुरक्षित रूप से संग्रहीत किया जाता है, जिससे आमतौर पर भौतिक सोने से जुड़ी चोरी या हानि का जोखिम कम हो जाता है।',
   },
   {
-    en: "Digital gold is highly liquid, allowing for quick and seamless conversion to cash.",
-    hi: "डिजिटल सोना अत्यधिक तरल है, जो नकदी में त्वरित और निर्बाध रूपांतरण की अनुमति देता है।"
+    en: 'Digital gold is highly liquid, allowing for quick and seamless conversion to cash.',
+    hi: 'डिजिटल सोना अत्यधिक तरल है, जो नकदी में त्वरित और निर्बाध रूपांतरण की अनुमति देता है।',
   },
   {
-    en: "Digital gold is available for purchase in smaller denominations starting from Rs.1000/-.",
-    hi: "डिजिटल सोना रु.1000/- से शुरू होकर छोटे मूल्यवर्ग में खरीदने के लिए उपलब्ध है।"
-  }
+    en: 'Digital gold is available for purchase in smaller denominations starting from Rs.1000/-.',
+    hi: 'डिजिटल सोना रु.1000/- से शुरू होकर छोटे मूल्यवर्ग में खरीदने के लिए उपलब्ध है।',
+  },
 ];
 
 const faqData = {
@@ -107,7 +106,7 @@ const faqData = {
         hi: 'मेरे बैंक खाते में धनराशि जमा होने की अपेक्षित अवधि क्या है?',
       },
       answer: {
-        en: 'The funds will be transferred to the customer\'s account within a period of 7 working days following the sell transaction.',
+        en: "The funds will be transferred to the customer's account within a period of 7 working days following the sell transaction.",
         hi: 'बिक्री लेनदेन के बाद 7 कार्य दिवसों की अवधि के भीतर धनराशि ग्राहक के खाते में स्थानांतरित कर दी जाएगी।',
       },
     },
@@ -176,9 +175,6 @@ const faqData = {
     },
   ],
 };
-
-
-
 
 const totalYears = new Date().getFullYear() - 1970;
 
@@ -250,13 +246,8 @@ const DigiGold = () => {
         />
       </div>
 
-
       {/* About Section */}
-      <div
-        className="bg-color"
-      >
-
-
+      <div className="bg-color">
         <div className="p-5 py-3 ">
           <div className="custom-heading-wrapper d-flex align-items-center mb-4">
             <h2 className="m-0 custom-heading text-wrap me-3">
@@ -270,10 +261,8 @@ const DigiGold = () => {
               </div>
             </h2>
           </div>
-
         </div>
         <div className="why px-0 px-md-5" style={{ backgroundColor: '#fff9f3' }}>
-
           <div
             style={{
               backgroundColor: '#fff',
@@ -281,22 +270,20 @@ const DigiGold = () => {
               boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
             }}
           >
-            <div className="custom-heading-wrapper text-center justify-content-center d-flex align-items-center mb-4">
-
-            </div>
+            <div className="custom-heading-wrapper text-center justify-content-center d-flex align-items-center mb-4"></div>
 
             {digitalGoldBenefits.map((digitalGoldBenefits, index) => (
               <Row className="mb-4" key={index}>
                 <Col xs={12}>
                   <div className="d-flex align-items-start">
                     <div className="me-3 text-red" style={{ fontSize: '1.10rem' }}>
-                            <Image
-                                src={Bullet}
-                                alt="Section Icon"
-                                width={20}
-                                height={20}
-                                className="rounded-circle" // Bootstrap for rounded-full
-                              />   {' '}
+                      <Image
+                        src={Bullet}
+                        alt="Section Icon"
+                        width={20}
+                        height={20}
+                        className="rounded-circle" // Bootstrap for rounded-full
+                      />{' '}
                     </div>
                     <div>
                       <p className=" mb-2 lora">{digitalGoldBenefits.en}</p>
@@ -309,16 +296,13 @@ const DigiGold = () => {
               </Row>
             ))}
           </div>
-
-
         </div>
-
       </div>
 
       {/* FAQ Section */}
 
       <div className=" bg-color py-3">
-        <div className='p-5 py-3'>
+        <div className="p-5 py-3">
           <div className="custom-heading-wrapper d-flex align-items-center mb-4">
             <h2 className="m-0 custom-heading text-wrap me-3">
               <span className="fraunces">
@@ -338,17 +322,15 @@ const DigiGold = () => {
             <div
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`custom-tab lora ${activeCategory === category ? 'active-tab' : ''
-                }`}
+              className={`custom-tab lora ${activeCategory === category ? 'active-tab' : ''}`}
             >
               {category}
             </div>
           ))}
         </div>
 
-
         {/* FAQ Accordions */}
-        <Accordion defaultActiveKey="0" flush className='p-0 py-3 px-md-5'>
+        <Accordion defaultActiveKey="0" flush className="p-0 py-3 px-md-5">
           {faqData[activeCategory].map((item, index) => (
             <Accordion.Item eventKey={index.toString()} key={index} className="faq-accordion-item">
               <Accordion.Header>
@@ -361,15 +343,14 @@ const DigiGold = () => {
               </Accordion.Header>
               <Accordion.Body>
                 <p className="mb-3 lora">{item.answer.en}</p>
-                <p className="text-muted" style={{ fontSize: '0.95rem' }}>{item.answer.hi}</p>
+                <p className="text-muted" style={{ fontSize: '0.95rem' }}>
+                  {item.answer.hi}
+                </p>
               </Accordion.Body>
             </Accordion.Item>
           ))}
         </Accordion>
       </div>
-
-
-
 
       {/* Animation Keyframes */}
       <style>{`

@@ -133,10 +133,7 @@ const ShopbyStyle = () => {
                 >
                   Discover
                 </p> */}
-                <p
-                  className="fs-4 lora"
-                  style={{ fontWeight: '200', marginTop: '0.25rem' }}
-                >
+                <p className="fs-4 lora" style={{ fontWeight: '200', marginTop: '0.25rem' }}>
                   Exclusive Collections
                 </p>
               </div>

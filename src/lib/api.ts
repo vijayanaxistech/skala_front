@@ -146,5 +146,4 @@ export const getMetadataByPage = async (page: string) => {
   }
 };
 
-
 export default API;

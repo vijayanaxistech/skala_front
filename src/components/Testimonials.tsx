@@ -41,7 +41,7 @@ const Testimonials: React.FC = () => {
     <div className="p-5 pt-4 pb-0" aria-label="Suvarnakala Customer Testimonials Section">
       <div className="custom-heading-wrapper d-flex align-items-center mb-4">
         <h2 className="m-0 custom-heading text-wrap me-3">
-          <span className='fraunces'>
+          <span className="fraunces">
             Customer <span className="text-red fraunces">Stories :</span>
           </span>
           <div className="decorative-line">
@@ -79,7 +79,7 @@ const Testimonials: React.FC = () => {
             >
               <div className="d-flex align-items-center mb-3">
                 <div
-                  className="rounded-circle d-flex align-items-center justify-content-center me-3"
+                  className="rounded-circle lora d-flex align-items-center justify-content-center me-3"
                   style={{
                     width: '45px',
                     height: '45px',
@@ -91,7 +91,7 @@ const Testimonials: React.FC = () => {
                 >
                   {testimonial.name.charAt(0)}
                 </div>
-                <h6 className="m-0 text-dark fw-semibold">{testimonial.name}</h6>
+                <h6 className="m-0 text-dark fw-semibold lora">{testimonial.name}</h6>
               </div>
               <p
                 className="text-secondary mt-0 mb-0"

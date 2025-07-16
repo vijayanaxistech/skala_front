@@ -128,8 +128,8 @@ const HeroCarousel: React.FC = () => {
                     zIndex: 2,
                   }}
                 >
-                  <h1 className="display-6 fw-semibold mb-4">{title}</h1>
-                  <p className="lead mb-5">{description}</p>
+                  <h1 className="display-6 fw-semibold fraunces mb-4">{title}</h1>
+                  <p className="lead mb-5 ">{description}</p>
                   <a
                     href={validLink}
                     target="_blank"
@@ -218,46 +218,46 @@ const HeroCarousel: React.FC = () => {
       )}
 
       {/* Navigation Buttons */}
-{sortedHeroes.length > 0 && (
-  <>
-    <button
-      onClick={goPrev}
-      aria-label="Previous Slide"
-      className="position-absolute top-50 start-0 translate-middle-y btn btn-white rounded-circle d-flex align-items-center justify-content-center"
-      style={{
-        width: '40px',
-        height: '40px',
-        marginLeft: '10px',
-        backgroundColor: 'white',
-        border: 'none',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-        zIndex: 10,
-      }}
-    >
-      <svg viewBox="0 0 24 24" fill="black" width="32px" height="32px">
-        <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-      </svg>
-    </button>
-    <button
-      onClick={goNext}
-      aria-label="Next Slide"
-      className="position-absolute top-50 end-0 translate-middle-y btn btn-white rounded-circle d-flex align-items-center justify-content-center"
-      style={{
-        width: '40px',
-        height: '40px',
-        marginRight: '10px',
-        backgroundColor: 'white',
-        border: 'none',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-        zIndex: 10,
-      }}
-    >
-      <svg viewBox="0 0 24 24" fill="black" width="32px" height="32px">
-        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
-      </svg>
-    </button>
-  </>
-)}
+      {sortedHeroes.length > 0 && (
+        <>
+          <button
+            onClick={goPrev}
+            aria-label="Previous Slide"
+            className="position-absolute top-50 start-0 translate-middle-y btn btn-white rounded-circle d-flex align-items-center justify-content-center"
+            style={{
+              width: '40px',
+              height: '40px',
+              marginLeft: '10px',
+              backgroundColor: 'white',
+              border: 'none',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+              zIndex: 10,
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="black" width="32px" height="32px">
+              <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+            </svg>
+          </button>
+          <button
+            onClick={goNext}
+            aria-label="Next Slide"
+            className="position-absolute top-50 end-0 translate-middle-y btn btn-white rounded-circle d-flex align-items-center justify-content-center"
+            style={{
+              width: '40px',
+              height: '40px',
+              marginRight: '10px',
+              backgroundColor: 'white',
+              border: 'none',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+              zIndex: 10,
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="black" width="32px" height="32px">
+              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
+            </svg>
+          </button>
+        </>
+      )}
 
       <style jsx>{`
         @media (max-width: 767px) {

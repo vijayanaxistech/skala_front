@@ -8,7 +8,8 @@ export async function generateMetadata() {
       // Fallback metadata if API returns null
       return {
         title: 'About Us | Suvarnakala Pvt. Ltd',
-        description: 'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
+        description:
+          'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
       };
     }
     return {
@@ -18,7 +19,9 @@ export async function generateMetadata() {
       openGraph: {
         title: metadata.ogTitle,
         description: metadata.ogDescription,
-        images: metadata.ogImage ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${metadata.ogImage}` : undefined,
+        images: metadata.ogImage
+          ? `${process.env.NEXT_PUBLIC_API_BASE_URL}${metadata.ogImage}`
+          : undefined,
       },
     };
   } catch (error) {
@@ -26,7 +29,8 @@ export async function generateMetadata() {
     // Fallback metadata in case of error
     return {
       title: 'About Us | Suvarnakala Pvt. Ltd',
-      description: 'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
+      description:
+        'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
     };
   }
 }

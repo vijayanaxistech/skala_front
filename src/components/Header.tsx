@@ -4,18 +4,26 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Navbar, Nav, Container, Modal, Button } from 'react-bootstrap';
-import { FaWhatsapp, FaTwitter, FaFacebook, FaInstagram, FaBars, FaTimes } from 'react-icons/fa';
-import 'react-datepicker/dist/react-datepicker.css';
-import { getNavbar, getProducts } from '../lib/api';
-import { ToastContainer, toast } from 'react-toastify';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import { FaTimes } from 'react-icons/fa';
+import { FaBarsStaggered } from 'react-icons/fa6';
+
 import 'react-toastify/dist/ReactToastify.css';
 import Goldrate from './GoldRate';
+import { ToastContainer } from 'react-toastify';
+import { getNavbar, getProducts } from '../lib/api';
 import logo from '../../public/assets/Suvarnakala.png';
 import Image1 from '../../public/assets/category1.jpg';
 import Image2 from '../../public/assets/category2.jpg';
 import Image3 from '../../public/assets/category3.jpg';
-import Image4 from '../../public/assets/category4.jpg';
+import Image4 from '../../public/assets/category1.jpg';
+import digiGoldIcon from '../../public/assets/icons/gold.png';
+import bookMyGoldIcon from '../../public/assets/icons/coin.png';
+import monthlySavingIcon from '../../public/assets/icons/money.png';
+import instagramIcon from '../../public/assets/icons/Instagram.svg';
+import whatsappIcon from '../../public/assets/icons/whatsapp.svg';
+import twitterIcon from '../../public/assets/icons/twitter.svg';
+import facebookIcon from '../../public/assets/icons/facebook.svg';
 
 interface NavLink {
   _id: string;
@@ -44,33 +52,22 @@ const Header: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [showCollectionsDropdown, setShowCollectionsDropdown] = useState(false);
   const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [showMobileInvestment, setShowMobileInvestment] = useState(false);
+  const [showMobileCollections, setShowMobileCollections] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const desiredOrder = [
-    'Home',
-    'About Us',
-    'Collections',
-    'Why Us',
-    'Our Showrooms',
-    'Investment', // Ensure Investment is in the desired order
-    'Events',
-    'Contact Us',
-    'Book an Appointment',
-  ];
+  const desiredOrder = ['Home', 'About Us', 'Collections', 'Why Us', 'Investment', 'Our Showrooms'];
 
   const investmentLinks = [
-    { name: 'Digi-Gold', path: '/investment/digi-gold' },
-    { name: 'Book My Gold', path: '/investment/book-my-gold' },
-    { name: 'Monthly Saving Scheme', path: '/investment/monthly-saving-scheme' },
+    { name: 'Digi-Gold', path: '/digi-gold', icon: digiGoldIcon },
+    { name: 'Book My Gold', path: '/book-my-gold', icon: bookMyGoldIcon },
+    { name: 'Monthly Saving Scheme', path: '/monthly-saving-scheme', icon: monthlySavingIcon },
   ];
 
   useEffect(() => {
     const fetchNavLinks = async () => {
       try {
         const data = await getNavbar();
-        // Filter out Investment from API data to avoid duplication
         const filteredLinks = data.filter((link: NavLink) => link.name !== 'Investment');
         const sortedLinks = filteredLinks.sort((a: NavLink, b: NavLink) => {
           const aIndex = desiredOrder.indexOf(a.name);
@@ -111,6 +108,7 @@ const Header: React.FC = () => {
 
   const handleShowModal = () => {
     setShowModal(true);
+    setExpanded(false);
   };
 
   const handleMouseEnter = (dropdown: string) => {
@@ -134,6 +132,14 @@ const Header: React.FC = () => {
     }, 200);
   };
 
+  const handleMobileInvestmentToggle = () => {
+    setShowMobileInvestment((prev) => !prev);
+  };
+
+  const handleMobileCollectionsToggle = () => {
+    setShowMobileCollections((prev) => !prev);
+  };
+
   const categories = Array.from(new Set(products.map((p) => p.category.name))).sort();
   const jewelleryTypes = Array.from(new Set(products.map((p) => p.jewelleryType))).sort();
   const occasions = Array.from(new Set(products.map((p) => p.occasion))).sort();
@@ -144,7 +150,7 @@ const Header: React.FC = () => {
       <Goldrate />
       <ToastContainer />
 
-      <Navbar expand="lg" expanded={expanded} className="custom-navbar shadow-sm" sticky="top">
+      <Navbar expand="lg" className="custom-navbar  bg-color shadow-sm" sticky="top">
         <Container fluid className="d-flex align-items-center justify-content-between">
           <div className="header-logo">
             <Link href="/" passHref legacyBehavior={false}>
@@ -156,17 +162,216 @@ const Header: React.FC = () => {
 
           <Navbar.Toggle as="div" className="custom-toggler d-lg-none" onClick={handleToggle}>
             {expanded ? (
-              <FaTimes size={24} color="#D41B1F" />
+              <FaBarsStaggered size={24} color="#D41B1F" />
             ) : (
-              <FaBars size={24} color="#D41B1F" />
+              <FaBarsStaggered size={24} color="#D41B1F" />
             )}
           </Navbar.Toggle>
 
-          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center">
-            <Nav className="gap-3 text-center flex-column flex-lg-row align-items-center">
+          {/* Mobile Menu */}
+          <div className={`mobile-menu  ${expanded ? 'show' : ''}`}>
+            <div className="mobile-menu-header ">
+              <Link href="/" onClick={() => setExpanded(false)}>
+                <Image src={logo} alt="Suvarnakala Logo" width={120} height={48} />
+              </Link>
+              <FaTimes
+                size={24}
+                color="#D41B1F"
+                onClick={() => setExpanded(false)}
+                style={{ cursor: 'pointer' }}
+              />
+            </div>
+            <Nav className="mobile-nav flex-column">
               {desiredOrder.map((name, index) => {
                 if (name === 'Investment') {
-                  // Static Investment navlink
+                  return (
+                    <div key={`investment-${index}`} className="mobile-nav-item ">
+                      <div className="mobile-nav-link lora" onClick={handleMobileInvestmentToggle}>
+                        Investment
+                        <span className="dropdown-arrow ms-2">
+                          <i
+                            className={`bi ${showMobileInvestment ? 'bi-caret-up' : 'bi-caret-down'}`}
+                          ></i>
+                        </span>
+                      </div>
+                      {showMobileInvestment && (
+                        <div className="mobile-submenu">
+                          {investmentLinks.map((link) => (
+                            <Link
+                              href={link.path}
+                              key={link.name}
+                              className="mobile-submenu-item"
+                              onClick={() => {
+                                setShowMobileInvestment(false);
+                                setExpanded(false);
+                              }}
+                            >
+                              <Image
+                                src={link.icon}
+                                alt={link.name}
+                                width={24}
+                                height={24}
+                                className="me-2"
+                              />
+                              <span className="lora ">{link.name}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                if (name === 'Collections') {
+                  return (
+                    <div key={`collections-${index}`} className="mobile-nav-item">
+                      <div className="mobile-nav-link lora" onClick={handleMobileCollectionsToggle}>
+                        Collections
+                        <span className="dropdown-arrow ms-2">
+                          <i
+                            className={`bi ${showMobileInvestment ? 'bi-caret-up' : 'bi-caret-down'}`}
+                          ></i>
+                        </span>
+                      </div>
+                      {showMobileCollections && (
+                        <div className="mobile-submenu">
+                          <div className="mobile-submenu-section">
+                            <h6 className="lora">Shop By Category</h6>
+                            {categories.map((category) => (
+                              <Link
+                                href={`/collections/products/${category}`}
+                                key={category}
+                                className="mobile-submenu-item"
+                                onClick={() => {
+                                  setShowMobileCollections(false);
+                                  setExpanded(false);
+                                }}
+                              >
+                                <span className="lora">{category}</span>
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="mobile-submenu-section">
+                            <h6 className="lora">Shop By Jewellery</h6>
+                            {jewelleryTypes.map((type) => (
+                              <Link
+                                href={`/collections/jewelleryType/${type}`}
+                                key={type}
+                                className="mobile-submenu-item"
+                                onClick={() => {
+                                  setShowMobileCollections(false);
+                                  setExpanded(false);
+                                }}
+                              >
+                                <span className="lora">{type}</span>
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="mobile-submenu-section">
+                            <h6 className="lora">Shop By Occasion</h6>
+                            {occasions.map((occasion) => (
+                              <Link
+                                href={`/collections/occasion/${occasion}`}
+                                key={occasion}
+                                className="mobile-submenu-item"
+                                onClick={() => {
+                                  setShowMobileCollections(false);
+                                  setExpanded(false);
+                                }}
+                              >
+                                <span className="lora">{occasion}</span>
+                              </Link>
+                            ))}
+                          </div>
+                          <div className="mobile-submenu-section">
+                            <h6 className="lora">Shop By Purity</h6>
+                            {purities.map((purity) => (
+                              <Link
+                                href={`/collections/purity/${purity}`}
+                                key={purity}
+                                className="mobile-submenu-item"
+                                onClick={() => {
+                                  setShowMobileCollections(false);
+                                  setExpanded(false);
+                                }}
+                              >
+                                <span className="lora">{purity}</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                const navLink = navLinks.find((link) => link.name === name);
+                if (!navLink) return null;
+
+                const isBookAppointment = name === 'Book an Appointment';
+                const isActive = !isBookAppointment
+                  ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
+                  : false;
+
+                return (
+                  <div key={navLink._id} className="mobile-nav-item">
+                    <Link
+                      href={navLink.path}
+                      className={`mobile-nav-link lora ${isActive ? 'active' : ''}`}
+                      onClick={(e) => {
+                        if (isBookAppointment) {
+                          e.preventDefault();
+                          handleShowModal();
+                        } else {
+                          setExpanded(false);
+                        }
+                      }}
+                    >
+                      {navLink.name}
+                    </Link>
+                  </div>
+                );
+              })}
+              {/* Mobile Social Icons */}
+              <div className="mobile-social-icons">
+                <Nav.Link href="https://wa.me/your-number" target="_blank">
+                  <Image
+                    src={whatsappIcon}
+                    alt="WhatsApp"
+                    className="rounded-5"
+                    width={32}
+                    height={32}
+                  />
+                </Nav.Link>
+
+                <Nav.Link href="https://twitter.com/your-profile" target="_blank">
+                  <Image src={twitterIcon} alt="Twitter" width={38} height={38} />
+                </Nav.Link>
+
+                <Nav.Link href="https://instagram.com/your-profile" target="_blank">
+                  <Image
+                    src={instagramIcon}
+                    className="rounded-5"
+                    alt="Instagram"
+                    width={31}
+                    height={31}
+                  />
+                </Nav.Link>
+                <Nav.Link href="https://facebook.com/your-profile" target="_blank">
+                  <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
+                </Nav.Link>
+              </div>
+            </Nav>
+          </div>
+
+          {/* Desktop Navbar */}
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            className="justify-content-center d-none d-lg-flex"
+          >
+            <Nav className="gap-3 text-center flex-row align-items-center">
+              {desiredOrder.map((name, index) => {
+                if (name === 'Investment') {
                   return (
                     <div
                       key={`investment-${index}`}
@@ -174,48 +379,47 @@ const Header: React.FC = () => {
                       onMouseEnter={() => handleMouseEnter('Investment')}
                       onMouseLeave={() => handleMouseLeave('Investment')}
                     >
-                      <Link
-                        href="/investment"
-                        passHref
-                        legacyBehavior={false}
-                        className="custom-nav-link navlinks-hover"
-                        style={{ textDecoration: 'none' }}
-                        onClick={() => setExpanded(false)}
+                      <Nav.Link
+                        as="span"
+                        className={`navlinks-hover fraunces ${pathname.startsWith('/investment') ? 'active-link' : ''}`}
+                        onClick={() => setShowInvestmentDropdown(true)}
+                        style={{ fontWeight: 400, color: '#212529', fontSize: '1.03rem' }}
                       >
-                        <Nav.Link
-                          as="span"
-                          className={`navlinks-hover ${
-                            pathname.startsWith('/investment') ? 'active-link' : ''
-                          }`}
-                        >
-                          Investment
-                        </Nav.Link>
-                      </Link>
+                        Investment
+                      </Nav.Link>
                       <div
-                        className={`dropdown-menu-full ${showInvestmentDropdown ? 'show' : ''}`}
+                        className={`dropdown-menu-full-investment ${showInvestmentDropdown ? 'show' : ''}`}
                         onMouseEnter={() => handleMouseEnter('Investment')}
                         onMouseLeave={() => handleMouseLeave('Investment')}
                       >
-                        <div className="dropdown-content">
-                          <div className="dropdown-left">
-                            <div className="dropdown-section">
-                              <h6 className="lora">Investment Options</h6>
-                              <ul className="mt-1">
+                        <div className="dropdown-content-investment">
+                          <div className="dropdown-left-investment">
+                            <div className="dropdown-section-investment">
+                              <div className="d-flex justify-content-center gap-4 flex-wrap">
                                 {investmentLinks.map((link) => (
-                                  <li key={link.name}>
-                                    <Link
-                                      href={link.path}
-                                      className="lora link-hover-red text-gray text-decoration-none"
-                                      onClick={() => {
-                                        setShowInvestmentDropdown(false);
-                                        setExpanded(false);
-                                      }}
-                                    >
-                                      {link.name}
-                                    </Link>
-                                  </li>
+                                  <Link
+                                    href={link.path}
+                                    key={link.name}
+                                    className="text-decoration-none "
+                                    onClick={() => {
+                                      setShowInvestmentDropdown(false);
+                                      setExpanded(false);
+                                    }}
+                                  >
+                                    <div className="investment-card d-flex align-items-center p-3 hover-card">
+                                      <div className="icon-circle bg-red d-flex align-items-center justify-content-center me-3">
+                                        <Image
+                                          src={link.icon}
+                                          alt={link.name}
+                                          width={34}
+                                          height={34}
+                                        />
+                                      </div>
+                                      <h6 className="mb-0 text-gray  lora">{link.name}</h6>
+                                    </div>
+                                  </Link>
                                 ))}
-                              </ul>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -224,15 +428,15 @@ const Header: React.FC = () => {
                   );
                 }
 
-                // Dynamic navlinks from API
                 const navLink = navLinks.find((link) => link.name === name);
                 if (!navLink) return null;
 
                 const isBookAppointment = name === 'Book an Appointment';
                 const isCollections = name === 'Collections';
-                const isActive = !isBookAppointment && !isCollections
-                  ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
-                  : false;
+                const isActive =
+                  !isBookAppointment && !isCollections
+                    ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
+                    : false;
 
                 return (
                   <div
@@ -257,7 +461,7 @@ const Header: React.FC = () => {
                     >
                       <Nav.Link
                         as="span"
-                        className={`navlinks-hover ${isActive ? 'active-link' : ''}`}
+                        className={`navlinks-hover fraunces ${isActive ? 'active-link' : ''}`}
                       >
                         {navLink.name}
                       </Nav.Link>
@@ -370,28 +574,39 @@ const Header: React.FC = () => {
             </Nav>
           </Navbar.Collapse>
 
-          <div className="d-none d-lg-flex align-items-center gap-3 social-icons">
+          <div className="d-none d-lg-flex align-items-center gap-2 social-icons">
             <Nav.Link href="https://wa.me/your-number" target="_blank">
-              <FaWhatsapp />
+              <Image
+                src={whatsappIcon}
+                alt="WhatsApp"
+                className="rounded-5"
+                width={32}
+                height={32}
+              />
             </Nav.Link>
+
             <Nav.Link href="https://twitter.com/your-profile" target="_blank">
-              <FaTwitter />
+              <Image src={twitterIcon} alt="Twitter" width={38} height={38} />
+            </Nav.Link>
+
+            <Nav.Link href="https://instagram.com/your-profile" target="_blank">
+              <Image
+                src={instagramIcon}
+                className="rounded-5"
+                alt="Instagram"
+                width={31}
+                height={31}
+              />
             </Nav.Link>
             <Nav.Link href="https://facebook.com/your-profile" target="_blank">
-              <FaFacebook />
-            </Nav.Link>
-            <Nav.Link href="https://instagram.com/your-profile" target="_blank">
-              <FaInstagram />
+              <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
             </Nav.Link>
           </div>
         </Container>
       </Navbar>
-      
-      <style jsx>{`
-        .custom-navbar {
-          background-color: #fff;
-          padding: 10px 0;
-        }
+
+      <style>{`
+
         .custom-nav-link {
           color: #333;
           font-weight: 500;
@@ -422,11 +637,114 @@ const Header: React.FC = () => {
           grid-template-columns: repeat(2, 1fr);
           gap: 10px;
         }
+        .dropdown-menu-full-investment {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: -73%;
+          transform: translateX(-50%);
+          width: 98.97vw;
+          height: 300px;
+          background-color: #fff9f3;
+          z-index: 1000;
+          padding: 20px;
+          box-sizing: border-box;
+          margin-top: 18px;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+        .dropdown-menu-full-investment.show {
+          display: block;
+          opacity: 1;
+          visibility: visible;
+        }
+        .dropdown-content-investment {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          max-width: 1200px;
+          margin: 0 auto;
+          box-sizing: border-box;
+        }
+        .dropdown-left-investment {
+          flex: 3;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          gap: 20px;
+          text-align: left;
+        }
+        .dropdown-section-investment ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        .investment-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 30px;
+          max-width: 1000px;
+          margin: 50px auto;
+          perspective: 1000px;
+        }
+        .investment-card {
+          position: relative;
+          background: white;
+          width: 300px;
+          margin-top: 50px;
+          border-radius: 8px;
+          padding: 30px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+          overflow: hidden;
+          z-index: 1;
+          border: 1px solid rgba(212, 27, 31, 0.1);
+          transform-style: preserve-3d;
+        }
+        .investment-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, rgba(212, 27, 31, 0.1) 0%, transparent 100%);
+          opacity: 0;
+          transition: opacity 0.4s ease;
+          z-index: -1;
+        }
+        .investment-card:hover {
+          box-shadow: 0 15px 30px rgba(212, 27, 31, 0.15);
+          border-color: rgba(212, 27, 31, 0.3);
+        }
+        .investment-card:hover::before {
+          opacity: 1;
+        }
+        .investment-card:nth-child(1) {
+          border-top: 4px solid #d41b1f;
+        }
+        .card-content {
+          transition: transform 0.4s ease;
+        }
+        .investment-card:hover .card-content {
+          transform: translateY(-5px);
+        }
+        @media (max-width: 900px) {
+          .investment-grid {
+            grid-template-columns: 1fr;
+            max-width: 400px;
+          }
+        }
+        .icon-circle {
+          width: 68px;
+          height: 68px;
+          border-radius: 50%;
+        }
         .dropdown-menu-full {
           display: none;
           position: absolute;
           top: 100%;
-          left: 103%;
+          left: 130%;
           transform: translateX(-50%);
           width: 100vw;
           background-color: #fff9f3;
@@ -499,20 +817,113 @@ const Header: React.FC = () => {
           box-shadow: none;
           object-fit: cover;
         }
+        /* Mobile Menu Styles */
+        .mobile-menu {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          width: 280px;
+          height: 100%;
+          background-color: #fff9f3;
+          box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+          z-index: 1000;
+          transition: left 0.3s ease-in-out;
+          overflow-y: auto;
+          padding: 20px;
+        }
+        .mobile-menu.show {
+          left: 0;
+        }
+        .mobile-menu-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-bottom: 20px;
+          border-bottom: 1px solid #eee;
+          margin-bottom: 20px;
+        }
+        .mobile-nav {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .mobile-nav-item {
+          width: 100%;
+        }
+        .mobile-nav-link {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 12px 16px;
+          color: #333;
+          font-size: 16px;
+          font-weight: 500;
+          text-decoration: none;
+          border-radius: 4px;
+          transition: background-color 0.2s;
+        }
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+          background-color: #fff;
+          color: #d41b1f;
+        }
+        .mobile-submenu {
+          padding: 20px;
+          background-color: #fff;
+          border-left: 2px solid #d41b1f;
+          margin: 5px 0;
+        }
+        .mobile-submenu-item {
+          display: flex;
+          align-items: center;
+          padding: 10px 16px;
+          color: #333;
+          font-size: 14px;
+          text-decoration: none;
+        }
+        .mobile-submenu-item:hover {
+          color: #d41b1f;
+          background-color: #fff9f3;
+        }
+        .mobile-submenu-section {
+          margin: 10px 0;
+        }
+        .mobile-submenu-section h6 {
+          font-size: 14px;
+          font-weight: 600;
+          color: #333;
+          margin: 10px 0;
+        }
+        .mobile-social-icons {
+          display: flex;
+          justify-content: center; /* Optional for horizontal centering */
+          align-items: center;
+          gap: 15px;
+          padding: 20px 16px;
+          border-top: 1px solid #eee;
+          margin-top: 20px;
+        }
+
+        .dropdown-arrow {
+          font-size: 12px;
+          margin-left: 10px;
+        }
+        @media (min-width: 992px) {
+          .mobile-menu {
+            display: none;
+          }
+          .dropdown-menu-full {
+            min-width: 800px;
+          }
+          .dropdown-menu-full-investment {
+            min-width: 800px;
+          }
+        }
         @media (max-width: 991px) {
           .dropdown-menu-full {
             display: none;
           }
-          .dropdown-left {
-            grid-template-columns: 1fr;
-          }
-          .dropdown-right {
+          .dropdown-menu-full-investment {
             display: none;
-          }
-        }
-        @media (min-width: 992px) {
-          .dropdown-menu-full {
-            min-width: 800px;
           }
         }
       `}</style>

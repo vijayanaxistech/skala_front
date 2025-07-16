@@ -35,8 +35,7 @@
   color: #033a79;
   font-weight: 300;
   font-size: 24px;
-  /* background: linear-gradient(to top, #c77771, rgba(103, 136, 209, 0.3), transparent);
-	filter: drop-shadow(0px -8px 12px rgba(173, 216, 230, 0.5)); */
+
   border-radius: 6px;
   z-index: 2;
   box-sizing: border-box;
@@ -47,11 +46,10 @@
   display: flex;
   justify-content: center;
   align-items: stretch;
-  border-radius: 10px; /* Apply border-radius to the entire section */
-  overflow: hidden; /* Ensure content doesn't overflow the rounded corners */
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-/* Left Panel */
 .goldLeftPanel {
   border: 2px solid #f5e1e1;
   border-right: none;
@@ -83,11 +81,11 @@
 .textRed {
   color: #d32f2f;
   font-weight: bold;
-  font-size: 22px; /* Match the original design */
+  font-size: 22px;
   margin: 10px 0;
   overflow-wrap: break-word;
   word-break: break-word;
-  font-family: 'Arial', sans-serif; /* Approximate font */
+  font-family: 'Arial', sans-serif;
 }
 
 .textBlue {
@@ -97,7 +95,7 @@
   overflow-wrap: break-word;
   word-break: break-word;
   font-family: 'Arial', sans-serif;
-  line-height: 1.4; /* Improve readability */
+  line-height: 1.4;
 }
 
 .goldLeftPanel a {
@@ -108,7 +106,6 @@
   font-family: 'Arial', sans-serif;
 }
 
-/* Right Panel */
 .goldRightPanel {
   width: 50%;
   display: flex;
@@ -122,10 +119,9 @@
   border-radius: 0 10px 10px 0;
   object-fit: cover;
   display: block;
-  background-color: #8b0000; /* Red velvet background as fallback */
+  background-color: #8b0000;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .rightSection {
     flex-direction: column;
@@ -156,5 +152,4 @@
 }
 .categoryItem:hover .imageWrapper .categoryImage {
   transform: scale(1.05);
-
 }

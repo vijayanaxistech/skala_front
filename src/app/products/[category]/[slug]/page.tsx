@@ -156,7 +156,9 @@ export default function ProductDetailPage() {
             <div className="col-12 col-md-6 d-flex flex-column justify-content-center order-md-3">
               <div className="px-2 px-md-4">
                 <h6 className="text-muted mb-1">{product.category.name}</h6>
-                <h3 className="fw-bold lora  mb-1" style={{fontWeight:'100'}}>{product.title}</h3>
+                <h3 className="fw-bold lora  mb-1" style={{ fontWeight: '100' }}>
+                  {product.title}
+                </h3>
                 {/* <div className="mb-2">
                   {'★★★★★'.split('').map((star, i) => (
                     <span key={i} style={{ color: '#FD7A08', fontSize: '1.2rem' }}>
@@ -178,27 +180,28 @@ export default function ProductDetailPage() {
                   className="mb-2"
                   style={{ borderBottom: '1px solid #C4C4C4', paddingBottom: '4px' }}
                 >
-                  <strong className='dm-serif-text-regular'>Category :</strong>{' '}
+                  <strong className="dm-serif-text-regular">Category :</strong>{' '}
                   <span className="text-muted">{product.category.name}</span>
                 </p>
                 <p
                   className="mb-2"
                   style={{ borderBottom: '1px solid #C4C4C4', paddingBottom: '4px' }}
                 >
-                  <strong className='dm-serif-text-regular'>Jewellery Type :</strong>{' '}
+                  <strong className="dm-serif-text-regular">Jewellery Type :</strong>{' '}
                   <span className="text-dark">{product.jewelleryType}</span>
                 </p>
                 <p
                   className="mb-2"
                   style={{ borderBottom: '1px solid #C4C4C4', paddingBottom: '4px' }}
                 >
-                  <strong className='dm-serif-text-regular'>Purity :</strong> <span className="text-dark">{product.purity}</span>
+                  <strong className="dm-serif-text-regular">Purity :</strong>{' '}
+                  <span className="text-dark">{product.purity}</span>
                 </p>
                 <p
                   className="mb-0"
                   style={{ borderBottom: '1px solid #C4C4C4', paddingBottom: '4px' }}
                 >
-                  <strong className='dm-serif-text-regular'>Gross Wt :</strong>{' '}
+                  <strong className="dm-serif-text-regular">Gross Wt :</strong>{' '}
                   <span className="text-dark">{product.grossWeight}</span>
                 </p>
               </div>
@@ -315,12 +318,14 @@ export default function ProductDetailPage() {
                 />
               </Col>
               <Col xs={12} md={6} className="text-center text-md-start text-white">
-                <h1 className="fs-4 fs-md-3  lh-tight mb-4 fraunces">                  Elevate Every Moment with Timeless Jewellery
+                <h1 className="fs-4 fs-md-3  lh-tight mb-4 fraunces">
+                  {' '}
+                  Elevate Every Moment with Timeless Jewellery
                 </h1>
                 <Link href="/collections">
                   <Button
                     variant="outline-light fraunces rounded-0"
-                    className={styles.shopNowBtn} 
+                    className={styles.shopNowBtn}
                     style={{ textDecoration: 'none' }}
                   >
                     Shop Now

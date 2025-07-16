@@ -10,7 +10,7 @@ import styles from '../page.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FaEye, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { TfiLayoutSliderAlt } from "react-icons/tfi";
+import { TfiLayoutSliderAlt } from 'react-icons/tfi';
 
 // Satellite
 import st1 from '../../../public/assets/showrooms/Satellite/1.png';
@@ -43,7 +43,12 @@ interface ShowroomSectionProps {
   mapLink: string;
 }
 
-const CustomCarousel: React.FC<{ images: string[], title: string, activeIndex: number, setActiveIndex: (index: number) => void }> = ({ images, title, activeIndex, setActiveIndex }) => {
+const CustomCarousel: React.FC<{
+  images: string[];
+  title: string;
+  activeIndex: number;
+  setActiveIndex: (index: number) => void;
+}> = ({ images, title, activeIndex, setActiveIndex }) => {
   const handlePrev = () => {
     setActiveIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
@@ -53,7 +58,10 @@ const CustomCarousel: React.FC<{ images: string[], title: string, activeIndex: n
   };
 
   return (
-    <div className="custom-carousel" style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
+    <div
+      className="custom-carousel"
+      style={{ position: 'relative', width: '100%', overflow: 'hidden' }}
+    >
       <div
         style={{
           display: 'flex',
@@ -114,7 +122,15 @@ const CustomCarousel: React.FC<{ images: string[], title: string, activeIndex: n
   );
 };
 
-const ShowroomSection: React.FC<ShowroomSectionProps> = ({ id, title, address, images, contact, hours, mapLink }) => {
+const ShowroomSection: React.FC<ShowroomSectionProps> = ({
+  id,
+  title,
+  address,
+  images,
+  contact,
+  hours,
+  mapLink,
+}) => {
   const [showModal, setShowModal] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -148,7 +164,7 @@ const ShowroomSection: React.FC<ShowroomSectionProps> = ({ id, title, address, i
                 width: '40px',
                 height: '40px',
                 color: 'white',
-                cursor: 'pointer'
+                cursor: 'pointer',
               }}
               onClick={handleShowModal}
             >
@@ -176,7 +192,7 @@ const ShowroomSection: React.FC<ShowroomSectionProps> = ({ id, title, address, i
               </div>
 
               <div className="mt-auto">
-                <button 
+                <button
                   className="directions-btn w-100 rounded-0 mt-3"
                   onClick={handleGetDirections}
                 >
@@ -190,7 +206,12 @@ const ShowroomSection: React.FC<ShowroomSectionProps> = ({ id, title, address, i
 
       <Modal show={showModal} onHide={handleCloseModal} centered size="lg">
         <Modal.Body className="p-0">
-          <CustomCarousel images={images} title={title} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+          <CustomCarousel
+            images={images}
+            title={title}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
         </Modal.Body>
       </Modal>
     </section>
@@ -257,8 +278,7 @@ const WhySuvarnakala = () => {
           images={Maninagar}
           contact="+91 9924902223"
           hours="Monday - Saturday: 10:30 AM - 8:30 PM"
-                    mapLink="https://maps.app.goo.gl/h7oETcXHRToqzaDT8"
-
+          mapLink="https://maps.app.goo.gl/h7oETcXHRToqzaDT8"
         />
       </div>
 

@@ -54,7 +54,6 @@ const features = [
 ];
 
 const WhySuvarnakala = () => {
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -66,27 +65,25 @@ const WhySuvarnakala = () => {
   return (
     <>
       {/* Banner Image */}
-            <div
-                style={{ position: 'relative', width: '100%', height: '434px' }}
-                className="about-banner"
-            >
-                <Image
-                    src={breadcrumbImage}
-                    alt="Suvarnakala Banner"
-                    layout="fill"
-                    objectFit="cover"
-                    priority
-                />
-            </div>
-
       <div
-        className="bg-color pb-5"
+        style={{ position: 'relative', width: '100%', height: '434px' }}
+        className="about-banner"
       >
+        <Image
+          src={breadcrumbImage}
+          alt="Suvarnakala Banner"
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
+      </div>
+
+      <div className="bg-color pb-5">
         <div className="p-5 py-4 ">
           <div className="custom-heading-wrapper d-flex align-items-center mb-4">
             <h2 className="m-0 custom-heading text-wrap me-3">
               <span className="fraunces">
-                Why  <span className="text-red fraunces"> Suvarnakala ? </span>
+                Why <span className="text-red fraunces"> Suvarnakala ? </span>
               </span>
               <div className="decorative-line">
                 <div className="diamond"></div>
@@ -95,11 +92,9 @@ const WhySuvarnakala = () => {
               </div>
             </h2>
           </div>
-
         </div>
         {/* Features Sectionsss */}
-        <div style={{ backgroundColor: '#fff9f3' }} className='why px-0 px-md-5'>
-
+        <div style={{ backgroundColor: '#fff9f3' }} className="why px-0 px-md-5">
           <div
             style={{
               backgroundColor: '#fff',
@@ -107,20 +102,18 @@ const WhySuvarnakala = () => {
               boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
             }}
           >
-
-
             {features.map((feature, index) => (
               <Row className="mb-4" key={index}>
                 <Col xs={12}>
                   <div className="d-flex align-items-start">
                     <div className="me-3 text-red" style={{ fontSize: '1.10rem' }}>
-                                                  <Image
-                                                src={Bullet}
-                                                alt="Section Icon"
-                                                width={20}
-                                                height={20}
-                                                className="rounded-circle" // Bootstrap for rounded-full
-                                            />   {' '}
+                      <Image
+                        src={Bullet}
+                        alt="Section Icon"
+                        width={20}
+                        height={20}
+                        className="rounded-circle" // Bootstrap for rounded-full
+                      />{' '}
                     </div>
                     <div>
                       <h5 className="fw-bold mb-1 lora">{feature.title}</h5>
@@ -164,7 +157,9 @@ const WhySuvarnakala = () => {
                 />
               </Col>
               <Col xs={12} md={6} className="text-center text-md-start text-white">
-                <h1 className="fs-4 fs-md-3  lh-tight mb-4 fraunces">                  Elevate Every Moment with Timeless Jewellery
+                <h1 className="fs-4 fs-md-3  lh-tight mb-4 fraunces">
+                  {' '}
+                  Elevate Every Moment with Timeless Jewellery
                 </h1>
                 <Link href="/collections">
                   <Button

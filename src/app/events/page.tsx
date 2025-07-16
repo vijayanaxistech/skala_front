@@ -217,12 +217,12 @@
 //         </div>
 //       </div>
 //       <style>{`
-        
+
 //           @media (max-width: 767px) {
 //           .banner {
 //             height: 215px !important;
 //           }
-          
+
 //         }
 //       `}</style></EventsClientWrapper>
 //     </>

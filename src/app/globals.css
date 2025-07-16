@@ -9,40 +9,35 @@
 }
 
 .dm-serif-text-regular {
-  font-family: "DM Serif Text", serif;
+  font-family: 'DM Serif Text', serif;
   font-style: normal !important;
   font-weight: 100 !important;
-  /* Try thin */
   transform: scaleY(0.9);
-  /* Slim height */
   letter-spacing: 0.5px;
-  /* Space out letters slightly */
 }
 
 .lora {
-  font-family: "Lora", serif;
+  font-family: 'Lora', serif;
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
 }
 
-
 .fraunces {
-  font-family: "Fraunces", serif;
+  font-family: 'Fraunces', serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-variation-settings:
-    "SOFT" 0,
-    "WONK" 0;
+    'SOFT' 0,
+    'WONK' 0;
 }
 
 .julee-regular {
-  font-family: "Julee", cursive;
+  font-family: 'Julee', cursive;
   font-weight: 400;
   font-style: normal;
 }
-
 
 .oleo-script-regular {
   font-family: 'Oleo Script', system-ui;
@@ -67,7 +62,6 @@
   margin-left: calc(-50vw + 50%);
   padding: 0 !important;
 }
-
 
 .iconbox {
   width: 100px;
@@ -114,8 +108,6 @@
   color: #033a79;
   border: 1px solid #033a79;
 }
-
-
 
 /* ==================== Utility Classes ==================== */
 .text-red {
@@ -176,7 +168,7 @@
 
 .custom-navbar {
   background-color: #fff9f3;
-  padding: 0.5rem 2.5rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .custom-toggler {
@@ -277,13 +269,13 @@
   color: #d41b1f;
 }
 
-
 .navlinks-hover {
   position: relative;
   display: inline-block;
   color: #212529;
-  /* default dark */
-  transition: color 0.3s ease, letter-spacing 0.3s ease;
+  transition:
+    color 0.3s ease,
+    letter-spacing 0.3s ease;
 }
 
 .navlinks-hover::after {
@@ -301,16 +293,10 @@
   color: #d41b1f !important;
 }
 
-
-
 /* Active link styling */
 .navlinks-hover.active-link {
   color: #d41b1f !important;
 }
-
-
-
-
 
 .link-hover-red {
   color: #333;
@@ -318,7 +304,9 @@
   text-decoration: none;
   position: relative;
   display: inline-block;
-  transition: color 0.3s ease, letter-spacing 0.3s ease;
+  transition:
+    color 0.3s ease,
+    letter-spacing 0.3s ease;
 }
 
 .link-hover-red::after {
@@ -336,11 +324,7 @@
 
 .link-hover-red:hover {
   color: #d41b1f !important;
-  letter-spacing: 0.5px;
 }
-
-
-
 
 /* ==================== Product Section ==================== */
 .product-page {
@@ -463,7 +447,6 @@
 
 .category-item:hover .image-wrapper .category-image {
   transform: scale(1.05);
-
 }
 
 /* ==================== Gift Section ==================== */
@@ -745,7 +728,7 @@ textarea::placeholder {
 }
 
 @media (max-width: 768px) {
-  footer .container>div.d-flex {
+  footer .container > div.d-flex {
     flex-wrap: wrap;
   }
 
@@ -870,7 +853,7 @@ textarea::placeholder {
 }
 
 /* -- */
-/* -- */
+
 .about_section {
   background: #fcf1e3 url('/assets/simple.png') no-repeat center center / cover;
   position: relative;
@@ -880,35 +863,24 @@ textarea::placeholder {
 .about_section .col-md-6:nth-child(2) {
   position: relative;
   padding-left: 30px;
-  /* space so text doesn't touch the line */
   height: 100%;
-  /* fill height */
   display: flex;
-  /* to help center the line */
   align-items: center;
-  /* vertical center content */
 }
 
 .about_section .col-md-6:nth-child(2)::after {
   content: '';
   position: absolute;
   top: 50%;
-  /* start at middle */
   left: 10;
-  /* on the left edge */
   width: 2px;
-  /* thin vertical line */
   height: 90%;
-  /* 90% height of parent */
   background-color: #d41b1f;
   border-radius: 1px;
   transform: translateY(-50%);
-  /* move up half its own height to center vertically */
 }
 
 @media (max-width: 767.98px) {
-
-  /* Bootstrap’s breakpoint for small devices */
   .about_section .col-md-6:nth-child(2)::after {
     display: none;
   }
@@ -969,7 +941,6 @@ textarea::placeholder {
 }
 
 @keyframes zoom {
-
   0%,
   100% {
     transform: scale(1);
@@ -1010,14 +981,12 @@ textarea::placeholder {
   }
 
   .about_main_image img {
-    width: 300px !important;
+    width: 280px !important;
   }
 
   .btn-close-white {
     --bs-btn-close-filter: none;
   }
-
-
 
   .about_section {
     padding: 0;
@@ -1025,7 +994,7 @@ textarea::placeholder {
 
   .about_patternshape {
     position: relative;
-    margin-left: -210px;
+    margin-left: -170px;
   }
 }
 
@@ -1033,7 +1002,6 @@ textarea::placeholder {
   background: #033a79;
   color: white;
   font-size: 0.75rem;
-  /* Small text */
   font-weight: 500;
   padding: 4px 10px;
   border: none;
@@ -1044,3 +1012,17 @@ textarea::placeholder {
   line-height: 1;
 }
 
+.footer-social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+/* On screens smaller than 768px (mobile) */
+@media (max-width: 767.98px) {
+  .footer-social-icons {
+    justify-content: flex-start;
+    margin-bottom: 15px;
+  }
+}

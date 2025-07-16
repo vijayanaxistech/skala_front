@@ -86,10 +86,10 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
                     </h2>
                   </div>
                   <p className="text-justify">
-                    Join our exclusive <span className="dark_font lora">Bachat Mahotsav</span> and enjoy
-                    irresistible offers on gold, diamond, and silver jewelry. Special discounts,
-                    making charge waivers, and festive combos – all crafted to bring sparkle to your
-                    celebrations.
+                    Join our exclusive <span className="dark_font lora">Bachat Mahotsav</span> and
+                    enjoy irresistible offers on gold, diamond, and silver jewelry. Special
+                    discounts, making charge waivers, and festive combos – all crafted to bring
+                    sparkle to your celebrations.
                   </p>
                   <p>
                     The most awaited <span className="dark_font lora">Gold Bachat Mahotsav</span> is

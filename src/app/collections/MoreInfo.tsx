@@ -38,7 +38,6 @@ const MoreInfoButton: React.FC<MoreInfoButtonProps> = ({ product }) => {
   return (
     <button onClick={handleMoreInfoClick} className="more-info-btn-sm">
       <span>More Info</span>
-      <i className="bi bi-info-circle ms-1"></i>
     </button>
   );
 };
