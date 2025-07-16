@@ -290,10 +290,9 @@ const About = () => {
                 style={{
                   marginLeft: '12px',
                   fontWeight: 'bold',
-                  color: '#033a79',
                   fontSize: '16px',
                 }}
-                className="lora"
+                className="lora text-gray"
               >
                 {item.text}
               </span>
