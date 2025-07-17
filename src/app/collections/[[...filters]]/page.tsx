@@ -10,7 +10,7 @@ import styles from '@/app/page.module.css';
 import FilterDropdown from './FilterDropdown';
 import WhatsAppButton from '../WhatsAppButton';
 import MoreInfoButton from '../MoreInfo';
-import { getProducts, getCategories, BASE_URL } from '@/lib/api';
+import { getProducts, getCategories, getDefaultBreadcrumbBanner, BASE_URL } from '@/lib/api';
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -39,20 +39,28 @@ interface Product {
   metalPurity?: string;
 }
 
+interface DefaultBanner {
+  _id: string;
+  link: string;
+  image: string;
+}
+
 const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<{ [key: string]: string }>({});
+  const [defaultBanner, setDefaultBanner] = useState<DefaultBanner | null>(null);
 
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
     async function fetchData() {
-      const [fetchedProducts, fetchedCategories] = await Promise.all([
+      const [fetchedProducts, fetchedCategories, fetchedBanner] = await Promise.all([
         getProducts(),
         getCategories(),
+        getDefaultBreadcrumbBanner(),
       ]);
 
       // Normalize products
@@ -66,6 +74,8 @@ const ProductsPage: React.FC = () => {
 
       setProducts(normalized);
       setCategories(fetchedCategories);
+      // Set the first banner from the response (assuming single banner for default)
+      setDefaultBanner(fetchedBanner[0] || null);
     }
     fetchData();
   }, []);
@@ -112,25 +122,44 @@ const ProductsPage: React.FC = () => {
 
   const displayTitle = Object.values(selectedFilters).join(', ') || 'All Products';
 
+  // Determine banner image and link
   let breadcrumbImageSrc: string | any = defaultBreadcrumbImage;
+  let breadcrumbLink: string | null = null;
+
   if (selectedFilters.category) {
     const selectedCategory = categories.find((cat) => cat.name === selectedFilters.category);
     if (selectedCategory?.banner) {
       breadcrumbImageSrc = `${BASE_URL}/${selectedCategory.banner}`;
     }
+  } else if (defaultBanner) {
+    breadcrumbImageSrc = `${BASE_URL}/${defaultBanner.image}`;
+    // Convert full URL to relative path for Next.js Link
+    breadcrumbLink = defaultBanner.link.replace(/^https?:\/\/[^\/]+/, '');
   }
 
   return (
     <ClientLayoutWrapper>
       {/* Banner */}
       <div className="banner" style={{ position: 'relative', width: '100%', height: '400px' }}>
-        <Image
-          src={breadcrumbImageSrc}
-          alt={`${selectedFilters.category || 'Collections'} Banner`}
-          layout="fill"
-          objectFit="cover"
-          priority
-        />
+        {breadcrumbLink ? (
+          <Link href={breadcrumbLink}>
+            <Image
+              src={breadcrumbImageSrc}
+              alt={`${selectedFilters.category || 'Collections'} Banner`}
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
+          </Link>
+        ) : (
+          <Image
+            src={breadcrumbImageSrc}
+            alt={`${selectedFilters.category || 'Collections'} Banner`}
+            fill
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+        )}
       </div>
 
       <div className="py-5 p-5">
@@ -224,7 +253,7 @@ const ProductsPage: React.FC = () => {
 
       {/* Shop Now Section */}
       <div style={{ position: 'relative', width: '100%', height: '300px' }}>
-        <Image src={shopnowbg} alt="Shop Now Banner" layout="fill" objectFit="cover" priority />
+        <Image src={shopnowbg} alt="Shop Now Banner" fill style={{ objectFit: 'cover' }} priority />
         <div
           style={{
             position: 'absolute',
@@ -244,8 +273,7 @@ const ProductsPage: React.FC = () => {
                 <Image src={shopWomen} alt="Shop Girl" width={300} height={300} />
               </Col>
               <Col xs={12} md={6} className="text-center text-md-start text-white">
-                <h1 className="fs-4 fs-md-3  lh-tight mb-4 fraunces">
-                  {' '}
+                <h1 className="fs-4 fs-md-3 lh-tight mb-4 fraunces">
                   Elevate Every Moment with Timeless Jewellery
                 </h1>
                 <Link href="/collections">

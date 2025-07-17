@@ -43,6 +43,17 @@ export const getCategories = async () => {
   return res.json();
 };
 
+// api.ts
+export const getDefaultBreadcrumbBanner = async () => {
+  try {
+    const res = await API.get('/api/collectionbanner');
+    return Array.isArray(res.data) ? res.data : [];
+  } catch (err) {
+    console.error('Error fetching default breadcrumb banner:', err);
+    return [];
+  }
+};
+
 export const getMoments = async () => {
   const res = await API.get('/api/moments');
   return res.data.moments || [];
