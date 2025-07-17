@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 };
 export default function DisclaimerPage() {
   return (
-    <main className="p-5 text-justify">
-      <h1 className="mb-4">Disclaimer</h1>
+    <main className="p-5 bg-light text-justify">
+      <h1 className="mb-4 fraunces">Disclaimer</h1>
       <p>
         The information contained in this website is for general information purposes only. The
         information is provided by Suvarnakala Pvt. Ltd. and while we endeavor to keep the

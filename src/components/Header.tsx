@@ -186,7 +186,11 @@ const Header: React.FC = () => {
                 if (name === 'Investment') {
                   return (
                     <div key={`investment-${index}`} className="mobile-nav-item ">
-                      <div className="mobile-nav-link lora" onClick={handleMobileInvestmentToggle}>
+                      <div
+                        className="mobile-nav-link lora"
+                        onClick={handleMobileInvestmentToggle}
+                        style={{ cursor: 'pointer' }}
+                      >
                         Investment
                         <span className="dropdown-arrow ms-2">
                           <i
@@ -383,7 +387,12 @@ const Header: React.FC = () => {
                         as="span"
                         className={`navlinks-hover fraunces ${pathname.startsWith('/investment') ? 'active-link' : ''}`}
                         onClick={() => setShowInvestmentDropdown(true)}
-                        style={{ fontWeight: 400, color: '#212529', fontSize: '1.03rem' }}
+                        style={{
+                          fontWeight: 400,
+                          color: '#212529',
+                          fontSize: '1.03rem',
+                          cursor: 'pointer',
+                        }}
                       >
                         Investment
                       </Nav.Link>
@@ -641,7 +650,7 @@ const Header: React.FC = () => {
           display: none;
           position: absolute;
           top: 100%;
-          left: -73%;
+          left: -65%;
           transform: translateX(-50%);
           width: 98.97vw;
           height: 300px;
@@ -744,7 +753,7 @@ const Header: React.FC = () => {
           display: none;
           position: absolute;
           top: 100%;
-          left: 130%;
+          left: 132%;
           transform: translateX(-50%);
           width: 100vw;
           background-color: #fff9f3;
@@ -822,7 +831,7 @@ const Header: React.FC = () => {
           position: fixed;
           top: 0;
           left: -100%;
-          width: 280px;
+          width: 350px;
           height: 100%;
           background-color: #fff9f3;
           box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);

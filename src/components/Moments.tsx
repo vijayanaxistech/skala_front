@@ -19,26 +19,11 @@ interface MomentsProps {
 }
 
 const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 1441 },
-    items: 3,
-  },
-  desktop: {
-    breakpoint: { max: 1440, min: 1024 },
-    items: 3,
-  },
-  tablet: {
-    breakpoint: { max: 1023, min: 768 },
-    items: 3,
-  },
-  smallTablet: {
-    breakpoint: { max: 767, min: 576 },
-    items: 2,
-  },
-  mobile: {
-    breakpoint: { max: 575, min: 0 },
-    items: 1,
-  },
+  superLargeDesktop: { breakpoint: { max: 4000, min: 1441 }, items: 3 },
+  desktop: { breakpoint: { max: 1440, min: 1024 }, items: 3 },
+  tablet: { breakpoint: { max: 1023, min: 768 }, items: 3 },
+  smallTablet: { breakpoint: { max: 767, min: 576 }, items: 2 },
+  mobile: { breakpoint: { max: 575, min: 0 }, items: 1 },
 };
 
 const Moments: React.FC<MomentsProps> = ({ moments = [] }) => {
@@ -88,86 +73,59 @@ const Moments: React.FC<MomentsProps> = ({ moments = [] }) => {
                   role="group"
                   aria-label={`Moment ${index + 1}: ${title}`}
                 >
-                  <div
-                    style={{
-                      position: 'relative',
-                      width: '100%',
-                      paddingTop: '60%',
-                      overflow: 'hidden',
-                      borderRadius: '8px',
-                    }}
-                  >
-                    {isVideo ? (
-                      <video
-                        src={
-                          mediaSource
-                            ? `${BASE_URL}/${mediaSource}`
-                            : 'https://via.placeholder.com/300x180?text=No+Video'
-                        }
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        style={{
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover',
-                        }}
-                        aria-label={`Suvarnakala Defining Moment ${index + 1} - ${title}`}
-                        onError={(e) => {
-                          e.currentTarget.src = 'https://via.placeholder.com/300x180?text=No+Video';
-                        }}
-                      />
-                    ) : (
-                      <Image
-                        src={
-                          mediaSource
-                            ? `${BASE_URL}/${mediaSource}`
-                            : 'https://via.placeholder.com/300x180?text=No+Image'
-                        }
-                        alt={`Suvarnakala Defining Moment ${index + 1} - ${title}`}
-                        fill
-                        sizes="(max-width: 576px) 100vw, 300px"
-                        style={{ objectFit: 'cover' }}
-                        loading="lazy"
-                        onError={(e) => {
-                          e.currentTarget.src = 'https://via.placeholder.com/300x180?text=No+Image';
-                        }}
-                      />
-                    )}
-                    <div
-                      className="moment-overlay"
-                      style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        background: 'rgba(14, 13, 13, 0.3)',
-                        opacity: 0,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        transition: 'opacity 0.3s ease',
-                        pointerEvents: 'none',
-                        zIndex: 10,
-                      }}
-                    >
+                  <div className="flip-card-inner">
+                    <div className="flip-card-front">
+                      {isVideo ? (
+                        <video
+                          src={
+                            mediaSource
+                              ? `${BASE_URL}/${mediaSource}`
+                              : 'https://via.placeholder.com/300x180?text=No+Video'
+                          }
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            borderRadius: '8px',
+                          }}
+                          aria-label={`Suvarnakala Defining Moment ${index + 1} - ${title}`}
+                          onError={(e) => {
+                            e.currentTarget.src =
+                              'https://via.placeholder.com/300x180?text=No+Video';
+                          }}
+                        />
+                      ) : (
+                        <Image
+                          src={
+                            mediaSource
+                              ? `${BASE_URL}/${mediaSource}`
+                              : 'https://via.placeholder.com/300x180?text=No+Image'
+                          }
+                          alt={`Suvarnakala Defining Moment ${index + 1} - ${title}`}
+                          fill
+                          sizes="(max-width: 576px) 100vw, 300px"
+                          style={{ objectFit: 'cover', borderRadius: '8px' }}
+                          loading="lazy"
+                          onError={(e) => {
+                            e.currentTarget.src =
+                              'https://via.placeholder.com/300x180?text=No+Image';
+                          }}
+                        />
+                      )}
+                    </div>
+                    <div className="flip-card-back">
                       <span
-                        className="moment-title"
+                        className="moment-title text-dark heading-extension fraunces"
                         style={{
-                          color: '#ffffff',
-                          fontSize: '1.3rem',
-                          fontWeight: '500',
+                          fontSize: '1.4rem',
                           textAlign: 'center',
                           padding: '0.5rem 1rem',
                           textTransform: 'capitalize',
                           letterSpacing: '1px',
-                          opacity: 0,
-                          transition: 'opacity 0.3s ease',
                         }}
                       >
                         {title}
@@ -188,14 +146,43 @@ const Moments: React.FC<MomentsProps> = ({ moments = [] }) => {
           position: relative;
           border-radius: 8px;
           overflow: hidden;
+          perspective: 1000px;
         }
 
-        .moment-card:hover .moment-overlay {
-          opacity: 1 !important;
+        .flip-card-inner {
+          position: relative;
+          width: 100%;
+          padding-top: 60%;
+          transition: transform 0.6s;
+          transform-style: preserve-3d;
         }
 
-        .moment-card:hover .moment-title {
-          opacity: 1 !important;
+        .moment-card:hover .flip-card-inner {
+          transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          border-radius: 8px;
+        }
+
+        .flip-card-front {
+          z-index: 2;
+        }
+
+        .flip-card-back {
+          background: #fff9f3;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transform: rotateY(180deg);
+          z-index: 1;
         }
       `}</style>
     </div>

@@ -99,22 +99,21 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
                 </div>
 
                 <div className="d-flex gap-3 align-items-center">
-<a
-  href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Image src={playstore} alt="Play Store" width={120} height={40} />
-</a>
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image src={playstore} alt="Play Store" width={120} height={40} />
+                  </a>
 
-<a
-  href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Image src={appstore} alt="App Store" width={120} height={40} />
-</a>
-
+                  <a
+                    href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image src={appstore} alt="App Store" width={120} height={40} />
+                  </a>
                 </div>
               </div>
 

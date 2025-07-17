@@ -1026,3 +1026,25 @@ textarea::placeholder {
     margin-bottom: 15px;
   }
 }
+
+/* about badge  */
+
+.badge-value {
+  margin-left: 35px;
+}
+
+.badge-guarantee {
+  margin-left: 29px;
+}
+
+.badge-service {
+  margin-left: 14px;
+}
+
+@media (max-width: 576px) {
+  .badge-value,
+  .badge-guarantee,
+  .badge-service {
+    margin-left: 0px !important;
+  }
+}

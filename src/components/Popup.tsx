@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Modal } from 'react-bootstrap';
-import popupImage from '../../public/assets/products1.jpg';
+import popupImage from '../../public/assets/offers.png';
 import androidApp from '../../public/assets/googleplay.png';
 import iosApp from '../../public/assets/appstore.png';
 
@@ -32,13 +32,13 @@ export default function Popup() {
         size="lg"
         contentClassName="border-0"
         dialogClassName="rounded-3 overflow-hidden"
-        className="full-box"
+        className="full-box "
       >
-        <div className="d-flex flex-column flex-md-row popup">
+        <div className="d-flex flex-column  flex-md-row popup">
           {/* Close Icon */}
           <button
             onClick={handleClose}
-            className="btn-close btn-close-white position-absolute"
+            className="btn-close btn-close-dark position-absolute"
             style={{ top: '12px', right: '12px', zIndex: 1 }}
             aria-label="Close"
           ></button>
@@ -54,14 +54,14 @@ export default function Popup() {
           </div>
 
           {/* Right Side Content */}
-          <div className="col-12 col-md-6 bg-dark text-white p-3 p-md-4 d-flex flex-column position-relative">
+          <div className="col-12 col-md-6 bg-white text-dark p-3 p-md-4 d-flex flex-column position-relative">
             {/* Content */}
             <div className="d-flex flex-column justify-content-between flex-grow-1">
               <div>
-                <h2 className="mb-2 mt-3 mt-md-4">Login to avail Offers</h2>
-                <h6 className="mt-3">🎁 Exclusive Deals Await!</h6>
-                <p className="mt-3 mb-2">Get ₹1,000 off after signup</p>
-                <p>Get started by registering on the app</p>
+                <h2 className="mb-2 mt-3 mt-md-4 fraunces">Login to avail Offers</h2>
+                <h6 className="mt-3 lora">🎁 Exclusive Deals Await!</h6>
+                <p className="mt-3 mb-2 lora">Get ₹1,000 off after signup</p>
+                <p className="lora">Get started by registering on the app</p>
                 <div className="mt-3 mt-md-4">
                   <div className="d-flex flex-column flex-sm-row justify-content-start justify-content-sm-start gap-2 gap-sm-3">
                     <a

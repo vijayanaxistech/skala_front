@@ -7,8 +7,8 @@ export const metadata: Metadata = {
 
 const PrivacyPolicy = () => {
   return (
-    <div className=" p-5 max-w-4xl mx-auto bg-white  rounded-lg p-8 text-justify">
-      <h1 className="text-3xl font-bold text-gray-900 mb-6">Privacy Policy</h1>
+    <div className=" p-5 max-w-4xl mx-auto bg-light  rounded-lg p-8 text-justify">
+      <h1 className="text-3xl font-bold text-gray-900 fraunces mb-6">Privacy Policy</h1>
 
       <section className="mb-8">
         <p className="text-dark mb-4">
@@ -16,19 +16,19 @@ const PrivacyPolicy = () => {
           collected and used. By accessing the services provided by suvarnakala.com, you agree to
           the collection and use of your data as described in this Privacy Policy. If you have
           questions or concerns, please contact us at{' '}
-          <a href="mailto:sales@suvarnakala.com" className="text-blue-600 hover:underline">
+          <a href="mailto:sales@suvarnakala.com" className="text-blue-600 hover:underline fraunces">
             sales@suvarnakala.com
           </a>
           .
         </p>
-        <p className="text-dark">
+        <p className="text-dark ">
           This policy does not apply to entities or individuals not managed, owned, or controlled by
           Suvarnakala Pvt. Ltd.
         </p>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Our Commitment</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">Our Commitment</h2>
         <p className="text-dark">We aim to:</p>
         <ul className="list-disc list-inside text-dark mb-4">
           <li>Ensure you feel at ease while using our websites.</li>
@@ -41,7 +41,9 @@ const PrivacyPolicy = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Information We Collect</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">
+          Information We Collect
+        </h2>
         <p className="text-dark mb-4">
           We collect details provided during registration, information from your use of our
           services, and visits to our website or linked sites. We do not access or store your
@@ -76,7 +78,9 @@ const PrivacyPolicy = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">How We Collect Information</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">
+          How We Collect Information
+        </h2>
         <p className="text-dark mb-4">
           Anonymous traffic information is collected when you visit our website. Personally
           identifiable information is collected during registration, guest checkout, online surveys,
@@ -90,7 +94,9 @@ const PrivacyPolicy = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">How We Use Your Information</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">
+          How We Use Your Information
+        </h2>
         <p className="text-dark mb-4">Contact information is used to send:</p>
         <ul className="list-disc list-inside text-dark mb-4">
           <li>Password reminders and registration confirmations</li>
@@ -112,7 +118,9 @@ const PrivacyPolicy = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Who We Share Information With</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">
+          Who We Share Information With
+        </h2>
         <p className="text-dark mb-4">
           We do not share or rent your information with third parties except our agents and alliance
           partners, such as shipping companies and payment processors, who use it only to fulfill
@@ -126,7 +134,7 @@ const PrivacyPolicy = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Cookies</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">Cookies</h2>
         <p className="text-dark mb-4">
           We use session and persistent cookies to enhance security and user experience. Session
           cookies expire when you close your browser, while persistent cookies store preferences
@@ -136,7 +144,7 @@ const PrivacyPolicy = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Security</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">Security</h2>
         <p className="text-dark mb-4">
           We follow industry standards to protect your information during transmission and storage,
           but no method is 100% secure. Our servers are password-protected and accessible only to
@@ -146,10 +154,12 @@ const PrivacyPolicy = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Managing Your Information</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">
+          Managing Your Information
+        </h2>
         <p className="text-dark mb-4">
           You can update or correct your information online or by emailing{' '}
-          <a href="mailto:sales@suvarnakala.com" className="text-blue-600 hover:underline">
+          <a href="mailto:sales@suvarnakala.com" className="text-blue-600 hover:underline fraunces">
             sales@suvarnakala.com
           </a>
           . To terminate your account, email us with “Please close my suvarnakala.com account” in
@@ -163,7 +173,7 @@ const PrivacyPolicy = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Policy Updates</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">Policy Updates</h2>
         <p className="text-dark">
           We may update this policy, with changes posted on our website. Material changes will be
           notified on the homepage or other appropriate places. Information use will remain
@@ -172,10 +182,10 @@ const PrivacyPolicy = () => {
       </section>
 
       <section className="mb-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Contact Us</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">Contact Us</h2>
         <p className="text-dark">
           For questions or feedback, contact Suvarnakala Pvt. Ltd. at{' '}
-          <a href="mailto:sales@suvarnakala.com" className="text-blue-600 hover:underline">
+          <a href="mailto:sales@suvarnakala.com" className="text-blue-600 hover:underline fraunces">
             sales@suvarnakala.com
           </a>
           .

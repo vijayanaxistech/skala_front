@@ -39,8 +39,6 @@ interface Product {
   metalPurity?: string;
 }
 
-
-
 const ProductsPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -210,7 +208,9 @@ const ProductsPage: React.FC = () => {
                           />
                         </div>
                       </div>
-                      <p className="card-text text-dark mb-1">Jewellery Type: {product.jewelleryType}</p>
+                      <p className="card-text text-dark mb-1">
+                        Jewellery Type: {product.jewelleryType}
+                      </p>
                       <p className="card-text text-dark mb-1">Purity: {product.purity}</p>
                       <p className="card-text text-dark mb-0">Gross Wt: {product.grossWeight}</p>
                     </div>
@@ -244,7 +244,9 @@ const ProductsPage: React.FC = () => {
                 <Image src={shopWomen} alt="Shop Girl" width={300} height={300} />
               </Col>
               <Col xs={12} md={6} className="text-center text-md-start text-white">
-                <h1 className="fs-4 fs-md-3  lh-tight mb-4 fraunces">                  Elevate Every Moment with Timeless Jewellery
+                <h1 className="fs-4 fs-md-3  lh-tight mb-4 fraunces">
+                  {' '}
+                  Elevate Every Moment with Timeless Jewellery
                 </h1>
                 <Link href="/collections">
                   <Button variant="outline-light fraunces rounded-0" className={styles.shopNowBtn}>

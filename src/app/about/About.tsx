@@ -121,21 +121,27 @@ const About = () => {
               <h5 className="h4  text-red mb-3 lora" style={{ fontWeight: 100 }}>
                 Suvarnakala — The Pride of a Woman
               </h5>
-              <p className="text-muted text-justify">
+              <p className=" text-justify">
                 Established in 1970, Suvarnakala embarked on a journey of excellence that has grown
                 into one of the most respected names in the world of fine jewellery. Known for our
                 expertise in gold, diamond, and jadtar jewellery, Suvarnakala has become a symbol of
                 quality, precision, and timeless craftsmanship.
               </p>
-
-              <div className="row text-center my-4">
+              <p className="text-justify">
+                The foundation of Suvarnakala was laid by the visionary Mr. Soni Prakashchandra
+                Shantilal, whose passion and dedication helped shape the brand into a prominent
+                retail jewellery destination in Ahmedabad. With over four decades of unwavering
+                commitment and relentless effort, Suvarnakala has turned countless dreams into
+                dazzling realities.
+              </p>
+              <div className="row text-center text-md-start my-4">
                 <div className="col-4 col-sm-4">
                   <Image
                     src={qualityBadge}
                     alt="Best Quality"
                     width={80}
                     height={80}
-                    className="img-fluid mb-2"
+                    className="img-fluid mb-2 badge-guarantee"
                   />
                   <p className="text-danger fw-semibold small lora">The Purity Guarantee</p>
                 </div>
@@ -145,7 +151,7 @@ const About = () => {
                     alt="Best Service"
                     width={80}
                     height={80}
-                    className="img-fluid mb-2"
+                    className="img-fluid mb-2  badge-service"
                   />
                   <p className="text-danger fw-semibold small lora">Service Excellence</p>
                 </div>
@@ -155,7 +161,7 @@ const About = () => {
                     alt="Best Value"
                     width={80}
                     height={80}
-                    className="img-fluid mb-2"
+                    className="img-fluid mb-2  badge-value"
                   />
                   <p className="text-danger fw-semibold small lora">Amazing Value Everyday</p>
                 </div>
@@ -183,7 +189,7 @@ const About = () => {
 
         <div className="row align-items-center">
           <div className="col-md-7 mb-3">
-            <h3 className="text-blue mb-3 lora">Our Legacy</h3>
+            <h3 className="text-red mb-3 lora">Our Legacy</h3>
             <p className="text-justify">
               The foundation of Suvarnakala was laid by the visionary Mr. Soni Prakashchandra
               Shantilal, whose passion and dedication helped shape the brand into a prominent retail

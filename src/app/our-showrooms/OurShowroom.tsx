@@ -10,7 +10,7 @@ import styles from '../page.module.css';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { FaEye, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { TfiLayoutSliderAlt } from 'react-icons/tfi';
+import { LiaImageSolid } from 'react-icons/lia';
 
 // Satellite
 import st1 from '../../../public/assets/showrooms/Satellite/1.png';
@@ -168,7 +168,7 @@ const ShowroomSection: React.FC<ShowroomSectionProps> = ({
               }}
               onClick={handleShowModal}
             >
-              <FaEye size={20} />
+              <LiaImageSolid size={20} />
             </div>
           </div>
         </Col>

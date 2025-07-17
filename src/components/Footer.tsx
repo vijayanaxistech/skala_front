@@ -103,36 +103,35 @@ export default function Footer() {
                   We offer personalized jewelry experiences, crafted by skilled artisans dedicated
                   to quality and timeless elegance.
                 </p>
-<div className="d-flex gap-2 mt-3">
-  <a
-    href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <Image
-      src={googleplay}
-      alt="Download Suvarnakala App on Google Play"
-      width={120}
-      height={40}
-      loading="lazy"
-    />
-  </a>
-  
-  <a
-    href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <Image
-      src={appstore}
-      alt="Download Suvarnakala App on App Store"
-      width={120}
-      height={40}
-      loading="lazy"
-    />
-  </a>
-</div>
+                <div className="d-flex gap-2 mt-3">
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      src={googleplay}
+                      alt="Download Suvarnakala App on Google Play"
+                      width={120}
+                      height={40}
+                      loading="lazy"
+                    />
+                  </a>
 
+                  <a
+                    href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Image
+                      src={appstore}
+                      alt="Download Suvarnakala App on App Store"
+                      width={120}
+                      height={40}
+                      loading="lazy"
+                    />
+                  </a>
+                </div>
               </div>
 
               {/* Useful Links */}

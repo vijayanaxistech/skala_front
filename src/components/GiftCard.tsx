@@ -132,27 +132,25 @@ const GiftCard = () => {
                 <p className="mt-4 text-red lora text-center text-md-start">
                   For latest updates and offers, download our app today.
                 </p>
-<div className="text-center">
-  <div className="d-inline-flex gap-3 mb-3 align-items-center">
-    <a
-      href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Image src={playstore} alt="Play Store" width={120} height={40} />
-    </a>
+                <div className="text-center text-md-start">
+                  <div className="d-inline-flex gap-3 mb-3 align-items-center">
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Image src={playstore} alt="Play Store" width={120} height={40} />
+                    </a>
 
-    <a
-      href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Image src={appstore} alt="App Store" width={120} height={40} />
-    </a>
-  </div>
-</div>
-
-
+                    <a
+                      href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Image src={appstore} alt="App Store" width={120} height={40} />
+                    </a>
+                  </div>
+                </div>
               </div>
 
               {/* Image */}
