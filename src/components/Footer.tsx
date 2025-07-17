@@ -143,7 +143,6 @@ export default function Footer() {
                     { name: 'Home', href: '/' },
                     { name: 'About Us', href: '/about' },
                     { name: 'Our Showrooms', href: '/our-showrooms' },
-                    { name: 'Contact Us', href: '/contact' },
                     { name: 'Disclaimer', href: '/disclaimer' },
                     { name: 'Privacy Policy', href: '/privacy-policy' },
                   ].map((link, index) => (
