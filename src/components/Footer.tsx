@@ -97,7 +97,7 @@ export default function Footer() {
                   loading="lazy"
                 />
                 <p
-                  className="text-dark small footer-description"
+                  className="text-dark lora small footer-description"
                   style={{ fontSize: '15px', fontWeight: 400 }} // 300 = Light/Thin
                 >
                   We offer personalized jewelry experiences, crafted by skilled artisans dedicated
@@ -149,7 +149,7 @@ export default function Footer() {
                     <li key={index} className="mb-1">
                       <Link
                         href={link.href}
-                        className="text-dark text-decoration-none link-hover-red footer-link "
+                        className="text-dark lora text-decoration-none link-hover-red footer-link "
                       >
                         {link.name}
                       </Link>
@@ -172,7 +172,8 @@ export default function Footer() {
                     />{' '}
                     <a
                       href="tel:+917874011144"
-                      className="text-dark link-hover-red text-decoration-none"
+                      className="text-dark lora link-hover-red text-decoration-none"
+                       style={{ fontSize: '15px', fontWeight: 200 }} 
                     >
                       +91 7874011144
                     </a>
@@ -184,11 +185,12 @@ export default function Footer() {
                       width={25} // or any size you want
                       height={25}
                       className="me-2 icon-small"
+                      
                     />{' '}
                     <a
                       href="mailto:sales@suvarnakala.com"
-                      className="text-dark text-decoration-none link-hover-red"
-                      style={{ fontSize: '17px', fontWeight: 360 }} // 300 = Light/Thin
+                      className="text-dark lora text-decoration-none link-hover-red"
+                      style={{ fontSize: '16px', fontWeight: 200 }} // 300 = Light/Thin
                     >
                       sales@suvarnakala.com
                     </a>
