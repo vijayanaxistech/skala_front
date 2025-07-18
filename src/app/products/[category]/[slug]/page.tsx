@@ -155,8 +155,8 @@ export default function ProductDetailPage() {
             {/* Details */}
             <div className="col-12 col-md-6 d-flex flex-column justify-content-center order-md-3">
               <div className="px-2 px-md-4">
-                <h6 className="text-muted mb-1">{product.category.name}</h6>
-                <h3 className="fw-bold lora  mb-1" style={{ fontWeight: '100' }}>
+                <h6 className="text-red fraunces ">{product.category.name}</h6>
+                <h3 className="fw-medium fraunces text-blue  mb-1" style={{ fontWeight: '100' }}>
                   {product.title}
                 </h3>
                 {/* <div className="mb-2">
@@ -167,12 +167,12 @@ export default function ProductDetailPage() {
                   ))}
                 </div> */}
                 <p
-                  className="text-muted mt-2"
-                  style={{ fontSize: '14px', lineHeight: '1.6', textAlign: 'justify' }}
+                  className="text-dark mt-2"
+                  style={{  lineHeight: '1.6', textAlign: 'justify' }}
                 >
                   {product.description
-                    ? product.description.substring(0, 400) +
-                      (product.description.length > 400 ? '...' : '')
+                    ? product.description.substring(0, 240) +
+                      (product.description.length > 240 ? '...' : '')
                     : 'Discover timeless elegance with this exquisitely crafted jewelry piece.'}
                 </p>
 
@@ -181,7 +181,7 @@ export default function ProductDetailPage() {
                   style={{ borderBottom: '1px solid #C4C4C4', paddingBottom: '4px' }}
                 >
                   <strong className="dm-serif-text-regular">Category :</strong>{' '}
-                  <span className="text-muted">{product.category.name}</span>
+                  <span className="text-dark">{product.category.name}</span>
                 </p>
                 <p
                   className="mb-2"
@@ -213,8 +213,8 @@ export default function ProductDetailPage() {
             <div className="col-12">
               <h5 className="fw-bold text-dark mb-3 lora">Description</h5>
               <p
-                className="text-muted"
-                style={{ fontSize: '15px', lineHeight: '1.8', textAlign: 'justify' }}
+                className="text-dark"
+                style={{  lineHeight: '1.8', textAlign: 'justify' }}
               >
                 {product.description || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}
               </p>
@@ -223,9 +223,9 @@ export default function ProductDetailPage() {
 
           {/* Similar Products */}
           {similarProducts.length > 0 && (
-            <div className="row mt-5">
-              <h5 className="fw-bold text-dark mb-4">Related Products</h5>
-              <Row xs={1} sm={2} md={3} lg={4} className="g-4 mt-4">
+            <div className="row mt-3">
+              <h5 className="fw-bold text-dark  lora">Related Products</h5>
+              <Row xs={1} sm={2} md={3} lg={4} className="g-4 mt-2">
                 {similarProducts.map((item) => (
                   <Col key={item._id}>
                     <Link
@@ -245,7 +245,7 @@ export default function ProductDetailPage() {
                         </div>
                         <div className="p-1">
                           <div className="d-flex justify-content-between align-items-center">
-                            <h6 className="card-title text-dark text-truncate mb-0">
+                            <h6 className="card-title text-dark text-truncate mb-0 fraunces">
                               {item.title.length > 20
                                 ? item.title.substring(0, 20) + '...'
                                 : item.title}
@@ -275,10 +275,19 @@ export default function ProductDetailPage() {
                               />
                             </div>
                           </div>
-                          <p className="card-text text-dark mb-1">
-                            Jewellery Type: {item.jewelleryType}, Purity: {item.purity}
-                          </p>
-                          <p className="card-text text-dark mb-0">Gross Wt: {item.grossWeight}</p>
+<p className="card-text text-dark mb-1">
+  <span className="fraunces">Jewellery Type:</span>{' '}
+  {item.jewelleryType}
+</p>
+<p className="card-text text-dark mb-1">
+  <span className="fraunces">Purity:</span>{' '}
+  {item.purity}
+</p>
+<p className="card-text text-dark mb-0">
+  <span className="fraunces">Gross Wt:</span>{' '}
+  {item.grossWeight}
+</p>
+
                         </div>
                       </div>
                     </Link>

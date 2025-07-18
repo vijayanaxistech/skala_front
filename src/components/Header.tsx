@@ -145,6 +145,9 @@ const Header: React.FC = () => {
   const occasions = Array.from(new Set(products.map((p) => p.occasion))).sort();
   const purities = Array.from(new Set(products.map((p) => p.purity))).sort();
 
+  // Check if current path is an investment sub-page
+  const isInvestmentActive = investmentLinks.some(link => pathname.startsWith(link.path));
+
   return (
     <>
       <Goldrate />
@@ -187,7 +190,7 @@ const Header: React.FC = () => {
                   return (
                     <div key={`investment-${index}`} className="mobile-nav-item ">
                       <div
-                        className="mobile-nav-link lora"
+                        className="mobile-nav-link  lora"
                         onClick={handleMobileInvestmentToggle}
                         style={{ cursor: 'pointer' }}
                       >
@@ -385,12 +388,9 @@ const Header: React.FC = () => {
                     >
                       <Nav.Link
                         as="span"
-                        className={`navlinks-hover fraunces ${pathname.startsWith('/investment') ? 'active-link' : ''}`}
+                        className={`navlinks-hover custom-nav-link lora ${isInvestmentActive ? 'active-link' : ''}`}
                         onClick={() => setShowInvestmentDropdown(true)}
                         style={{
-                          fontWeight: 400,
-                          color: '#212529',
-                          fontSize: '1.03rem',
                           cursor: 'pointer',
                         }}
                       >
@@ -470,7 +470,7 @@ const Header: React.FC = () => {
                     >
                       <Nav.Link
                         as="span"
-                        className={`navlinks-hover fraunces ${isActive ? 'active-link' : ''}`}
+                        className={` custom-nav-link navlinks-hover lora ${isActive ? 'active-link' : ''}`}
                       >
                         {navLink.name}
                       </Nav.Link>
@@ -615,7 +615,6 @@ const Header: React.FC = () => {
       </Navbar>
 
       <style>{`
-
         .custom-nav-link {
           color: #333;
           font-weight: 500;
@@ -636,6 +635,7 @@ const Header: React.FC = () => {
           border: none;
         }
         .active-link {
+          color: #d41b1f !important;
           font-weight: 600;
         }
         .nav-item {
@@ -650,7 +650,7 @@ const Header: React.FC = () => {
           display: none;
           position: absolute;
           top: 100%;
-          left: -65%;
+          left: -67%;
           transform: translateX(-50%);
           width: 98.97vw;
           height: 300px;
@@ -753,7 +753,7 @@ const Header: React.FC = () => {
           display: none;
           position: absolute;
           top: 100%;
-          left: 132%;
+          left: 131%;
           transform: translateX(-50%);
           width: 100vw;
           background-color: #fff9f3;
@@ -904,7 +904,7 @@ const Header: React.FC = () => {
         }
         .mobile-social-icons {
           display: flex;
-          justify-content: center; /* Optional for horizontal centering */
+          justify-content: center;
           align-items: center;
           gap: 15px;
           padding: 20px 16px;

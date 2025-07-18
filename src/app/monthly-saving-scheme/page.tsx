@@ -1,11 +1,10 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Head from 'next/head';
 import breadcrumbImage from '../../../public/assets/About breadcumb.png';
 import scheme1Image from '../../../public/assets/scheme-1.png';
 import scheme2Image from '../../../public/assets/scheme-2.png';
-import playstore from '../../../public/assets/googleplay.png';
-import appstore from '../../../public/assets/appstore.png';
 import Loader from '@/components/Loader';
 
 const totalYears = new Date().getFullYear() - 1970;
@@ -25,11 +24,19 @@ const MonthlySavingScheme = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Set document title client-side
+  useEffect(() => {
+    document.title = 'Monthly Saving Scheme | Suvarnakala Pvt. Ltd';
+  }, []);
+
   // Show loader while loading
   if (loading) return <Loader />;
 
   return (
     <>
+      <Head>
+        <title>Monthly Saving Scheme | Suvarnakala Pvt. Ltd</title>
+      </Head>
       {/* Breadcrumb Section */}
       <div
         style={{ position: 'relative', width: '100%', height: '434px' }}
@@ -77,7 +84,7 @@ const MonthlySavingScheme = () => {
               <div className="scheme-card ">
                 <Image
                   src={scheme2Image}
-                  alt="Scheme 1"
+                  alt="Scheme 2"
                   className="img-fluid "
                   layout="responsive"
                   width={600}
@@ -86,41 +93,6 @@ const MonthlySavingScheme = () => {
               </div>
             </div>
           </div>
-
-          {/* App Store Links Section */}
-          {/* <div className="app-section text-center py-5">
-            <h2 className="fraunces mb-4">For More, Visit Our App</h2>
-            <div className="d-flex justify-content-center gap-4">
-              <a
-                href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="app-link"
-              >
-                <Image
-                  src={playstore}
-                  alt="Google Play Store"
-                  width={150}
-                  height={50}
-                  className="img-fluid"
-                />
-              </a>
-              <a
-                href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="app-link"
-              >
-                <Image
-                  src={appstore}
-                  alt="Apple App Store"
-                  width={150}
-                  height={50}
-                  className="img-fluid"
-                />
-              </a>
-            </div>
-          </div> */}
         </div>
       </div>
     </>

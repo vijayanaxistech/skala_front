@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Head from 'next/head';
 import breadcrumbImage from '../../../public/assets/About breadcumb.png';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { Row, Col } from 'react-bootstrap';
@@ -159,6 +160,11 @@ const BookMyGOld = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Set document title client-side
+  useEffect(() => {
+    document.title = 'Book My Gold | Suvarnakala Pvt. Ltd';
+  }, []);
+
   // Animated counter (trigger after loading)
   useEffect(() => {
     if (!loading && counterRef.current) {
@@ -197,6 +203,9 @@ const BookMyGOld = () => {
 
   return (
     <>
+      <Head>
+        <title>Book My Gold | Suvarnakala Pvt. Ltd</title>
+      </Head>
       {/* Breadcrumb Section */}
       <div
         style={{ position: 'relative', width: '100%', height: '434px' }}
@@ -246,11 +255,11 @@ const BookMyGOld = () => {
                         alt="Section Icon"
                         width={20}
                         height={20}
-                        className="rounded-circle" // Bootstrap for rounded-full
-                      />{' '}
+                        className="rounded-circle"
+                      />
                     </div>
                     <div>
-                      <p className=" text-gray mb-2 lora">{bookMyGoldBenefits.en}</p>
+                      <p className="text-gray mb-2 lora">{bookMyGoldBenefits.en}</p>
                       <p className="text-muted mb-0" style={{ fontSize: '0.95rem' }}>
                         {bookMyGoldBenefits.hi}
                       </p>
@@ -298,11 +307,11 @@ const BookMyGOld = () => {
                         alt="Section Icon"
                         width={20}
                         height={20}
-                        className="rounded-circle" // Bootstrap for rounded-full
-                      />{' '}
+                        className="rounded-circle"
+                      />
                     </div>
                     <div>
-                      <p className=" text-gray mb-2 lora">{bookMyGoldSteps}</p>
+                      <p className="text-gray mb-2 lora">{bookMyGoldSteps}</p>
                     </div>
                   </div>
                 </Col>
@@ -346,7 +355,7 @@ const BookMyGOld = () => {
                       alt="Section Icon"
                       width={20}
                       height={20}
-                      className="rounded-circle" // Bootstrap for rounded-full
+                      className="rounded-circle"
                     />
                   </div>
 
@@ -367,8 +376,8 @@ const BookMyGOld = () => {
                             alt="Section Icon"
                             width={20}
                             height={20}
-                            className="rounded-circle" // Bootstrap for rounded-full
-                          />{' '}
+                            className="rounded-circle"
+                          />
                         </div>
                         <div>
                           <p className="mb-1 text-dark lora">
@@ -390,7 +399,6 @@ const BookMyGOld = () => {
 
       {/* Animation Keyframes */}
       <style>{`
-
         .faq-accordion-item {
           border: none;
           margin-bottom: 10px;

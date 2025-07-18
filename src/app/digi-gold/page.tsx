@@ -1,10 +1,10 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Head from 'next/head';
 import breadcrumbImage from '../../../public/assets/About breadcumb.png';
 import Bullet from '../../../public/assets/bullet.jpg';
 import { Row, Col, Accordion } from 'react-bootstrap';
-
 import Loader from '@/components/Loader';
 
 const digitalGoldBenefits = [
@@ -194,6 +194,11 @@ const DigiGold = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Set document title client-side
+  useEffect(() => {
+    document.title = 'Digital Gold | Suvarnakala Pvt. Ltd';
+  }, []);
+
   // Animated counter (trigger after loading)
   useEffect(() => {
     if (!loading && counterRef.current) {
@@ -232,6 +237,9 @@ const DigiGold = () => {
 
   return (
     <>
+      <Head>
+        <title>Digital Gold | Suvarnakala Pvt. Ltd</title>
+      </Head>
       {/* Breadcrumb Section */}
       <div
         style={{ position: 'relative', width: '100%', height: '434px' }}
@@ -282,11 +290,11 @@ const DigiGold = () => {
                         alt="Section Icon"
                         width={20}
                         height={20}
-                        className="rounded-circle" // Bootstrap for rounded-full
-                      />{' '}
+                        className="rounded-circle"
+                      />
                     </div>
                     <div>
-                      <p className=" mb-2 lora">{digitalGoldBenefits.en}</p>
+                      <p className="mb-2 lora">{digitalGoldBenefits.en}</p>
                       <p className="text-muted mb-0" style={{ fontSize: '0.95rem' }}>
                         {digitalGoldBenefits.hi}
                       </p>
@@ -300,8 +308,7 @@ const DigiGold = () => {
       </div>
 
       {/* FAQ Section */}
-
-      <div className=" bg-color py-3">
+      <div className="bg-color py-3">
         <div className="p-5 py-3">
           <div className="custom-heading-wrapper d-flex align-items-center mb-4">
             <h2 className="m-0 custom-heading text-wrap me-3">
@@ -354,7 +361,6 @@ const DigiGold = () => {
 
       {/* Animation Keyframes */}
       <style>{`
-
         .faq-accordion-item {
           border: none;
           margin-bottom: 10px;

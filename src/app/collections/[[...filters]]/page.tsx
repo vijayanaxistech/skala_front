@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Head from 'next/head';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Link from 'next/link';
 import defaultBreadcrumbImage from '../../../../public/assets/collections.png';
@@ -57,25 +58,28 @@ const ProductsPage: React.FC = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const [fetchedProducts, fetchedCategories, fetchedBanner] = await Promise.all([
-        getProducts(),
-        getCategories(),
-        getDefaultBreadcrumbBanner(),
-      ]);
+      try {
+        const [fetchedProducts, fetchedCategories, fetchedBanner] = await Promise.all([
+          getProducts(),
+          getCategories(),
+          getDefaultBreadcrumbBanner(),
+        ]);
 
-      // Normalize products
-      const normalized = fetchedProducts.map((product: Product) => ({
-        ...product,
-        purity: product.purity || product.metalPurity || '',
-        jewelleryType: product.jewelleryType || '',
-        occasion: product.occasion || '',
-        category: { ...product.category, name: product.category?.name || '' },
-      }));
+        // Normalize products
+        const normalized = fetchedProducts.map((product: Product) => ({
+          ...product,
+          purity: product.purity || product.metalPurity || '',
+          jewelleryType: product.jewelleryType || '',
+          occasion: product.occasion || '',
+          category: { ...product.category, name: product.category?.name || '' },
+        }));
 
-      setProducts(normalized);
-      setCategories(fetchedCategories);
-      // Set the first banner from the response (assuming single banner for default)
-      setDefaultBanner(fetchedBanner[0] || null);
+        setProducts(normalized);
+        setCategories(fetchedCategories);
+        setDefaultBanner(fetchedBanner[0] || null);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     }
     fetchData();
   }, []);
@@ -95,6 +99,7 @@ const ProductsPage: React.FC = () => {
     }
 
     setSelectedFilters(pairs);
+    console.log('Selected Filters:', pairs); // Debug log
   }, [pathname]);
 
   useEffect(() => {
@@ -120,7 +125,13 @@ const ProductsPage: React.FC = () => {
   const uniqueOccasions = [...new Set(products.map((p) => p.occasion).filter(Boolean))];
   const uniqueCategories = [...new Set(products.map((p) => p.category.name).filter(Boolean))];
 
-  const displayTitle = Object.values(selectedFilters).join(', ') || 'All Products';
+  const displayTitle = Object.values(selectedFilters).join(', ') || 'Collections';
+
+  // Set document title client-side
+  useEffect(() => {
+    console.log('Setting document title:', `${displayTitle} | Suvarnakala Pvt. Ltd`); // Debug log
+    document.title = `${displayTitle} | Suvarnakala Pvt. Ltd`;
+  }, [displayTitle]);
 
   // Determine banner image and link
   let breadcrumbImageSrc: string | any = defaultBreadcrumbImage;
@@ -133,12 +144,14 @@ const ProductsPage: React.FC = () => {
     }
   } else if (defaultBanner) {
     breadcrumbImageSrc = `${BASE_URL}/${defaultBanner.image}`;
-    // Convert full URL to relative path for Next.js Link
     breadcrumbLink = defaultBanner.link.replace(/^https?:\/\/[^\/]+/, '');
   }
 
   return (
     <ClientLayoutWrapper>
+      <Head>
+        <title>{`${displayTitle} | Suvarnakala Pvt. Ltd`}</title>
+      </Head>
       {/* Banner */}
       <div className="banner" style={{ position: 'relative', width: '100%', height: '400px' }}>
         {breadcrumbLink ? (
@@ -164,7 +177,7 @@ const ProductsPage: React.FC = () => {
 
       <div className="py-5 p-5">
         <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-          <h3 className="mb-0 fs-5 fs-md-4">
+          <h3 className="mb-0 fs-5 fs-md-4 lora">
             {displayTitle} ({filteredProducts.length})
           </h3>
           <div className="ms-auto">
@@ -206,7 +219,7 @@ const ProductsPage: React.FC = () => {
 
                     <div className="p-1">
                       <div className="d-flex justify-content-between align-items-center">
-                        <h6 className="card-title text-dark text-truncate mb-0">
+                        <h6 className="card-title text-dark text-truncate mb-0 fraunces">
                           {product.title.length > 20
                             ? product.title.substring(0, 20) + '...'
                             : product.title}
@@ -238,10 +251,18 @@ const ProductsPage: React.FC = () => {
                         </div>
                       </div>
                       <p className="card-text text-dark mb-1">
-                        Jewellery Type: {product.jewelleryType}
+                        <span className="fraunces">Jewellery Type:</span>{' '}
+                        {product.jewelleryType}
                       </p>
-                      <p className="card-text text-dark mb-1">Purity: {product.purity}</p>
-                      <p className="card-text text-dark mb-0">Gross Wt: {product.grossWeight}</p>
+                      <p className="card-text text-dark mb-1">
+                        <span className="fraunces">Purity:</span>{' '}
+                        {product.purity}
+                      </p>
+                      <p className="card-text text-dark mb-0">
+                        <span className="fraunces">Gross Wt:</span>{' '}
+                        {product.grossWeight}
+                      </p>
+
                     </div>
                   </div>
                 </Link>
@@ -287,13 +308,7 @@ const ProductsPage: React.FC = () => {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 767px) {
-          .banner {
-            height: 215px !important;
-          }
-        }
-      `}</style>
+ 
     </ClientLayoutWrapper>
   );
 };

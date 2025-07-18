@@ -5,6 +5,8 @@ import { Button } from 'react-bootstrap';
 import { FaFilter } from 'react-icons/fa';
 import { IoIosArrowDown, IoMdClose } from 'react-icons/io';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import filter from '../../../../public/assets/icons/filter.svg'; // adjust extension if needed
 
 interface FilterDropdownProps {
   categories: string[];
@@ -74,11 +76,10 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
         <span
           key={item}
           onClick={() => updateFilter(type, item)}
-          className={`px-3 py-1 rounded-pill border ${
-            selectedFilters[type === 'jewellery' ? 'category' : type] === item
+          className={`px-3 py-1 rounded-pill border ${selectedFilters[type === 'jewellery' ? 'category' : type] === item
               ? 'bg-dark text-white'
               : 'bg-light text-dark'
-          }`}
+            }`}
           style={{ cursor: 'pointer', fontSize: '14px' }}
         >
           {item}
@@ -89,14 +90,24 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
 
   return (
     <div className="position-relative" ref={dropdownRef}>
-      <Button
-        variant="outline-dark"
-        className="d-flex align-items-center gap-2 rounded-pill lora "
+      <button
+        className="d-flex align-items-center gap-2 rounded-pill lora"
         onClick={() => setDropdownOpen((prev) => !prev)}
-        style={{ padding: '0.4rem 1.8rem', fontSize: '16px' }}
+        style={{
+          padding: '0.4rem 1.3rem',
+          fontSize: '16px',
+          border: '1px solid #000',
+          backgroundColor: 'transparent',
+          color: '#000',
+          transition: 'all 0.3s ease',
+        }}
+
       >
-        <FaFilter /> Filters
-      </Button>
+        <Image src={filter} alt="Filter" width={18} height={18} />
+        Filters
+      </button>
+
+
 
       {dropdownOpen && (
         <div
