@@ -141,7 +141,7 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
         }
       `}</style>
 
-      <div className="p-5 pb-0" aria-label="Suvarnakala Top Trending Designs Section">
+      <div className=" p-2 p-md-5 pb-0" aria-label="Suvarnakala Top Trending Designs Section">
         <div className="custom-heading-wrapper d-flex align-items-center mb-4">
           <h2 className="m-0 custom-heading text-wrap me-3">
             <span className="fraunces">

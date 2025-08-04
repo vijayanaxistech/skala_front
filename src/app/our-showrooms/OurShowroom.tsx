@@ -240,17 +240,17 @@ const WhySuvarnakala = () => {
 
   return (
     <ClientLayoutWrapper>
-      <div style={{ position: 'relative', width: '100%', height: '500px' }} className="banner">
+     <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
-          layout="fill"
-          style={{ objectFit: 'cover' }}
+          layout="responsive"
+          objectFit="contain"
           priority
         />
       </div>
 
-      <div className="p-5 bg-color">
+      <div className="p-3 p-md-5 bg-color">
         <ShowroomSection
           id="cgroad"
           title="C.G. Road"

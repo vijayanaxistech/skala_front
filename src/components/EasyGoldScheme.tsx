@@ -47,7 +47,7 @@ const EasyGoldScheme = () => {
       <div className="row mt-4">
         {schemes.map((item, idx) => (
           <div key={idx} className="col-12 col-sm-6 col-md-4 ">
-            <div className="d-flex flex-column align-items-center px-3">
+            <div className="d-flex flex-column align-items-center px-3 mt-3 mt-md-0">
               <Link href={item.link} className="text-decoration-none">
                 <div className="rounded-4 iconbox d-flex justify-content-center align-items-center mb-3">
                   <Image

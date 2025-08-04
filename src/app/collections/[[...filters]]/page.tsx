@@ -153,29 +153,49 @@ const ProductsPage: React.FC = () => {
         <title>{`${displayTitle} | Suvarnakala Pvt. Ltd`}</title>
       </Head>
       {/* Banner */}
-      <div className="banner" style={{ position: 'relative', width: '100%', height: '400px' }}>
-        {breadcrumbLink ? (
-          <Link href={breadcrumbLink}>
-            <Image
-              src={breadcrumbImageSrc}
-              alt={`${selectedFilters.category || 'Collections'} Banner`}
-              fill
-              style={{ objectFit: 'cover' }}
-              priority
-            />
-          </Link>
-        ) : (
-          <Image
-            src={breadcrumbImageSrc}
-            alt={`${selectedFilters.category || 'Collections'} Banner`}
-            fill
-            style={{ objectFit: 'cover' }}
-            priority
-          />
-        )}
-      </div>
+<div
+  className="banner"
+  style={{
+    width: '100%',
+    overflow: 'hidden',
+  }}
+>
+  {breadcrumbLink ? (
+    <Link href={breadcrumbLink}>
+      <Image
+        src={breadcrumbImageSrc}
+        alt={`${selectedFilters.category || 'Collections'} Banner`}
+        layout="responsive"
+        width={1600} // Use your actual image dimensions here
+        height={600}
+        style={{
+          objectFit: 'contain',
+          width: '100%',
+          height: 'auto',
+        }}
+        priority
+      />
+    </Link>
+  ) : (
+    <Image
+      src={breadcrumbImageSrc}
+      alt={`${selectedFilters.category || 'Collections'} Banner`}
+      layout="responsive"
+      width={1600} // Use your actual image dimensions here
+      height={600}
+      style={{
+        objectFit: 'contain',
+        width: '100%',
+        height: 'auto',
+      }}
+      priority
+    />
+  )}
+</div>
 
-      <div className="py-5 p-5">
+
+
+      <div className="py-md-5 p-5">
         <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
           <h3 className="mb-0 fs-5 fs-md-4 lora">
             {displayTitle} ({filteredProducts.length})

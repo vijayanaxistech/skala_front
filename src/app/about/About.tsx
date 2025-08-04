@@ -74,15 +74,12 @@ const About = () => {
   return (
     <>
       {/* Breadcrumb Section */}
-      <div
-        style={{ position: 'relative', width: '100%', height: '434px' }}
-        className="about-banner"
-      >
+      <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
-          layout="fill"
-          objectFit="cover"
+          layout="responsive"
+          objectFit="contain"
           priority
         />
       </div>
@@ -93,7 +90,7 @@ const About = () => {
           <Image src={roseImage} alt="Rose" width={100} height={200} className="img-fluid" />
         </div>
 
-        <div className="p-5 py-3">
+        <div className=" p-3 p-md-5 py-3">
           <div className="custom-heading-wrapper d-flex align-items-center mb-4">
             <h2 className="m-0 custom-heading text-wrap me-3">
               <span className="fraunces">
@@ -179,7 +176,7 @@ const About = () => {
       </div>
 
       {/* Legacy Section */}
-      <div className="p-5 position-relative">
+      <div className="p-3 p-md-5 position-relative">
         <div
           className="position-absolute bottom-0 start-0 mb-0 ms-0"
           style={{ zIndex: 1, transform: 'rotate(35deg)' }}
@@ -207,7 +204,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="col-md-5 mt-md-1 mb-3 text-center position-relative">
+          <div className="col-md-5  mt-md-1 mb-3 text-center position-relative">
             <div
               className="experience-ring"
               style={{
@@ -272,7 +269,7 @@ const About = () => {
               </div>
             </div>
 
-            <Image src={legacyImage} alt="Suvarnakala Store" className="img-fluid" />
+            <Image src={legacyImage} alt="Suvarnakala Store" className="img-fluid mb-5 mb-md-0" />
           </div>
         </div>
       </div>
@@ -313,10 +310,8 @@ const About = () => {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
-          @media (max-width: 767px) {
-          .about-banner {
-            height: 320px !important;
-          }
+
+
           
         }
       `}</style>

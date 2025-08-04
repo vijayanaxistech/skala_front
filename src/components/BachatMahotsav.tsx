@@ -56,23 +56,13 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
       </Head>
       <div className=" pb-2">
         <section className="hero-section">
-          <div className="p-5">
+          <div className="p-2 p-md-5">
             <div className="row">
               <div className="col-md-6">
                 <div className="main-title">
-                  {/* <div style={{ display: 'inline-block' }}>
-                  <h2 style={{ margin: 0 }}>
-                    Celebrate Savings <span className="text-red">with Style!</span>
-                  </h2>
-                  <Image
-                    src={line}
-                    alt="Decorative line under title"
-                    style={{ display: 'block', marginTop: '2px', width: '100%', height: 'auto' }}
-                  />
-                </div> */}
+
                   <div
-                    className="custom-heading-wrapper d-flex align-items-center  mb-4"
-                    style={{ marginTop: '-6px' }}
+                    className="custom-heading-wrapper d-flex align-items-center mt-4  mb-4"
                   >
                     <h2 className="m-0 custom-heading text-wrap me-3">
                       <span className="fraunces">
@@ -91,7 +81,7 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
                     discounts, making charge waivers, and festive combos – all crafted to bring
                     sparkle to your celebrations.
                   </p>
-                  <p>
+                  <p className="text-justify">
                     The most awaited <span className="dark_font lora">Gold Bachat Mahotsav</span> is
                     here! Its not just a festival — it’s your golden opportunity to save smart and
                     shine brighter with stunning jewellery collections and exclusive savings plans.
@@ -117,7 +107,7 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
                 </div>
               </div>
 
-              <div className="col-md-6">
+            <div className="col-md-6 hide-on-mobile">
                 <div className="jewellary_image" aria-live="polite">
                   {bachatMahotsavImages.length > 0 && (
                     <img
@@ -140,6 +130,16 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
             </div>
           </div>
         </section>
+      <style>
+        {`
+          @media (max-width: 768px) {
+            .hide-on-mobile {
+              display: none !important;
+            }
+          }
+        `}
+      </style>
+
       </div>
     </>
   );

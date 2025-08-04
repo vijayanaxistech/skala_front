@@ -2,9 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { getHeroes, BASE_URL } from '../lib/api';
-// import Image from 'next/image';
-// Optional: Use next/image for optimized image loading
-// import Image from 'next/image';
+import Image from 'next/image';
 
 interface Hero {
   _id: string;
@@ -21,6 +19,7 @@ const HeroCarousel: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slideWidth, setSlideWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     async function fetchHeroes() {
@@ -46,6 +45,7 @@ const HeroCarousel: React.FC = () => {
       } else {
         setSlideWidth(window.innerWidth);
       }
+      setIsMobile(window.innerWidth < 768);
     };
     updateWidth();
     window.addEventListener('resize', updateWidth);
@@ -70,7 +70,7 @@ const HeroCarousel: React.FC = () => {
     <div
       ref={containerRef}
       className="position-relative overflow-hidden hero-section"
-      style={{ width: '100%', maxWidth: '100vw', height: '600px', margin: 'auto' }}
+      style={{ width: '100%', maxWidth: '100vw', margin: 'auto' }}
       aria-label="Suvarnakala Hero Section Carousel"
     >
       {sortedHeroes.length > 0 ? (
@@ -92,17 +92,31 @@ const HeroCarousel: React.FC = () => {
                 style={{
                   width: `${slideWidth}px`,
                   position: 'relative',
-                  height: '600px',
                   flexShrink: 0,
-                  backgroundImage: `url(${imageUrl || '/fallback-image.jpg'})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundColor: '#f0f0f0',
                 }}
                 className="hero-banner"
                 role="group"
                 aria-label={`Slide ${idx + 1}: ${title}`}
               >
+                {/* Use Next.js Image component for optimized loading */}
+                <Image
+                  src={imageUrl || '/fallback-image.jpg'}
+                  alt={title}
+                  width={isMobile ? slideWidth : slideWidth}
+                  height={isMobile ? 450 : 600}
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                  priority={true}
+                  onError={(e) => {
+                    e.currentTarget.src = '/fallback-image.jpg';
+                    console.error('Failed to load hero image, using fallback.');
+                  }}
+                />
+
                 {/* Overlay for Desktop */}
                 <div
                   style={{
@@ -113,6 +127,7 @@ const HeroCarousel: React.FC = () => {
                     height: '100%',
                     backgroundColor: 'rgba(0,0,0,0.5)',
                     zIndex: 1,
+                    display: isMobile ? 'none' : 'block',
                   }}
                 />
                 <div
@@ -126,6 +141,7 @@ const HeroCarousel: React.FC = () => {
                     maxWidth: '40%',
                     paddingRight: '15px',
                     zIndex: 2,
+                    display: isMobile ? 'none' : 'flex',
                   }}
                 >
                   <h1 className="display-6 fw-semibold fraunces mb-4">{title}</h1>
@@ -152,6 +168,7 @@ const HeroCarousel: React.FC = () => {
                     padding: '20px',
                     color: 'white',
                     zIndex: 2,
+                    display: isMobile ? 'flex' : 'none',
                     background:
                       'linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3), rgba(0,0,0,0))',
                   }}
@@ -172,48 +189,28 @@ const HeroCarousel: React.FC = () => {
           })}
         </div>
       ) : (
-        // loading animation skala
         <div
           style={{
             width: '100%',
-            height: '600px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#f0f0f0',
             opacity: 0.4,
           }}
         >
-          {/* <Image
-              src="/assets/Suvarnakala.png"
-              alt="Suvarnakala Loading Logo"
-              className="loading-logo"
-              style={{
-                maxWidth: '15%',
-                maxHeight: '15%',
-                objectFit: 'contain',
-              }}
-              onError={(e) => {
-                e.currentTarget.src = '/fallback-image.jpg'; // Fallback image
-                console.error('Failed to load Suvarnakala.png, using fallback image');
-              }}
-            /> */}
-          {/* Optional: Using next/image (uncomment to use) */}
-          {/*
           <Image
             src="/assets/Suvarnakala.png"
             alt="Suvarnakala Loading Logo"
             className="loading-logo"
-            width={300} // Adjust based on your image size
-            height={300} // Adjust based on your image size
+            width={300}
+            height={300}
             style={{
               maxWidth: '50%',
               maxHeight: '50%',
               objectFit: 'contain',
             }}
-            onError={() => console.error('Failed to load Suvarnakala.png')}
+            priority={true}
           />
-          */}
         </div>
       )}
 
@@ -258,17 +255,6 @@ const HeroCarousel: React.FC = () => {
           </button>
         </>
       )}
-
-      <style jsx>{`
-        @media (max-width: 767px) {
-          .hero-banner {
-            height: 450px !important;
-          }
-          .hero-section {
-            height: 450px !important;
-          }
-        }
-      `}</style>
     </div>
   );
 };

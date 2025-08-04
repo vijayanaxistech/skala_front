@@ -38,15 +38,12 @@ const MonthlySavingScheme = () => {
         <title>Monthly Saving Scheme | Suvarnakala Pvt. Ltd</title>
       </Head>
       {/* Breadcrumb Section */}
-      <div
-        style={{ position: 'relative', width: '100%', height: '434px' }}
-        className="about-banner"
-      >
+     <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
-          layout="fill"
-          objectFit="cover"
+          layout="responsive"
+          objectFit="contain"
           priority
         />
       </div>

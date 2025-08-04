@@ -64,7 +64,7 @@ const About = () => {
               <h5 className="text-center lora text-md-start text-sm-center">
                 Timeless Elegance, Redefined
               </h5>
-              <p className="text-justify mt-3">
+              <p className="text-justify mt-3 p-1 p-md-0">
                 Discover the enduring charm of Gold, the brilliance of Real Diamonds, and the
                 innovation of Lab-Grown Diamonds. Whether you seek classic luxury, natural sparkle,
                 or sustainable sophistication, our carefully curated collection offers something for

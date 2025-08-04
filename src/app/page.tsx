@@ -99,9 +99,10 @@ export default function Home() {
       <EasyGoldScheme />
       <ShopbyStyle />
       <Products />
-      <TopTrendingDesigns initialDesigns={trendingDesigns} />
       <GiftCard />
-      <Moments moments={moments} />
+      {/* <Moments moments={moments} /> */}
+            <TopTrendingDesigns initialDesigns={trendingDesigns} />
+
       <BachatMahotsav bachatMahotsavImages={bachatMahotsavImages} />
       <Testimonials />
     </>

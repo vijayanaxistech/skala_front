@@ -204,7 +204,6 @@
 /* ==================== Hero Section ==================== */
 .hero-section {
   background: #fff9f3;
-  padding: 1px 0;
   position: relative;
 }
 
@@ -717,6 +716,7 @@ textarea::placeholder {
     list-style-type: disc;
   }
 
+            
   .categories-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -735,6 +735,11 @@ textarea::placeholder {
     flex-wrap: wrap;
   }
 
+          .experience-ring{
+        margin-left: 27px;
+        margin-top: 30px;
+        }
+        
   .social-media {
     order: 2 !important;
     flex-basis: 100% !important;
@@ -769,14 +774,13 @@ textarea::placeholder {
     justify-content: center !important;
     align-items: center !important;
     width: 100% !important;
-    max-width: 350px !important;
     margin: 0 auto !important;
   }
 
   .hero-section .jewellary_image img {
     width: 100% !important;
     height: auto !important;
-    object-fit: cover !important;
+    object-fit: fill !important;
     display: block !important;
   }
 
@@ -795,11 +799,10 @@ textarea::placeholder {
   .hero-section .mobile_img img {
     width: 100% !important;
     height: auto !important;
-    display: block !important;
+    display: none !important;
   }
 
   .hero-section .main-title {
-    padding: 0 15px !important;
     text-align: center !important;
   }
 

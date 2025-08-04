@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useParams, notFound, useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Container, Row, Col, Button } from 'react-bootstrap';
@@ -132,13 +132,23 @@ export default function ProductDetailPage() {
   return (
     <ClientLayoutWrapper>
       {/* Banner */}
-      <div style={{ position: 'relative', width: '100%', height: '400px' }}>
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: 'auto',
+          overflow: 'hidden',
+        }}
+      >
         <Image
           src={breadcrumbImageSrc}
           alt={`${product.category.name} Banner`}
-          layout="fill"
-          objectFit="cover"
+          layout="responsive"
+          width={1920}
+          height={400}
+          objectFit="contain"
           priority
+          style={{ width: '100%', height: 'auto' }}
         />
       </div>
 
@@ -166,10 +176,7 @@ export default function ProductDetailPage() {
                     </span>
                   ))}
                 </div> */}
-                <p
-                  className="text-dark mt-2"
-                  style={{  lineHeight: '1.6', textAlign: 'justify' }}
-                >
+                <p className="text-dark mt-2" style={{ lineHeight: '1.6', textAlign: 'justify' }}>
                   {product.description
                     ? product.description.substring(0, 240) +
                       (product.description.length > 240 ? '...' : '')
@@ -212,10 +219,7 @@ export default function ProductDetailPage() {
           <div className="row mt-5">
             <div className="col-12">
               <h5 className="fw-bold text-dark mb-3 lora">Description</h5>
-              <p
-                className="text-dark"
-                style={{  lineHeight: '1.8', textAlign: 'justify' }}
-              >
+              <p className="text-dark" style={{ lineHeight: '1.8', textAlign: 'justify' }}>
                 {product.description || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}
               </p>
             </div>
@@ -275,19 +279,15 @@ export default function ProductDetailPage() {
                               />
                             </div>
                           </div>
-<p className="card-text text-dark mb-1">
-  <span className="fraunces">Jewellery Type:</span>{' '}
-  {item.jewelleryType}
-</p>
-<p className="card-text text-dark mb-1">
-  <span className="fraunces">Purity:</span>{' '}
-  {item.purity}
-</p>
-<p className="card-text text-dark mb-0">
-  <span className="fraunces">Gross Wt:</span>{' '}
-  {item.grossWeight}
-</p>
-
+                          <p className="card-text text-dark mb-1">
+                            <span className="fraunces">Jewellery Type:</span> {item.jewelleryType}
+                          </p>
+                          <p className="card-text text-dark mb-1">
+                            <span className="fraunces">Purity:</span> {item.purity}
+                          </p>
+                          <p className="card-text text-dark mb-0">
+                            <span className="fraunces">Gross Wt:</span> {item.grossWeight}
+                          </p>
                         </div>
                       </div>
                     </Link>

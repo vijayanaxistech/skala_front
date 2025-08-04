@@ -63,9 +63,9 @@ const GiftCard = () => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </Head>
-      <div className=" pb-2 ">
+      <div className=" pb-2 mt-5 ">
         <div className=" bg-color" aria-label="Suvarnakala Gift Card Section">
-          <div className="p-5 pt-3 pb-2 ">
+          <div className="p-3 p-md-5 pt-3 pb-2 ">
             <div className="row align-items-center">
               <div className="custom-heading-wrapper d-flex align-items-center mb-4">
                 <h2 className="m-0 custom-heading text-wrap me-3">
@@ -79,16 +79,16 @@ const GiftCard = () => {
                   </div>
                 </h2>
               </div>
-              <p className=" mt-2 text-center text-md-start">
+              <p className=" mt-2 text-justify  text-md-start">
                 Not sure which piece to choose? Let them decide with the Suvarnakala Gift Card, a
                 perfect way to celebrate special moments with the beauty of fine jewelry.
               </p>
               {/* Text Content */}
               <div className="col-12 col-md-7 mb-4 mb-md-0">
-                <h6 className="lora  mt-1 mb-3 text-red text-center text-md-start">
+                <h6 className="lora  mt-1 mb-3 text-red text-start">
                   Why a Suvarnakala Gift Card?
                 </h6>
-                <ul className="ps-3  text-center text-md-start list-unstyled list-md-bullet">
+                <ul className=" ps-0 ps-md-3  text-justify text-md-start list-unstyled list-md-bullet">
                   <li className="mb-2">
                     Perfect for Any Occasion — Birthdays, weddings, anniversaries, or just because.
                   </li>
@@ -154,7 +154,7 @@ const GiftCard = () => {
               </div>
 
               {/* Image */}
-              <div className="col-12 col-md-5 text-center">
+              <div className="col-12 col-md-5 mb-4 text-center">
                 <Image
                   src={giftcard}
                   alt="Suvarnakala Gift Card for Jewelry"
