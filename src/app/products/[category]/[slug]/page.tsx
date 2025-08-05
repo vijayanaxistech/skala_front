@@ -154,7 +154,7 @@ export default function ProductDetailPage() {
 
       {/* Product Section */}
       <div className="bg-color">
-        <div className="p-5 py-5">
+        <div className="p-3 p-md-5 py-5">
           <div className="row g-4">
             <ProductImageGallery
               mainImage={product.mainImage}

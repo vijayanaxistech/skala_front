@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ScrollToTopOnRouteChange from '../components/ScrollToTopOnPageLoad';
 import type { ReactNode } from 'react';
 
 export const metadata = {
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <ScrollToTopOnRouteChange /> {/* Add the component here */}
       </body>
     </html>
   );

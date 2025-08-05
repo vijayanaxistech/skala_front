@@ -845,9 +845,6 @@ textarea::placeholder {
     max-width: 100%;
   }
 
-  .banner {
-    height: 300px !important;
-  }
 
   .shop-now-section {
     height: 200px !important;
@@ -976,13 +973,13 @@ textarea::placeholder {
     left: 14%;
   }
 
-  .popup-image {
-    height: 250px !important;
-  }
+.about_section::after {
+display: none;
+}
 
   .modal {
     height: auto;
-    top: 20%;
+    top: 10%;
     padding: 20px;
   }
 

@@ -106,7 +106,7 @@ const ShopbyStyle = () => {
             ))}
 
             <Link
-              href="/collections"
+              href="/categories"
               key="view-all"
               className="category-item text-decoration-none bottom-row "
               role="group"

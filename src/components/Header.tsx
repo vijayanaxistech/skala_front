@@ -165,7 +165,7 @@ const Header: React.FC = () => {
 
           <Navbar.Toggle as="div" className="custom-toggler d-lg-none" onClick={handleToggle}>
             {expanded ? (
-              <FaBarsStaggered size={24} color="#D41B1F" />
+              <FaTimes size={24} color="#D41B1F" />
             ) : (
               <FaBarsStaggered size={24} color="#D41B1F" />
             )}
@@ -187,10 +187,11 @@ const Header: React.FC = () => {
             <Nav className="mobile-nav flex-column">
               {desiredOrder.map((name, index) => {
                 if (name === 'Investment') {
+                  const isInvestmentActive = investmentLinks.some(link => pathname.startsWith(link.path));
                   return (
                     <div key={`investment-${index}`} className="mobile-nav-item ">
                       <div
-                        className="mobile-nav-link  lora"
+                        className={`mobile-nav-link lora ${isInvestmentActive ? 'active' : ''}`}
                         onClick={handleMobileInvestmentToggle}
                         style={{ cursor: 'pointer' }}
                       >
@@ -207,7 +208,7 @@ const Header: React.FC = () => {
                             <Link
                               href={link.path}
                               key={link.name}
-                              className="mobile-submenu-item"
+                              className={`mobile-submenu-item ${pathname === link.path ? 'active' : ''}`}
                               onClick={() => {
                                 setShowMobileInvestment(false);
                                 setExpanded(false);
@@ -230,16 +231,34 @@ const Header: React.FC = () => {
                 }
 
                 if (name === 'Collections') {
+                  const isCollectionsActive = pathname.startsWith('/collections');
                   return (
                     <div key={`collections-${index}`} className="mobile-nav-item">
-                      <div className="mobile-nav-link lora" onClick={handleMobileCollectionsToggle}>
+                      <Link
+                        href="/collections"
+                        className={`mobile-nav-link lora ${isCollectionsActive ? 'active' : ''}`}
+                        onClick={(e) => {
+                          if (pathname === '/collections' && showMobileCollections) {
+                            e.preventDefault();
+                            handleMobileCollectionsToggle();
+                          } else if (pathname !== '/collections') {
+                            setExpanded(false);
+                          }
+                        }}
+                      >
                         Collections
-                        <span className="dropdown-arrow ms-2">
+                        <span
+                          className="dropdown-arrow ms-2"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleMobileCollectionsToggle();
+                          }}
+                        >
                           <i
-                            className={`bi ${showMobileInvestment ? 'bi-caret-up' : 'bi-caret-down'}`}
+                            className={`bi ${showMobileCollections ? 'bi-caret-up' : 'bi-caret-down'}`}
                           ></i>
                         </span>
-                      </div>
+                      </Link>
                       {showMobileCollections && (
                         <div className="mobile-submenu">
                           <div className="mobile-submenu-section">
@@ -316,8 +335,9 @@ const Header: React.FC = () => {
                 if (!navLink) return null;
 
                 const isBookAppointment = name === 'Book an Appointment';
-                const isActive = !isBookAppointment
-                  ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
+                const isCollections = name === 'Collections'; // <-- This line was missing or misplaced
+                const isActive = !isBookAppointment && !isCollections 
+                  ? pathname === navLink.path || pathname.startsWith(navLink.path + '/') 
                   : false;
 
                 return (
@@ -445,7 +465,7 @@ const Header: React.FC = () => {
                 const isActive =
                   !isBookAppointment && !isCollections
                     ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
-                    : false;
+                    : isCollections && pathname.startsWith('/collections');
 
                 return (
                   <div
@@ -831,7 +851,7 @@ const Header: React.FC = () => {
           position: fixed;
           top: 0;
           left: -100%;
-          width: 350px;
+          width: 100%;
           height: 100%;
           background-color: #fff9f3;
           box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);

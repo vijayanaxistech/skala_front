@@ -195,7 +195,7 @@ const ProductsPage: React.FC = () => {
 
 
 
-      <div className="py-md-5 p-5">
+      <div className="py-md-5 p-3">
         <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
           <h3 className="mb-0 fs-5 fs-md-4 lora">
             {displayTitle} ({filteredProducts.length})
@@ -230,8 +230,8 @@ const ProductsPage: React.FC = () => {
                             : 'https://via.placeholder.com/300x300?text=No+Image'
                         }
                         alt={product.title}
-                        width={350}
-                        height={350}
+                        width={400}
+                        height={400}
                         className="categoryImage"
                         style={{ objectFit: 'cover' }}
                       />

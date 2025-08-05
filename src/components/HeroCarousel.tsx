@@ -16,7 +16,8 @@ interface Hero {
 
 const HeroCarousel: React.FC = () => {
   const [heroes, setHeroes] = useState<Hero[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1); // Start at the first "real" slide
+  const [isTransitioning, setIsTransitioning] = useState(false); // To control transitions
   const [slideWidth, setSlideWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -38,6 +39,13 @@ const HeroCarousel: React.FC = () => {
     .filter((hero) => hero.isActive)
     .sort((a, b) => a.priority - b.priority);
 
+  // Add a copy of the last and first heroes for seamless looping
+  const duplicatedHeroes = [...sortedHeroes];
+  if (sortedHeroes.length > 0) {
+    duplicatedHeroes.unshift(sortedHeroes[sortedHeroes.length - 1]);
+    duplicatedHeroes.push(sortedHeroes[0]);
+  }
+
   useEffect(() => {
     const updateWidth = () => {
       if (containerRef.current) {
@@ -53,18 +61,41 @@ const HeroCarousel: React.FC = () => {
   }, []);
 
   const goNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % (sortedHeroes.length || 1));
-  }, [sortedHeroes.length]);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev + 1);
+  }, [isTransitioning]);
 
   const goPrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + (sortedHeroes.length || 1)) % (sortedHeroes.length || 1));
-  }, [sortedHeroes.length]);
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex((prev) => prev - 1);
+  }, [isTransitioning]);
 
+  // Autoplay functionality
   useEffect(() => {
     if (slideWidth === 0 || sortedHeroes.length === 0) return;
     const interval = setInterval(() => goNext(), 7000);
     return () => clearInterval(interval);
   }, [slideWidth, goNext, sortedHeroes.length]);
+
+  // Logic to handle the infinite loop jump
+  useEffect(() => {
+    if (isTransitioning) {
+      const timer = setTimeout(() => {
+        if (currentIndex === duplicatedHeroes.length - 1) {
+          setIsTransitioning(false);
+          setCurrentIndex(1); // Jump to the first "real" slide
+        } else if (currentIndex === 0) {
+          setIsTransitioning(false);
+          setCurrentIndex(duplicatedHeroes.length - 2); // Jump to the last "real" slide
+        } else {
+          setIsTransitioning(false);
+        }
+      }, 700); // Match this duration with your CSS transition time
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, isTransitioning, duplicatedHeroes.length]);
 
   return (
     <div
@@ -73,17 +104,17 @@ const HeroCarousel: React.FC = () => {
       style={{ width: '100%', maxWidth: '100vw', margin: 'auto' }}
       aria-label="Suvarnakala Hero Section Carousel"
     >
-      {sortedHeroes.length > 0 ? (
+      {duplicatedHeroes.length > 0 ? (
         <div
           style={{
             display: 'flex',
-            width: `${sortedHeroes.length * slideWidth}px`,
+            width: `${duplicatedHeroes.length * slideWidth}px`,
             transform: `translateX(-${currentIndex * slideWidth}px)`,
-            transition: 'transform 0.7s ease-in-out',
+            transition: isTransitioning ? 'transform 0.7s ease-in-out' : 'none',
           }}
           aria-live="polite"
         >
-          {sortedHeroes.map(({ title, description, image, link }, idx) => {
+          {duplicatedHeroes.map(({ title, description, image, link }, idx) => {
             const imageUrl = image.startsWith('http') ? image : `${BASE_URL}/${image}`;
             const validLink = link?.startsWith('http') ? link : '#';
             return (
@@ -125,7 +156,6 @@ const HeroCarousel: React.FC = () => {
                     left: 0,
                     width: '100%',
                     height: '100%',
-                    backgroundColor: 'rgba(0,0,0,0.5)',
                     zIndex: 1,
                     display: isMobile ? 'none' : 'block',
                   }}
@@ -144,7 +174,7 @@ const HeroCarousel: React.FC = () => {
                     display: isMobile ? 'none' : 'flex',
                   }}
                 >
-                  <h1 className="display-6 fw-semibold fraunces mb-4">{title}</h1>
+                  <h1 className="display-6 fw-semibold lora mb-4">{title}</h1>
                   <p className="lead mb-5 ">{description}</p>
                   <a
                     href={validLink}
@@ -169,8 +199,7 @@ const HeroCarousel: React.FC = () => {
                     color: 'white',
                     zIndex: 2,
                     display: isMobile ? 'flex' : 'none',
-                    background:
-                      'linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3), rgba(0,0,0,0))',
+
                   }}
                 >
                   <h3 className="fw-semibold mb-3">{title}</h3>
@@ -188,31 +217,7 @@ const HeroCarousel: React.FC = () => {
             );
           })}
         </div>
-      ) : (
-        <div
-          style={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            opacity: 0.4,
-          }}
-        >
-          <Image
-            src="/assets/Suvarnakala.png"
-            alt="Suvarnakala Loading Logo"
-            className="loading-logo"
-            width={300}
-            height={300}
-            style={{
-              maxWidth: '50%',
-              maxHeight: '50%',
-              objectFit: 'contain',
-            }}
-            priority={true}
-          />
-        </div>
-      )}
+      ) : null}
 
       {/* Navigation Buttons */}
       {sortedHeroes.length > 0 && (

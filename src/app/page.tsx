@@ -11,7 +11,7 @@ import VideoSection from '../components/VideoSection';
 import ShopbyStyle from '../components/ShopbyStyle';
 import TopTrendingDesigns from '../components/TopTrendingDesigns';
 import GiftCard from '../components/GiftCard';
-import Moments from '../components/Moments';
+// import Moments from '../components/Moments';
 import BachatMahotsav from '../components/BachatMahotsav';
 import Testimonials from '../components/Testimonials';
 import EasyGoldScheme from '../components/EasyGoldScheme';
@@ -69,7 +69,7 @@ export default function Home() {
       } catch (error) {
         console.error('Error fetching home page data:', error);
       } finally {
-        setLoading(false); // 👈 stop loading
+        setLoading(false); 
       }
     }
 

@@ -172,18 +172,7 @@ const WhySuvarnakala = () => {
           </Container>
         </div>
       </div>
-      <style>{`
-        
-          @media (max-width: 767px) {
-          .banner {
-            height: 215px !important;
-          }
-            .why{
-            paddingtop: 0 ;
-            }
-          
-        }
-      `}</style>
+
     </>
   );
 };
