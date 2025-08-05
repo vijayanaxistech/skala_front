@@ -650,6 +650,8 @@
 }
 
 /* ==================== Carousel Dots ==================== */
+
+
 .react-multi-carousel-dot-list {
   margin-top: 40px;
   position: relative;
@@ -716,7 +718,7 @@ textarea::placeholder {
     list-style-type: disc;
   }
 
-            
+
   .categories-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -731,15 +733,15 @@ textarea::placeholder {
 }
 
 @media (max-width: 768px) {
-  footer .container > div.d-flex {
+  footer .container>div.d-flex {
     flex-wrap: wrap;
   }
 
-          .experience-ring{
-        margin-left: 27px;
-        margin-top: 30px;
-        }
-        
+  .experience-ring {
+    margin-left: 27px;
+    margin-top: 30px;
+  }
+
   .social-media {
     order: 2 !important;
     flex-basis: 100% !important;
@@ -944,6 +946,7 @@ textarea::placeholder {
 }
 
 @keyframes zoom {
+
   0%,
   100% {
     transform: scale(1);
@@ -973,9 +976,9 @@ textarea::placeholder {
     left: 14%;
   }
 
-.about_section::after {
-display: none;
-}
+  .about_section::after {
+    display: none;
+  }
 
   .modal {
     height: auto;
@@ -1023,14 +1026,13 @@ display: none;
 }
 
 /* On screens smaller than 768px (mobile) */
+
 @media (max-width: 767.98px) {
   .footer-social-icons {
     justify-content: flex-start;
     margin-bottom: 15px;
   }
 }
-
-/* about badge  */
 
 .badge-value {
   margin-left: 35px;
@@ -1045,6 +1047,7 @@ display: none;
 }
 
 @media (max-width: 576px) {
+
   .badge-value,
   .badge-guarantee,
   .badge-service {
@@ -1052,3 +1055,60 @@ display: none;
   }
 }
 
+/* ==================== Custom Hamburger Menu ==================== */
+
+
+.burger-toggle {
+  width: 45px;
+  height: 45px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #D41B1F;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.burger-toggle span {
+  position: absolute;
+  width: 26px;
+  height: 2px;
+  background: #D41B1F;
+  transition: 0.5s ease-in-out;
+  transform-origin: center;
+}
+
+.burger-toggle span:nth-child(1) {
+  top: 12px;
+}
+
+.burger-toggle span:nth-child(2) {
+  top: 21px;
+}
+
+.burger-toggle span:nth-child(3) {
+  top: 30px;
+}
+
+.burger-toggle.active span:nth-child(1) {
+  top: 22px;
+  transform: rotate(135deg);
+}
+
+.burger-toggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.burger-toggle.active span:nth-child(3) {
+  top: 22px;
+  transform: rotate(-135deg);
+}
+
+.burger-toggle:focus,
+.burger-toggle:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}

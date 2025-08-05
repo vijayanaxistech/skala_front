@@ -162,14 +162,16 @@ const Header: React.FC = () => {
               </Navbar.Brand>
             </Link>
           </div>
+          <div className="d-lg-none" onClick={handleToggle}>
+            <div className={`burger-toggle ${expanded ? 'active' : ''}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
 
-          <Navbar.Toggle as="div" className="custom-toggler d-lg-none" onClick={handleToggle}>
-            {expanded ? (
-              <FaTimes size={24} color="#D41B1F" />
-            ) : (
-              <FaBarsStaggered size={24} color="#D41B1F" />
-            )}
-          </Navbar.Toggle>
+
+
 
           {/* Mobile Menu */}
           <div className={`mobile-menu  ${expanded ? 'show' : ''}`}>
@@ -177,12 +179,15 @@ const Header: React.FC = () => {
               <Link href="/" onClick={() => setExpanded(false)}>
                 <Image src={logo} alt="Suvarnakala Logo" width={120} height={48} />
               </Link>
-              <FaTimes
-                size={24}
-                color="#D41B1F"
-                onClick={() => setExpanded(false)}
-                style={{ cursor: 'pointer' }}
-              />
+              <div className="d-lg-none" onClick={handleToggle}>
+                <div className={`burger-toggle ${expanded ? 'active' : ''}`}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+
+
             </div>
             <Nav className="mobile-nav flex-column">
               {desiredOrder.map((name, index) => {
@@ -336,8 +341,8 @@ const Header: React.FC = () => {
 
                 const isBookAppointment = name === 'Book an Appointment';
                 const isCollections = name === 'Collections'; // <-- This line was missing or misplaced
-                const isActive = !isBookAppointment && !isCollections 
-                  ? pathname === navLink.path || pathname.startsWith(navLink.path + '/') 
+                const isActive = !isBookAppointment && !isCollections
+                  ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
                   : false;
 
                 return (
@@ -635,6 +640,9 @@ const Header: React.FC = () => {
       </Navbar>
 
       <style>{`
+
+
+
         .custom-nav-link {
           color: #333;
           font-weight: 500;
@@ -924,7 +932,7 @@ const Header: React.FC = () => {
         }
         .mobile-social-icons {
           display: flex;
-          justify-content: center;
+          justify-content: start;
           align-items: center;
           gap: 15px;
           padding: 20px 16px;
