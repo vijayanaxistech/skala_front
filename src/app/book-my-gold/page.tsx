@@ -185,7 +185,7 @@ const BookMyGOld = () => {
             }, stepTime);
           }
         },
-        { threshold: 0.6 }
+        { threshold: 0.6 },
       );
 
       observer.observe(counterRef.current);
@@ -207,7 +207,7 @@ const BookMyGOld = () => {
         <title>Book My Gold | Suvarnakala Pvt. Ltd</title>
       </Head>
       {/* Breadcrumb Section */}
-     <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
+      <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"

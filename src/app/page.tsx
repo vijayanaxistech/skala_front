@@ -69,7 +69,7 @@ export default function Home() {
       } catch (error) {
         console.error('Error fetching home page data:', error);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     }
 
@@ -101,7 +101,7 @@ export default function Home() {
       <Products />
       <GiftCard />
       {/* <Moments moments={moments} /> */}
-            <TopTrendingDesigns initialDesigns={trendingDesigns} />
+      <TopTrendingDesigns initialDesigns={trendingDesigns} />
 
       <BachatMahotsav bachatMahotsavImages={bachatMahotsavImages} />
       <Testimonials />

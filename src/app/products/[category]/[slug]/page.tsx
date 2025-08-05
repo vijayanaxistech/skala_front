@@ -98,7 +98,7 @@ export default function ProductDetailPage() {
         const allRaw = await getProducts();
         const allProducts = allRaw.map(transformProduct);
         const filtered = allProducts.filter(
-          (p) => p.category._id === transformed.category._id && p._id !== transformed._id
+          (p) => p.category._id === transformed.category._id && p._id !== transformed._id,
         );
         setSimilarProducts(filtered.slice(0, 3));
       } catch (error) {

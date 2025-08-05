@@ -240,7 +240,7 @@ const WhySuvarnakala = () => {
 
   return (
     <ClientLayoutWrapper>
-     <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
+      <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"

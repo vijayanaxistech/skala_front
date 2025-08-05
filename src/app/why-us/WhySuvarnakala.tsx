@@ -65,7 +65,7 @@ const WhySuvarnakala = () => {
   return (
     <>
       {/* Banner Image */}
-     <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
+      <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
@@ -172,7 +172,6 @@ const WhySuvarnakala = () => {
           </Container>
         </div>
       </div>
-
     </>
   );
 };

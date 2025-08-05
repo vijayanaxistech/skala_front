@@ -219,7 +219,7 @@ const DigiGold = () => {
             }, stepTime);
           }
         },
-        { threshold: 0.6 }
+        { threshold: 0.6 },
       );
 
       observer.observe(counterRef.current);
@@ -241,7 +241,7 @@ const DigiGold = () => {
         <title>Digital Gold | Suvarnakala Pvt. Ltd</title>
       </Head>
       {/* Breadcrumb Section */}
-     <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
+      <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"

@@ -205,7 +205,7 @@ function generateSitemap() {
           return [
             4 /*yield*/,
             (0, sitemap_1.streamToPromise)(
-              stream_1.Readable.from(sitemapEntries).pipe(sitemap)
+              stream_1.Readable.from(sitemapEntries).pipe(sitemap),
             ).then(function (data) {
               return data.toString();
             }),

@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     if (!to || !body) {
       return NextResponse.json(
         { success: false, message: 'Missing "to" or "body".' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
         message: 'Failed to send WhatsApp message.',
         error: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

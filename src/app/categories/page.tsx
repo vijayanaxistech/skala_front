@@ -43,7 +43,9 @@ const ShopAllCategories = () => {
           getDefaultBreadcrumbBanner(),
         ]);
 
-        const activeCategories = fetchedCategories.filter((category: Category) => category.isActive === true);
+        const activeCategories = fetchedCategories.filter(
+          (category: Category) => category.isActive === true,
+        );
         setCategories(activeCategories);
         setDefaultBanner(fetchedBanner[0] || null);
       } catch (err) {
@@ -119,7 +121,7 @@ const ShopAllCategories = () => {
         <div className="custom-heading-wrapper d-flex align-items-center mb-4">
           <h2 className="m-0 custom-heading text-wrap me-3">
             <span className="fraunces">
-              Shop by  <span className="text-red fraunces">Style :</span>
+              Shop by <span className="text-red fraunces">Style :</span>
             </span>
             <div className="decorative-line">
               <div className="diamond"></div>

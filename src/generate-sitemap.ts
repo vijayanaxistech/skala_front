@@ -34,7 +34,7 @@ async function getProductRoutes(): Promise<string[]> {
   try {
     const products = await getProducts();
     return products.map(
-      (p: { slug: string; category: string }) => `/jewelry/${p.category}/${p.slug}`
+      (p: { slug: string; category: string }) => `/jewelry/${p.category}/${p.slug}`,
     );
   } catch (error) {
     console.error('❌ Error fetching products:', error);
@@ -72,7 +72,7 @@ async function generateSitemap() {
 
   const sitemap = new SitemapStream({ hostname: BASE_URL });
   const xml = await streamToPromise(Readable.from(sitemapEntries).pipe(sitemap)).then((data) =>
-    data.toString()
+    data.toString(),
   );
 
   const outputPath = path.join(process.cwd(), 'public', 'sitemap.xml');

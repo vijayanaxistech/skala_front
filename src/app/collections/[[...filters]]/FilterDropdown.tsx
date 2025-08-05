@@ -76,10 +76,11 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
         <span
           key={item}
           onClick={() => updateFilter(type, item)}
-          className={`px-3 py-1 rounded-pill border ${selectedFilters[type === 'jewellery' ? 'category' : type] === item
+          className={`px-3 py-1 rounded-pill border ${
+            selectedFilters[type === 'jewellery' ? 'category' : type] === item
               ? 'bg-dark text-white'
               : 'bg-light text-dark'
-            }`}
+          }`}
           style={{ cursor: 'pointer', fontSize: '14px' }}
         >
           {item}
@@ -101,13 +102,10 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
           color: '#000',
           transition: 'all 0.3s ease',
         }}
-
       >
         <Image src={filter} alt="Filter" width={18} height={18} />
         Filters
       </button>
-
-
 
       {dropdownOpen && (
         <div

@@ -199,7 +199,6 @@ const HeroCarousel: React.FC = () => {
                     color: 'white',
                     zIndex: 2,
                     display: isMobile ? 'flex' : 'none',
-
                   }}
                 >
                   <h3 className="fw-semibold mb-3">{title}</h3>

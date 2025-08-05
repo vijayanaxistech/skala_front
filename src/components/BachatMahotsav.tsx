@@ -60,10 +60,7 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
             <div className="row">
               <div className="col-md-6">
                 <div className="main-title">
-
-                  <div
-                    className="custom-heading-wrapper d-flex align-items-center mt-4  mb-4"
-                  >
+                  <div className="custom-heading-wrapper d-flex align-items-center mt-4  mb-4">
                     <h2 className="m-0 custom-heading text-wrap me-3">
                       <span className="fraunces">
                         Celebrate Savings <span className="text-red fraunces">with Style! </span>
@@ -107,7 +104,7 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
                 </div>
               </div>
 
-            <div className="col-md-6 hide-on-mobile">
+              <div className="col-md-6 hide-on-mobile">
                 <div className="jewellary_image" aria-live="polite">
                   {bachatMahotsavImages.length > 0 && (
                     <img
@@ -130,16 +127,15 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
             </div>
           </div>
         </section>
-      <style>
-        {`
+        <style>
+          {`
           @media (max-width: 768px) {
             .hide-on-mobile {
               display: none !important;
             }
           }
         `}
-      </style>
-
+        </style>
       </div>
     </>
   );

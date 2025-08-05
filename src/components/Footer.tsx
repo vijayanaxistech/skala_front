@@ -173,7 +173,7 @@ export default function Footer() {
                     <a
                       href="tel:+917874011144"
                       className="text-dark lora link-hover-red text-decoration-none"
-                       style={{ fontSize: '15px', fontWeight: 200 }} 
+                      style={{ fontSize: '15px', fontWeight: 200 }}
                     >
                       +91 7874011144
                     </a>
@@ -185,7 +185,6 @@ export default function Footer() {
                       width={25} // or any size you want
                       height={25}
                       className="me-2 icon-small"
-                      
                     />{' '}
                     <a
                       href="mailto:sales@suvarnakala.com"

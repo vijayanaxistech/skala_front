@@ -153,47 +153,45 @@ const ProductsPage: React.FC = () => {
         <title>{`${displayTitle} | Suvarnakala Pvt. Ltd`}</title>
       </Head>
       {/* Banner */}
-<div
-  className="banner"
-  style={{
-    width: '100%',
-    overflow: 'hidden',
-  }}
->
-  {breadcrumbLink ? (
-    <Link href={breadcrumbLink}>
-      <Image
-        src={breadcrumbImageSrc}
-        alt={`${selectedFilters.category || 'Collections'} Banner`}
-        layout="responsive"
-        width={1600} // Use your actual image dimensions here
-        height={600}
+      <div
+        className="banner"
         style={{
-          objectFit: 'contain',
           width: '100%',
-          height: 'auto',
+          overflow: 'hidden',
         }}
-        priority
-      />
-    </Link>
-  ) : (
-    <Image
-      src={breadcrumbImageSrc}
-      alt={`${selectedFilters.category || 'Collections'} Banner`}
-      layout="responsive"
-      width={1600} // Use your actual image dimensions here
-      height={600}
-      style={{
-        objectFit: 'contain',
-        width: '100%',
-        height: 'auto',
-      }}
-      priority
-    />
-  )}
-</div>
-
-
+      >
+        {breadcrumbLink ? (
+          <Link href={breadcrumbLink}>
+            <Image
+              src={breadcrumbImageSrc}
+              alt={`${selectedFilters.category || 'Collections'} Banner`}
+              layout="responsive"
+              width={1600} // Use your actual image dimensions here
+              height={600}
+              style={{
+                objectFit: 'contain',
+                width: '100%',
+                height: 'auto',
+              }}
+              priority
+            />
+          </Link>
+        ) : (
+          <Image
+            src={breadcrumbImageSrc}
+            alt={`${selectedFilters.category || 'Collections'} Banner`}
+            layout="responsive"
+            width={1600} // Use your actual image dimensions here
+            height={600}
+            style={{
+              objectFit: 'contain',
+              width: '100%',
+              height: 'auto',
+            }}
+            priority
+          />
+        )}
+      </div>
 
       <div className="py-md-5 p-3">
         <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
@@ -271,18 +269,14 @@ const ProductsPage: React.FC = () => {
                         </div>
                       </div>
                       <p className="card-text text-dark mb-1">
-                        <span className="fraunces">Jewellery Type:</span>{' '}
-                        {product.jewelleryType}
+                        <span className="fraunces">Jewellery Type:</span> {product.jewelleryType}
                       </p>
                       <p className="card-text text-dark mb-1">
-                        <span className="fraunces">Purity:</span>{' '}
-                        {product.purity}
+                        <span className="fraunces">Purity:</span> {product.purity}
                       </p>
                       <p className="card-text text-dark mb-0">
-                        <span className="fraunces">Gross Wt:</span>{' '}
-                        {product.grossWeight}
+                        <span className="fraunces">Gross Wt:</span> {product.grossWeight}
                       </p>
-
                     </div>
                   </div>
                 </Link>
@@ -327,8 +321,6 @@ const ProductsPage: React.FC = () => {
           </Container>
         </div>
       </div>
-
- 
     </ClientLayoutWrapper>
   );
 };

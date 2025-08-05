@@ -5,8 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { FaTimes } from 'react-icons/fa';
-import { FaBarsStaggered } from 'react-icons/fa6';
+
 
 import 'react-toastify/dist/ReactToastify.css';
 import Goldrate from './GoldRate';
@@ -146,7 +145,7 @@ const Header: React.FC = () => {
   const purities = Array.from(new Set(products.map((p) => p.purity))).sort();
 
   // Check if current path is an investment sub-page
-  const isInvestmentActive = investmentLinks.some(link => pathname.startsWith(link.path));
+  const isInvestmentActive = investmentLinks.some((link) => pathname.startsWith(link.path));
 
   return (
     <>
@@ -170,9 +169,6 @@ const Header: React.FC = () => {
             </div>
           </div>
 
-
-
-
           {/* Mobile Menu */}
           <div className={`mobile-menu  ${expanded ? 'show' : ''}`}>
             <div className="mobile-menu-header ">
@@ -186,13 +182,13 @@ const Header: React.FC = () => {
                   <span></span>
                 </div>
               </div>
-
-
             </div>
             <Nav className="mobile-nav flex-column">
               {desiredOrder.map((name, index) => {
                 if (name === 'Investment') {
-                  const isInvestmentActive = investmentLinks.some(link => pathname.startsWith(link.path));
+                  const isInvestmentActive = investmentLinks.some((link) =>
+                    pathname.startsWith(link.path),
+                  );
                   return (
                     <div key={`investment-${index}`} className="mobile-nav-item ">
                       <div
@@ -341,9 +337,10 @@ const Header: React.FC = () => {
 
                 const isBookAppointment = name === 'Book an Appointment';
                 const isCollections = name === 'Collections'; // <-- This line was missing or misplaced
-                const isActive = !isBookAppointment && !isCollections
-                  ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
-                  : false;
+                const isActive =
+                  !isBookAppointment && !isCollections
+                    ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
+                    : false;
 
                 return (
                   <div key={navLink._id} className="mobile-nav-item">

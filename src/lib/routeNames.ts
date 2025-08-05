@@ -10,7 +10,7 @@ export const routeDisplayNames: { [key: string]: string } = {
 
 export const getRouteDisplayName = (pathname: string): string => {
   const matchedRoute = Object.keys(routeDisplayNames).find(
-    (route) => pathname === route || pathname.startsWith(route + '/')
+    (route) => pathname === route || pathname.startsWith(route + '/'),
   );
   return matchedRoute ? routeDisplayNames[matchedRoute] : 'Page';
 };
