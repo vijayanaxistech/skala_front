@@ -15,8 +15,7 @@ const Loader = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: 'rgba(245, 231, 214, 0.95)', // semi-transparent white
-          // fade-in animation
+          backgroundColor: '#fff9f3',
         }}
       >
         <img
@@ -24,8 +23,8 @@ const Loader = () => {
           alt="Suvarnakala Loading Logo"
           className="loading-logo"
           style={{
-            maxWidth: '15%',
-            maxHeight: '15%',
+            maxWidth: '250px',
+            maxHeight: '250px',
             objectFit: 'contain',
             animation: 'zoom 2s ease-in-out infinite',
           }}
@@ -38,7 +37,7 @@ const Loader = () => {
       <style jsx>
         {`
           .loading-logo {
-            animation: zoom 2s ease-in-out infinite;
+            animation: zoom 3s ease-in-out infinite;
           }
 
           @keyframes zoom {
