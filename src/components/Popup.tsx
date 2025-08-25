@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Modal } from 'react-bootstrap';
-import popupImage from '../../public/assets/offers.png';
+import popupImage from '../../public/assets/Pop-up image.png';
 import androidApp from '../../public/assets/googleplay.png';
 import iosApp from '../../public/assets/appstore.png';
 

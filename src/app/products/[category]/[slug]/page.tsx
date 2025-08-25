@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 
-import defaultBreadcrumbImage from '../../../../../public/assets/collections.png';
+import defaultBreadcrumbImage from '../../../../../public/assets/collections.jpg';
 import shopnowbg from '../../../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
 import shopWomen from '../../../../../public/assets/shopWomwn.png';
 

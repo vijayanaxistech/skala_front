@@ -8,7 +8,7 @@ import aboutImage from '../../../public/assets/About.jpg';
 import qualityBadge from '../../../public/assets/Quality.png';
 import serviceBadge from '../../../public/assets/Service.png';
 import valueBadge from '../../../public/assets/Value.png';
-import breadcrumbImage from '../../../public/assets/About us - 1410 × 523 px.png';
+import breadcrumbImage from '../../../public/assets/About us.jpg';
 import legacyImage from '../../../public/assets/ade5fbc87023b27a22805a6c15a6a8d407063dfd.jpg';
 import cornerImage from '../../../public/assets/Group 41992.png';
 import roseImage from '../../../public/assets/rose.png';

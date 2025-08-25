@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import breadcrumbImage from '../../../public/assets/why-choose.jpg';
+import breadcrumbImage from '../../../public/assets/Why us Page.jpg';
 import shopnowbg from '../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
 import shopWomen from '../../../public/assets/shopWomwn.png';
 import styles from '../page.module.css';

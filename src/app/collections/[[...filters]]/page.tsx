@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Head from 'next/head';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Link from 'next/link';
-import defaultBreadcrumbImage from '../../../../public/assets/collections.png';
+import defaultBreadcrumbImage from '../../../../public/assets/collections.jpg';
 import shopnowbg from '../../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
 import shopWomen from '../../../../public/assets/shopWomwn.png';
 import styles from '@/app/page.module.css';

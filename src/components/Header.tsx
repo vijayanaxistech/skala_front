@@ -152,7 +152,7 @@ const Header: React.FC = () => {
       <Goldrate />
       <ToastContainer />
 
-      <Navbar expand="lg" className="custom-navbar  bg-color shadow-sm" sticky="top">
+      <Navbar expand="lg" className="custom-navbar bg-color shadow-sm" sticky="top">
         <Container fluid className="d-flex align-items-center justify-content-between">
           <div className="header-logo">
             <Link href="/" passHref legacyBehavior={false}>
@@ -170,8 +170,8 @@ const Header: React.FC = () => {
           </div>
 
           {/* Mobile Menu */}
-          <div className={`mobile-menu  ${expanded ? 'show' : ''}`}>
-            <div className="mobile-menu-header ">
+          <div className={`mobile-menu ${expanded ? 'show' : ''}`}>
+            <div className="mobile-menu-header">
               <Link href="/" onClick={() => setExpanded(false)}>
                 <Image src={logo} alt="Suvarnakala Logo" width={120} height={48} />
               </Link>
@@ -190,8 +190,8 @@ const Header: React.FC = () => {
                     pathname.startsWith(link.path),
                   );
                   return (
-                    <div key={`investment-${index}`} className="mobile-nav-item ">
-                      <div
+                    <div key={`investment-${index}`} className="mobile-nav-item">
+                      {/* <div
                         className={`mobile-nav-link lora ${isInvestmentActive ? 'active' : ''}`}
                         onClick={handleMobileInvestmentToggle}
                         style={{ cursor: 'pointer' }}
@@ -202,7 +202,7 @@ const Header: React.FC = () => {
                             className={`bi ${showMobileInvestment ? 'bi-caret-up' : 'bi-caret-down'}`}
                           ></i>
                         </span>
-                      </div>
+                      </div> */}
                       {showMobileInvestment && (
                         <div className="mobile-submenu">
                           {investmentLinks.map((link) => (
@@ -222,7 +222,7 @@ const Header: React.FC = () => {
                                 height={24}
                                 className="me-2"
                               />
-                              <span className="lora ">{link.name}</span>
+                              <span className="lora">{link.name}</span>
                             </Link>
                           ))}
                         </div>
@@ -336,7 +336,7 @@ const Header: React.FC = () => {
                 if (!navLink) return null;
 
                 const isBookAppointment = name === 'Book an Appointment';
-                const isCollections = name === 'Collections'; // <-- This line was missing or misplaced
+                const isCollections = name === 'Collections';
                 const isActive =
                   !isBookAppointment && !isCollections
                     ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
@@ -404,11 +404,11 @@ const Header: React.FC = () => {
                   return (
                     <div
                       key={`investment-${index}`}
-                      className="nav-item position-relative"
+                      className="nav-item-investment" // Using a different class to keep `position: relative`
                       onMouseEnter={() => handleMouseEnter('Investment')}
                       onMouseLeave={() => handleMouseLeave('Investment')}
                     >
-                      <Nav.Link
+                      {/* <Nav.Link
                         as="span"
                         className={`navlinks-hover custom-nav-link lora ${isInvestmentActive ? 'active-link' : ''}`}
                         onClick={() => setShowInvestmentDropdown(true)}
@@ -417,8 +417,8 @@ const Header: React.FC = () => {
                         }}
                       >
                         Investment
-                      </Nav.Link>
-                      <div
+                      </Nav.Link> */}
+                      {/* <div
                         className={`dropdown-menu-full-investment ${showInvestmentDropdown ? 'show' : ''}`}
                         onMouseEnter={() => handleMouseEnter('Investment')}
                         onMouseLeave={() => handleMouseLeave('Investment')}
@@ -454,7 +454,7 @@ const Header: React.FC = () => {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   );
                 }
@@ -472,7 +472,7 @@ const Header: React.FC = () => {
                 return (
                   <div
                     key={navLink._id}
-                    className="nav-item position-relative"
+                    className={`nav-item ${isCollections ? 'nav-item-collections' : ''}`} // Add a specific class for collections
                     onMouseEnter={isCollections ? () => handleMouseEnter('Collections') : undefined}
                     onMouseLeave={isCollections ? () => handleMouseLeave('Collections') : undefined}
                   >
@@ -492,7 +492,7 @@ const Header: React.FC = () => {
                     >
                       <Nav.Link
                         as="span"
-                        className={` custom-nav-link navlinks-hover lora ${isActive ? 'active-link' : ''}`}
+                        className={`custom-nav-link navlinks-hover lora ${isActive ? 'active-link' : ''}`}
                       >
                         {navLink.name}
                       </Nav.Link>
@@ -637,9 +637,6 @@ const Header: React.FC = () => {
       </Navbar>
 
       <style>{`
-
-
-
         .custom-nav-link {
           color: #333;
           font-weight: 500;
@@ -666,6 +663,11 @@ const Header: React.FC = () => {
         .nav-item {
           position: relative;
         }
+        
+        .nav-item-collections {
+            position: static;
+        }
+
         .image-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
@@ -778,9 +780,9 @@ const Header: React.FC = () => {
           display: none;
           position: absolute;
           top: 100%;
-          left: 131%;
-          transform: translateX(-50%);
-          width: 100vw;
+          left: 0;
+          
+          width: 100%;
           background-color: #fff9f3;
           z-index: 1000;
           padding: 20px;
@@ -945,8 +947,15 @@ const Header: React.FC = () => {
           .mobile-menu {
             display: none;
           }
+          .custom-navbar {
+            position: relative;
+          }
           .dropdown-menu-full {
-            min-width: 800px;
+            width: 100%;
+            left: 0;
+            right: 0;
+            top:auto;
+            transform: none;
           }
           .dropdown-menu-full-investment {
             min-width: 800px;

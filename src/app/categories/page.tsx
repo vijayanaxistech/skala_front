@@ -7,7 +7,7 @@ import { BASE_URL, getCategories, getDefaultBreadcrumbBanner } from '../../lib/a
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import shopnowbg from '../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
 import shopWomen from '../../../public/assets/shopWomwn.png';
-import defaultBreadcrumbImage from '../../../public/assets/collections.png';
+import defaultBreadcrumbImage from '../../../public/assets/collections.jpg';
 import styles from '../page.module.css';
 import Loader from '@/components/Loader';
 import ScrollToTopButton from '@/components/ScrollToTopOnPageLoad';
