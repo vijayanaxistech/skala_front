@@ -21,6 +21,7 @@
     "dotenv": "^16.5.0",
     "jquery": "^3.7.1",
     "lodash": "^4.17.21",
+    "lucide-react": "^0.541.0",
     "next": "^15.3.3",
     "next-sitemap": "^4.2.3",
     "owl.carousel": "^2.3.4",

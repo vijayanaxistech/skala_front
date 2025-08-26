@@ -2,18 +2,16 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Head from 'next/head';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import Link from 'next/link';
 import defaultBreadcrumbImage from '../../../../public/assets/collections.jpg';
-import shopnowbg from '../../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
-import shopWomen from '../../../../public/assets/shopWomwn.png';
-import styles from '@/app/page.module.css';
 import FilterDropdown from './FilterDropdown';
 import WhatsAppButton from '../WhatsAppButton';
 import MoreInfoButton from '../MoreInfo';
 import { getProducts, getCategories, getDefaultBreadcrumbBanner, BASE_URL } from '@/lib/api';
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
 import { usePathname, useRouter } from 'next/navigation';
+import notFoundImg from "../../../../public/assets/product-not-found-101.jpg";
 
 // Interfaces
 interface Category {
@@ -181,7 +179,7 @@ const ProductsPage: React.FC = () => {
             src={breadcrumbImageSrc}
             alt={`${selectedFilters.category || 'Collections'} Banner`}
             layout="responsive"
-            width={1600} // Use your actual image dimensions here
+            width={1600}
             height={600}
             style={{
               objectFit: 'contain',
@@ -210,8 +208,16 @@ const ProductsPage: React.FC = () => {
         </div>
 
         {filteredProducts.length === 0 ? (
-          <div className="text-center">No products found.</div>
-        ) : (
+          <div className=" items-center justify-center text-center py-16">
+            {/* Image */}
+            <Image
+              src={notFoundImg}
+              alt="No Products Found"
+              className="w-40 h-40 object-contain mb-6 opacity-90"
+            />
+
+
+          </div>) : (
           <Row xs={1} sm={2} md={3} lg={4} className="g-4 mt-4">
             {filteredProducts.map((product) => (
               <Col key={product._id}>
@@ -286,41 +292,6 @@ const ProductsPage: React.FC = () => {
         )}
       </div>
 
-      {/* Shop Now Section */}
-      <div style={{ position: 'relative', width: '100%', height: '300px' }}>
-        <Image src={shopnowbg} alt="Shop Now Banner" fill style={{ objectFit: 'cover' }} priority />
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-          }}
-        >
-          <Container>
-            <Row className="align-items-center">
-              <Col md={6} className="d-none d-md-flex justify-content-start">
-                <Image src={shopWomen} alt="Shop Girl" width={300} height={300} />
-              </Col>
-              <Col xs={12} md={6} className="text-center text-md-start text-white">
-                <h1 className="fs-4 fs-md-3 lh-tight mb-4 fraunces">
-                  Elevate Every Moment with Timeless Jewellery
-                </h1>
-                <Link href="/collections">
-                  <Button variant="outline-light fraunces rounded-0" className={styles.shopNowBtn}>
-                    Shop Now
-                  </Button>
-                </Link>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      </div>
     </ClientLayoutWrapper>
   );
 };

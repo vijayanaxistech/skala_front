@@ -4,12 +4,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 // import Link from 'next/link';
 
-import aboutImage from '../../../public/assets/About.jpg';
+import aboutImage from '../../../public/assets/About_us_bottom.jpg';
 import qualityBadge from '../../../public/assets/Quality.png';
 import serviceBadge from '../../../public/assets/Service.png';
 import valueBadge from '../../../public/assets/Value.png';
 import breadcrumbImage from '../../../public/assets/About us.jpg';
-import legacyImage from '../../../public/assets/ade5fbc87023b27a22805a6c15a6a8d407063dfd.jpg';
+import legacyImage from '../../../public/assets/Our_legacy_bottom.jpg';
 import cornerImage from '../../../public/assets/Group 41992.png';
 import roseImage from '../../../public/assets/rose.png';
 import certified from '../../../public/assets/certified.png';
@@ -110,26 +110,19 @@ const About = () => {
                 alt="About Suvarnakala"
                 width={500}
                 height={400}
-                className="img-fluid rounded shadow"
+                className="img-fluid  "
               />
             </div>
 
             <div className="col-md-7">
-              <h5 className="h4  text-red mb-3 lora" style={{ fontWeight: 100 }}>
+              <h5 className="h4   mb-3 lora" style={{ fontWeight: 100 }}>
                 Suvarnakala — The Pride of a Woman
               </h5>
               <p className=" text-justify">
-                Established in 1970, Suvarnakala embarked on a journey of excellence that has grown
-                into one of the most respected names in the world of fine jewellery. Known for our
-                expertise in gold, diamond, and jadtar jewellery, Suvarnakala has become a symbol of
-                quality, precision, and timeless craftsmanship.
+At Suvarnakala, every piece of jewellery is more than just an ornament – it is a reflection of tradition, artistry, and trust. With a legacy built on purity and perfection, we have been part of countless celebrations, milestones, and cherished memories in the lives of our valued customers.
               </p>
               <p className="text-justify">
-                The foundation of Suvarnakala was laid by the visionary Mr. Soni Prakashchandra
-                Shantilal, whose passion and dedication helped shape the brand into a prominent
-                retail jewellery destination in Ahmedabad. With over four decades of unwavering
-                commitment and relentless effort, Suvarnakala has turned countless dreams into
-                dazzling realities.
+From everyday elegance to timeless bridal treasures, our collections are crafted to seamlessly blend heritage with modern design. Each creation is thoughtfully designed and hallmarked for purity, ensuring you don’t just wear jewellery, but carry forward a legacy of trust.
               </p>
               <div className="row text-center text-md-start my-4">
                 <div className="col-4 col-sm-4">
@@ -186,88 +179,31 @@ const About = () => {
 
         <div className="row align-items-center">
           <div className="col-md-7 mb-3">
-            <h3 className="text-red mb-3 lora">Our Legacy</h3>
+          <div className="custom-heading-wrapper d-flex align-items-center mb-4">
+            <h2 className="m-0 custom-heading text-wrap me-3">
+              <span className="fraunces">
+                Our <span className="text-red fraunces">Legacy </span>
+              </span>
+              <div className="decorative-line">
+                <div className="diamond"></div>
+                <div className="line"></div>
+                <div className="diamond"></div>
+              </div>
+            </h2>
+          </div>                        <p className=" mb-3 lora">At Suvarnakala, legacy is an art form.</p>
+
             <p className="text-justify">
-              The foundation of Suvarnakala was laid by the visionary Mr. Soni Prakashchandra
-              Shantilal, whose passion and dedication helped shape the brand into a prominent retail
-              jewellery destination in Ahmedabad. With over four decades of unwavering commitment
-              and relentless effort, Suvarnakala has turned countless dreams into dazzling
-              realities.
+For generations, we have crafted jewels that embody timeless elegance, uncompromising purity, and enduring value. Each creation is a masterpiece—born of heritage, perfected by craftsmanship, and designed to celebrate life’s most precious milestones.
+
             </p>
-            <p className="text-justify">
-              Our legacy is built on the belief that jewellery is not just an accessory—it is a
-              cherished adornment that celebrates a woman&apos;s identity and elegance. Every
-              masterpiece we create tells a story of beauty, tradition, and heritage. At
-              Suvarnakala, we give utmost importance to design, detail, and innovation. Our
-              ornaments are crafted with care, stringent quality control, and state-of-the-art
-              technology, ensuring each piece resonates with elegance and authenticity.
-            </p>
+              <p className="text-justify">
+Our promise goes beyond jewellery, it is the promise of trust, refinement, and luxury that lasts forever.
+
+              </p>
           </div>
 
           <div className="col-md-5  mt-md-1 mb-3 text-center position-relative">
-            <div
-              className="experience-ring"
-              style={{
-                position: 'absolute',
-                top: '0',
-                left: '0',
-                transform: 'translate(-15%, -30%)',
-                width: '100px',
-                height: '100px',
-                background: 'radial-gradient(circle, #fff 52%, transparent 53%)',
-                borderRadius: '50%',
-                border: '8px solid #d41b1f',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 0 12px rgba(0,0,0,0.12)',
-                zIndex: 2,
-              }}
-            >
-              <div
-                style={{
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  animation: 'rotateCircle 10s linear infinite',
-                }}
-              >
-                <svg viewBox="0 0 160 160" style={{ width: '100%', height: '100%' }}>
-                  <defs>
-                    <path
-                      id="textCircle"
-                      d="M80,80 m-60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0"
-                    />
-                  </defs>
-                  <text
-                    fill="#033a79"
-                    fontSize="16"
-                    fontWeight="700"
-                    letterSpacing="1px"
-                    style={{ textTransform: 'uppercase' }}
-                  >
-                    <textPath href="#textCircle" startOffset="0%" textLength="377">
-                      Years of Excellence • Years of Excellence •
-                    </textPath>
-                  </text>
-                </svg>
-              </div>
 
-              {/* Center number with animated counter */}
-              <div style={{ zIndex: 1, textAlign: 'center' }}>
-                <div
-                  ref={counterRef}
-                  style={{
-                    fontSize: '30px',
-                    fontWeight: 'bold',
-                    color: '#d41b1f',
-                    lineHeight: '1',
-                  }}
-                >
-                  {animatedYears}
-                </div>
-              </div>
-            </div>
 
             <Image src={legacyImage} alt="Suvarnakala Store" className="img-fluid mb-5 mb-md-0" />
           </div>

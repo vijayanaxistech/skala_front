@@ -104,7 +104,7 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
           width: 100%;
           padding-top: 100%;
           overflow: hidden;
-          border-radius: 12px;
+          // border-radius: 12px;
           cursor: pointer;
         }
         .image-container img {
@@ -170,7 +170,7 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
               showDots={false}
               arrows={false}
               containerClass="carousel-container"
-              itemClass="px-2 pb-5"
+              itemClass="px-2 "
               aria-live="polite"
             >
               {designs.map((item) => {
@@ -196,8 +196,9 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
                           src={imageUrl}
                           alt={`Suvarnakala ${item.name} Trending Jewelry Design`}
                           fill
+                        
                           sizes="(max-width: 576px) 100vw, 300px"
-                          style={{ objectFit: 'cover', transition: 'filter 0.3s ease' }}
+                          style={{ objectFit: 'cover', borderRadius:'12px', transition: 'filter 0.3s ease' }}
                           loading="lazy"
                           onError={(e) => {
                             e.currentTarget.src =

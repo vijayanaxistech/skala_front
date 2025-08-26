@@ -96,14 +96,14 @@ export default function Home() {
       <Hero />
       <CredibilitySection />
       <VideoSection />
-      <EasyGoldScheme />
+      {/* <EasyGoldScheme /> */}
       <ShopbyStyle />
       <Products />
-      <GiftCard />
+      {/* <GiftCard /> */}
       {/* <Moments moments={moments} /> */}
       <TopTrendingDesigns initialDesigns={trendingDesigns} />
 
-      <BachatMahotsav bachatMahotsavImages={bachatMahotsavImages} />
+      {/* <BachatMahotsav bachatMahotsavImages={bachatMahotsavImages} /> */}
       <Testimonials />
     </>
   );

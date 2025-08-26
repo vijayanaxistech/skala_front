@@ -75,7 +75,7 @@ const WhySuvarnakala = () => {
         />
       </div>
 
-      <div className="bg-color pb-5">
+      <div className=" pb-5">
         <div className="p-5 py-4 ">
           <div className="custom-heading-wrapper d-flex align-items-center mb-4">
             <h2 className="m-0 custom-heading text-wrap me-3">
@@ -91,14 +91,8 @@ const WhySuvarnakala = () => {
           </div>
         </div>
         {/* Features Sectionsss */}
-        <div style={{ backgroundColor: '#fff9f3' }} className="why px-0 px-md-5">
-          <div
-            style={{
-              backgroundColor: '#fff',
-              padding: '30px',
-              boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
-            }}
-          >
+        <div  className="why px-3 px-md-5">
+  
             {features.map((feature, index) => (
               <Row className="mb-4" key={index}>
                 <Col xs={12}>
@@ -122,56 +116,9 @@ const WhySuvarnakala = () => {
                 </Col>
               </Row>
             ))}
-          </div>
         </div>
       </div>
-      {/* Shop Now Section */}
-      <div style={{ position: 'relative', width: '100%', height: '300px' }}>
-        <Image src={shopnowbg} alt="Shop Now Banner" layout="fill" objectFit="cover" priority />
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            padding: '0 20px',
-          }}
-        >
-          <Container>
-            <Row className="align-items-center">
-              <Col md={6} className="d-none d-md-flex justify-content-start">
-                <Image
-                  src={shopWomen}
-                  alt="Shop Girl"
-                  width={300}
-                  height={300}
-                  objectFit="contain"
-                />
-              </Col>
-              <Col xs={12} md={6} className="text-center text-md-start text-white">
-                <h1 className="fs-4 fs-md-3  lh-tight mb-4 fraunces">
-                  {' '}
-                  Elevate Every Moment with Timeless Jewellery
-                </h1>
-                <Link href="/collections">
-                  <Button
-                    variant="outline-light fraunces rounded-0"
-                    className={styles.shopNowBtn}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    Shop Now
-                  </Button>
-                </Link>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      </div>
+
     </>
   );
 };

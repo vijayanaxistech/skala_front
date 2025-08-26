@@ -98,7 +98,7 @@ const WhySuvarnakala = () => {
         />
       </div>
 
-      <div className="p-3 p-md-5 bg-color">
+      <div className="p-3 p-md-5 ">
         <ShowroomSection
           id="cgroad"
           title="C.G. Road"
@@ -109,10 +109,10 @@ const WhySuvarnakala = () => {
         />
         <ShowroomSection
           id="satellite"
-          title="Jodhpur Cross Roads, Satellite"
+          title="Satellite"
           address="Venus Amadeus Jodhpur Cross Road, B.R.T.S Bus Stand, Satellite, Ahmedabad, Gujarat 380015"
           image={st1}
-          contact="+91 9924902223"
+          contact="+91 7874011144"
           mapLink="https://maps.app.goo.gl/sMtWFAF2yPUSwYXZ6"
         />
         <ShowroomSection
@@ -120,43 +120,12 @@ const WhySuvarnakala = () => {
           title="Maninagar"
           address="Opp. Pintoo Garments, Maninagar Cross Rd, Maninagar, Ahmedabad, Gujarat 380008"
           image={mn1}
-          contact="+91 9924902223"
+          contact="+91 8511755799"
           mapLink="https://maps.app.goo.gl/h7oETcXHRToqzaDT8"
         />
       </div>
 
-      <div style={{ position: 'relative', width: '100%', height: '300px' }}>
-        <Image
-          src={shopnowbg}
-          alt="Shop Now Banner"
-          layout="fill"
-          style={{ objectFit: 'cover' }}
-          priority
-        />
-        <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
-          <Container>
-            <Row className="align-items-center">
-              <Col md={6} className="d-none d-md-flex justify-content-start">
-                <Image src={shopWomen} alt="Shop Girl" width={300} height={300} />
-              </Col>
-              <Col xs={12} md={6} className="text-center text-md-start text-white">
-                <h1 className="fs-4 fs-md-3 lh-tight mb-4 fraunces">
-                  Elevate Every Moment with Timeless Jewellery
-                </h1>
-                <Link href="/collections">
-                  <Button
-                    variant="outline-light rounded-0 fraunces"
-                    className={styles.shopNowBtn}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    Shop Now
-                  </Button>
-                </Link>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      </div>
+
     </ClientLayoutWrapper>
   );
 };

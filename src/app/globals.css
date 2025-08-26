@@ -731,7 +731,7 @@ textarea::placeholder {
 }
 
 @media (max-width: 768px) {
-  footer .container > div.d-flex {
+  footer .container>div.d-flex {
     flex-wrap: wrap;
   }
 
@@ -943,6 +943,7 @@ textarea::placeholder {
 }
 
 @keyframes zoom {
+
   0%,
   100% {
     transform: scale(1);
@@ -1043,6 +1044,7 @@ textarea::placeholder {
 }
 
 @media (max-width: 576px) {
+
   .badge-value,
   .badge-guarantee,
   .badge-service {
@@ -1105,4 +1107,10 @@ textarea::placeholder {
 .burger-toggle:focus-visible {
   outline: none !important;
   box-shadow: none !important;
+}
+
+.testimonial-card {
+  border-radius: 12px;
+  height: 210px;
+  border: 1px solid #e3e6ea;
 }

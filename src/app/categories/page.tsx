@@ -4,11 +4,8 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BASE_URL, getCategories, getDefaultBreadcrumbBanner } from '../../lib/api';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import shopnowbg from '../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
-import shopWomen from '../../../public/assets/shopWomwn.png';
+import { Row, Col, Button } from 'react-bootstrap';
 import defaultBreadcrumbImage from '../../../public/assets/collections.jpg';
-import styles from '../page.module.css';
 import Loader from '@/components/Loader';
 import ScrollToTopButton from '@/components/ScrollToTopOnPageLoad';
 
@@ -187,52 +184,7 @@ const ShopAllCategories = () => {
         </div>
       </div>
 
-      {/* Shop Now Section */}
-      <div style={{ position: 'relative', width: '100%', height: '300px' }}>
-        <Image src={shopnowbg} alt="Shop Now Banner" layout="fill" objectFit="cover" priority />
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            padding: '0 20px',
-          }}
-        >
-          <Container>
-            <Row className="align-items-center">
-              <Col md={6} className="d-none d-md-flex justify-content-start">
-                <Image
-                  src={shopWomen}
-                  alt="Shop Girl"
-                  width={300}
-                  height={300}
-                  objectFit="contain"
-                />
-              </Col>
-              <Col xs={12} md={6} className="text-center text-md-start text-white">
-                <h1 className="fs-4 fs-md-3 lh-tight mb-4 fraunces">
-                  Elevate Every Moment with Timeless Jewellery
-                </h1>
-                <Link href="/collections">
-                  <Button
-                    variant="outline-light fraunces rounded-0"
-                    className={styles.shopNowBtn}
-                    style={{ textDecoration: 'none' }}
-                  >
-                    Shop Now
-                  </Button>
-                </Link>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      </div>
+
 
       <ScrollToTopButton />
     </>

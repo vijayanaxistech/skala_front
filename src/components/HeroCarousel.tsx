@@ -168,19 +168,19 @@ const HeroCarousel: React.FC = () => {
                     left: '5%',
                     height: '100%',
                     color: 'white',
-                    maxWidth: '40%',
+                    maxWidth: '20%',
                     paddingRight: '15px',
                     zIndex: 2,
                     display: isMobile ? 'none' : 'flex',
                   }}
                 >
-                  <h1 className="display-6 fw-semibold lora mb-4">{title}</h1>
+                  {/* <h1 className="display-6 fw-semibold lora mb-4">{title}</h1> */}
                   <p className="lead mb-5 ">{description}</p>
                   <a
                     href={validLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn custom-btn btn-lg w-auto px-4"
+                    className="btn custom-btn bg-white text-dark btn-lg w-auto px-4"
                   >
                     View More
                   </a>
@@ -201,13 +201,13 @@ const HeroCarousel: React.FC = () => {
                     display: isMobile ? 'flex' : 'none',
                   }}
                 >
-                  <h3 className="fw-semibold mb-3">{title}</h3>
+                  {/* <h3 className="fw-semibold mb-3">{title}</h3> */}
                   <p className="mb-4">{description}</p>
                   <a
                     href={validLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn custom-btn"
+                    className="btn custom-btn bg-white text-dark"
                   >
                     View More
                   </a>

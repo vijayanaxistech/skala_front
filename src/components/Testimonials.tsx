@@ -63,17 +63,14 @@ const Testimonials: React.FC = () => {
           autoPlaySpeed={4000}
           arrows={false}
           containerClass="carousel-container"
-          itemClass="px-1 pb-5"
+          itemClass="px-1 pb-2"
           aria-live="polite"
         >
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="p-4 bg-white rounded-4 shadow-sm d-flex flex-column justify-content-between text-start position-relative testimonial-card"
-              style={{
-                height: '210px',
-                border: '1px solid #e3e6ea',
-              }}
+              className="p-4 bg-white testimonial-card   d-flex flex-column justify-content-between text-start position-relative testimonial-card"
+
               role="group"
               aria-label={`Testimonial by ${testimonial.name}`}
             >
