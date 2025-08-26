@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BASE_URL, getCategories, getDefaultBreadcrumbBanner } from '../../lib/api';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import defaultBreadcrumbImage from '../../../public/assets/collections.jpg';
 import Loader from '@/components/Loader';
 import ScrollToTopButton from '@/components/ScrollToTopOnPageLoad';
@@ -85,7 +85,7 @@ const ShopAllCategories = () => {
           <Link href={breadcrumbLink}>
             <Image
               src={breadcrumbImageSrc}
-              alt="Collections Banner"
+              alt="jewellery Banner"
               layout="responsive"
               width={1600}
               height={600}
@@ -100,7 +100,7 @@ const ShopAllCategories = () => {
         ) : (
           <Image
             src={breadcrumbImageSrc}
-            alt="Collections Banner"
+            alt="jewellery Banner"
             layout="responsive"
             width={1600}
             height={600}
@@ -137,7 +137,7 @@ const ShopAllCategories = () => {
               categories.map((item) => (
                 <Col xs={6} lg={3} key={item._id} className=" mb-lg-2">
                   <Link
-                    href={`/collections/products/${encodeURIComponent(item.name)}`}
+                    href={`/jewellery/products/${encodeURIComponent(item.name)}`}
                     className="suvarnakala-category-item text-decoration-none"
                     role="group"
                     aria-label={`Category: ${item.name}`}

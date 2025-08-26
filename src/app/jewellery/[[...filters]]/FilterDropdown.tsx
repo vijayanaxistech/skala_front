@@ -49,7 +49,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       encodeURIComponent(type === 'category' ? 'products' : type),
       encodeURIComponent(value),
     ]);
-    router.push(`/collections/${segments.join('/')}`, { scroll: false });
+    router.push(`/jewellery/${segments.join('/')}`, { scroll: false });
     setDropdownOpen(false);
   };
 
@@ -60,13 +60,13 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       encodeURIComponent(t === 'category' ? 'products' : t),
       encodeURIComponent(value),
     ]);
-    router.push(segments.length ? `/collections/${segments.join('/')}` : '/collections', {
+    router.push(segments.length ? `/jewellery/${segments.join('/')}` : '/jewellery', {
       scroll: false,
     });
   };
 
   const clearAllFilters = () => {
-    router.push('/collections', { scroll: false });
+    router.push('/jewellery', { scroll: false });
     setDropdownOpen(false);
   };
 

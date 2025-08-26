@@ -55,7 +55,7 @@ const Header: React.FC = () => {
   const [showMobileCollections, setShowMobileCollections] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const desiredOrder = ['Home', 'About Us', 'Collections', 'Why Us', 'Investment', 'Our Showrooms'];
+  const desiredOrder = ['Home', 'About Us', 'Jewellery', 'Why Us', 'Investment', 'Our Showrooms'];
 
   const investmentLinks = [
     { name: 'Digi-Gold', path: '/digi-gold', icon: digiGoldIcon },
@@ -114,7 +114,7 @@ const Header: React.FC = () => {
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
     }
-    if (dropdown === 'Collections') {
+    if (dropdown === 'jewellery') {
       setShowCollectionsDropdown(true);
     } else if (dropdown === 'Investment') {
       setShowInvestmentDropdown(true);
@@ -231,23 +231,23 @@ const Header: React.FC = () => {
                   );
                 }
 
-                if (name === 'Collections') {
-                  const isCollectionsActive = pathname.startsWith('/collections');
+                if (name === 'jewellery') {
+                  const isCollectionsActive = pathname.startsWith('/jewellery');
                   return (
                     <div key={`collections-${index}`} className="mobile-nav-item">
                       <Link
-                        href="/collections"
+                        href="/jewellery"
                         className={`mobile-nav-link lora ${isCollectionsActive ? 'active' : ''}`}
                         onClick={(e) => {
-                          if (pathname === '/collections' && showMobileCollections) {
+                          if (pathname === '/jewellery' && showMobileCollections) {
                             e.preventDefault();
                             handleMobileCollectionsToggle();
-                          } else if (pathname !== '/collections') {
+                          } else if (pathname !== '/jewellery') {
                             setExpanded(false);
                           }
                         }}
                       >
-                        Collections
+                        Jewellery
                         <span
                           className="dropdown-arrow ms-2"
                           onClick={(e) => {
@@ -266,7 +266,7 @@ const Header: React.FC = () => {
                             <h6 className="lora">Shop By Category</h6>
                             {categories.map((category) => (
                               <Link
-                                href={`/collections/products/${category}`}
+                                href={`/Jewellery/products/${category}`}
                                 key={category}
                                 className="mobile-submenu-item"
                                 onClick={() => {
@@ -282,7 +282,7 @@ const Header: React.FC = () => {
                             <h6 className="lora">Shop By Jewellery</h6>
                             {jewelleryTypes.map((type) => (
                               <Link
-                                href={`/collections/jewelleryType/${type}`}
+                                href={`/Jewellery/jewelleryType/${type}`}
                                 key={type}
                                 className="mobile-submenu-item"
                                 onClick={() => {
@@ -298,7 +298,7 @@ const Header: React.FC = () => {
                             <h6 className="lora">Shop By Occasion</h6>
                             {occasions.map((occasion) => (
                               <Link
-                                href={`/collections/occasion/${occasion}`}
+                                href={`/Jewellery/occasion/${occasion}`}
                                 key={occasion}
                                 className="mobile-submenu-item"
                                 onClick={() => {
@@ -314,7 +314,7 @@ const Header: React.FC = () => {
                             <h6 className="lora">Shop By Purity</h6>
                             {purities.map((purity) => (
                               <Link
-                                href={`/collections/purity/${purity}`}
+                                href={`/Jewellery/purity/${purity}`}
                                 key={purity}
                                 className="mobile-submenu-item"
                                 onClick={() => {
@@ -336,7 +336,7 @@ const Header: React.FC = () => {
                 if (!navLink) return null;
 
                 const isBookAppointment = name === 'Book an Appointment';
-                const isCollections = name === 'Collections';
+                const isCollections = name === 'Jewellery';
                 const isActive =
                   !isBookAppointment && !isCollections
                     ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
@@ -463,18 +463,18 @@ const Header: React.FC = () => {
                 if (!navLink) return null;
 
                 const isBookAppointment = name === 'Book an Appointment';
-                const isCollections = name === 'Collections';
+                const isCollections = name === 'Jewellery';
                 const isActive =
                   !isBookAppointment && !isCollections
                     ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
-                    : isCollections && pathname.startsWith('/collections');
+                    : isCollections && pathname.startsWith('/jewellery');
 
                 return (
                   <div
                     key={navLink._id}
                     className={`nav-item ${isCollections ? 'nav-item-collections' : ''}`} // Add a specific class for collections
-                    onMouseEnter={isCollections ? () => handleMouseEnter('Collections') : undefined}
-                    onMouseLeave={isCollections ? () => handleMouseLeave('Collections') : undefined}
+                    onMouseEnter={isCollections ? () => handleMouseEnter('Jewellery') : undefined}
+                    onMouseLeave={isCollections ? () => handleMouseLeave('Jewellery') : undefined}
                   >
                     <Link
                       href={navLink.path}
@@ -500,8 +500,8 @@ const Header: React.FC = () => {
                     {isCollections && (
                       <div
                         className={`dropdown-menu-full ${showCollectionsDropdown ? 'show' : ''}`}
-                        onMouseEnter={() => handleMouseEnter('Collections')}
-                        onMouseLeave={() => handleMouseLeave('Collections')}
+                        onMouseEnter={() => handleMouseEnter('Jewellery')}
+                        onMouseLeave={() => handleMouseLeave('Jewellery')}
                       >
                         <div className="dropdown-content">
                           <div className="dropdown-left">
@@ -511,7 +511,7 @@ const Header: React.FC = () => {
                                 {categories.map((category) => (
                                   <li key={category}>
                                     <Link
-                                      href={`/collections/products/${category}`}
+                                      href={`/jewellery/products/${category}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
                                       onClick={() => {
                                         setShowCollectionsDropdown(false);
@@ -530,7 +530,7 @@ const Header: React.FC = () => {
                                 {jewelleryTypes.map((type) => (
                                   <li key={type}>
                                     <Link
-                                      href={`/collections/jewelleryType/${type}`}
+                                      href={`/jewellery/jewelleryType/${type}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
                                       onClick={() => {
                                         setShowCollectionsDropdown(false);
@@ -549,7 +549,7 @@ const Header: React.FC = () => {
                                 {occasions.map((occasion) => (
                                   <li key={occasion}>
                                     <Link
-                                      href={`/collections/occasion/${occasion}`}
+                                      href={`/jewellery/occasion/${occasion}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
                                       onClick={() => {
                                         setShowCollectionsDropdown(false);
@@ -568,7 +568,7 @@ const Header: React.FC = () => {
                                 {purities.map((purity) => (
                                   <li key={purity}>
                                     <Link
-                                      href={`/collections/purity/${purity}`}
+                                      href={`/jewellery/purity/${purity}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
                                       onClick={() => {
                                         setShowCollectionsDropdown(false);

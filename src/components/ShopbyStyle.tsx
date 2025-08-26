@@ -61,7 +61,7 @@ const ShopbyStyle = () => {
           <>
             {displayedCategories.map((item, index) => (
               <Link
-                href={`/collections/products/${encodeURIComponent(item.name)}`}
+                href={`/jewellery/products/${encodeURIComponent(item.name)}`}
                 key={item._id}
                 className={`category-item text-decoration-none ${index < 4 ? 'top-row' : 'bottom-row'}`}
                 role="group"
@@ -134,7 +134,7 @@ const ShopbyStyle = () => {
                   Discover
                 </p> */}
                 <p className="fs-4 lora" style={{ fontWeight: '200', marginTop: '0.25rem' }}>
-                  Exclusive Collections
+                  Exclusive Jewellery
                 </p>
               </div>
               <p className="text-gray mt-3 fs-4  sm:fs-5 text-center lora">View all</p>

@@ -85,7 +85,7 @@ const ProductsPage: React.FC = () => {
   useEffect(() => {
     // Parse filters from pathname
     const segments = pathname?.split('/').filter(Boolean) ?? [];
-    const filtersIndex = segments.findIndex((s) => s === 'collections');
+    const filtersIndex = segments.findIndex((s) => s === 'jewellery');
     const filterSegments = segments.slice(filtersIndex + 1);
     const pairs: { [key: string]: string } = {};
 
@@ -123,7 +123,7 @@ const ProductsPage: React.FC = () => {
   const uniqueOccasions = [...new Set(products.map((p) => p.occasion).filter(Boolean))];
   const uniqueCategories = [...new Set(products.map((p) => p.category.name).filter(Boolean))];
 
-  const displayTitle = Object.values(selectedFilters).join(', ') || 'Collections';
+  const displayTitle = Object.values(selectedFilters).join(', ') || 'Jewellery';
 
   // Set document title client-side
   useEffect(() => {
@@ -162,7 +162,7 @@ const ProductsPage: React.FC = () => {
           <Link href={breadcrumbLink}>
             <Image
               src={breadcrumbImageSrc}
-              alt={`${selectedFilters.category || 'Collections'} Banner`}
+              alt={`${selectedFilters.category || 'Jewellery'} Banner`}
               layout="responsive"
               width={1600} // Use your actual image dimensions here
               height={600}
@@ -177,7 +177,7 @@ const ProductsPage: React.FC = () => {
         ) : (
           <Image
             src={breadcrumbImageSrc}
-            alt={`${selectedFilters.category || 'Collections'} Banner`}
+            alt={`${selectedFilters.category || 'Jewellery'} Banner`}
             layout="responsive"
             width={1600}
             height={600}

@@ -16,8 +16,8 @@ interface Hero {
 
 const HeroCarousel: React.FC = () => {
   const [heroes, setHeroes] = useState<Hero[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(1); // Start at the first "real" slide
-  const [isTransitioning, setIsTransitioning] = useState(false); // To control transitions
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideWidth, setSlideWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -34,12 +34,11 @@ const HeroCarousel: React.FC = () => {
     fetchHeroes();
   }, []);
 
-  // Filter active heroes and sort by priority
   const sortedHeroes = [...heroes]
     .filter((hero) => hero.isActive)
     .sort((a, b) => a.priority - b.priority);
 
-  // Add a copy of the last and first heroes for seamless looping
+  // Duplicate for infinite loop
   const duplicatedHeroes = [...sortedHeroes];
   if (sortedHeroes.length > 0) {
     duplicatedHeroes.unshift(sortedHeroes[sortedHeroes.length - 1]);
@@ -72,30 +71,37 @@ const HeroCarousel: React.FC = () => {
     setCurrentIndex((prev) => prev - 1);
   }, [isTransitioning]);
 
-  // Autoplay functionality
+  // Autoplay
   useEffect(() => {
     if (slideWidth === 0 || sortedHeroes.length === 0) return;
     const interval = setInterval(() => goNext(), 7000);
     return () => clearInterval(interval);
   }, [slideWidth, goNext, sortedHeroes.length]);
 
-  // Logic to handle the infinite loop jump
+  // Infinite loop logic
   useEffect(() => {
     if (isTransitioning) {
       const timer = setTimeout(() => {
         if (currentIndex === duplicatedHeroes.length - 1) {
           setIsTransitioning(false);
-          setCurrentIndex(1); // Jump to the first "real" slide
+          setCurrentIndex(1);
         } else if (currentIndex === 0) {
           setIsTransitioning(false);
-          setCurrentIndex(duplicatedHeroes.length - 2); // Jump to the last "real" slide
+          setCurrentIndex(duplicatedHeroes.length - 2);
         } else {
           setIsTransitioning(false);
         }
-      }, 700); // Match this duration with your CSS transition time
+      }, 700);
       return () => clearTimeout(timer);
     }
   }, [currentIndex, isTransitioning, duplicatedHeroes.length]);
+
+  // Handle dot click
+  const goToSlide = (index: number) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex(index + 1); // +1 because of duplicated first slide
+  };
 
   return (
     <div
@@ -104,7 +110,7 @@ const HeroCarousel: React.FC = () => {
       style={{ width: '100%', maxWidth: '100vw', margin: 'auto' }}
       aria-label="Suvarnakala Hero Section Carousel"
     >
-      {duplicatedHeroes.length > 0 ? (
+      {duplicatedHeroes.length > 0 && (
         <div
           style={{
             display: 'flex',
@@ -129,7 +135,6 @@ const HeroCarousel: React.FC = () => {
                 role="group"
                 aria-label={`Slide ${idx + 1}: ${title}`}
               >
-                {/* Use Next.js Image component for optimized loading */}
                 <Image
                   src={imageUrl || '/fallback-image.jpg'}
                   alt={title}
@@ -144,22 +149,10 @@ const HeroCarousel: React.FC = () => {
                   priority={true}
                   onError={(e) => {
                     e.currentTarget.src = '/fallback-image.jpg';
-                    console.error('Failed to load hero image, using fallback.');
                   }}
                 />
 
-                {/* Overlay for Desktop */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    zIndex: 1,
-                    display: isMobile ? 'none' : 'block',
-                  }}
-                />
+                {/* Desktop Overlay */}
                 <div
                   className="d-none d-md-flex flex-column justify-content-center"
                   style={{
@@ -174,8 +167,7 @@ const HeroCarousel: React.FC = () => {
                     display: isMobile ? 'none' : 'flex',
                   }}
                 >
-                  {/* <h1 className="display-6 fw-semibold lora mb-4">{title}</h1> */}
-                  <p className="lead mb-5 ">{description}</p>
+                  <p className="lead mb-5">{description}</p>
                   <a
                     href={validLink}
                     target="_blank"
@@ -186,7 +178,7 @@ const HeroCarousel: React.FC = () => {
                   </a>
                 </div>
 
-                {/* Overlay for Mobile */}
+                {/* Mobile Overlay */}
                 <div
                   className="d-flex d-md-none flex-column justify-content-center align-items-center text-center hero-mobile"
                   style={{
@@ -201,7 +193,6 @@ const HeroCarousel: React.FC = () => {
                     display: isMobile ? 'flex' : 'none',
                   }}
                 >
-                  {/* <h3 className="fw-semibold mb-3">{title}</h3> */}
                   <p className="mb-4">{description}</p>
                   <a
                     href={validLink}
@@ -216,49 +207,31 @@ const HeroCarousel: React.FC = () => {
             );
           })}
         </div>
-      ) : null}
-
-      {/* Navigation Buttons */}
-      {sortedHeroes.length > 0 && (
-        <>
-          <button
-            onClick={goPrev}
-            aria-label="Previous Slide"
-            className="position-absolute top-50 start-0 translate-middle-y btn btn-white rounded-circle d-flex align-items-center justify-content-center"
-            style={{
-              width: '40px',
-              height: '40px',
-              marginLeft: '10px',
-              backgroundColor: 'white',
-              border: 'none',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-              zIndex: 10,
-            }}
-          >
-            <svg viewBox="0 0 24 24" fill="black" width="32px" height="32px">
-              <path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-            </svg>
-          </button>
-          <button
-            onClick={goNext}
-            aria-label="Next Slide"
-            className="position-absolute top-50 end-0 translate-middle-y btn btn-white rounded-circle d-flex align-items-center justify-content-center"
-            style={{
-              width: '40px',
-              height: '40px',
-              marginRight: '10px',
-              backgroundColor: 'white',
-              border: 'none',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
-              zIndex: 10,
-            }}
-          >
-            <svg viewBox="0 0 24 24" fill="black" width="32px" height="32px">
-              <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" />
-            </svg>
-          </button>
-        </>
       )}
+
+      {/* Dots */}
+      <div
+        className="position-absolute w-100 d-flex justify-content-center"
+        style={{ bottom: 15, zIndex: 10 }}
+      >
+        {sortedHeroes.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => goToSlide(idx)}
+            style={{
+              width: 12,
+              height: 12,
+              borderRadius: '50%',
+              border: 'none',
+              margin: '0 5px',
+              backgroundColor: currentIndex === idx + 1 ? '#fff' : 'rgba(255,255,255,0.5)',
+              cursor: 'pointer',
+              transition: 'background-color 0.3s',
+            }}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 };

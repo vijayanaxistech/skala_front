@@ -7,8 +7,8 @@ import Link from 'next/link';
 import { Row, Col } from 'react-bootstrap';
 import defaultBreadcrumbImage from '../../../../../public/assets/collections.jpg';
 import { getProductBySlug, getProducts, BASE_URL } from '../../../../lib/api';
-import WhatsAppButton from '../../../collections/WhatsAppButton';
-import MoreInfoButton from '../../../collections/MoreInfo';
+import WhatsAppButton from '../../../jewellery/WhatsAppButton';
+import MoreInfoButton from '../../../jewellery/MoreInfo';
 import ProductImageGallery from '../../ProductImageGallery';
 import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
 
