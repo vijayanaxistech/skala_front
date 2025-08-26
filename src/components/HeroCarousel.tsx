@@ -65,16 +65,10 @@ const HeroCarousel: React.FC = () => {
     setCurrentIndex((prev) => prev + 1);
   }, [isTransitioning]);
 
-  const goPrev = useCallback(() => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => prev - 1);
-  }, [isTransitioning]);
-
   // Autoplay
   useEffect(() => {
     if (slideWidth === 0 || sortedHeroes.length === 0) return;
-    const interval = setInterval(() => goNext(), 7000);
+    const interval = setInterval(() => goNext(), 4000);
     return () => clearInterval(interval);
   }, [slideWidth, goNext, sortedHeroes.length]);
 

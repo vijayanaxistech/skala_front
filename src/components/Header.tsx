@@ -114,7 +114,7 @@ const Header: React.FC = () => {
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
     }
-    if (dropdown === 'jewellery') {
+    if (dropdown === 'Jewellery') {
       setShowCollectionsDropdown(true);
     } else if (dropdown === 'Investment') {
       setShowInvestmentDropdown(true);
@@ -123,7 +123,7 @@ const Header: React.FC = () => {
 
   const handleMouseLeave = (dropdown: string) => {
     dropdownTimeoutRef.current = setTimeout(() => {
-      if (dropdown === 'Collections') {
+      if (dropdown === 'Jewellery') {
         setShowCollectionsDropdown(false);
       } else if (dropdown === 'Investment') {
         setShowInvestmentDropdown(false);
@@ -231,7 +231,7 @@ const Header: React.FC = () => {
                   );
                 }
 
-                if (name === 'jewellery') {
+                if (name === 'Jewellery') {
                   const isCollectionsActive = pathname.startsWith('/jewellery');
                   return (
                     <div key={`collections-${index}`} className="mobile-nav-item">
