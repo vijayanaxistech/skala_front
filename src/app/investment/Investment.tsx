@@ -9,11 +9,11 @@ import breadcrumbImage from '../../../public/assets/Why us Page.jpg';
 import androidAppImage from '../../../public/assets/googleplay.png';
 import iosAppImage from '../../../public/assets/appstore.png';
 import giftcard from '../../../public/assets/Gift Card 2.png';
- 
+
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
- 
-const EasyGoldScheme = () => {
+
+const Investment = () => {
     const schemes = [
         {
             icon: Image1,
@@ -31,14 +31,14 @@ const EasyGoldScheme = () => {
             description: 'Golden treasure',
         },
     ];
- 
+
     const responsive = {
         mobile: {
             breakpoint: { max: 767, min: 0 },
             items: 1,
         },
     };
- 
+
     return (
         <>
             {/* Banner Image */}
@@ -80,24 +80,22 @@ const EasyGoldScheme = () => {
                     >
                         {schemes.map((item, idx) => (
                             <div key={idx} className="d-flex flex-column align-items-center px-3 mt-3">
-                                <Link href={item.link} className="text-decoration-none">
-                                    <div className="rounded-4 iconbox d-flex justify-content-center align-items-center mb-3">
-                                        <Image
-                                            src={item.icon}
-                                            alt={item.title}
-                                            width={40}
-                                            height={40}
-                                            className="iconbox-image"
-                                        />
-                                    </div>
-                                </Link>
+                                <div className="rounded-4 iconbox d-flex justify-content-center align-items-center mb-3">
+                                    <Image
+                                        src={item.icon}
+                                        alt={item.title}
+                                        width={40}
+                                        height={40}
+                                        className="iconbox-image"
+                                    />
+                                </div>
                                 <h5 className="heading-extension text-red fraunces mt-3">{item.title}</h5>
                                 <p className="text-muted mt-1">{item.description}</p>
                             </div>
                         ))}
                     </Carousel>
                 </div>
- 
+
                 {/* Desktop View - Grid */}
                 <div className="row mt-4 d-none d-md-flex">
                     {schemes.map((item, idx) => (
@@ -119,10 +117,10 @@ const EasyGoldScheme = () => {
                     ))}
                 </div>
             </div>
- 
+
             {/* New section for app download */}
             <div className="container py-4 text-center">
-                <h3 className="fraunces">For using these schemes, download our app</h3>
+                <h3 className="fraunces">Access exclusive gold benefits by downloading our app</h3>
                 <div className="d-flex justify-content-center gap-3 mt-4">
                     <Link href="#">
                         <Image
@@ -142,7 +140,7 @@ const EasyGoldScheme = () => {
                     </Link>
                 </div>
             </div>
- 
+
             <div className="d-flex justify-content-center align-items-center mt-5">
                 <div className="custom-heading-wrapper d-flex align-items-center mb-5">
                     <h3 className="m-0 custom-heading text-wrap me-3 text-center">
@@ -157,41 +155,41 @@ const EasyGoldScheme = () => {
                     </h3>
                 </div>
             </div>
-            <div className="col-12 col-md-5 mb-4 text-center">
-                <Image
-                    src={giftcard}
-                    alt="Suvarnakala Gift Card for Jewelry"
-                    className="img-fluid rounded"
-                    width={400}
-                    height={300}
-                    style={{ maxHeight: '280px', objectFit: 'contain', width: '100%' }}
-                    sizes="(max-width: 768px) 100vw, 400px"
-                    loading="lazy"
-                />
-                <div className="container py-4 text-center">
-                    <h3 className="fraunces">For using these schemes, download our app</h3>
-                    <div className="d-flex justify-content-center gap-3 mt-4">
-                        <Link href="#">
-                            <Image
-                                src={androidAppImage}
-                                alt="Download on Google Play"
-                                width={150}
-                                height={50}
-                            />
-                        </Link>
-                        <Link href="#">
-                            <Image
-                                src={iosAppImage}
-                                alt="Download on the App Store"
-                                width={150}
-                                height={50}
-                            />
-                        </Link>
-                    </div>
-                </div>
+      <div className="container py-4">
+        <div className="row flex-column-reverse flex-md-row justify-content-center align-items-center">
+          <div className="col-12 col-md-6 text-center text-md-start">
+            <h3 className="fraunces mb-3">
+              Unlock Exclusive Gift Card Benefits - Download Our App Today!
+            </h3>
+            <p className="lead text-muted d-none d-md-block">
+              Give the gift of gold with our beautifully designed gift cards, perfect for any special occasion.
+            </p>
+            <div className="d-flex justify-content-center justify-content-md-start gap-3 mt-4">
+              <Link href="#">
+                <Image src={androidAppImage} alt="Download on Google Play" width={150} height={50} />
+              </Link>
+              <Link href="#">
+                <Image src={iosAppImage} alt="Download on the App Store" width={150} height={50} />
+              </Link>
             </div>
+          </div>
+          <div className="col-12 col-md-6 d-flex justify-content-center mb-4 mb-md-0">
+            <Image
+              src={giftcard}
+              alt="Suvarnakala Gift Card for Jewelry"
+              className="img-fluid rounded"
+              width={400}
+              height={300}
+              style={{ maxHeight: '280px', objectFit: 'contain' }}
+              sizes="(max-width: 768px) 100vw, 400px"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+
         </>
     );
 };
- 
-export default EasyGoldScheme;
+
+export default Investment;

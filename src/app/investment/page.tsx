@@ -1,14 +1,14 @@
 import { getMetadataByPage } from '@/lib/api';
-import Investment from './Investment'
+import Investment from './Investment';
+import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
+
 export async function generateMetadata() {
   try {
     const metadata = await getMetadataByPage('investment');
     if (!metadata) {
-      // Fallback metadata if API returns null
       return {
         title: 'Investment | Suvarnakala Pvt. Ltd',
-        description:
-          'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
+        description: 'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
       };
     }
     return {
@@ -25,15 +25,17 @@ export async function generateMetadata() {
     };
   } catch (error) {
     console.error('Error fetching metadata for about page:', error);
-    // Fallback metadata in case of error
     return {
       title: 'About Us | Suvarnakala Pvt. Ltd',
-      description:
-        'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
+      description: 'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
     };
   }
 }
 
 export default async function Page() {
-  return <Investment />;
+  return (
+    <ClientLayoutWrapper>
+      <Investment />
+    </ClientLayoutWrapper>
+  );
 }

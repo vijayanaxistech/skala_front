@@ -13,7 +13,7 @@ import leaf from '../../public/assets/Group 41992.png';
 import Link from 'next/link';
 import instagramIcon from '../../public/assets/icons/Instagram.svg';
 import whatsappIcon from '../../public/assets/icons/whatsapp.svg';
-import twitterIcon from '../../public/assets/icons/twitter.svg';
+import pinterestIcon from '../../public/assets/icons/pinterest.svg';
 import facebookIcon from '../../public/assets/icons/facebook.svg';
 import phone from '../../public/assets/icons/phone.svg';
 import mail from '../../public/assets/icons/gmail.svg';
@@ -211,9 +211,7 @@ export default function Footer() {
                     />
                   </Nav.Link>
 
-                  <Nav.Link href="https://twitter.com/your-profile" target="_blank">
-                    <Image src={twitterIcon} alt="Twitter" width={38} height={38} />
-                  </Nav.Link>
+
 
                   <Nav.Link href="https://instagram.com/your-profile" target="_blank">
                     <Image
@@ -227,6 +225,9 @@ export default function Footer() {
                   <Nav.Link href="https://facebook.com/your-profile" target="_blank">
                     <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
                   </Nav.Link>
+                                              <Nav.Link href="https://pinterest.com/your-profile" target="_blank">
+                                    <Image src={pinterestIcon} alt="Pinterest" width={32} height={32} />
+                                  </Nav.Link>
                 </div>
               </div>
             </div>
