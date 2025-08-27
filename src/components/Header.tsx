@@ -16,12 +16,9 @@ import Image1 from '../../public/assets/category1.jpg';
 import Image2 from '../../public/assets/category2.jpg';
 import Image3 from '../../public/assets/category3.jpg';
 import Image4 from '../../public/assets/category1.jpg';
-import digiGoldIcon from '../../public/assets/icons/gold.png';
-import bookMyGoldIcon from '../../public/assets/icons/coin.png';
-import monthlySavingIcon from '../../public/assets/icons/money.png';
 import instagramIcon from '../../public/assets/icons/Instagram.svg';
 import whatsappIcon from '../../public/assets/icons/whatsapp.svg';
-import twitterIcon from '../../public/assets/icons/twitter.svg';
+import pinterestIcon from '../../public/assets/icons/pinterest.svg';
 import facebookIcon from '../../public/assets/icons/facebook.svg';
 
 interface NavLink {
@@ -50,24 +47,17 @@ const Header: React.FC = () => {
   const [navLinks, setNavLinks] = useState<NavLink[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [showCollectionsDropdown, setShowCollectionsDropdown] = useState(false);
-  const [showInvestmentDropdown, setShowInvestmentDropdown] = useState(false);
-  const [showMobileInvestment, setShowMobileInvestment] = useState(false);
   const [showMobileCollections, setShowMobileCollections] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const desiredOrder = ['Home', 'About Us', 'Jewellery', 'Why Us', 'Investment', 'Our Showrooms'];
+  const desiredOrder = ['Home', 'About Us', 'Jewellery', 'Why Us', 'Our Showrooms','Investment'];
 
-  const investmentLinks = [
-    { name: 'Digi-Gold', path: '/digi-gold', icon: digiGoldIcon },
-    { name: 'Book My Gold', path: '/book-my-gold', icon: bookMyGoldIcon },
-    { name: 'Monthly Saving Scheme', path: '/monthly-saving-scheme', icon: monthlySavingIcon },
-  ];
 
   useEffect(() => {
     const fetchNavLinks = async () => {
       try {
         const data = await getNavbar();
-        const filteredLinks = data.filter((link: NavLink) => link.name !== 'Investment');
+        const filteredLinks = data.filter((link: NavLink) => link.name !== 'Investment'); // Remove the old filter
         const sortedLinks = filteredLinks.sort((a: NavLink, b: NavLink) => {
           const aIndex = desiredOrder.indexOf(a.name);
           const bIndex = desiredOrder.indexOf(b.name);
@@ -110,29 +100,17 @@ const Header: React.FC = () => {
     setExpanded(false);
   };
 
-  const handleMouseEnter = (dropdown: string) => {
+  const handleMouseEnter = () => {
     if (dropdownTimeoutRef.current) {
       clearTimeout(dropdownTimeoutRef.current);
     }
-    if (dropdown === 'Jewellery') {
-      setShowCollectionsDropdown(true);
-    } else if (dropdown === 'Investment') {
-      setShowInvestmentDropdown(true);
-    }
+    setShowCollectionsDropdown(true);
   };
 
-  const handleMouseLeave = (dropdown: string) => {
+  const handleMouseLeave = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
-      if (dropdown === 'Jewellery') {
-        setShowCollectionsDropdown(false);
-      } else if (dropdown === 'Investment') {
-        setShowInvestmentDropdown(false);
-      }
+      setShowCollectionsDropdown(false);
     }, 200);
-  };
-
-  const handleMobileInvestmentToggle = () => {
-    setShowMobileInvestment((prev) => !prev);
   };
 
   const handleMobileCollectionsToggle = () => {
@@ -144,15 +122,19 @@ const Header: React.FC = () => {
   const occasions = Array.from(new Set(products.map((p) => p.occasion))).sort();
   const purities = Array.from(new Set(products.map((p) => p.purity))).sort();
 
-  // Check if current path is an investment sub-page
-  const isInvestmentActive = investmentLinks.some((link) => pathname.startsWith(link.path));
+  const getNavLinkPath = (name: string): string => {
+    if (name === 'Investment') return '/investment';
+    const link = navLinks.find(l => l.name === name);
+    return link ? link.path : '#';
+  };
+
 
   return (
     <>
       <Goldrate />
       <ToastContainer />
 
-      <Navbar expand="lg" className="custom-navbar bg-color shadow-sm" sticky="top">
+      <Navbar expand="lg" className="custom-navbar bg-color shadow-sm sticky-top">
         <Container fluid className="d-flex align-items-center justify-content-between">
           <div className="header-logo">
             <Link href="/" passHref legacyBehavior={false}>
@@ -185,52 +167,6 @@ const Header: React.FC = () => {
             </div>
             <Nav className="mobile-nav flex-column">
               {desiredOrder.map((name, index) => {
-                if (name === 'Investment') {
-                  const isInvestmentActive = investmentLinks.some((link) =>
-                    pathname.startsWith(link.path),
-                  );
-                  return (
-                    <div key={`investment-${index}`} className="mobile-nav-item">
-                      {/* <div
-                        className={`mobile-nav-link lora ${isInvestmentActive ? 'active' : ''}`}
-                        onClick={handleMobileInvestmentToggle}
-                        style={{ cursor: 'pointer' }}
-                      >
-                        Investment
-                        <span className="dropdown-arrow ms-2">
-                          <i
-                            className={`bi ${showMobileInvestment ? 'bi-caret-up' : 'bi-caret-down'}`}
-                          ></i>
-                        </span>
-                      </div> */}
-                      {showMobileInvestment && (
-                        <div className="mobile-submenu">
-                          {investmentLinks.map((link) => (
-                            <Link
-                              href={link.path}
-                              key={link.name}
-                              className={`mobile-submenu-item ${pathname === link.path ? 'active' : ''}`}
-                              onClick={() => {
-                                setShowMobileInvestment(false);
-                                setExpanded(false);
-                              }}
-                            >
-                              <Image
-                                src={link.icon}
-                                alt={link.name}
-                                width={24}
-                                height={24}
-                                className="me-2"
-                              />
-                              <span className="lora">{link.name}</span>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                }
-
                 if (name === 'Jewellery') {
                   const isCollectionsActive = pathname.startsWith('/jewellery');
                   return (
@@ -332,20 +268,14 @@ const Header: React.FC = () => {
                   );
                 }
 
-                const navLink = navLinks.find((link) => link.name === name);
-                if (!navLink) return null;
-
+                const navLinkPath = getNavLinkPath(name);
                 const isBookAppointment = name === 'Book an Appointment';
-                const isCollections = name === 'Jewellery';
-                const isActive =
-                  !isBookAppointment && !isCollections
-                    ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
-                    : false;
+                const isActive = pathname === navLinkPath;
 
                 return (
-                  <div key={navLink._id} className="mobile-nav-item">
+                  <div key={name} className="mobile-nav-item">
                     <Link
-                      href={navLink.path}
+                      href={navLinkPath}
                       className={`mobile-nav-link lora ${isActive ? 'active' : ''}`}
                       onClick={(e) => {
                         if (isBookAppointment) {
@@ -356,7 +286,7 @@ const Header: React.FC = () => {
                         }
                       }}
                     >
-                      {navLink.name}
+                      {name}
                     </Link>
                   </div>
                 );
@@ -373,9 +303,7 @@ const Header: React.FC = () => {
                   />
                 </Nav.Link>
 
-                <Nav.Link href="https://twitter.com/your-profile" target="_blank">
-                  <Image src={twitterIcon} alt="Twitter" width={38} height={38} />
-                </Nav.Link>
+
 
                 <Nav.Link href="https://instagram.com/your-profile" target="_blank">
                   <Image
@@ -389,6 +317,9 @@ const Header: React.FC = () => {
                 <Nav.Link href="https://facebook.com/your-profile" target="_blank">
                   <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
                 </Nav.Link>
+                                <Nav.Link href="https://pinterest.com/your-profile" target="_blank">
+                  <Image src={pinterestIcon} alt="Pinterest" width={38} height={38} />
+                </Nav.Link>
               </div>
             </Nav>
           </div>
@@ -400,84 +331,25 @@ const Header: React.FC = () => {
           >
             <Nav className="gap-3 text-center flex-row align-items-center">
               {desiredOrder.map((name, index) => {
-                if (name === 'Investment') {
-                  return (
-                    <div
-                      key={`investment-${index}`}
-                      className="nav-item-investment" // Using a different class to keep `position: relative`
-                      onMouseEnter={() => handleMouseEnter('Investment')}
-                      onMouseLeave={() => handleMouseLeave('Investment')}
-                    >
-                      {/* <Nav.Link
-                        as="span"
-                        className={`navlinks-hover custom-nav-link lora ${isInvestmentActive ? 'active-link' : ''}`}
-                        onClick={() => setShowInvestmentDropdown(true)}
-                        style={{
-                          cursor: 'pointer',
-                        }}
-                      >
-                        Investment
-                      </Nav.Link> */}
-                      {/* <div
-                        className={`dropdown-menu-full-investment ${showInvestmentDropdown ? 'show' : ''}`}
-                        onMouseEnter={() => handleMouseEnter('Investment')}
-                        onMouseLeave={() => handleMouseLeave('Investment')}
-                      >
-                        <div className="dropdown-content-investment">
-                          <div className="dropdown-left-investment">
-                            <div className="dropdown-section-investment">
-                              <div className="d-flex justify-content-center gap-4 flex-wrap">
-                                {investmentLinks.map((link) => (
-                                  <Link
-                                    href={link.path}
-                                    key={link.name}
-                                    className="text-decoration-none "
-                                    onClick={() => {
-                                      setShowInvestmentDropdown(false);
-                                      setExpanded(false);
-                                    }}
-                                  >
-                                    <div className="investment-card d-flex align-items-center p-3 hover-card">
-                                      <div className="icon-circle bg-red d-flex align-items-center justify-content-center me-3">
-                                        <Image
-                                          src={link.icon}
-                                          alt={link.name}
-                                          width={34}
-                                          height={34}
-                                        />
-                                      </div>
-                                      <h6 className="mb-0 text-gray  lora">{link.name}</h6>
-                                    </div>
-                                  </Link>
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div> */}
-                    </div>
-                  );
-                }
-
-                const navLink = navLinks.find((link) => link.name === name);
-                if (!navLink) return null;
-
+                const navLinkPath = getNavLinkPath(name);
                 const isBookAppointment = name === 'Book an Appointment';
                 const isCollections = name === 'Jewellery';
                 const isActive =
-                  !isBookAppointment && !isCollections
-                    ? pathname === navLink.path || pathname.startsWith(navLink.path + '/')
-                    : isCollections && pathname.startsWith('/jewellery');
+                  isBookAppointment
+                    ? false
+                    : isCollections
+                    ? pathname.startsWith('/jewellery')
+                    : pathname === navLinkPath || pathname.startsWith(navLinkPath + '/');
 
                 return (
                   <div
-                    key={navLink._id}
-                    className={`nav-item ${isCollections ? 'nav-item-collections' : ''}`} // Add a specific class for collections
-                    onMouseEnter={isCollections ? () => handleMouseEnter('Jewellery') : undefined}
-                    onMouseLeave={isCollections ? () => handleMouseLeave('Jewellery') : undefined}
+                    key={name}
+                    className={`nav-item ${isCollections ? 'nav-item-collections' : ''}`}
+                    onMouseEnter={isCollections ? handleMouseEnter : undefined}
+                    onMouseLeave={isCollections ? handleMouseLeave : undefined}
                   >
                     <Link
-                      href={navLink.path}
+                      href={navLinkPath}
                       passHref
                       legacyBehavior={false}
                       className="custom-nav-link navlinks-hover"
@@ -494,14 +366,14 @@ const Header: React.FC = () => {
                         as="span"
                         className={`custom-nav-link navlinks-hover lora ${isActive ? 'active-link' : ''}`}
                       >
-                        {navLink.name}
+                        {name}
                       </Nav.Link>
                     </Link>
                     {isCollections && (
                       <div
                         className={`dropdown-menu-full ${showCollectionsDropdown ? 'show' : ''}`}
-                        onMouseEnter={() => handleMouseEnter('Jewellery')}
-                        onMouseLeave={() => handleMouseLeave('Jewellery')}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
                       >
                         <div className="dropdown-content">
                           <div className="dropdown-left">
@@ -582,7 +454,7 @@ const Header: React.FC = () => {
                               </ul>
                             </div>
                           </div>
-                          {/* <div className="dropdown-right">
+                          <div className="dropdown-right">
                             <div className="image-grid">
                               {[Image1, Image2, Image3, Image4].map((img, index) => (
                                 <Image
@@ -595,7 +467,7 @@ const Header: React.FC = () => {
                                 />
                               ))}
                             </div>
-                          </div> */}
+                          </div>
                         </div>
                       </div>
                     )}
@@ -616,9 +488,7 @@ const Header: React.FC = () => {
               />
             </Nav.Link>
 
-            <Nav.Link href="https://twitter.com/your-profile" target="_blank">
-              <Image src={twitterIcon} alt="Twitter" width={38} height={38} />
-            </Nav.Link>
+
 
             <Nav.Link href="https://instagram.com/your-profile" target="_blank">
               <Image
@@ -632,17 +502,23 @@ const Header: React.FC = () => {
             <Nav.Link href="https://facebook.com/your-profile" target="_blank">
               <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
             </Nav.Link>
+                            <Nav.Link href="https://pinterest.com/your-profile" target="_blank">
+                  <Image src={pinterestIcon} alt="Pinterest" width={32} height={32} />
+                </Nav.Link>
           </div>
         </Container>
       </Navbar>
 
       <style>{`
+
+
         .custom-nav-link {
           color: #333;
           font-weight: 500;
           text-decoration: none;
           position: relative;
         }
+          
         .custom-nav-link:hover {
           color: #d41b1f !important;
         }
