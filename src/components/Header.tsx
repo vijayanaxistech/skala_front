@@ -582,7 +582,7 @@ const Header: React.FC = () => {
                               </ul>
                             </div>
                           </div>
-                          <div className="dropdown-right">
+                          {/* <div className="dropdown-right">
                             <div className="image-grid">
                               {[Image1, Image2, Image3, Image4].map((img, index) => (
                                 <Image
@@ -595,7 +595,7 @@ const Header: React.FC = () => {
                                 />
                               ))}
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     )}
