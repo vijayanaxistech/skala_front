@@ -10,12 +10,7 @@ import CredibilitySection from '../components/AboutUs';
 import VideoSection from '../components/VideoSection';
 import ShopbyStyle from '../components/ShopbyStyle';
 import TopTrendingDesigns from '../components/TopTrendingDesigns';
-import GiftCard from '../components/GiftCard';
-// import Moments from '../components/Moments';
-import BachatMahotsav from '../components/BachatMahotsav';
 import Testimonials from '../components/Testimonials';
-import EasyGoldScheme from '../components/EasyGoldScheme';
-
 import {
   getBachatMahotsavImages,
   getHeroes,
@@ -96,14 +91,9 @@ export default function Home() {
       <Hero />
       <CredibilitySection />
       <VideoSection />
-      {/* <EasyGoldScheme /> */}
       <ShopbyStyle />
       <Products />
-      {/* <GiftCard /> */}
-      {/* <Moments moments={moments} /> */}
       <TopTrendingDesigns initialDesigns={trendingDesigns} />
-
-      {/* <BachatMahotsav bachatMahotsavImages={bachatMahotsavImages} /> */}
       <Testimonials />
     </>
   );

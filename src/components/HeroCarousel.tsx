@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { getHeroes, BASE_URL } from '../lib/api';
 import Image from 'next/image';
+import Loader from '@/components/Loader';
 
 interface Hero {
   _id: string;
@@ -21,6 +22,7 @@ const HeroCarousel: React.FC = () => {
   const [slideWidth, setSlideWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // New state for loading
 
   useEffect(() => {
     async function fetchHeroes() {
@@ -29,6 +31,8 @@ const HeroCarousel: React.FC = () => {
         setHeroes(data || []);
       } catch (error) {
         console.error('Failed to fetch heroes:', error);
+      } finally {
+        setIsLoading(false); // Set loading to false after fetch attempt
       }
     }
     fetchHeroes();
@@ -67,10 +71,10 @@ const HeroCarousel: React.FC = () => {
 
   // Autoplay
   useEffect(() => {
-    if (slideWidth === 0 || sortedHeroes.length === 0) return;
+    if (slideWidth === 0 || sortedHeroes.length === 0 || isLoading) return; // Add isLoading check
     const interval = setInterval(() => goNext(), 4000);
     return () => clearInterval(interval);
-  }, [slideWidth, goNext, sortedHeroes.length]);
+  }, [slideWidth, goNext, sortedHeroes.length, isLoading]); // Add isLoading to dependency array
 
   // Infinite loop logic
   useEffect(() => {
@@ -96,6 +100,12 @@ const HeroCarousel: React.FC = () => {
     setIsTransitioning(true);
     setCurrentIndex(index + 1); // +1 because of duplicated first slide
   };
+
+  if (isLoading) {
+    return (
+ <Loader />
+    );
+  }
 
   return (
     <div
