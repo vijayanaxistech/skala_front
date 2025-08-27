@@ -2,8 +2,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-// import Link from 'next/link';
-
 import aboutImage from '../../../public/assets/About_us_bottom.jpg';
 import qualityBadge from '../../../public/assets/Quality.png';
 import serviceBadge from '../../../public/assets/Service.png';
