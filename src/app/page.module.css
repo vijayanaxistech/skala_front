@@ -153,3 +153,40 @@
 .categoryItem:hover .imageWrapper .categoryImage {
   transform: scale(1.05);
 }
+
+
+  .card {
+  width: 100%;
+  position: relative;
+  border-radius: 12px;
+}
+
+.cardSmall {
+  width: 100%;
+  position: relative;
+    border-radius: 12px;
+
+}
+.cardImage {
+  object-fit: fill;
+}
+
+@media (max-width: 767px) {
+  .cardImage {
+    object-fit: cover;
+  }
+  .card {
+  width: 100%;
+  height: 400px; /* Adjust height as needed */
+  position: relative;
+  border-radius: 12px;
+}
+
+.cardSmall {
+  width: 100%;
+  height: 200px; /* Adjust height as needed */
+  position: relative;
+    border-radius: 12px;
+
+}
+}

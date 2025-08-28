@@ -52,6 +52,9 @@ const Header: React.FC = () => {
 
   const desiredOrder = ['Home', 'About Us', 'Jewellery', 'Why Us', 'Our Showrooms','Investment'];
 
+  // Define the specific sort order for Jewellery and Occasions
+  const jewelleryTypeOrder = ['Gold', 'Diamond'];
+  const occasionOrder = ['Engagement', 'Wedding'];
 
   useEffect(() => {
     const fetchNavLinks = async () => {
@@ -118,8 +121,17 @@ const Header: React.FC = () => {
   };
 
   const categories = Array.from(new Set(products.map((p) => p.category.name))).sort();
-  const jewelleryTypes = Array.from(new Set(products.map((p) => p.jewelleryType))).sort();
-  const occasions = Array.from(new Set(products.map((p) => p.occasion))).sort();
+  // Sort jewelleryTypes and occasions based on the predefined order
+  const sortedJewelleryTypes = Array.from(new Set(products.map((p) => p.jewelleryType))).sort((a, b) => {
+    const aIndex = jewelleryTypeOrder.indexOf(a);
+    const bIndex = jewelleryTypeOrder.indexOf(b);
+    return (aIndex === -1 ? jewelleryTypeOrder.length : aIndex) - (bIndex === -1 ? jewelleryTypeOrder.length : bIndex);
+  });
+  const sortedOccasions = Array.from(new Set(products.map((p) => p.occasion))).sort((a, b) => {
+    const aIndex = occasionOrder.indexOf(a);
+    const bIndex = occasionOrder.indexOf(b);
+    return (aIndex === -1 ? occasionOrder.length : aIndex) - (bIndex === -1 ? occasionOrder.length : bIndex);
+  });
   const purities = Array.from(new Set(products.map((p) => p.purity))).sort();
 
   const getNavLinkPath = (name: string): string => {
@@ -216,7 +228,7 @@ const Header: React.FC = () => {
                           </div>
                           <div className="mobile-submenu-section">
                             <h6 className="lora">Shop By Jewellery</h6>
-                            {jewelleryTypes.map((type) => (
+                            {sortedJewelleryTypes.map((type) => (
                               <Link
                                 href={`/Jewellery/jewelleryType/${type}`}
                                 key={type}
@@ -232,7 +244,7 @@ const Header: React.FC = () => {
                           </div>
                           <div className="mobile-submenu-section">
                             <h6 className="lora">Shop By Occasion</h6>
-                            {occasions.map((occasion) => (
+                            {sortedOccasions.map((occasion) => (
                               <Link
                                 href={`/Jewellery/occasion/${occasion}`}
                                 key={occasion}
@@ -293,7 +305,7 @@ const Header: React.FC = () => {
               })}
               {/* Mobile Social Icons */}
               <div className="mobile-social-icons">
-                <Nav.Link href="https://wa.me/your-number" target="_blank">
+                <Nav.Link href="https://wa.me/917874011144" target="_blank">
                   <Image
                     src={whatsappIcon}
                     alt="WhatsApp"
@@ -305,7 +317,7 @@ const Header: React.FC = () => {
 
 
 
-                <Nav.Link href="https://instagram.com/your-profile" target="_blank">
+                <Nav.Link href="https://www.instagram.com/suvarnakalajewellers" target="_blank">
                   <Image
                     src={instagramIcon}
                     className="rounded-5"
@@ -314,11 +326,11 @@ const Header: React.FC = () => {
                     height={31}
                   />
                 </Nav.Link>
-                <Nav.Link href="https://facebook.com/your-profile" target="_blank">
+                <Nav.Link href=" https://www.facebook.com/Suvarnakala" target="_blank">
                   <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
                 </Nav.Link>
-                                <Nav.Link href="https://pinterest.com/your-profile" target="_blank">
-                  <Image src={pinterestIcon} alt="Pinterest" width={38} height={38} />
+                                <Nav.Link href="https://pin.it/3Uf6q82Hq" target="_blank">
+                  <Image src={pinterestIcon} alt="Pinterest" width={32} height={32} />
                 </Nav.Link>
               </div>
             </Nav>
@@ -399,7 +411,7 @@ const Header: React.FC = () => {
                             <div className="dropdown-section">
                               <h6 className="lora">Shop By Jewellery</h6>
                               <ul className="mt-1">
-                                {jewelleryTypes.map((type) => (
+                                {sortedJewelleryTypes.map((type) => (
                                   <li key={type}>
                                     <Link
                                       href={`/jewellery/jewelleryType/${type}`}
@@ -418,7 +430,7 @@ const Header: React.FC = () => {
                             <div className="dropdown-section">
                               <h6 className="lora">Shop By Occasion</h6>
                               <ul className="mt-1">
-                                {occasions.map((occasion) => (
+                                {sortedOccasions.map((occasion) => (
                                   <li key={occasion}>
                                     <Link
                                       href={`/jewellery/occasion/${occasion}`}
@@ -454,7 +466,7 @@ const Header: React.FC = () => {
                               </ul>
                             </div>
                           </div>
-                          <div className="dropdown-right">
+                          {/* <div className="dropdown-right">
                             <div className="image-grid">
                               {[Image1, Image2, Image3, Image4].map((img, index) => (
                                 <Image
@@ -467,7 +479,7 @@ const Header: React.FC = () => {
                                 />
                               ))}
                             </div>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     )}
@@ -478,7 +490,7 @@ const Header: React.FC = () => {
           </Navbar.Collapse>
 
           <div className="d-none d-lg-flex align-items-center gap-2 social-icons">
-            <Nav.Link href="https://wa.me/your-number" target="_blank">
+            <Nav.Link href="https://wa.me/917874011144" target="_blank">
               <Image
                 src={whatsappIcon}
                 alt="WhatsApp"
@@ -490,7 +502,7 @@ const Header: React.FC = () => {
 
 
 
-            <Nav.Link href="https://instagram.com/your-profile" target="_blank">
+            <Nav.Link href="https://www.instagram.com/suvarnakalajewellers" target="_blank">
               <Image
                 src={instagramIcon}
                 className="rounded-5"
@@ -499,10 +511,10 @@ const Header: React.FC = () => {
                 height={31}
               />
             </Nav.Link>
-            <Nav.Link href="https://facebook.com/your-profile" target="_blank">
+            <Nav.Link href=" https://www.facebook.com/Suvarnakala" target="_blank">
               <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
             </Nav.Link>
-                            <Nav.Link href="https://pinterest.com/your-profile" target="_blank">
+                            <Nav.Link href="https://pin.it/3Uf6q82Hq" target="_blank">
                   <Image src={pinterestIcon} alt="Pinterest" width={32} height={32} />
                 </Nav.Link>
           </div>
@@ -811,7 +823,6 @@ const Header: React.FC = () => {
           align-items: center;
           gap: 15px;
           padding: 20px 16px;
-          border-top: 1px solid #eee;
           margin-top: 20px;
         }
 

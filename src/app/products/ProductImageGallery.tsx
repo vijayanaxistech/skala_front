@@ -21,19 +21,19 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
     <>
       {/* Main Image */}
       <div className="col-12 col-md-5 d-flex align-items-center justify-content-center order-md-2">
-        <div style={{ padding: '20px' }}>
+        <div >
           <div
             className="image-wrapper"
             style={{
               overflow: 'hidden',
-              borderRadius: '0.25rem',
+              borderRadius: '12px',
             }}
           >
             <Image
               src={`${BASE_URL}/${selectedImage}`}
               alt={productTitle}
-              width={350}
-              height={350}
+              width={370}
+              height={370}
               className="img-fluid main-image"
               style={{
                 objectFit: 'contain',
@@ -56,7 +56,7 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
             alt={`Thumbnail ${index}`}
             width={70}
             height={70}
-            className="rounded-0 shadow-sm"
+            className="rounded-2 shadow-sm"
             style={{
               cursor: 'pointer',
               objectFit: 'cover',

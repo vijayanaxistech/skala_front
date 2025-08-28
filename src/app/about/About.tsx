@@ -209,7 +209,7 @@ Our promise goes beyond jewellery, it is the promise of trust, refinement, and l
       </div>
 
       {/* Trust Section */}
-      <div style={{ backgroundColor: 'rgb(246, 245, 245)', padding: '30px 0' }}>
+      <div style={{  padding: '30px 0' }} className='bg-light'>
         <div className="d-flex flex-wrap align-items-center gap-3 justify-content-start justify-content-md-evenly">
           {[
             { img: certified, text: '100% Certified Jewelry' },

@@ -162,16 +162,17 @@ const HeroCarousel: React.FC = () => {
                   style={{
                     position: 'absolute',
                     top: 0,
-                    left: '5%',
+                    right: '5%',
                     height: '100%',
                     color: 'white',
-                    maxWidth: '20%',
+                    maxWidth: '30%',
                     paddingRight: '15px',
                     zIndex: 2,
                     display: isMobile ? 'none' : 'flex',
                   }}
                 >
-                  <p className="lead mb-5">{description}</p>
+                  <h2 className="fraunces">{title}</h2>
+                  <p className=" lora mb-4">{description}</p>
                   <a
                     href={validLink}
                     target="_blank"

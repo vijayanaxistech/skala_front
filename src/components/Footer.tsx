@@ -201,7 +201,7 @@ export default function Footer() {
               <div className="footer-social-section social-media">
                 <h6 className="fw-bold mb-3 lora text-uppercase footer-title">Social Media</h6>
                 <div className="footer-social-icons">
-                  <Nav.Link href="https://wa.me/your-number" target="_blank">
+                  <Nav.Link href="https://wa.me/917874011144" target="_blank">
                     <Image
                       src={whatsappIcon}
                       alt="WhatsApp"
@@ -213,7 +213,7 @@ export default function Footer() {
 
 
 
-                  <Nav.Link href="https://instagram.com/your-profile" target="_blank">
+                  <Nav.Link href="https://www.instagram.com/suvarnakalajewellers" target="_blank">
                     <Image
                       src={instagramIcon}
                       className="rounded-5"
@@ -222,10 +222,10 @@ export default function Footer() {
                       height={31}
                     />
                   </Nav.Link>
-                  <Nav.Link href="https://facebook.com/your-profile" target="_blank">
+                  <Nav.Link href=" https://www.facebook.com/Suvarnakala" target="_blank">
                     <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
                   </Nav.Link>
-                                              <Nav.Link href="https://pinterest.com/your-profile" target="_blank">
+                                              <Nav.Link href="https://pin.it/3Uf6q82Hq" target="_blank">
                                     <Image src={pinterestIcon} alt="Pinterest" width={32} height={32} />
                                   </Nav.Link>
                 </div>

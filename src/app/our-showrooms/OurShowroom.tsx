@@ -3,11 +3,8 @@
 import Image from 'next/image';
 import React from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
-import breadcrumbImage from '../../../public/assets/our-showroom-bg.png';
-import shopnowbg from '../../../public/assets/dark-brown-colour-flower-pattern-background-abstract-banner-multipurpose-design 1.png';
-import shopWomen from '../../../public/assets/shopWomwn.png';
-import styles from '../page.module.css';
-import Link from 'next/link';
+import breadcrumbImage from '../../../public/assets/our-showroom.jpg';
+
 
 // Satellite
 import st1 from '../../../public/assets/showrooms/Satellite/Satellite.jpg';

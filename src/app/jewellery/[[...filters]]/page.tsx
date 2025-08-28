@@ -191,7 +191,7 @@ const ProductsPage: React.FC = () => {
         )}
       </div>
  
-      <div className="py-md-5 p-3">
+      <div className="py-md-5 px-md-5 p-md-1 p-3" >
         <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
           <h3 className="mb-0 fs-5 fs-md-4 lora">
             {displayTitle} ({filteredProducts.length})
