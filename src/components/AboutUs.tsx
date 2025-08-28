@@ -1,34 +1,34 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+"use client";
+import React from "react";
+import Image from "next/image";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
-import demoBg from '../../public/assets/demo_bg.png';
-import goldSet from '../../public/assets/indian-traditional-jewellery_136354-6545.avif';
-import diamondSet from '../../public/assets/gold-mangalsutra-necklace_864595-690.avif';
-import silverSet from '../../public/assets/women-s-earings_8408-3.avif';
+import demoBg from "../../public/assets/demo_bg.png";
+import goldSet from "../../public/assets/indian-traditional-jewellery_136354-6545.avif";
+import diamondSet from "../../public/assets/gold-mangalsutra-necklace_864595-690.avif";
+import silverSet from "../../public/assets/women-s-earings_8408-3.avif";
 
 const slides = [
   {
-    content: 'Timeless Gold Elegance',
+    content: "Timeless Gold Elegance",
     description:
-      'Experience the exquisite craftsmanship and unparalleled beauty of our exclusive gold jewelry collection—designed to celebrate every moment.',
-    explore: '→ Gold Collection',
+      "Experience the exquisite craftsmanship and unparalleled beauty of our exclusive gold jewelry collection—designed to celebrate every moment.",
+    explore: "→ Gold Collection",
     image: goldSet,
   },
   {
-    content: 'Sparkling Real Diamonds',
+    content: "Sparkling Real Diamonds",
     description:
-      'Discover the captivating sparkle and eternal allure of authentic diamonds, meticulously set to enhance your unique style.',
-    explore: '→ Diamond Treasures',
+      "Discover the captivating sparkle and eternal allure of authentic diamonds, meticulously set to enhance your unique style.",
+    explore: "→ Diamond Treasures",
     image: diamondSet,
   },
   {
-    content: 'Exquisite Silver Designs',
+    content: "Exquisite Silver Designs",
     description:
-      'Explore our stunning silver jewelry pieces, crafted to add a touch of grace and sophistication to any outfit.',
-    explore: '→ Silver Collection',
+      "Explore our stunning silver jewelry pieces, crafted to add a touch of grace and sophistication to any outfit.",
+    explore: "→ Silver Collection",
     image: silverSet,
   },
 ];
@@ -45,7 +45,6 @@ const About = () => {
     <section className="about_section">
       <div className="container">
         <div className="row d-flex align-items-center position-relative mt-3 mb-3">
-          {/* Left Column */}
           <div className="col-md-6">
             <div className="custom-heading-wrapper d-flex align-items-center mb-4">
               <h3 className="m-0 custom-heading text-wrap me-3">
@@ -73,7 +72,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right Column */}
           <div className="col-md-6">
             <Carousel
               responsive={responsive}
@@ -104,10 +102,10 @@ const About = () => {
                       width={500}
                       height={300}
                       style={{
-                        width: '370px',
-                        height: '370px',
-                        borderRadius: '20px',
-                        objectFit: 'cover', // Optional: keeps image nicely cropped
+                        width: "370px",
+                        height: "370px",
+                        borderRadius: "20px",
+                        objectFit: "cover",
                       }}
                     />
                   </div>
@@ -122,14 +120,14 @@ const About = () => {
         .about_section .react-multi-carousel-list {
           position: relative;
           width: 100%;
-          min-height: 400px; /* Ensure carousel has space */
+          min-height: 400px;
         }
 
         .about_right_wrapper {
           display: flex;
           align-items: center;
           justify-content: center;
-          min-height: 400px; /* Ensure content visibility */
+          min-height: 400px;
         }
       `}</style>
     </section>

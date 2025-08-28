@@ -1,25 +1,23 @@
-'use client';
+"use client";
 
-import React, { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-
-
-import 'react-toastify/dist/ReactToastify.css';
-import Goldrate from './GoldRate';
-import { ToastContainer } from 'react-toastify';
-import { getNavbar, getProducts } from '../lib/api';
-import logo from '../../public/assets/Suvarnakala.png';
-import Image1 from '../../public/assets/category1.jpg';
-import Image2 from '../../public/assets/category2.jpg';
-import Image3 from '../../public/assets/category3.jpg';
-import Image4 from '../../public/assets/category1.jpg';
-import instagramIcon from '../../public/assets/icons/Instagram.svg';
-import whatsappIcon from '../../public/assets/icons/whatsapp.svg';
-import pinterestIcon from '../../public/assets/icons/pinterest.svg';
-import facebookIcon from '../../public/assets/icons/facebook.svg';
+import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { Navbar, Nav, Container } from "react-bootstrap";
+import "react-toastify/dist/ReactToastify.css";
+import Goldrate from "./GoldRate";
+import { ToastContainer } from "react-toastify";
+import { getNavbar, getProducts } from "../lib/api";
+import logo from "../../public/assets/Suvarnakala.png";
+// import Image1 from '../../public/assets/category1.jpg';
+// import Image2 from '../../public/assets/category2.jpg';
+// import Image3 from '../../public/assets/category3.jpg';
+// import Image4 from '../../public/assets/category1.jpg';
+import instagramIcon from "../../public/assets/icons/Instagram.svg";
+import whatsappIcon from "../../public/assets/icons/whatsapp.svg";
+import pinterestIcon from "../../public/assets/icons/pinterest.svg";
+import facebookIcon from "../../public/assets/icons/facebook.svg";
 
 interface NavLink {
   _id: string;
@@ -50,17 +48,17 @@ const Header: React.FC = () => {
   const [showMobileCollections, setShowMobileCollections] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const desiredOrder = ['Home', 'About Us', 'Jewellery', 'Why Us', 'Our Showrooms','Investment'];
+  const desiredOrder = ["Home", "About Us", "Jewellery", "Why Us", "Our Showrooms", "Investment"];
 
   // Define the specific sort order for Jewellery and Occasions
-  const jewelleryTypeOrder = ['Gold', 'Diamond'];
-  const occasionOrder = ['Engagement', 'Wedding'];
+  const jewelleryTypeOrder = ["Gold", "Diamond"];
+  const occasionOrder = ["Engagement", "Wedding"];
 
   useEffect(() => {
     const fetchNavLinks = async () => {
       try {
         const data = await getNavbar();
-        const filteredLinks = data.filter((link: NavLink) => link.name !== 'Investment'); // Remove the old filter
+        const filteredLinks = data.filter((link: NavLink) => link.name !== "Investment"); // Remove the old filter
         const sortedLinks = filteredLinks.sort((a: NavLink, b: NavLink) => {
           const aIndex = desiredOrder.indexOf(a.name);
           const bIndex = desiredOrder.indexOf(b.name);
@@ -71,7 +69,7 @@ const Header: React.FC = () => {
         });
         setNavLinks(sortedLinks);
       } catch (error) {
-        console.error('Error fetching navbar data:', error);
+        console.error("Error fetching navbar data:", error);
         setNavLinks([]);
       }
     };
@@ -81,7 +79,7 @@ const Header: React.FC = () => {
         const data = await getProducts();
         setProducts(data);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
         setProducts([]);
       }
     };
@@ -122,24 +120,31 @@ const Header: React.FC = () => {
 
   const categories = Array.from(new Set(products.map((p) => p.category.name))).sort();
   // Sort jewelleryTypes and occasions based on the predefined order
-  const sortedJewelleryTypes = Array.from(new Set(products.map((p) => p.jewelleryType))).sort((a, b) => {
-    const aIndex = jewelleryTypeOrder.indexOf(a);
-    const bIndex = jewelleryTypeOrder.indexOf(b);
-    return (aIndex === -1 ? jewelleryTypeOrder.length : aIndex) - (bIndex === -1 ? jewelleryTypeOrder.length : bIndex);
-  });
+  const sortedJewelleryTypes = Array.from(new Set(products.map((p) => p.jewelleryType))).sort(
+    (a, b) => {
+      const aIndex = jewelleryTypeOrder.indexOf(a);
+      const bIndex = jewelleryTypeOrder.indexOf(b);
+      return (
+        (aIndex === -1 ? jewelleryTypeOrder.length : aIndex) -
+        (bIndex === -1 ? jewelleryTypeOrder.length : bIndex)
+      );
+    },
+  );
   const sortedOccasions = Array.from(new Set(products.map((p) => p.occasion))).sort((a, b) => {
     const aIndex = occasionOrder.indexOf(a);
     const bIndex = occasionOrder.indexOf(b);
-    return (aIndex === -1 ? occasionOrder.length : aIndex) - (bIndex === -1 ? occasionOrder.length : bIndex);
+    return (
+      (aIndex === -1 ? occasionOrder.length : aIndex) -
+      (bIndex === -1 ? occasionOrder.length : bIndex)
+    );
   });
   const purities = Array.from(new Set(products.map((p) => p.purity))).sort();
 
   const getNavLinkPath = (name: string): string => {
-    if (name === 'Investment') return '/investment';
-    const link = navLinks.find(l => l.name === name);
-    return link ? link.path : '#';
+    if (name === "Investment") return "/investment";
+    const link = navLinks.find((l) => l.name === name);
+    return link ? link.path : "#";
   };
-
 
   return (
     <>
@@ -150,13 +155,13 @@ const Header: React.FC = () => {
         <Container fluid className="d-flex align-items-center justify-content-between">
           <div className="header-logo">
             <Link href="/" passHref legacyBehavior={false}>
-              <Navbar.Brand onClick={() => setExpanded(false)} style={{ cursor: 'pointer' }}>
+              <Navbar.Brand onClick={() => setExpanded(false)} style={{ cursor: "pointer" }}>
                 <Image src={logo} alt="Suvarnakala Logo" width={150} height={60} />
               </Navbar.Brand>
             </Link>
           </div>
           <div className="d-lg-none" onClick={handleToggle}>
-            <div className={`burger-toggle ${expanded ? 'active' : ''}`}>
+            <div className={`burger-toggle ${expanded ? "active" : ""}`}>
               <span></span>
               <span></span>
               <span></span>
@@ -164,13 +169,13 @@ const Header: React.FC = () => {
           </div>
 
           {/* Mobile Menu */}
-          <div className={`mobile-menu ${expanded ? 'show' : ''}`}>
+          <div className={`mobile-menu ${expanded ? "show" : ""}`}>
             <div className="mobile-menu-header">
               <Link href="/" onClick={() => setExpanded(false)}>
                 <Image src={logo} alt="Suvarnakala Logo" width={120} height={48} />
               </Link>
               <div className="d-lg-none" onClick={handleToggle}>
-                <div className={`burger-toggle ${expanded ? 'active' : ''}`}>
+                <div className={`burger-toggle ${expanded ? "active" : ""}`}>
                   <span></span>
                   <span></span>
                   <span></span>
@@ -179,18 +184,18 @@ const Header: React.FC = () => {
             </div>
             <Nav className="mobile-nav flex-column">
               {desiredOrder.map((name, index) => {
-                if (name === 'Jewellery') {
-                  const isCollectionsActive = pathname.startsWith('/jewellery');
+                if (name === "Jewellery") {
+                  const isCollectionsActive = pathname.startsWith("/jewellery");
                   return (
                     <div key={`collections-${index}`} className="mobile-nav-item">
                       <Link
                         href="/jewellery"
-                        className={`mobile-nav-link lora ${isCollectionsActive ? 'active' : ''}`}
+                        className={`mobile-nav-link lora ${isCollectionsActive ? "active" : ""}`}
                         onClick={(e) => {
-                          if (pathname === '/jewellery' && showMobileCollections) {
+                          if (pathname === "/jewellery" && showMobileCollections) {
                             e.preventDefault();
                             handleMobileCollectionsToggle();
-                          } else if (pathname !== '/jewellery') {
+                          } else if (pathname !== "/jewellery") {
                             setExpanded(false);
                           }
                         }}
@@ -204,7 +209,7 @@ const Header: React.FC = () => {
                           }}
                         >
                           <i
-                            className={`bi ${showMobileCollections ? 'bi-caret-up' : 'bi-caret-down'}`}
+                            className={`bi ${showMobileCollections ? "bi-caret-up" : "bi-caret-down"}`}
                           ></i>
                         </span>
                       </Link>
@@ -281,14 +286,14 @@ const Header: React.FC = () => {
                 }
 
                 const navLinkPath = getNavLinkPath(name);
-                const isBookAppointment = name === 'Book an Appointment';
+                const isBookAppointment = name === "Book an Appointment";
                 const isActive = pathname === navLinkPath;
 
                 return (
                   <div key={name} className="mobile-nav-item">
                     <Link
                       href={navLinkPath}
-                      className={`mobile-nav-link lora ${isActive ? 'active' : ''}`}
+                      className={`mobile-nav-link lora ${isActive ? "active" : ""}`}
                       onClick={(e) => {
                         if (isBookAppointment) {
                           e.preventDefault();
@@ -315,8 +320,6 @@ const Header: React.FC = () => {
                   />
                 </Nav.Link>
 
-
-
                 <Nav.Link href="https://www.instagram.com/suvarnakalajewellers" target="_blank">
                   <Image
                     src={instagramIcon}
@@ -329,7 +332,7 @@ const Header: React.FC = () => {
                 <Nav.Link href=" https://www.facebook.com/Suvarnakala" target="_blank">
                   <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
                 </Nav.Link>
-                                <Nav.Link href="https://pin.it/3Uf6q82Hq" target="_blank">
+                <Nav.Link href="https://pin.it/3Uf6q82Hq" target="_blank">
                   <Image src={pinterestIcon} alt="Pinterest" width={32} height={32} />
                 </Nav.Link>
               </div>
@@ -344,19 +347,18 @@ const Header: React.FC = () => {
             <Nav className="gap-3 text-center flex-row align-items-center">
               {desiredOrder.map((name, index) => {
                 const navLinkPath = getNavLinkPath(name);
-                const isBookAppointment = name === 'Book an Appointment';
-                const isCollections = name === 'Jewellery';
-                const isActive =
-                  isBookAppointment
-                    ? false
-                    : isCollections
-                    ? pathname.startsWith('/jewellery')
-                    : pathname === navLinkPath || pathname.startsWith(navLinkPath + '/');
+                const isBookAppointment = name === "Book an Appointment";
+                const isCollections = name === "Jewellery";
+                const isActive = isBookAppointment
+                  ? false
+                  : isCollections
+                    ? pathname.startsWith("/jewellery")
+                    : pathname === navLinkPath || pathname.startsWith(navLinkPath + "/");
 
                 return (
                   <div
                     key={name}
-                    className={`nav-item ${isCollections ? 'nav-item-collections' : ''}`}
+                    className={`nav-item ${isCollections ? "nav-item-collections" : ""}`}
                     onMouseEnter={isCollections ? handleMouseEnter : undefined}
                     onMouseLeave={isCollections ? handleMouseLeave : undefined}
                   >
@@ -372,18 +374,18 @@ const Header: React.FC = () => {
                         }
                         setExpanded(false);
                       }}
-                      style={{ textDecoration: 'none' }}
+                      style={{ textDecoration: "none" }}
                     >
                       <Nav.Link
                         as="span"
-                        className={`custom-nav-link navlinks-hover lora ${isActive ? 'active-link' : ''}`}
+                        className={`custom-nav-link navlinks-hover lora ${isActive ? "active-link" : ""}`}
                       >
                         {name}
                       </Nav.Link>
                     </Link>
                     {isCollections && (
                       <div
-                        className={`dropdown-menu-full ${showCollectionsDropdown ? 'show' : ''}`}
+                        className={`dropdown-menu-full ${showCollectionsDropdown ? "show" : ""}`}
                         onMouseEnter={handleMouseEnter}
                         onMouseLeave={handleMouseLeave}
                       >
@@ -500,8 +502,6 @@ const Header: React.FC = () => {
               />
             </Nav.Link>
 
-
-
             <Nav.Link href="https://www.instagram.com/suvarnakalajewellers" target="_blank">
               <Image
                 src={instagramIcon}
@@ -514,9 +514,9 @@ const Header: React.FC = () => {
             <Nav.Link href=" https://www.facebook.com/Suvarnakala" target="_blank">
               <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
             </Nav.Link>
-                            <Nav.Link href="https://pin.it/3Uf6q82Hq" target="_blank">
-                  <Image src={pinterestIcon} alt="Pinterest" width={32} height={32} />
-                </Nav.Link>
+            <Nav.Link href="https://pin.it/3Uf6q82Hq" target="_blank">
+              <Image src={pinterestIcon} alt="Pinterest" width={32} height={32} />
+            </Nav.Link>
           </div>
         </Container>
       </Navbar>

@@ -1,15 +1,14 @@
-import { getMetadataByPage } from '@/lib/api';
-import About from './About';
+import { getMetadataByPage } from "@/lib/api";
+import About from "./About";
 
 export async function generateMetadata() {
   try {
-    const metadata = await getMetadataByPage('about');
+    const metadata = await getMetadataByPage("about");
     if (!metadata) {
-      // Fallback metadata if API returns null
       return {
-        title: 'About Us | Suvarnakala Pvt. Ltd',
+        title: "About Us | Suvarnakala Pvt. Ltd",
         description:
-          'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
+          "Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.",
       };
     }
     return {
@@ -25,12 +24,11 @@ export async function generateMetadata() {
       },
     };
   } catch (error) {
-    console.error('Error fetching metadata for about page:', error);
-    // Fallback metadata in case of error
+    console.error("Error fetching metadata for about page:", error);
     return {
-      title: 'About Us | Suvarnakala Pvt. Ltd',
+      title: "About Us | Suvarnakala Pvt. Ltd",
       description:
-        'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
+        "Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.",
     };
   }
 }

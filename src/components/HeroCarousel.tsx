@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useCallback, useRef } from 'react';
-import { getHeroes, BASE_URL } from '../lib/api';
-import Image from 'next/image';
-import Loader from '@/components/Loader';
+import { useState, useEffect, useCallback, useRef } from "react";
+import { getHeroes, BASE_URL } from "../lib/api";
+import Image from "next/image";
+import Loader from "@/components/Loader";
 
 interface Hero {
   _id: string;
@@ -30,7 +30,7 @@ const HeroCarousel: React.FC = () => {
         const data = await getHeroes();
         setHeroes(data || []);
       } catch (error) {
-        console.error('Failed to fetch heroes:', error);
+        console.error("Failed to fetch heroes:", error);
       } finally {
         setIsLoading(false); // Set loading to false after fetch attempt
       }
@@ -59,8 +59,8 @@ const HeroCarousel: React.FC = () => {
       setIsMobile(window.innerWidth < 768);
     };
     updateWidth();
-    window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
   const goNext = useCallback(() => {
@@ -102,37 +102,35 @@ const HeroCarousel: React.FC = () => {
   };
 
   if (isLoading) {
-    return (
- <Loader />
-    );
+    return <Loader />;
   }
 
   return (
     <div
       ref={containerRef}
       className="position-relative overflow-hidden hero-section"
-      style={{ width: '100%', maxWidth: '100vw', margin: 'auto' }}
+      style={{ width: "100%", maxWidth: "100vw", margin: "auto" }}
       aria-label="Suvarnakala Hero Section Carousel"
     >
       {duplicatedHeroes.length > 0 && (
         <div
           style={{
-            display: 'flex',
+            display: "flex",
             width: `${duplicatedHeroes.length * slideWidth}px`,
             transform: `translateX(-${currentIndex * slideWidth}px)`,
-            transition: isTransitioning ? 'transform 0.7s ease-in-out' : 'none',
+            transition: isTransitioning ? "transform 0.7s ease-in-out" : "none",
           }}
           aria-live="polite"
         >
           {duplicatedHeroes.map(({ title, description, image, link }, idx) => {
-            const imageUrl = image.startsWith('http') ? image : `${BASE_URL}/${image}`;
-            const validLink = link?.startsWith('http') ? link : '#';
+            const imageUrl = image.startsWith("http") ? image : `${BASE_URL}/${image}`;
+            const validLink = link?.startsWith("http") ? link : "#";
             return (
               <div
                 key={idx}
                 style={{
                   width: `${slideWidth}px`,
-                  position: 'relative',
+                  position: "relative",
                   flexShrink: 0,
                 }}
                 className="hero-banner"
@@ -140,19 +138,19 @@ const HeroCarousel: React.FC = () => {
                 aria-label={`Slide ${idx + 1}: ${title}`}
               >
                 <Image
-                  src={imageUrl || '/fallback-image.jpg'}
+                  src={imageUrl || "/fallback-image.jpg"}
                   alt={title}
                   width={isMobile ? slideWidth : slideWidth}
                   height={isMobile ? 450 : 600}
                   style={{
-                    width: '100%',
-                    height: 'auto',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
+                    width: "100%",
+                    height: "auto",
+                    objectFit: "cover",
+                    objectPosition: "center",
                   }}
                   priority={true}
                   onError={(e) => {
-                    e.currentTarget.src = '/fallback-image.jpg';
+                    e.currentTarget.src = "/fallback-image.jpg";
                   }}
                 />
 
@@ -160,24 +158,24 @@ const HeroCarousel: React.FC = () => {
                 <div
                   className="d-none d-md-flex flex-column justify-content-center"
                   style={{
-                    position: 'absolute',
+                    position: "absolute",
                     top: 0,
-                    right: '5%',
-                    height: '100%',
-                    color: 'white',
-                    maxWidth: '30%',
-                    paddingRight: '15px',
+                    right: "5%",
+                    height: "100%",
+                    color: "white",
+                    maxWidth: "30%",
+                    paddingRight: "15px",
                     zIndex: 2,
-                    display: isMobile ? 'none' : 'flex',
+                    display: isMobile ? "none" : "flex",
                   }}
                 >
                   <h2 className="fraunces">{title}</h2>
-                  <p className=" lora mb-4">{description}</p>
+                  <p className=" lora mb-4 mt-2">{description}</p>
                   <a
                     href={validLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn custom-btn bg-white text-dark btn-lg w-auto px-4"
+                    className="btn custom-btn  "
                   >
                     View More
                   </a>
@@ -187,26 +185,28 @@ const HeroCarousel: React.FC = () => {
                 <div
                   className="d-flex d-md-none flex-column justify-content-center align-items-center text-center hero-mobile"
                   style={{
-                    position: 'absolute',
+                    position: "absolute",
                     top: 0,
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    padding: '20px',
-                    color: 'white',
+                    padding: "20px",
+                    color: "white",
                     zIndex: 2,
-                    display: isMobile ? 'flex' : 'none',
+                    display: isMobile ? "flex" : "none",
                   }}
                 >
+                  <h2 className="fraunces">{title}</h2>
+
                   <p className="mb-4">{description}</p>
-                  <a
+                  {/* <a
                     href={validLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn custom-btn bg-white text-dark"
+                    className="btn custom-btn "
                   >
                     View More
-                  </a>
+                  </a> */}
                 </div>
               </div>
             );
@@ -226,12 +226,12 @@ const HeroCarousel: React.FC = () => {
             style={{
               width: 12,
               height: 12,
-              borderRadius: '50%',
-              border: 'none',
-              margin: '0 5px',
-              backgroundColor: currentIndex === idx + 1 ? '#fff' : 'rgba(255,255,255,0.5)',
-              cursor: 'pointer',
-              transition: 'background-color 0.3s',
+              borderRadius: "50%",
+              border: "none",
+              margin: "0 5px",
+              backgroundColor: currentIndex === idx + 1 ? "#fff" : "rgba(255,255,255,0.5)",
+              cursor: "pointer",
+              transition: "background-color 0.3s",
             }}
             aria-label={`Go to slide ${idx + 1}`}
           />

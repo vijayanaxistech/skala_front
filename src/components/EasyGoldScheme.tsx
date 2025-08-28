@@ -1,34 +1,34 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
-import Image1 from '../../public/assets/icons/gold.png';
-import Image2 from '../../public/assets/icons/money.png';
-import Image3 from '../../public/assets/icons/coin.png';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import Image1 from "../../public/assets/icons/gold.png";
+import Image2 from "../../public/assets/icons/money.png";
+import Image3 from "../../public/assets/icons/coin.png";
 
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const EasyGoldScheme = () => {
   const schemes = [
     {
       icon: Image1,
-      title: 'Digi Gold',
-      description: 'Digital Gold benefits',
-      link: '/digi-gold',
+      title: "Digi Gold",
+      description: "Digital Gold benefits",
+      link: "/digi-gold",
     },
     {
       icon: Image3,
-      title: 'Book My Gold',
-      description: 'Book My Gold Benefits and How it works?',
-      link: '/book-my-gold',
+      title: "Book My Gold",
+      description: "Book My Gold Benefits and How it works?",
+      link: "/book-my-gold",
     },
     {
       icon: Image2,
-      title: 'Monthly Saving Scheme',
-      description: 'Golden treasure',
-      link: '/monthly-saving-scheme',
+      title: "Monthly Saving Scheme",
+      description: "Golden treasure",
+      link: "/monthly-saving-scheme",
     },
   ];
 
@@ -56,7 +56,6 @@ const EasyGoldScheme = () => {
         </div>
       </div>
 
-      {/* Mobile View - Carousel */}
       <div className="d-block d-md-none">
         <Carousel
           responsive={responsive}
@@ -88,7 +87,6 @@ const EasyGoldScheme = () => {
         </Carousel>
       </div>
 
-      {/* Desktop View - Grid */}
       <div className="row mt-4 d-none d-md-flex">
         {schemes.map((item, idx) => (
           <div key={idx} className="col-12 col-sm-6 col-md-4">

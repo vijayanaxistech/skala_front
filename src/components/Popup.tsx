@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { Modal } from 'react-bootstrap';
-import popupImage from '../../public/assets/Pop-up image.png';
-import androidApp from '../../public/assets/googleplay.png';
-import iosApp from '../../public/assets/appstore.png';
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { Modal } from "react-bootstrap";
+import popupImage from "../../public/assets/Pop-up image.png";
+import androidApp from "../../public/assets/googleplay.png";
+import iosApp from "../../public/assets/appstore.png";
 
 export default function Popup() {
   const [show, setShow] = useState(false);
@@ -16,24 +16,24 @@ export default function Popup() {
       setIsMobile(window.innerWidth < 768);
     };
 
-    handleResize(); // Set initial value
-    window.addEventListener('resize', handleResize);
+    handleResize();
+    window.addEventListener("resize", handleResize);
 
-    const popupShown = sessionStorage.getItem('popupShown');
+    const popupShown = sessionStorage.getItem("popupShown");
     if (!popupShown) {
       const timer = setTimeout(() => {
         setShow(true);
-        sessionStorage.setItem('popupShown', 'true');
-      }, 10000); // 10-second delay
+        sessionStorage.setItem("popupShown", "true");
+      }, 10000);
       return () => clearTimeout(timer);
     }
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleClose = () => setShow(false);
 
-  const closeButtonClass = isMobile ? 'btn-close-white' : 'btn-close-dark';
+  const closeButtonClass = isMobile ? "btn-close-white" : "btn-close-dark";
 
   return (
     <>
@@ -47,28 +47,24 @@ export default function Popup() {
         className="full-box"
       >
         <div className="d-flex flex-column flex-md-row popup">
-          {/* Close Icon */}
           <button
             onClick={handleClose}
             className={`btn-close ${closeButtonClass} position-absolute`}
-            style={{ top: '12px', right: '12px', zIndex: 1 }}
+            style={{ top: "12px", right: "12px", zIndex: 1 }}
             aria-label="Close"
           ></button>
 
-          {/* Left Side Image */}
           <div className="col-12 col-md-6 p-0">
             <Image
               src={popupImage}
               alt="Suvarnakala Welcome"
               className="popup-image"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
             />
           </div>
 
-          {/* Right Side Content */}
           <div className="col-12 col-md-6 bg-white text-dark p-3 p-md-4 d-flex flex-column position-relative">
-            {/* Content */}
             <div className="d-flex flex-column justify-content-between flex-grow-1 mobile-scroll">
               <div>
                 <h2 className="mb-2 mt-3 mt-md-4 fraunces">Login to avail Offers</h2>
@@ -87,7 +83,7 @@ export default function Popup() {
                         alt="Android App"
                         width={135}
                         height={40}
-                        style={{ width: '100%', height: 'auto', maxWidth: '135px' }}
+                        style={{ width: "100%", height: "auto", maxWidth: "135px" }}
                       />
                     </a>
                     <a
@@ -100,7 +96,7 @@ export default function Popup() {
                         alt="iOS App"
                         width={135}
                         height={40}
-                        style={{ width: '100%', height: 'auto', maxWidth: '135px' }}
+                        style={{ width: "100%", height: "auto", maxWidth: "135px" }}
                       />
                     </a>
                   </div>

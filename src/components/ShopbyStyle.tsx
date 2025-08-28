@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { BASE_URL, getCategories } from '../lib/api';
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { BASE_URL, getCategories } from "../lib/api";
 
 interface Category {
   _id: string;
@@ -19,12 +19,11 @@ const ShopbyStyle = () => {
   useEffect(() => {
     getCategories()
       .then((data) => {
-        // Filter only active categories
         const activeCategories = data.filter((category: Category) => category.isActive === true);
         setCategories(activeCategories);
       })
       .catch((err) => {
-        console.error('Failed to fetch categories:', err);
+        console.error("Failed to fetch categories:", err);
         setCategories([]);
       })
       .finally(() => setIsLoading(false));
@@ -33,7 +32,7 @@ const ShopbyStyle = () => {
   const displayedCategories = categories.slice(0, 7);
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = 'https://via.placeholder.com/250x250?text=No+Image';
+    e.currentTarget.src = "https://via.placeholder.com/250x250?text=No+Image";
   };
 
   return (
@@ -63,33 +62,33 @@ const ShopbyStyle = () => {
               <Link
                 href={`/jewellery/products/${encodeURIComponent(item.name)}`}
                 key={item._id}
-                className={`category-item text-decoration-none ${index < 4 ? 'top-row' : 'bottom-row'}`}
+                className={`category-item text-decoration-none ${index < 4 ? "top-row" : "bottom-row"}`}
                 role="group"
                 aria-label={`Category: ${item.name}`}
               >
                 <div
                   className="image-wrapper"
                   style={{
-                    overflow: 'hidden',
-                    borderRadius: '12px',
-                    aspectRatio: '1/1',
+                    overflow: "hidden",
+                    borderRadius: "12px",
+                    aspectRatio: "1/1",
                   }}
                 >
                   <Image
                     src={
-                      item.image && item.image.startsWith('uploads/')
+                      item.image && item.image.startsWith("uploads/")
                         ? `${BASE_URL}/${item.image}`
-                        : 'https://via.placeholder.com/250x250?text=No+Image'
+                        : "https://via.placeholder.com/250x250?text=No+Image"
                     }
                     alt={`Suvarnakala ${item.name} Jewelry Collection`}
                     width={250}
                     height={250}
                     className="img-fluid category-image"
                     style={{
-                      objectFit: 'cover',
-                      width: '100%',
-                      height: '100%',
-                      transition: 'transform 0.3s ease-in-out',
+                      objectFit: "cover",
+                      width: "100%",
+                      height: "100%",
+                      transition: "transform 0.3s ease-in-out",
                     }}
                     onError={handleImageError}
                     loading="lazy"
@@ -99,8 +98,8 @@ const ShopbyStyle = () => {
                   className="text-gray mt-3 fs-4 sm:fs-5 text-center lora"
                   style={{ fontWeight: 100 }}
                 >
-                  {' '}
-                  {item.name === 'Managalsutra' ? 'Mangalsutra' : item.name}
+                  {" "}
+                  {item.name === "Managalsutra" ? "Mangalsutra" : item.name}
                 </p>
               </Link>
             ))}
@@ -115,16 +114,16 @@ const ShopbyStyle = () => {
               <div
                 className="image-wrapper border d-flex flex-column justify-content-center align-items-center text-center"
                 style={{
-                  background: '#fff9f3',
-                  overflow: 'hidden',
-                  borderRadius: '12px',
-                  aspectRatio: '1/1',
-                  width: '100%',
-                  color: '#6b4c2d',
+                  background: "#fff9f3",
+                  overflow: "hidden",
+                  borderRadius: "12px",
+                  aspectRatio: "1/1",
+                  width: "100%",
+                  color: "#6b4c2d",
                   fontFamily: "'Playfair Display', serif",
-                  padding: '1.5rem',
-                  letterSpacing: '0.05em',
-                  userSelect: 'none',
+                  padding: "1.5rem",
+                  letterSpacing: "0.05em",
+                  userSelect: "none",
                 }}
               >
                 {/* <p
@@ -133,7 +132,7 @@ const ShopbyStyle = () => {
                 >
                   Discover
                 </p> */}
-                <p className="fs-4 lora" style={{ fontWeight: '200', marginTop: '0.25rem' }}>
+                <p className="fs-4 lora" style={{ fontWeight: "200", marginTop: "0.25rem" }}>
                   Exclusive Jewellery
                 </p>
               </div>

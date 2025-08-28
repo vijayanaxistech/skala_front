@@ -1,15 +1,14 @@
-import { getMetadataByPage } from '@/lib/api';
-import OurShowroom from './OurShowroom';
+import { getMetadataByPage } from "@/lib/api";
+import OurShowroom from "./OurShowroom";
 
 export async function generateMetadata() {
   try {
-    const metadata = await getMetadataByPage('ourshowrooms');
+    const metadata = await getMetadataByPage("ourshowrooms");
     if (!metadata) {
-      // Fallback metadata if API returns null
       return {
-        title: 'Our Showrooms | Suvarnakala Pvt. Ltd',
+        title: "Our Showrooms | Suvarnakala Pvt. Ltd",
         description:
-          'Explore Suvarnakala’s exquisite jewellery showrooms across India. Visit us today!',
+          "Explore Suvarnakala’s exquisite jewellery showrooms across India. Visit us today!",
       };
     }
     return {
@@ -25,12 +24,11 @@ export async function generateMetadata() {
       },
     };
   } catch (error) {
-    console.error('Error fetching metadata for ourshowrooms page:', error);
-    // Fallback metadata in case of error
+    console.error("Error fetching metadata for ourshowrooms page:", error);
     return {
-      title: 'Our Showrooms | Suvarnakala Pvt. Ltd',
+      title: "Our Showrooms | Suvarnakala Pvt. Ltd",
       description:
-        'Explore Suvarnakala’s exquisite jewellery showrooms across India. Visit us today!',
+        "Explore Suvarnakala’s exquisite jewellery showrooms across India. Visit us today!",
     };
   }
 }

@@ -1,14 +1,15 @@
-import { getMetadataByPage } from '@/lib/api';
-import Investment from './Investment';
-import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
+import { getMetadataByPage } from "@/lib/api";
+import Investment from "./Investment";
+import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 
 export async function generateMetadata() {
   try {
-    const metadata = await getMetadataByPage('investment');
+    const metadata = await getMetadataByPage("investment");
     if (!metadata) {
       return {
-        title: 'Investment | Suvarnakala Pvt. Ltd',
-        description: 'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
+        title: "Investment | Suvarnakala Pvt. Ltd",
+        description:
+          "Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.",
       };
     }
     return {
@@ -24,10 +25,11 @@ export async function generateMetadata() {
       },
     };
   } catch (error) {
-    console.error('Error fetching metadata for about page:', error);
+    console.error("Error fetching metadata for about page:", error);
     return {
-      title: 'About Us | Suvarnakala Pvt. Ltd',
-      description: 'Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.',
+      title: "About Us | Suvarnakala Pvt. Ltd",
+      description:
+        "Learn about Suvarnakala’s legacy in premium gold, diamond, and jadtar jewellery.",
     };
   }
 }

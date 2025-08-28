@@ -1,16 +1,14 @@
-// app/layout.tsx
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './globals.css';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import ScrollToTopOnRouteChange from '../components/ScrollToTopOnPageLoad';
-import type { ReactNode } from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./globals.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import ScrollToTopOnRouteChange from "../components/ScrollToTopOnPageLoad";
+import type { ReactNode } from "react";
 
 export const metadata = {
-  title: 'Suvarnakala Pvt. Ltd.',
+  title: "Suvarnakala Pvt. Ltd.",
   icons: {
-    icon: './favicon.ico',
+    icon: "./favicon.ico",
   },
 };
 
@@ -52,7 +50,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
-        <ScrollToTopOnRouteChange /> {/* Add the component here */}
+        <ScrollToTopOnRouteChange />
       </body>
     </html>
   );

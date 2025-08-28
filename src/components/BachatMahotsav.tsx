@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import Head from 'next/head';
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Head from "next/head";
 
-import mobile from '../../public/assets/mobile.png';
-import playstore from '../../public/assets/googleplay.png';
-import appstore from '../../public/assets/appstore.png';
+import mobile from "../../public/assets/mobile.png";
+import playstore from "../../public/assets/googleplay.png";
+import appstore from "../../public/assets/appstore.png";
 
 interface CelebrateProps {
   bachatMahotsavImages: string[];
@@ -15,7 +15,6 @@ interface CelebrateProps {
 export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Image slider effect
   useEffect(() => {
     if (bachatMahotsavImages.length > 0) {
       const interval = setInterval(() => {
@@ -25,35 +24,8 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
     }
   }, [bachatMahotsavImages]);
 
-  // Structured Data for SEO
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Event',
-    name: 'Gold Bachat Mahotsav',
-    description:
-      'Join our exclusive Bachat Mahotsav for irresistible offers on gold, diamond, and silver jewelry.',
-    image: bachatMahotsavImages[0] || '',
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'INR',
-      description: 'Special discounts and making charge waivers on jewelry',
-    },
-    eventStatus: 'https://schema.org/EventScheduled',
-    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-  };
-
   return (
     <>
-      <Head>
-        <title>Gold Bachat Mahotsav - Exclusive Jewelry Discounts</title>
-        <meta name="description" content="Join Bachat Mahotsav for exclusive jewelry offers." />
-        <meta name="keywords" content="gold, diamond, silver, jewelry, discounts" />
-        <meta property="og:image" content={bachatMahotsavImages[0] || ''} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-      </Head>
       <div className=" pb-2">
         <section className="hero-section">
           <div className="p-2 p-md-5">
@@ -111,7 +83,7 @@ export default function Celebrate({ bachatMahotsavImages }: CelebrateProps) {
                       src={bachatMahotsavImages[currentImageIndex]}
                       alt={`Bachat Mahotsav jewelry offer ${currentImageIndex + 1}`}
                       className=""
-                      style={{ maxHeight: '377px', width: '100%', objectFit: 'cover' }}
+                      style={{ maxHeight: "377px", width: "100%", objectFit: "cover" }}
                       loading="lazy"
                     />
                   )}

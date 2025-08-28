@@ -1,38 +1,37 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
-import { Row, Col } from 'react-bootstrap';
-import breadcrumbImage from '../../../public/assets/Why us Page.jpg';
-import Bullet from '../../../public/assets/bullet.jpg';
-import Loader from '@/components/Loader';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import { Row, Col } from "react-bootstrap";
+import breadcrumbImage from "../../../public/assets/Why us Page.jpg";
+import Bullet from "../../../public/assets/bullet.jpg";
+import Loader from "@/components/Loader";
 
 // ✅ New Data in Array (title + description split by "–")
 const feature = [
   {
-    title: 'Best Value for Your Gold',
-    description: 'Get the most competitive exchange value.',
+    title: "Best Value for Your Gold",
+    description: "Get the most competitive exchange value.",
   },
   {
-    title: '100% Hallmarked Jewellery',
-    description: 'Every piece certified for purity and authenticity.',
+    title: "100% Hallmarked Jewellery",
+    description: "Every piece certified for purity and authenticity.",
   },
   {
-    title: 'Certified Diamond Jewellery',
-    description: 'Each diamond comes with an international certificate.',
+    title: "Certified Diamond Jewellery",
+    description: "Each diamond comes with an international certificate.",
   },
   {
-    title: 'Craftsmanship & Design',
-    description: 'A perfect balance of tradition and contemporary style.',
+    title: "Craftsmanship & Design",
+    description: "A perfect balance of tradition and contemporary style.",
   },
   {
-    title: 'Customer Trust',
-    description: 'Service as precious as our jewellery.',
+    title: "Customer Trust",
+    description: "Service as precious as our jewellery.",
   },
   {
-    title: 'Trusted by Generations',
-    description:
-      'Since 1970 | Over 1,00,000 Happy Families | 3 Showrooms Across Ahmedabad',
+    title: "Trusted by Generations",
+    description: "Since 1970 | Over 1,00,000 Happy Families | 3 Showrooms Across Ahmedabad",
   },
 ];
 
@@ -49,7 +48,7 @@ const WhySuvarnakala = () => {
   return (
     <>
       {/* Banner Image */}
-      <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
+      <div style={{ position: "relative", width: "100%", height: "auto" }}>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
@@ -78,27 +77,27 @@ const WhySuvarnakala = () => {
         {/* New Promise Section */}
         <div className="px-3 px-md-5">
           {feature.map((item, index) => (
-              <Row className="mb-4" key={index}>
-                <Col xs={12}>
-                  <div className="d-flex align-items-start">
-                    <div className="me-3 text-red" style={{ fontSize: '1.10rem' }}>
-                      <Image
-                        src={Bullet}
-                        alt="Section Icon"
-                        width={20}
-                        height={20}
-                        className="rounded-circle" // Bootstrap for rounded-full
-                      />{' '}
-                    </div>
-                    <div>
-                      <h5 className="fw-bold mb-1 lora">{item.title}</h5>
-                      <p className="text-muted mb-0" style={{ fontSize: '0.95rem' }}>
-                        {item.description}
-                      </p>
-                    </div>
+            <Row className="mb-4" key={index}>
+              <Col xs={12}>
+                <div className="d-flex align-items-start">
+                  <div className="me-3 text-red" style={{ fontSize: "1.10rem" }}>
+                    <Image
+                      src={Bullet}
+                      alt="Section Icon"
+                      width={20}
+                      height={20}
+                      className="rounded-circle" // Bootstrap for rounded-full
+                    />{" "}
                   </div>
-                </Col>
-              </Row>
+                  <div>
+                    <h5 className="fw-bold mb-1 lora">{item.title}</h5>
+                    <p className="text-muted mb-0" style={{ fontSize: "0.95rem" }}>
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </Col>
+            </Row>
           ))}
 
           <p className="mt-4 text-muted">

@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
 const VideoSection: React.FC = () => {
   return (
     <div
       style={{
-        width: 'auto',
+        width: "auto",
         padding: 0,
-        boxSizing: 'border-box',
+        boxSizing: "border-box",
       }}
       className="rounded-0  "
     >
       <video
         className="video"
         style={{
-          backgroundColor: '#000',
-          display: 'block',
-          width: '100%',
-          height: '600px',
-          maxHeight: '500px',
-          objectFit: 'cover',
+          backgroundColor: "#000",
+          display: "block",
+          width: "100%",
+          height: "600px",
+          maxHeight: "500px",
+          objectFit: "cover",
         }}
         autoPlay
         muted

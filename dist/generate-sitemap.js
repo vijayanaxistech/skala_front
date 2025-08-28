@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 var __awaiter =
   (this && this.__awaiter) ||
   function (thisArg, _arguments, P, generator) {
@@ -19,7 +19,7 @@ var __awaiter =
       }
       function rejected(value) {
         try {
-          step(generator['throw'](value));
+          step(generator["throw"](value));
         } catch (e) {
           reject(e);
         }
@@ -45,12 +45,12 @@ var __generator =
       f,
       y,
       t,
-      g = Object.create((typeof Iterator === 'function' ? Iterator : Object).prototype);
+      g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
     return (
       (g.next = verb(0)),
-      (g['throw'] = verb(1)),
-      (g['return'] = verb(2)),
-      typeof Symbol === 'function' &&
+      (g["throw"] = verb(1)),
+      (g["return"] = verb(2)),
+      typeof Symbol === "function" &&
         (g[Symbol.iterator] = function () {
           return this;
         }),
@@ -62,7 +62,7 @@ var __generator =
       };
     }
     function step(op) {
-      if (f) throw new TypeError('Generator is already executing.');
+      if (f) throw new TypeError("Generator is already executing.");
       while ((g && ((g = 0), op[0] && (_ = 0)), _))
         try {
           if (
@@ -70,9 +70,9 @@ var __generator =
             y &&
               (t =
                 op[0] & 2
-                  ? y['return']
+                  ? y["return"]
                   : op[0]
-                    ? y['throw'] || ((t = y['return']) && t.call(y), 0)
+                    ? y["throw"] || ((t = y["return"]) && t.call(y), 0)
                     : y.next) &&
               !(t = t.call(y, op[1])).done)
           )
@@ -144,20 +144,20 @@ var __spreadArray =
       }
     return to.concat(ar || Array.prototype.slice.call(from));
   };
-Object.defineProperty(exports, '__esModule', { value: true });
-var sitemap_1 = require('sitemap');
-var fs_1 = require('fs');
-var stream_1 = require('stream');
-var path_1 = require('path');
-var BASE_URL = 'https://skalafront.anaxistech.com';
-var PAGES_DIR = path_1.default.join(process.cwd(), 'pages');
+Object.defineProperty(exports, "__esModule", { value: true });
+var sitemap_1 = require("sitemap");
+var fs_1 = require("fs");
+var stream_1 = require("stream");
+var path_1 = require("path");
+var BASE_URL = "https://skalafront.anaxistech.com";
+var PAGES_DIR = path_1.default.join(process.cwd(), "pages");
 // --- 1. Get static routes from the /pages directory
 function getStaticRoutes(dir, baseRoute) {
   if (dir === void 0) {
     dir = PAGES_DIR;
   }
   if (baseRoute === void 0) {
-    baseRoute = '';
+    baseRoute = "";
   }
   var entries = (0, fs_1.readdirSync)(dir);
   var routes = [];
@@ -166,23 +166,23 @@ function getStaticRoutes(dir, baseRoute) {
     var fullPath = path_1.default.join(dir, entry);
     var stat = (0, fs_1.statSync)(fullPath);
     if (stat.isDirectory()) {
-      if (entry === 'api') continue;
-      routes = routes.concat(getStaticRoutes(fullPath, ''.concat(baseRoute, '/').concat(entry)));
-    } else if (entry.endsWith('.tsx') || entry.endsWith('.js')) {
-      if (entry.startsWith('_')) continue;
-      var route = entry.replace(/\.tsx|\.js$/, '');
-      if (route === 'index') route = '';
-      routes.push(''.concat(baseRoute, '/').concat(route));
+      if (entry === "api") continue;
+      routes = routes.concat(getStaticRoutes(fullPath, "".concat(baseRoute, "/").concat(entry)));
+    } else if (entry.endsWith(".tsx") || entry.endsWith(".js")) {
+      if (entry.startsWith("_")) continue;
+      var route = entry.replace(/\.tsx|\.js$/, "");
+      if (route === "index") route = "";
+      routes.push("".concat(baseRoute, "/").concat(route));
     }
   }
   return routes;
 }
 // --- 2. Load dynamic blog slugs from local JSON
 function getBlogRoutes() {
-  var filePath = path_1.default.join(process.cwd(), 'src', 'data', 'blogs.json');
-  var blogs = JSON.parse((0, fs_1.readFileSync)(filePath, 'utf-8'));
+  var filePath = path_1.default.join(process.cwd(), "src", "data", "blogs.json");
+  var blogs = JSON.parse((0, fs_1.readFileSync)(filePath, "utf-8"));
   return blogs.map(function (b) {
-    return '/blog/'.concat(b.slug);
+    return "/blog/".concat(b.slug);
   });
 }
 function generateSitemap() {
@@ -197,7 +197,7 @@ function generateSitemap() {
           sitemapEntries = allRoutes.map(function (url) {
             return {
               url: url,
-              changefreq: 'weekly',
+              changefreq: "weekly",
               priority: 0.7,
             };
           });
@@ -212,10 +212,10 @@ function generateSitemap() {
           ];
         case 1:
           xml = _a.sent();
-          writeStream = (0, fs_1.createWriteStream)('public/sitemap.xml');
+          writeStream = (0, fs_1.createWriteStream)("public/sitemap.xml");
           writeStream.write(xml);
           writeStream.end();
-          console.log('✅ sitemap.xml created with static and dynamic routes!');
+          console.log("✅ sitemap.xml created with static and dynamic routes!");
           return [2 /*return*/];
       }
     });

@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { BASE_URL, getCategories, getDefaultBreadcrumbBanner } from '../../lib/api';
-import { Row, Col } from 'react-bootstrap';
-import defaultBreadcrumbImage from '../../../public/assets/collections.jpg';
-import Loader from '@/components/Loader';
-import ScrollToTopButton from '@/components/ScrollToTopOnPageLoad';
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { BASE_URL, getCategories, getDefaultBreadcrumbBanner } from "../../lib/api";
+import { Row, Col } from "react-bootstrap";
+import defaultBreadcrumbImage from "../../../public/assets/collections.jpg";
+import Loader from "@/components/Loader";
+import ScrollToTopButton from "@/components/ScrollToTopOnPageLoad";
 
 interface Category {
   _id: string;
@@ -29,7 +29,7 @@ const ShopAllCategories = () => {
   const [defaultBanner, setDefaultBanner] = useState<DefaultBanner | null>(null);
 
   if (!BASE_URL) {
-    throw new Error('Missing NEXT_PUBLIC_API_BASE_URL in .env.local');
+    throw new Error("Missing NEXT_PUBLIC_API_BASE_URL in .env.local");
   }
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const ShopAllCategories = () => {
         setCategories(activeCategories);
         setDefaultBanner(fetchedBanner[0] || null);
       } catch (err) {
-        console.error('Failed to fetch data:', err);
+        console.error("Failed to fetch data:", err);
         setCategories([]);
         setDefaultBanner(null);
       } finally {
@@ -57,16 +57,15 @@ const ShopAllCategories = () => {
   }, []);
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = 'https://via.placeholder.com/250x250?text=No+Image';
+    e.currentTarget.src = "https://via.placeholder.com/250x250?text=No+Image";
   };
 
-  // Determine banner image and link
   let breadcrumbImageSrc: string | any = defaultBreadcrumbImage;
   let breadcrumbLink: string | null = null;
 
   if (defaultBanner) {
     breadcrumbImageSrc = `${BASE_URL}/${defaultBanner.image}`;
-    breadcrumbLink = defaultBanner.link.replace(/^https?:\/\/[^\/]+/, '');
+    breadcrumbLink = defaultBanner.link.replace(/^https?:\/\/[^\/]+/, "");
   }
 
   if (loading) return <Loader />;
@@ -77,8 +76,8 @@ const ShopAllCategories = () => {
       <div
         className="banner"
         style={{
-          width: '100%',
-          overflow: 'hidden',
+          width: "100%",
+          overflow: "hidden",
         }}
       >
         {breadcrumbLink ? (
@@ -90,9 +89,9 @@ const ShopAllCategories = () => {
               width={1600}
               height={600}
               style={{
-                objectFit: 'contain',
-                width: '100%',
-                height: 'auto',
+                objectFit: "contain",
+                width: "100%",
+                height: "auto",
               }}
               priority
             />
@@ -105,9 +104,9 @@ const ShopAllCategories = () => {
             width={1600}
             height={600}
             style={{
-              objectFit: 'contain',
-              width: '100%',
-              height: 'auto',
+              objectFit: "contain",
+              width: "100%",
+              height: "auto",
             }}
             priority
           />
@@ -145,26 +144,26 @@ const ShopAllCategories = () => {
                     <div
                       className="image-wrapper"
                       style={{
-                        overflow: 'hidden',
-                        borderRadius: '12px',
-                        aspectRatio: '1/1',
+                        overflow: "hidden",
+                        borderRadius: "12px",
+                        aspectRatio: "1/1",
                       }}
                     >
                       <Image
                         src={
-                          item.image && item.image.startsWith('uploads/')
+                          item.image && item.image.startsWith("uploads/")
                             ? `${BASE_URL}/${item.image}`
-                            : 'https://via.placeholder.com/250x250?text=No+Image'
+                            : "https://via.placeholder.com/250x250?text=No+Image"
                         }
                         alt={`Suvarnakala ${item.name} Jewelry Collection`}
                         width={250}
                         height={250}
                         className="img-fluid category-image"
                         style={{
-                          objectFit: 'cover',
-                          width: '100%',
-                          height: '100%',
-                          transition: 'transform 0.3s ease-in-out',
+                          objectFit: "cover",
+                          width: "100%",
+                          height: "100%",
+                          transition: "transform 0.3s ease-in-out",
                         }}
                         onError={handleImageError}
                         loading="lazy"
@@ -174,7 +173,7 @@ const ShopAllCategories = () => {
                       className="text-gray mt-3 fs-4 fs-lg-5 text-center lora"
                       style={{ fontWeight: 100 }}
                     >
-                      {item.name === 'Managalsutra' ? 'Mangalsutra' : item.name}
+                      {item.name === "Managalsutra" ? "Mangalsutra" : item.name}
                     </p>
                   </Link>
                 </Col>
@@ -183,8 +182,6 @@ const ShopAllCategories = () => {
           </Row>
         </div>
       </div>
-
-
 
       <ScrollToTopButton />
     </>

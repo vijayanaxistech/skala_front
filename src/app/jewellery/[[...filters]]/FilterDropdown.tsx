@@ -1,12 +1,11 @@
-// components/FilterDropdown.tsx
-'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { FaFilter } from 'react-icons/fa';
-import { IoIosArrowDown, IoMdClose } from 'react-icons/io';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
-import filter from '../../../../public/assets/icons/filter.svg'; // adjust extension if needed
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import { Button } from "react-bootstrap";
+import { FaFilter } from "react-icons/fa";
+import { IoIosArrowDown, IoMdClose } from "react-icons/io";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import filter from "../../../../public/assets/icons/filter.svg";
 
 interface FilterDropdownProps {
   categories: string[];
@@ -25,7 +24,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
 }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [expanded, setExpanded] = useState<string | null>('jewellery');
+  const [expanded, setExpanded] = useState<string | null>("jewellery");
   const router = useRouter();
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -33,8 +32,8 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
         setDropdownOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const toggleSection = (section: string) => {
@@ -43,13 +42,13 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
 
   const updateFilter = (filterType: string, filterValue: string) => {
     const newFilters = { ...selectedFilters };
-    const internalType = filterType === 'jewellery' ? 'category' : filterType;
+    const internalType = filterType === "jewellery" ? "category" : filterType;
     newFilters[internalType] = filterValue;
     const segments = Object.entries(newFilters).flatMap(([type, value]) => [
-      encodeURIComponent(type === 'category' ? 'products' : type),
+      encodeURIComponent(type === "category" ? "products" : type),
       encodeURIComponent(value),
     ]);
-    router.push(`/jewellery/${segments.join('/')}`, { scroll: false });
+    router.push(`/jewellery/${segments.join("/")}`, { scroll: false });
     setDropdownOpen(false);
   };
 
@@ -57,16 +56,16 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     const newFilters = { ...selectedFilters };
     delete newFilters[type];
     const segments = Object.entries(newFilters).flatMap(([t, value]) => [
-      encodeURIComponent(t === 'category' ? 'products' : t),
+      encodeURIComponent(t === "category" ? "products" : t),
       encodeURIComponent(value),
     ]);
-    router.push(segments.length ? `/jewellery/${segments.join('/')}` : '/jewellery', {
+    router.push(segments.length ? `/jewellery/${segments.join("/")}` : "/jewellery", {
       scroll: false,
     });
   };
 
   const clearAllFilters = () => {
-    router.push('/jewellery', { scroll: false });
+    router.push("/jewellery", { scroll: false });
     setDropdownOpen(false);
   };
 
@@ -77,11 +76,11 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
           key={item}
           onClick={() => updateFilter(type, item)}
           className={`px-3 py-1 rounded-pill border ${
-            selectedFilters[type === 'jewellery' ? 'category' : type] === item
-              ? 'bg-dark text-white'
-              : 'bg-light text-dark'
+            selectedFilters[type === "jewellery" ? "category" : type] === item
+              ? "bg-dark text-white"
+              : "bg-light text-dark"
           }`}
-          style={{ cursor: 'pointer', fontSize: '14px' }}
+          style={{ cursor: "pointer", fontSize: "14px" }}
         >
           {item}
         </span>
@@ -95,12 +94,12 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
         className="d-flex align-items-center gap-2 rounded-pill lora"
         onClick={() => setDropdownOpen((prev) => !prev)}
         style={{
-          padding: '0.4rem 1.3rem',
-          fontSize: '16px',
-          border: '1px solid #000',
-          backgroundColor: 'transparent',
-          color: '#000',
-          transition: 'all 0.3s ease',
+          padding: "0.4rem 1.3rem",
+          fontSize: "16px",
+          border: "1px solid #000",
+          backgroundColor: "transparent",
+          color: "#000",
+          transition: "all 0.3s ease",
         }}
       >
         <Image src={filter} alt="Filter" width={18} height={18} />
@@ -111,12 +110,12 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
         <div
           className="shadow p-3 bg-white position-absolute"
           style={{
-            minWidth: 'clamp(280px, 90vw, 350px)',
-            top: '110%',
+            minWidth: "clamp(280px, 90vw, 350px)",
+            top: "110%",
             right: 0,
             borderRadius: 12,
             zIndex: 1000,
-            boxShadow: '0 0 12px rgba(0,0,0,0.15)',
+            boxShadow: "0 0 12px rgba(0,0,0,0.15)",
           }}
         >
           <div className="d-flex justify-content-between align-items-center mb-3">
@@ -134,7 +133,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
               )}
               <IoMdClose
                 onClick={() => setDropdownOpen(false)}
-                style={{ cursor: 'pointer', fontSize: '20px' }}
+                style={{ cursor: "pointer", fontSize: "20px" }}
               />
             </div>
           </div>
@@ -147,12 +146,12 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
                   <span
                     key={type}
                     className="px-3 py-1 rounded-pill border bg-dark text-white d-flex align-items-center"
-                    style={{ fontSize: '14px' }}
+                    style={{ fontSize: "14px" }}
                   >
                     {value}
                     <IoMdClose
                       onClick={() => removeFilter(type)}
-                      style={{ cursor: 'pointer', marginLeft: '8px' }}
+                      style={{ cursor: "pointer", marginLeft: "8px" }}
                     />
                   </span>
                 ))}
@@ -163,69 +162,69 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
           <div className="mb-3">
             <div
               className="d-flex justify-content-between align-items-center"
-              onClick={() => toggleSection('jewellery')}
-              style={{ cursor: 'pointer' }}
+              onClick={() => toggleSection("jewellery")}
+              style={{ cursor: "pointer" }}
             >
               <strong>Products</strong>
               <IoIosArrowDown
                 style={{
-                  transform: expanded === 'jewellery' ? 'rotate(180deg)' : 'rotate(0)',
-                  transition: 'transform 0.3s',
+                  transform: expanded === "jewellery" ? "rotate(180deg)" : "rotate(0)",
+                  transition: "transform 0.3s",
                 }}
               />
             </div>
-            {expanded === 'jewellery' && renderChips(categories, 'jewellery')}
+            {expanded === "jewellery" && renderChips(categories, "jewellery")}
           </div>
 
           <div className="mb-3">
             <div
               className="d-flex justify-content-between align-items-center"
-              onClick={() => toggleSection('metal')}
-              style={{ cursor: 'pointer' }}
+              onClick={() => toggleSection("metal")}
+              style={{ cursor: "pointer" }}
             >
               <strong>Jewellery Type</strong>
               <IoIosArrowDown
                 style={{
-                  transform: expanded === 'metal' ? 'rotate(180deg)' : 'rotate(0)',
-                  transition: 'transform 0.3s',
+                  transform: expanded === "metal" ? "rotate(180deg)" : "rotate(0)",
+                  transition: "transform 0.3s",
                 }}
               />
             </div>
-            {expanded === 'metal' && renderChips(metals, 'jewelleryType')}
+            {expanded === "metal" && renderChips(metals, "jewelleryType")}
           </div>
 
           <div className="mb-3">
             <div
               className="d-flex justify-content-between align-items-center"
-              onClick={() => toggleSection('purity')}
-              style={{ cursor: 'pointer' }}
+              onClick={() => toggleSection("purity")}
+              style={{ cursor: "pointer" }}
             >
               <strong>Purity</strong>
               <IoIosArrowDown
                 style={{
-                  transform: expanded === 'purity' ? 'rotate(180deg)' : 'rotate(0)',
-                  transition: 'transform 0.3s',
+                  transform: expanded === "purity" ? "rotate(180deg)" : "rotate(0)",
+                  transition: "transform 0.3s",
                 }}
               />
             </div>
-            {expanded === 'purity' && renderChips([...purities].sort(), 'purity')}
+            {expanded === "purity" && renderChips([...purities].sort(), "purity")}
           </div>
 
           <div className="mb-3">
             <div
               className="d-flex justify-content-between align-items-center"
-              onClick={() => toggleSection('occasion')}
-              style={{ cursor: 'pointer' }}
+              onClick={() => toggleSection("occasion")}
+              style={{ cursor: "pointer" }}
             >
               <strong>Occasion</strong>
               <IoIosArrowDown
                 style={{
-                  transform: expanded === 'occasion' ? 'rotate(180deg)' : 'rotate(0)',
-                  transition: 'transform 0.3s',
+                  transform: expanded === "occasion" ? "rotate(180deg)" : "rotate(0)",
+                  transition: "transform 0.3s",
                 }}
               />
             </div>
-            {expanded === 'occasion' && renderChips(occasions, 'occasion')}
+            {expanded === "occasion" && renderChips(occasions, "occasion")}
           </div>
         </div>
       )}

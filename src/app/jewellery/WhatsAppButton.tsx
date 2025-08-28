@@ -1,6 +1,6 @@
-'use client';
-import React from 'react';
-import { IoLogoWhatsapp } from 'react-icons/io';
+"use client";
+import React from "react";
+import { IoLogoWhatsapp } from "react-icons/io";
 
 interface WhatsAppButtonProps {
   product: {
@@ -14,11 +14,9 @@ interface WhatsAppButtonProps {
 }
 
 const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ product }) => {
-  // Generate slug from title without _id suffix
-  const slug = product.title.toLowerCase().replace(/\s+/g, '-');
-  // Construct product page URL with fallback for category
-  const categoryName = product.category?.name || 'unknown';
-  const productPageUrl = `http://localhost:3000/jewelry/${categoryName.toLowerCase().replace(/\s+/g, '-')}/${slug}`;
+  const slug = product.title.toLowerCase().replace(/\s+/g, "-");
+  const categoryName = product.category?.name || "unknown";
+  const productPageUrl = `http://localhost:3000/jewelry/${categoryName.toLowerCase().replace(/\s+/g, "-")}/${slug}`;
 
   const messageBody =
     `Product Inquiry:%0A` +
@@ -28,19 +26,19 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ product }) => {
     `Gross Weight (g): ${product.grossWeight}%0A` +
     `View Product: ${productPageUrl}`;
 
-  const phoneNumber = '919429439061';
+  const phoneNumber = "919429439061";
 
   const whatsappUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${messageBody}`;
 
   const handleClick = () => {
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, "_blank");
   };
 
   return (
     <button
       onClick={handleClick}
       className="btn btn-link p-0 m-0 fs-5"
-      style={{ color: '#33CC33' }}
+      style={{ color: "#33CC33" }}
     >
       <IoLogoWhatsapp />
     </button>

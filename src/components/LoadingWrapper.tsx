@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import Loader from '@/components/Loader'; // Adjust path if needed
+import React, { useEffect, useState } from "react";
+import Loader from "@/components/Loader";
 
 export default function EventsClientWrapper({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200); // simulate loading
+    const timer = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
 

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Marquee from 'react-fast-marquee';
-import { fetchGoldRates } from '@/lib/api'; // adjust import path
+import React, { useEffect, useState } from "react";
+import Marquee from "react-fast-marquee";
+import { fetchGoldRates } from "@/lib/api";
 
 type Rate = {
   id: string;
@@ -17,7 +17,7 @@ const GoldRates = () => {
         const data = await fetchGoldRates();
         setRates(data);
       } catch (error) {
-        console.error('Error fetching rates:', error);
+        console.error("Error fetching rates:", error);
       }
     };
 
@@ -25,10 +25,9 @@ const GoldRates = () => {
   }, []);
 
   const formatRate = (type: string, value: number) => {
-    return `${type} Gold: ₹${value.toLocaleString('en-IN')}.00 `;
+    return `${type} Gold: ₹${value.toLocaleString("en-IN")}.00 `;
   };
 
-  // If no rates, do not render anything
   if (rates.length === 0) {
     return null;
   }
@@ -36,11 +35,11 @@ const GoldRates = () => {
   return (
     <div className="header-marquee text-white py-1">
       <Marquee speed={50} gradient={false} pauseOnHover>
-        <span style={{ fontWeight: '500', marginRight: '2rem' }}>2025 | Today&apos;s Rate:</span>
+        <span style={{ fontWeight: "500", marginRight: "2rem" }}>2025 | Today&apos;s Rate:</span>
         {rates.map((rate, index) => (
-          <span key={rate.id} style={{ marginRight: '2rem', fontWeight: '400' }}>
+          <span key={rate.id} style={{ marginRight: "2rem", fontWeight: "400" }}>
             {formatRate(rate.type, rate.value)}
-            {index < rates.length - 1 && <span style={{ margin: '0 1rem' }}>|</span>}
+            {index < rates.length - 1 && <span style={{ margin: "0 1rem" }}>|</span>}
           </span>
         ))}
       </Marquee>

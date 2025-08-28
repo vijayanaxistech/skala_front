@@ -1,15 +1,15 @@
-import { getMetadataByPage } from '@/lib/api';
-import WhySuvarnakala from './WhySuvarnakala';
-import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
+import { getMetadataByPage } from "@/lib/api";
+import WhySuvarnakala from "./WhySuvarnakala";
+import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 
 export async function generateMetadata() {
   try {
-    const metadata = await getMetadataByPage('whyus');
+    const metadata = await getMetadataByPage("whyus");
     if (!metadata) {
       // Fallback metadata if API returns null
       return {
-        title: 'Why-Us | Suvarnakala Pvt. Ltd',
-        description: 'Explore why Suvarnakala is a trusted name in jewellery across India.',
+        title: "Why-Us | Suvarnakala Pvt. Ltd",
+        description: "Explore why Suvarnakala is a trusted name in jewellery across India.",
       };
     }
     return {
@@ -25,11 +25,11 @@ export async function generateMetadata() {
       },
     };
   } catch (error) {
-    console.error('Error fetching metadata for why-us page:', error);
+    console.error("Error fetching metadata for why-us page:", error);
     // Fallback metadata in case of error
     return {
-      title: 'Why-Us | Suvarnakala Pvt. Ltd',
-      description: 'Explore why Suvarnakala is a trusted name in jewellery across India.',
+      title: "Why-Us | Suvarnakala Pvt. Ltd",
+      description: "Explore why Suvarnakala is a trusted name in jewellery across India.",
     };
   }
 }

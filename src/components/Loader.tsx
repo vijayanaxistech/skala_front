@@ -1,21 +1,20 @@
-// components/Loader.tsx
-import React from 'react';
+import React from "react";
 
 const Loader = () => {
   return (
     <>
       <div
         style={{
-          width: '100vw',
-          height: '100vh',
-          position: 'fixed',
+          width: "100vw",
+          height: "100vh",
+          position: "fixed",
           top: 0,
           left: 0,
           zIndex: 9999,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: '#fff9f3',
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#fff9f3",
         }}
       >
         <img
@@ -23,14 +22,14 @@ const Loader = () => {
           alt="Suvarnakala Loading Logo"
           className="loading-logo"
           style={{
-            maxWidth: '250px',
-            maxHeight: '250px',
-            objectFit: 'contain',
-            animation: 'zoom 2s ease-in-out infinite',
+            maxWidth: "250px",
+            maxHeight: "250px",
+            objectFit: "contain",
+            animation: "zoom 2s ease-in-out infinite",
           }}
           onError={(e) => {
-            e.currentTarget.src = '/fallback-image.jpg'; // Fallback image
-            console.error('Failed to load Suvarnakala.png, using fallback image');
+            e.currentTarget.src = "/fallback-image.jpg";
+            console.error("Failed to load Suvarnakala.png, using fallback image");
           }}
         />
       </div>

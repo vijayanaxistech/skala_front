@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import { BASE_URL } from '../lib/api'; // Update path as needed
+import Image from "next/image";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { BASE_URL } from "../lib/api";
 
 interface Moment {
   _id: string;
   filePath?: string;
   imagePath?: string;
-  mediaType?: 'image' | 'video';
+  mediaType?: "image" | "video";
   createdAt: string;
   title?: string;
 }
@@ -63,7 +63,7 @@ const Moments: React.FC<MomentsProps> = ({ moments = [] }) => {
           >
             {moments.map((moment, index) => {
               const mediaSource = moment.filePath || moment.imagePath;
-              const isVideo = moment.mediaType === 'video';
+              const isVideo = moment.mediaType === "video";
               const title = moment.title || `Moment ${index + 1}`;
 
               return (
@@ -80,22 +80,22 @@ const Moments: React.FC<MomentsProps> = ({ moments = [] }) => {
                           src={
                             mediaSource
                               ? `${BASE_URL}/${mediaSource}`
-                              : 'https://via.placeholder.com/300x180?text=No+Video'
+                              : "https://via.placeholder.com/300x180?text=No+Video"
                           }
                           autoPlay
                           muted
                           loop
                           playsInline
                           style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover',
-                            borderRadius: '8px',
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            borderRadius: "8px",
                           }}
                           aria-label={`Suvarnakala Defining Moment ${index + 1} - ${title}`}
                           onError={(e) => {
                             e.currentTarget.src =
-                              'https://via.placeholder.com/300x180?text=No+Video';
+                              "https://via.placeholder.com/300x180?text=No+Video";
                           }}
                         />
                       ) : (
@@ -103,16 +103,16 @@ const Moments: React.FC<MomentsProps> = ({ moments = [] }) => {
                           src={
                             mediaSource
                               ? `${BASE_URL}/${mediaSource}`
-                              : 'https://via.placeholder.com/300x180?text=No+Image'
+                              : "https://via.placeholder.com/300x180?text=No+Image"
                           }
                           alt={`Suvarnakala Defining Moment ${index + 1} - ${title}`}
                           fill
                           sizes="(max-width: 576px) 100vw, 300px"
-                          style={{ objectFit: 'cover', borderRadius: '8px' }}
+                          style={{ objectFit: "cover", borderRadius: "8px" }}
                           loading="lazy"
                           onError={(e) => {
                             e.currentTarget.src =
-                              'https://via.placeholder.com/300x180?text=No+Image';
+                              "https://via.placeholder.com/300x180?text=No+Image";
                           }}
                         />
                       )}
@@ -121,11 +121,11 @@ const Moments: React.FC<MomentsProps> = ({ moments = [] }) => {
                       <span
                         className="moment-title text-dark heading-extension fraunces"
                         style={{
-                          fontSize: '1.4rem',
-                          textAlign: 'center',
-                          padding: '0.5rem 1rem',
-                          textTransform: 'capitalize',
-                          letterSpacing: '1px',
+                          fontSize: "1.4rem",
+                          textAlign: "center",
+                          padding: "0.5rem 1rem",
+                          textTransform: "capitalize",
+                          letterSpacing: "1px",
                         }}
                       >
                         {title}
@@ -140,7 +140,7 @@ const Moments: React.FC<MomentsProps> = ({ moments = [] }) => {
       </div>
 
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
+        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap");
 
         .moment-card {
           position: relative;

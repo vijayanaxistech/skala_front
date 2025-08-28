@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { BASE_URL } from '../../lib/api';
+import React, { useState } from "react";
+import Image from "next/image";
+import { BASE_URL } from "../../lib/api";
 
 interface ProductImageGalleryProps {
   mainImage: string;
@@ -19,14 +19,13 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
 
   return (
     <>
-      {/* Main Image */}
       <div className="col-12 col-md-5 d-flex align-items-center justify-content-center order-md-2">
-        <div >
+        <div>
           <div
             className="image-wrapper"
             style={{
-              overflow: 'hidden',
-              borderRadius: '12px',
+              overflow: "hidden",
+              borderRadius: "12px",
             }}
           >
             <Image
@@ -36,18 +35,17 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
               height={370}
               className="img-fluid main-image"
               style={{
-                objectFit: 'contain',
-                transition: 'transform 0.3s ease-in-out',
+                objectFit: "contain",
+                transition: "transform 0.3s ease-in-out",
               }}
             />
           </div>
         </div>
       </div>
 
-      {/* Thumbnails */}
       <div
         className="col-12 col-md-1 d-flex flex-md-column align-items-center justify-content-center order-md-1 thumbnails-container"
-        style={{ gap: '12px' }}
+        style={{ gap: "12px" }}
       >
         {thumbnailImages.map((img, index) => (
           <Image
@@ -58,10 +56,10 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
             height={70}
             className="rounded-2 shadow-sm"
             style={{
-              cursor: 'pointer',
-              objectFit: 'cover',
-              background: '#fff',
-              border: selectedImage === img ? '2px solid #ddd' : '1px solid #ddd',
+              cursor: "pointer",
+              objectFit: "cover",
+              background: "#fff",
+              border: selectedImage === img ? "2px solid #ddd" : "1px solid #ddd",
             }}
             onClick={() => setSelectedImage(img)}
           />

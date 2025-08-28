@@ -1,68 +1,15 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
-import Head from 'next/head'; // For SEO metadata
-import giftcard from '../../public/assets/Gift Card 2.png';
-import goldIcon from '../../public/assets/6fe12d1ca7e63ca786546007ade02bf47d451b70.png';
-import calendarIcon from '../../public/assets/58ffe92b446f8b39c2730187c40eb5601690961e.png';
-import playstore from '../../public/assets/googleplay.png';
-import appstore from '../../public/assets/appstore.png';
+import React from "react";
+import Image from "next/image";
+import giftcard from "../../public/assets/Gift Card 2.png";
+import goldIcon from "../../public/assets/6fe12d1ca7e63ca786546007ade02bf47d451b70.png";
+import calendarIcon from "../../public/assets/58ffe92b446f8b39c2730187c40eb5601690961e.png";
+import playstore from "../../public/assets/googleplay.png";
+import appstore from "../../public/assets/appstore.png";
 const GiftCard = () => {
-  // Structured data for SEO (JSON-LD)
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: 'Suvarnakala Gift Card',
-    description:
-      'The Suvarnakala Gift Card is the perfect gift for any occasion, allowing recipients to choose from exquisite gold, diamond, and jadtar jewelry collections.',
-    image: giftcard.src,
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'INR',
-      availability: 'https://schema.org/InStock',
-      description: 'Available as a luxury physical card or a convenient digital option.',
-    },
-    brand: {
-      '@type': 'Brand',
-      name: 'Suvarnakala',
-    },
-  };
-
   return (
     <>
-      {/* SEO Metadata */}
-      <Head>
-        <title>Suvarnakala Gift Card - Perfect Jewelry Gift for Any Occasion</title>
-        <meta
-          name="description"
-          content="Gift the Suvarnakala Gift Card for birthdays, weddings, or any special moment. Choose from luxury physical or digital cards for exquisite jewelry selections."
-        />
-        <meta
-          name="keywords"
-          content="Suvarnakala Gift Card, jewelry gift card, gold jewelry, diamond jewelry, gift for occasions, luxury gift card"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://yourwebsite.com/gift-card" />
-        {/* Open Graph for social media */}
-        <meta
-          property="og:title"
-          content="Suvarnakala Gift Card - Perfect Jewelry Gift for Any Occasion"
-        />
-        <meta
-          property="og:description"
-          content="Gift the Suvarnakala Gift Card for birthdays, weddings, or any special moment."
-        />
-        <meta property="og:image" content={giftcard.src} />
-        <meta property="og:url" content="https://yourwebsite.com/gift-card" />
-        <meta property="og:type" content="website" />
-        {/* Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-      </Head>
       <div className=" pb-2 mt-5 ">
         <div className=" bg-color" aria-label="Suvarnakala Gift Card Section">
           <div className="p-3 p-md-5 pt-3 pb-2 ">
@@ -102,27 +49,25 @@ const GiftCard = () => {
                 </ul>
 
                 <div className="d-flex flex-column flex-md-row gap-3 mt-4 justify-content-center justify-content-md-start">
-                  {/* Gold Rate Booking */}
                   <div className="d-flex gift-card flex-column align-items-center justify-content-center px-4 py-3 shadow">
                     <Image
                       src={goldIcon}
                       alt="Suvarnakala Gold Rate Booking Icon"
                       width={30}
                       height={30}
-                      style={{ objectFit: 'contain' }}
+                      style={{ objectFit: "contain" }}
                       loading="lazy"
                     />
                     <span className="mt-3 lora">Gold Rate Booking</span>
                   </div>
 
-                  {/* Monthly Installment */}
                   <div className="d-flex flex-column gift-card align-items-center justify-content-center px-4 py-3 shadow">
                     <Image
                       src={calendarIcon}
                       alt="Suvarnakala Monthly Installment Icon"
                       width={30}
                       height={30}
-                      style={{ objectFit: 'contain' }}
+                      style={{ objectFit: "contain" }}
                       loading="lazy"
                     />
                     <span className="mt-3 lora">Monthly Installment</span>
@@ -153,7 +98,6 @@ const GiftCard = () => {
                 </div>
               </div>
 
-              {/* Image */}
               <div className="col-12 col-md-5 mb-4 text-center">
                 <Image
                   src={giftcard}
@@ -161,7 +105,7 @@ const GiftCard = () => {
                   className="img-fluid rounded"
                   width={400}
                   height={300}
-                  style={{ maxHeight: '280px', objectFit: 'contain', width: '100%' }}
+                  style={{ maxHeight: "280px", objectFit: "contain", width: "100%" }}
                   sizes="(max-width: 768px) 100vw, 400px"
                   loading="lazy"
                 />

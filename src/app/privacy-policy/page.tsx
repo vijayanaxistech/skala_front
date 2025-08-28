@@ -1,8 +1,8 @@
-import React from 'react';
-import { Metadata } from 'next';
+import React from "react";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'PrivacyPolicy | Suvarnakala Pvt. Ltd',
+  title: "PrivacyPolicy | Suvarnakala Pvt. Ltd",
 };
 
 const PrivacyPolicy = () => {
@@ -15,7 +15,7 @@ const PrivacyPolicy = () => {
           Suvarnakala Pvt. Ltd. respects your privacy. This Privacy Policy outlines how your data is
           collected and used. By accessing the services provided by suvarnakala.com, you agree to
           the collection and use of your data as described in this Privacy Policy. If you have
-          questions or concerns, please contact us at{' '}
+          questions or concerns, please contact us at{" "}
           <a href="mailto:sales@suvarnakala.com" className="text-blue-600 hover:underline fraunces">
             sales@suvarnakala.com
           </a>
@@ -158,7 +158,7 @@ const PrivacyPolicy = () => {
           Managing Your Information
         </h2>
         <p className="text-dark mb-4">
-          You can update or correct your information online or by emailing{' '}
+          You can update or correct your information online or by emailing{" "}
           <a href="mailto:sales@suvarnakala.com" className="text-blue-600 hover:underline fraunces">
             sales@suvarnakala.com
           </a>
@@ -184,7 +184,7 @@ const PrivacyPolicy = () => {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">Contact Us</h2>
         <p className="text-dark">
-          For questions or feedback, contact Suvarnakala Pvt. Ltd. at{' '}
+          For questions or feedback, contact Suvarnakala Pvt. Ltd. at{" "}
           <a href="mailto:sales@suvarnakala.com" className="text-blue-600 hover:underline fraunces">
             sales@suvarnakala.com
           </a>

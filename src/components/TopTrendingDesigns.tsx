@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect } from "react";
+import Head from "next/head";
+import Image from "next/image";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // Configure base URL for API
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-console.log('BASE_URL', BASE_URL);
+console.log("BASE_URL", BASE_URL);
 
 interface TrendingDesign {
   _id: string;
@@ -36,68 +36,12 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
   const [designs, setDesigns] = useState<TrendingDesign[]>(initialDesigns);
 
   useEffect(() => {
-    // Sort designs by priority in descending order
     const sortedDesigns = [...initialDesigns].sort((a, b) => b.priority - a.priority);
     setDesigns(sortedDesigns);
   }, [initialDesigns]);
 
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: 'Suvarnakala Top Trending Designs',
-    description:
-      'Explore Suvarnakala’s top trending jewelry designs, featuring the latest styles in gold, diamond, and more for every occasion.',
-    itemListElement: designs.map((design, index) => ({
-      '@type': 'Product',
-      position: index + 1,
-      name: design.name,
-      image: design.image
-        ? `${BASE_URL}/${design.image}`
-        : 'https://via.placeholder.com/300x300?text=No+Image',
-      description: `Suvarnakala ${design.name} trending jewelry design.`,
-      brand: { '@type': 'Brand', name: 'Suvarnakala' },
-    })),
-  };
-
   return (
     <>
-      <Head>
-        <title>Suvarnakala Top Trending Jewelry Designs - Latest Styles</title>
-        <meta
-          name="description"
-          content="Discover Suvarnakala’s top trending jewelry designs, featuring the latest in gold, diamond, and more."
-        />
-        <meta
-          name="keywords"
-          content="Suvarnakala, trending jewelry, top jewelry designs, gold jewelry, diamond jewelry, latest jewelry styles"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://yourwebsite.com/top-trending-designs" />
-        <meta
-          property="og:title"
-          content="Suvarnakala Top Trending Jewelry Designs - Latest Styles"
-        />
-        <meta
-          property="og:description"
-          content="Explore Suvarnakala’s top trending jewelry designs, featuring the latest in gold, diamond, and more."
-        />
-        <meta
-          property="og:image"
-          content={
-            designs.length > 0 && designs[0].image
-              ? `${BASE_URL}/${designs[0].image}`
-              : 'https://via.placeholder.com/300x300?text=No+Image'
-          }
-        />
-        <meta property="og:url" content="https://yourwebsite.com/top-trending-designs" />
-        <meta property="og:type" content="website" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        />
-      </Head>
-
       <style jsx>{`
         .image-container {
           position: relative;
@@ -141,7 +85,10 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
         }
       `}</style>
 
-      <div className=" p-2 px-md-5 py-md-4 pb-0 pt-4" aria-label="Suvarnakala Top Trending Designs Section">
+      <div
+        className=" p-2 px-md-5 py-md-4 pb-0 pt-4"
+        aria-label="Suvarnakala Top Trending Designs Section"
+      >
         <div className="custom-heading-wrapper d-flex align-items-center mb-4">
           <h2 className="m-0 custom-heading text-wrap me-3">
             <span className="fraunces">
@@ -176,7 +123,7 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
               {designs.map((item) => {
                 const imageUrl = item.image
                   ? `${BASE_URL}/${item.image}`
-                  : 'https://via.placeholder.com/300x300?text=No+Image';
+                  : "https://via.placeholder.com/300x300?text=No+Image";
 
                 return (
                   <div
@@ -196,13 +143,16 @@ const TopTrendingDesign: React.FC<TopTrendingDesignProps> = ({ initialDesigns })
                           src={imageUrl}
                           alt={`Suvarnakala ${item.name} Trending Jewelry Design`}
                           fill
-                        
                           sizes="(max-width: 576px) 100vw, 300px"
-                          style={{ objectFit: 'cover', borderRadius:'12px', transition: 'filter 0.3s ease' }}
+                          style={{
+                            objectFit: "cover",
+                            borderRadius: "12px",
+                            transition: "filter 0.3s ease",
+                          }}
                           loading="lazy"
                           onError={(e) => {
                             e.currentTarget.src =
-                              'https://via.placeholder.com/300x300?text=No+Image';
+                              "https://via.placeholder.com/300x300?text=No+Image";
                           }}
                         />
                         <span className="link-icon">

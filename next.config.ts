@@ -12,15 +12,15 @@ const nextConfig = {
     unoptimized: true, //
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '4000',
-        pathname: '/**',
+        protocol: "http",
+        hostname: "localhost",
+        port: "4000",
+        pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'skalaapi.anaxaaistech.com',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "skalaapi.anaxaaistech.com",
+        pathname: "/**",
       },
     ],
   },

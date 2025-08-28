@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Head from 'next/head';
+import { useEffect, useState } from "react";
+import Head from "next/head";
 
-import Popup from '../components/Popup';
-import Hero from '../components/HeroCarousel';
-import Products from '../components/Events';
-import CredibilitySection from '../components/AboutUs';
-import VideoSection from '../components/VideoSection';
-import ShopbyStyle from '../components/ShopbyStyle';
-import TopTrendingDesigns from '../components/TopTrendingDesigns';
-import Testimonials from '../components/Testimonials';
+import Popup from "../components/Popup";
+import Hero from "../components/HeroCarousel";
+import Products from "../components/Events";
+import CredibilitySection from "../components/AboutUs";
+import VideoSection from "../components/VideoSection";
+import ShopbyStyle from "../components/ShopbyStyle";
+import TopTrendingDesigns from "../components/TopTrendingDesigns";
+import Testimonials from "../components/Testimonials";
 import {
   getBachatMahotsavImages,
   getHeroes,
@@ -18,8 +18,8 @@ import {
   getTrendingDesigns,
   getMetadataByPage,
   BASE_URL,
-} from '../lib/api';
-import Loader from '@/components/Loader';
+} from "../lib/api";
+import Loader from "@/components/Loader";
 
 type Metadata = {
   title: string;
@@ -41,7 +41,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1200); // Show loader for 1.2 seconds
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -53,7 +53,7 @@ export default function Home() {
           getMoments(),
           getTrendingDesigns(),
           getBachatMahotsavImages(),
-          getMetadataByPage('home'),
+          getMetadataByPage("home"),
         ]);
 
         setHeroes(heroData);
@@ -62,7 +62,7 @@ export default function Home() {
         setBachatMahotsavImages(bachatData);
         setMetadata(metadataData);
       } catch (error) {
-        console.error('Error fetching home page data:', error);
+        console.error("Error fetching home page data:", error);
       } finally {
         setLoading(false);
       }
@@ -72,7 +72,7 @@ export default function Home() {
   }, []);
 
   if (!BASE_URL) {
-    throw new Error('Missing NEXT_PUBLIC_API_BASE_URL in .env.local');
+    throw new Error("Missing NEXT_PUBLIC_API_BASE_URL in .env.local");
   }
   if (loading) return <Loader />;
   return (

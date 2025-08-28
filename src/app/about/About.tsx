@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
-import aboutImage from '../../../public/assets/About_us_bottom.jpg';
-import qualityBadge from '../../../public/assets/Quality.png';
-import serviceBadge from '../../../public/assets/Service.png';
-import valueBadge from '../../../public/assets/Value.png';
-import breadcrumbImage from '../../../public/assets/About us.jpg';
-import legacyImage from '../../../public/assets/Our_legacy_bottom.jpg';
-import cornerImage from '../../../public/assets/Group 41992.png';
-import roseImage from '../../../public/assets/rose.png';
-import certified from '../../../public/assets/certified.png';
-import hallmark from '../../../public/assets/hallmark.png';
-import billed from '../../../public/assets/billed.png';
-import premium from '../../../public/assets/premium.png';
-import Loader from '@/components/Loader';
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import aboutImage from "../../../public/assets/About_us_bottom.jpg";
+import qualityBadge from "../../../public/assets/Quality.png";
+import serviceBadge from "../../../public/assets/Service.png";
+import valueBadge from "../../../public/assets/Value.png";
+import breadcrumbImage from "../../../public/assets/About us.jpg";
+import legacyImage from "../../../public/assets/Our_legacy_bottom.jpg";
+import cornerImage from "../../../public/assets/Group 41992.png";
+import roseImage from "../../../public/assets/rose.png";
+import certified from "../../../public/assets/certified.png";
+import hallmark from "../../../public/assets/hallmark.png";
+import billed from "../../../public/assets/billed.png";
+import premium from "../../../public/assets/premium.png";
+import Loader from "@/components/Loader";
 
 const totalYears = new Date().getFullYear() - 1970;
 
@@ -24,16 +24,14 @@ const About = () => {
   const counterRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
-  // Simulate loading (e.g., data/image loading)
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1200); // Show loader for 1.2 seconds
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, []);
 
-  // Animated counter (trigger after loading)
   useEffect(() => {
     if (!loading && counterRef.current) {
       const observer = new IntersectionObserver(
@@ -66,13 +64,11 @@ const About = () => {
     }
   }, [loading]);
 
-  // Show loader while loading
   if (loading) return <Loader />;
 
   return (
     <>
-      {/* Breadcrumb Section */}
-      <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
+      <div style={{ position: "relative", width: "100%", height: "auto" }}>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
@@ -82,8 +78,7 @@ const About = () => {
         />
       </div>
 
-      {/* About Section */}
-      <div className="position-relative py-4" style={{ background: '#fff9f3' }}>
+      <div className="position-relative py-4" style={{ background: "#fff9f3" }}>
         <div className="position-absolute top-0 end-0 p-2 d-none d-md-block" style={{ zIndex: 10 }}>
           <Image src={roseImage} alt="Rose" width={100} height={200} className="img-fluid" />
         </div>
@@ -117,10 +112,16 @@ const About = () => {
                 Suvarnakala — The Pride of a Woman
               </h5>
               <p className=" text-justify">
-At Suvarnakala, every piece of jewellery is more than just an ornament – it is a reflection of tradition, artistry, and trust. With a legacy built on purity and perfection, we have been part of countless celebrations, milestones, and cherished memories in the lives of our valued customers.
+                At Suvarnakala, every piece of jewellery is more than just an ornament – it is a
+                reflection of tradition, artistry, and trust. With a legacy built on purity and
+                perfection, we have been part of countless celebrations, milestones, and cherished
+                memories in the lives of our valued customers.
               </p>
               <p className="text-justify">
-From everyday elegance to timeless bridal treasures, our collections are crafted to seamlessly blend heritage with modern design. Each creation is thoughtfully designed and hallmarked for purity, ensuring you don’t just wear jewellery, but carry forward a legacy of trust.
+                From everyday elegance to timeless bridal treasures, our collections are crafted to
+                seamlessly blend heritage with modern design. Each creation is thoughtfully designed
+                and hallmarked for purity, ensuring you don’t just wear jewellery, but carry forward
+                a legacy of trust.
               </p>
               <div className="row text-center text-md-start my-4">
                 <div className="col-4 col-sm-4">
@@ -166,68 +167,65 @@ From everyday elegance to timeless bridal treasures, our collections are crafted
         </div>
       </div>
 
-      {/* Legacy Section */}
       <div className="p-3 p-md-5 position-relative">
         <div
           className="position-absolute bottom-0 start-0 mb-0 ms-0"
-          style={{ zIndex: 1, transform: 'rotate(35deg)' }}
+          style={{ zIndex: 1, transform: "rotate(35deg)" }}
         >
           <Image src={cornerImage} alt="Decorative corner" width={70} height={70} />
         </div>
 
         <div className="row align-items-center">
           <div className="col-md-7 mb-3">
-          <div className="custom-heading-wrapper d-flex align-items-center mb-4">
-            <h2 className="m-0 custom-heading text-wrap me-3">
-              <span className="fraunces">
-                Our <span className="text-red fraunces">Legacy </span>
-              </span>
-              <div className="decorative-line">
-                <div className="diamond"></div>
-                <div className="line"></div>
-                <div className="diamond"></div>
-              </div>
-            </h2>
-          </div>                        <p className=" mb-3 lora">At Suvarnakala, legacy is an art form.</p>
-
+            <div className="custom-heading-wrapper d-flex align-items-center mb-4">
+              <h2 className="m-0 custom-heading text-wrap me-3">
+                <span className="fraunces">
+                  Our <span className="text-red fraunces">Legacy </span>
+                </span>
+                <div className="decorative-line">
+                  <div className="diamond"></div>
+                  <div className="line"></div>
+                  <div className="diamond"></div>
+                </div>
+              </h2>
+            </div>{" "}
+            <p className=" mb-3 lora">At Suvarnakala, legacy is an art form.</p>
             <p className="text-justify">
-For generations, we have crafted jewels that embody timeless elegance, uncompromising purity, and enduring value. Each creation is a masterpiece—born of heritage, perfected by craftsmanship, and designed to celebrate life’s most precious milestones.
-
+              For generations, we have crafted jewels that embody timeless elegance, uncompromising
+              purity, and enduring value. Each creation is a masterpiece—born of heritage, perfected
+              by craftsmanship, and designed to celebrate life’s most precious milestones.
             </p>
-              <p className="text-justify">
-Our promise goes beyond jewellery, it is the promise of trust, refinement, and luxury that lasts forever.
-
-              </p>
+            <p className="text-justify">
+              Our promise goes beyond jewellery, it is the promise of trust, refinement, and luxury
+              that lasts forever.
+            </p>
           </div>
 
           <div className="col-md-5  mt-md-1 mb-3 text-center position-relative">
-
-
             <Image src={legacyImage} alt="Suvarnakala Store" className="img-fluid mb-5 mb-md-0" />
           </div>
         </div>
       </div>
 
-      {/* Trust Section */}
-      <div style={{  padding: '30px 0' }} className='bg-light'>
+      <div style={{ padding: "30px 0" }} className="bg-light">
         <div className="d-flex flex-wrap align-items-center gap-3 justify-content-start justify-content-md-evenly">
           {[
-            { img: certified, text: '100% Certified Jewelry' },
-            { img: hallmark, text: 'BIS Hallmarked Gold' },
-            { img: billed, text: 'Certified & Billed Instantly' },
-            { img: premium, text: 'Premium Wrap & Etching' },
+            { img: certified, text: "100% Certified Jewelry" },
+            { img: hallmark, text: "BIS Hallmarked Gold" },
+            { img: billed, text: "Certified & Billed Instantly" },
+            { img: premium, text: "Premium Wrap & Etching" },
           ].map((item, index) => (
             <div
               key={index}
               className="d-flex align-items-center p-2"
-              style={{ minWidth: '250px' }}
+              style={{ minWidth: "250px" }}
             >
               <Image src={item.img} alt={item.text} width={40} height={40} />
               <span
                 style={{
-                  marginLeft: '12px',
-                  fontWeight: 'bold',
-                  fontSize: '16px',
+                  marginLeft: "12px",
+                  fontWeight: "bold",
+                  fontSize: "16px",
                 }}
                 className="lora text-gray"
               >
@@ -238,7 +236,6 @@ Our promise goes beyond jewellery, it is the promise of trust, refinement, and l
         </div>
       </div>
 
-      {/* Animation Keyframes */}
       <style>{`
         @keyframes rotateCircle {
           0% { transform: rotate(0deg); }

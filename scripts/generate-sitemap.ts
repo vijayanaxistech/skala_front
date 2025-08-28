@@ -1,11 +1,11 @@
-import * as dotenv from 'dotenv';
-dotenv.config({ path: '.env.local' });
-import fs from 'fs';
-import path from 'path';
-import { getProducts, getCategories } from '../src/lib/api';
-import { routeDisplayNames } from '../src/lib/routeNames';
+import * as dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
+import fs from "fs";
+import path from "path";
+import { getProducts, getCategories } from "../src/lib/api";
+import { routeDisplayNames } from "../src/lib/routeNames";
 
-const BASE_URL = 'https://skalafront.anaxistech.com';
+const BASE_URL = "https://skalafront.anaxistech.com";
 
 const getStaticRoutes = (): string[] => {
   return Object.keys(routeDisplayNames);
@@ -14,8 +14,8 @@ const getStaticRoutes = (): string[] => {
 const toSlug = (str: string) =>
   str
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)+/g, '');
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
 
 interface Category {
   name?: string;
@@ -42,7 +42,7 @@ const getDynamicRoutes = async (): Promise<string[]> => {
   // Collections (categories)
   const categories: Category[] = await getCategories();
   categories.forEach((cat: Category) => {
-    const slug = toSlug(cat.name || cat.title || cat.slug || '');
+    const slug = toSlug(cat.name || cat.title || cat.slug || "");
     routes.push(`/collections/${slug}`);
   });
 
@@ -59,14 +59,14 @@ const generateSitemap = async () => {
     .map((route) => {
       return `  <url>\n    <loc>${BASE_URL}${route}</loc>\n  </url>`;
     })
-    .join('\n')}
+    .join("\n")}
 </urlset>`;
 
-  const filePath = path.resolve(__dirname, '../public/sitemap.xml');
-  fs.writeFileSync(filePath, sitemap, 'utf8');
+  const filePath = path.resolve(__dirname, "../public/sitemap.xml");
+  fs.writeFileSync(filePath, sitemap, "utf8");
   console.log(`✅ Sitemap generated with ${allRoutes.length} routes.`);
 };
 
 generateSitemap().catch((err) => {
-  console.error('❌ Error generating sitemap:', err);
+  console.error("❌ Error generating sitemap:", err);
 });

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { getTestimonials } from '../lib/api';
+import React, { useEffect, useState } from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { getTestimonials } from "../lib/api";
 
 interface Testimonial {
   _id: string;
@@ -12,7 +12,7 @@ interface Testimonial {
   description: string;
   createdAt: string;
   updatedAt: string;
-  isActive: boolean; // Add isActive to the interface
+  isActive: boolean;
 }
 
 const responsive = {
@@ -29,16 +29,18 @@ const Testimonials: React.FC = () => {
   useEffect(() => {
     getTestimonials()
       .then((data) => {
-        // Filter testimonials to include only those with isActive: true
         const activeTestimonials = data.filter((testimonial: Testimonial) => testimonial.isActive);
         setTestimonials(activeTestimonials);
       })
-      .catch((err) => console.error('Failed to fetch testimonials:', err))
+      .catch((err) => console.error("Failed to fetch testimonials:", err))
       .finally(() => setIsLoading(false));
   }, []);
 
   return (
-    <div className=" p-3 px-md-5 py-md-4 pb-0 pt-4" aria-label="Suvarnakala Customer Testimonials Section">
+    <div
+      className=" p-3 px-md-5 py-md-4  pb-4 pt-4"
+      aria-label="Suvarnakala Customer Testimonials Section"
+    >
       <div className="custom-heading-wrapper d-flex align-items-center mb-4">
         <h2 className="m-0 custom-heading text-wrap me-3">
           <span className="fraunces">
@@ -70,7 +72,6 @@ const Testimonials: React.FC = () => {
             <div
               key={index}
               className="p-4 bg-white testimonial-card   d-flex flex-column justify-content-between text-start position-relative testimonial-card"
-
               role="group"
               aria-label={`Testimonial by ${testimonial.name}`}
             >
@@ -78,12 +79,12 @@ const Testimonials: React.FC = () => {
                 <div
                   className="rounded-circle lora d-flex align-items-center justify-content-center me-3"
                   style={{
-                    width: '45px',
-                    height: '45px',
-                    backgroundColor: '#012f63',
-                    color: '#fff',
+                    width: "45px",
+                    height: "45px",
+                    backgroundColor: "#012f63",
+                    color: "#fff",
                     fontWeight: 600,
-                    fontSize: '18px',
+                    fontSize: "18px",
                   }}
                 >
                   {testimonial.name.charAt(0)}
@@ -92,7 +93,7 @@ const Testimonials: React.FC = () => {
               </div>
               <p
                 className="text-secondary mt-0 mb-0"
-                style={{ fontSize: '14px', lineHeight: '1.5' }}
+                style={{ fontSize: "14px", lineHeight: "1.5" }}
               >
                 “{testimonial.description}”
               </p>

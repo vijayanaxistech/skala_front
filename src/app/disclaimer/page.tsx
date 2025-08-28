@@ -1,10 +1,8 @@
-// app/disclaimer/page.tsx
-
-import React from 'react';
-import { Metadata } from 'next';
+import React from "react";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Disclaimer | Suvarnakala Pvt. Ltd',
+  title: "Disclaimer | Suvarnakala Pvt. Ltd",
 };
 export default function DisclaimerPage() {
   return (

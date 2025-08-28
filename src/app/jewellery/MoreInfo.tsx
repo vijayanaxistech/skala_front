@@ -1,5 +1,5 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
 interface MoreInfoButtonProps {
   product: {
@@ -13,11 +13,9 @@ interface MoreInfoButtonProps {
 }
 
 const MoreInfoButton: React.FC<MoreInfoButtonProps> = ({ product }) => {
-  // Generate slug from title without _id suffix
-  const slug = product.title.toLowerCase().replace(/\s+/g, '-');
-  // Construct product page URL with fallback for category
-  const categoryName = product.category?.name || 'unknown';
-  const productPageUrl = `http://localhost:3000/jewelry/${categoryName.toLowerCase().replace(/\s+/g, '-')}/${slug}`;
+  const slug = product.title.toLowerCase().replace(/\s+/g, "-");
+  const categoryName = product.category?.name || "unknown";
+  const productPageUrl = `http://localhost:3000/jewelry/${categoryName.toLowerCase().replace(/\s+/g, "-")}/${slug}`;
 
   const messageBody =
     `Product Inquiry:%0A` +
@@ -27,12 +25,12 @@ const MoreInfoButton: React.FC<MoreInfoButtonProps> = ({ product }) => {
     `Gross Weight (g): ${product.grossWeight}%0A` +
     `View Product: ${productPageUrl}`;
 
-  const phoneNumber = '919429439061';
+  const phoneNumber = "919429439061";
 
   const whatsappUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${messageBody}`;
 
   const handleMoreInfoClick = () => {
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, "_blank");
   };
 
   return (

@@ -1,19 +1,14 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import React from 'react';
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
-import breadcrumbImage from '../../../public/assets/our-showroom.jpg';
+import Image from "next/image";
+import React from "react";
+import { Row, Col, Card } from "react-bootstrap";
+import breadcrumbImage from "../../../public/assets/our-showroom.png";
+import st1 from "../../../public/assets/showrooms/Satellite/Satellite.jpg";
+import cg1 from "../../../public/assets/showrooms/Cgroad/CG Road.jpg";
+import mn1 from "../../../public/assets/showrooms/Maninagar/Maninagar.jpg";
 
-
-// Satellite
-import st1 from '../../../public/assets/showrooms/Satellite/Satellite.jpg';
-// CG Road
-import cg1 from '../../../public/assets/showrooms/Cgroad/CG Road.jpg';
-// Maninagar
-import mn1 from '../../../public/assets/showrooms/Maninagar/Maninagar.jpg';
-
-import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
+import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 
 interface ShowroomSectionProps {
   id: string;
@@ -33,18 +28,18 @@ const ShowroomSection: React.FC<ShowroomSectionProps> = ({
   mapLink,
 }) => {
   const handleGetDirections = () => {
-    window.open(mapLink, '_blank');
+    window.open(mapLink, "_blank");
   };
 
   return (
     <section id={id} className="mb-5">
       <Row className="g-4">
         <Col lg={7}>
-          <div style={{ width: '100%' }}>
+          <div style={{ width: "100%" }}>
             <Image
               src={image}
               alt={`${title} Showroom`}
-              style={{ width: '100%', height: 'auto' }}
+              style={{ width: "100%", height: "auto" }}
               sizes="(max-width: 768px) 100vw, 70vw"
             />
           </div>
@@ -67,10 +62,7 @@ const ShowroomSection: React.FC<ShowroomSectionProps> = ({
                 )}
               </div>
               <div className="mt-auto">
-                <button
-                  className="directions-btn w-100 rounded-0"
-                  onClick={handleGetDirections}
-                >
+                <button className="directions-btn w-100 rounded-0" onClick={handleGetDirections}>
                   Get Directions
                 </button>
               </div>
@@ -85,7 +77,7 @@ const ShowroomSection: React.FC<ShowroomSectionProps> = ({
 const WhySuvarnakala = () => {
   return (
     <ClientLayoutWrapper>
-      <div style={{ position: 'relative', width: '100%', height: 'auto' }}>
+      <div style={{ position: "relative", width: "100%", height: "auto" }}>
         <Image
           src={breadcrumbImage}
           alt="Suvarnakala Banner"
@@ -121,8 +113,6 @@ const WhySuvarnakala = () => {
           mapLink="https://maps.app.goo.gl/h7oETcXHRToqzaDT8"
         />
       </div>
-
-
     </ClientLayoutWrapper>
   );
 };

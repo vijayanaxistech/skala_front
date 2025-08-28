@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import Image from 'next/image';
-import Link from 'next/link';
-import defaultBreadcrumbImage from '../../../../../public/assets/collections.jpg';
-import { getProductBySlug, getProducts, BASE_URL } from '../../../../lib/api';
-import WhatsAppButton from '../../../jewellery/WhatsAppButton';
-import MoreInfoButton from '../../../jewellery/MoreInfo';
-import ProductImageGallery from '../../ProductImageGallery';
-import ClientLayoutWrapper from '@/components/ClientLayoutWrapper';
+import React, { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import defaultBreadcrumbImage from "../../../../../public/assets/collections.jpg";
+import { getProductBySlug, getProducts, BASE_URL } from "../../../../lib/api";
+import WhatsAppButton from "../../../jewellery/WhatsAppButton";
+import MoreInfoButton from "../../../jewellery/MoreInfo";
+import ProductImageGallery from "../../ProductImageGallery";
+import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 
 interface Category {
   _id: string;
@@ -72,16 +72,15 @@ export default function ProductDetailPage() {
       try {
         const rawProduct = await getProductBySlug(slug as string);
         if (!rawProduct) {
-          router.push('/404');
+          router.push("/404");
           return;
         }
 
         const transformed = transformProduct(rawProduct);
 
-        // Redirect if category mismatch
-        const normalizedCategory = transformed.category.name.toLowerCase().replace(/\s+/g, '-');
+        const normalizedCategory = transformed.category.name.toLowerCase().replace(/\s+/g, "-");
         if (normalizedCategory !== category) {
-          router.push('/404');
+          router.push("/404");
           return;
         }
 
@@ -95,7 +94,7 @@ export default function ProductDetailPage() {
         setSimilarProducts(filtered.slice(0, 3));
       } catch (error) {
         console.error(error);
-        router.push('/404');
+        router.push("/404");
       } finally {
         setLoading(false);
       }
@@ -123,13 +122,12 @@ export default function ProductDetailPage() {
 
   return (
     <ClientLayoutWrapper>
-      {/* Banner */}
       <div
         style={{
-          position: 'relative',
-          width: '100%',
-          height: 'auto',
-          overflow: 'hidden',
+          position: "relative",
+          width: "100%",
+          height: "auto",
+          overflow: "hidden",
         }}
       >
         <Image
@@ -140,11 +138,10 @@ export default function ProductDetailPage() {
           height={400}
           objectFit="contain"
           priority
-          style={{ width: '100%', height: 'auto' }}
+          style={{ width: "100%", height: "auto" }}
         />
       </div>
 
-      {/* Product Section */}
       <div>
         <div className="p-3 p-md-5 py-5">
           <div className="row g-4 ">
@@ -154,38 +151,34 @@ export default function ProductDetailPage() {
               productTitle={product.title}
             />
 
-            {/* Details */}
             <div className="col-12 col-md-6 d-flex flex-column justify-content-center order-md-3 ">
               <div className="px-md-4 px-2 ">
                 <div className="d-flex align-items-center justify-content-between mb-3">
                   <h6 className="text-red fraunces mb-0">{product.category.name}</h6>
-
                 </div>
 
-                <h3 className="fw-medium fraunces text-blue  mb-3" style={{ fontWeight: '100' }}>
+                <h3 className="fw-medium fraunces text-blue  mb-3" style={{ fontWeight: "100" }}>
                   {product.title}
                 </h3>
 
-
-
                 <p className="mb-3">
-                  <strong className="dm-serif-text-regular">Category :</strong>{' '}
+                  <strong className="dm-serif-text-regular">Category :</strong>{" "}
                   <span className="text-dark">{product.category.name}</span>
                 </p>
                 <p className="mb-3">
-                  <strong className="dm-serif-text-regular">Jewellery Type :</strong>{' '}
+                  <strong className="dm-serif-text-regular">Jewellery Type :</strong>{" "}
                   <span className="text-dark">{product.jewelleryType}</span>
                 </p>
                 <p className="mb-3">
-                  <strong className="dm-serif-text-regular">Purity :</strong>{' '}
+                  <strong className="dm-serif-text-regular">Purity :</strong>{" "}
                   <span className="text-dark">{product.purity}</span>
                 </p>
-                {product.grossWeight && (
-                  <p className="mb-0">
-                    <strong className="dm-serif-text-regular">Gross Wt :</strong>{' '}
-                    <span className="text-dark">{product.grossWeight}</span>
+                {product.grossWeight && product.grossWeight.trim().toLowerCase() !== "n/a" && (
+                  <p className="card-text text-dark mb-0">
+                    <span className="fraunces">Gross Wt:</span> {product.grossWeight}
                   </p>
                 )}
+
                 <div className="d-flex align-items-center gap-2 mt-3">
                   <MoreInfoButton
                     product={{
@@ -195,7 +188,7 @@ export default function ProductDetailPage() {
                       grossWeight: product.grossWeight,
                       mainImage: product.mainImage
                         ? `${BASE_URL}/${product.mainImage}`
-                        : 'https://via.placeholder.com/300x300?text=No+Image',
+                        : "https://via.placeholder.com/300x300?text=No+Image",
                       category: product.category,
                     }}
                   />
@@ -214,7 +207,6 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
-
           {similarProducts.length > 0 && (
             <div className="row py-5 mt-4">
               <h5 className="fw-bold text-dark lora">Related Products</h5>
@@ -225,9 +217,7 @@ export default function ProductDetailPage() {
                     <Link
                       href={`/products/${item.category.name
                         .toLowerCase()
-                        .replace(/\s+/g, "-")}/${item.title
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")}`}
+                        .replace(/\s+/g, "-")}/${item.title.toLowerCase().replace(/\s+/g, "-")}`}
                       className="text-decoration-none text-dark"
                     >
                       <div className="product-card h-100 border-0">
@@ -274,16 +264,15 @@ export default function ProductDetailPage() {
                             </div>
                           </div>
                           <p className="card-text text-dark mb-1">
-                            <span className="fraunces">Jewellery Type:</span>{" "}
-                            {item.jewelleryType}
+                            <span className="fraunces">Jewellery Type:</span> {item.jewelleryType}
                           </p>
                           <p className="card-text text-dark mb-1">
                             <span className="fraunces">Purity:</span> {item.purity}
                           </p>
-                          {item.grossWeight && (
+
+                          {item.grossWeight && item.grossWeight.trim().toLowerCase() !== "n/a" && (
                             <p className="card-text text-dark mb-0">
-                              <span className="fraunces">Gross Wt:</span>{" "}
-                              {item.grossWeight}
+                              <span className="fraunces">Gross Wt:</span> {item.grossWeight}
                             </p>
                           )}
                         </div>
@@ -293,11 +282,9 @@ export default function ProductDetailPage() {
                 ))}
               </div>
             </div>
-
           )}
         </div>
       </div>
     </ClientLayoutWrapper>
   );
 }
-
