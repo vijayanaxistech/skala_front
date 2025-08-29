@@ -89,9 +89,8 @@ export default function Home() {
       )}
       <Popup />
       <Hero />
-      <CredibilitySection />
-      <VideoSection />
       <ShopbyStyle />
+      <VideoSection />
       <Products />
       <TopTrendingDesigns initialDesigns={trendingDesigns} />
       <Testimonials />

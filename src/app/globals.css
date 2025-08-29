@@ -1122,6 +1122,9 @@ textarea::placeholder {
 
 .testimonial-card {
   border-radius: 12px;
-  height: 210px;
   border: 1px solid #e3e6ea;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  text-align: start;
 }

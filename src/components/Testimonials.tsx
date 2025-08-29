@@ -70,8 +70,7 @@ const Testimonials: React.FC = () => {
         >
           {testimonials.map((testimonial, index) => (
             <div
-              key={index}
-              className="p-4 bg-white testimonial-card   d-flex flex-column justify-content-between text-start position-relative testimonial-card"
+              className="p-4 bg-white testimonial-card d-flex flex-column text-start position-relative h-100 w-100"
               role="group"
               aria-label={`Testimonial by ${testimonial.name}`}
             >
@@ -91,6 +90,7 @@ const Testimonials: React.FC = () => {
                 </div>
                 <h6 className="m-0 text-dark fw-semibold lora">{testimonial.name}</h6>
               </div>
+
               <p
                 className="text-secondary mt-0 mb-0"
                 style={{ fontSize: "14px", lineHeight: "1.5" }}
