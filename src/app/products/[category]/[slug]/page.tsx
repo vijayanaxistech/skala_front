@@ -225,10 +225,10 @@ export default function ProductDetailPage() {
                           <Image
                             src={`${BASE_URL}/${item.mainImage}`}
                             alt={item.title}
-                            width={300}
-                            height={300}
-                            className="categoryImage"
-                            style={{ objectFit: "cover" }}
+                        width={400}
+                        height={400}
+                        className="categoryImage"
+                        style={{ objectFit: "cover", width: "100%", height: "auto" }}
                           />
                         </div>
                         <div className="p-1">

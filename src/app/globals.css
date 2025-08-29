@@ -412,13 +412,13 @@
 .product-image {
   border-radius: 12px;
   overflow: hidden;
-  aspect-ratio: 1/1;
+  /* Remove this line to show actual image dimensions */
+  /* aspect-ratio: 1/1; */
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
 }
-
 .product-card .imageWrapper .categoryImage {
   transition:
     transform 0.3s ease,

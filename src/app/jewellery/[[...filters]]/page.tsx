@@ -206,7 +206,7 @@ const ProductsPage: React.FC = () => {
         </div>
 
         {filteredProducts.length === 0 ? (
-          <div className=" items-center justify-center text-center py-16">
+          <div className="items-center justify-center text-center py-16">
             <Image
               src={notFoundImg}
               alt="No Products Found"
@@ -233,11 +233,11 @@ const ProductsPage: React.FC = () => {
                         width={400}
                         height={400}
                         className="categoryImage"
-                        style={{ objectFit: "cover" }}
+                        style={{ objectFit: "cover", width: "100%", height: "auto" }}
                       />
                     </div>
 
-                    <div className="p-1">
+                    <div className="p-1 mt-2">
                       <div className="d-flex justify-content-between align-items-center">
                         <h6 className="card-title text-dark text-truncate mb-0 fraunces">
                           {product.title.length > 20
