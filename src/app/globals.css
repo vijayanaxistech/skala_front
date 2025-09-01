@@ -1128,3 +1128,38 @@ textarea::placeholder {
   height: 300px;
   text-align: start;
 }
+.border-radius{
+  border-radius: 12px;
+}
+
+.scheme-box {
+  background-color: #fff9f3;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+}
+
+.scheme-icon {
+  background: #fff;
+  border-radius: 50%;
+  padding: 15px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gift-feature-card {
+  background-color: #fff9f3;
+  border-radius: 18px;
+  transition: all 0.4s ease;
+}
+
+/* Small screen fixes */
+@media (max-width: 576px) {
+  .scheme-box, 
+  .gift-feature-card {
+    padding: 20px;
+  }
+  .scheme-icon {
+    padding: 10px;
+  }
+}

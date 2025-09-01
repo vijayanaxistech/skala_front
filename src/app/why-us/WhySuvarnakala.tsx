@@ -91,7 +91,7 @@ const WhySuvarnakala = () => {
                   </div>
                   <div>
                     <h5 className="fw-bold mb-1 lora">{item.title}</h5>
-                    <p className="text-muted mb-0" style={{ fontSize: "0.95rem" }}>
+                    <p className="text-muted mb-0" style={{ fontSize: "16px" }}>
                       {item.description}
                     </p>
                   </div>

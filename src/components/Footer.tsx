@@ -4,7 +4,6 @@ import React from "react";
 import Head from "next/head"; // For SEO metadata
 import Image from "next/image";
 import logo from "../../public/assets/Suvarnakala.png";
-import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import { Nav } from "react-bootstrap";
 
 import googleplay from "../../public/assets/googleplay.png";
@@ -123,11 +122,11 @@ export default function Footer() {
                       className="me-2 icon-small"
                     />{" "}
                     <a
-                      href="mailto:sales@suvarnakala.com"
+                      href="mailto:support@suvarnakala.com"
                       className="text-dark lora text-decoration-none link-hover-red"
                       style={{ fontSize: "16px", fontWeight: 200 }}
                     >
-                      sales@suvarnakala.com
+                      support@suvarnakala.com
                     </a>
                   </li>
                 </ul>

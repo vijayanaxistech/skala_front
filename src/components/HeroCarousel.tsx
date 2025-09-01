@@ -198,15 +198,15 @@ const HeroCarousel: React.FC = () => {
                 >
                   <h2 className="fraunces">{title}</h2>
 
-                  <p className="mb-4">{description}</p>
-                  {/* <a
+                  {/* <p className="mb-4">{description}</p> */}
+                  <a
                     href={validLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn custom-btn "
                   >
                     View More
-                  </a> */}
+                  </a>
                 </div>
               </div>
             );

@@ -15,17 +15,17 @@ interface MoreInfoButtonProps {
 const MoreInfoButton: React.FC<MoreInfoButtonProps> = ({ product }) => {
   const slug = product.title.toLowerCase().replace(/\s+/g, "-");
   const categoryName = product.category?.name || "unknown";
-  const productPageUrl = `http://localhost:3000/jewelry/${categoryName.toLowerCase().replace(/\s+/g, "-")}/${slug}`;
+  // const productPageUrl = `http://localhost:3000/jewelry/${categoryName.toLowerCase().replace(/\s+/g, "-")}/${slug}`;
 
   const messageBody =
     `Product Inquiry:%0A` +
     `Product Name: ${product.title}%0A` +
     `Metal Type: ${product.jewelleryType}%0A` +
-    `Purity (Karat): ${product.purity}%0A` +
-    `Gross Weight (g): ${product.grossWeight}%0A` +
-    `View Product: ${productPageUrl}`;
+    `Purity : ${product.purity}%0A` +
+    `Gross Weight: ${product.grossWeight}%0A` ;
+    // `View Product: ${productPageUrl}`;
 
-  const phoneNumber = "919429439061";
+  const phoneNumber = "917874011144";
 
   const whatsappUrl = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${messageBody}`;
 

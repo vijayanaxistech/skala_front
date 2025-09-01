@@ -11,7 +11,8 @@ import Image3 from "../../../public/assets/icons/coin.png";
 import giftcard from "../../../public/assets/Gift Card 2.png";
 import playstore from "../../../public/assets/googleplay.png";
 import appstore from "../../../public/assets/appstore.png";
-
+import qrPlaystore from "../../../public/assets/ANDROID_QR.png";
+import qrAppstore from "../../../public/assets/IOS_QR.png";
 const Investment = () => {
   const schemes = [
     {
@@ -43,85 +44,140 @@ const Investment = () => {
         />
       </div>
       <div className=" p-3 p-md-5 py-3">
-        {/* <div className="d-flex justify-content-center align-items-center ">
-                    <div className="custom-heading-wrapper d-flex align-items-center mb-4">
-                        <h3 className="m-0 custom-heading text-wrap me-3 text-center">
-                            <span className="fraunces">
-                                Easy Steps to <span className="text-red fraunces">Own Gold </span>
-                            </span>
-                            <div className="decorative-line">
-                                <div className="diamond"></div>
-                                <div className="line"></div>
-                                <div className="diamond"></div>
-                            </div>
-                        </h3>
-                    </div>
-                </div> */}
+        <div className="d-flex justify-content-center align-items-center ">
+          <div className="custom-heading-wrapper d-flex align-items-center mb-4">
+            <h3 className="m-0 custom-heading text-wrap me-3 text-center">
+              <span className="fraunces">
+                Explore Our
+                <span className="text-red fraunces"> Gold Schemes & Gift Cards</span>
+              </span>
+              <div className="decorative-line">
+                <div className="diamond"></div>
+                <div className="line"></div>
+                <div className="diamond"></div>
+              </div>
+            </h3>
+          </div>
+        </div>
 
-        <div className="p-md-2 mt-md-5 mt-2">
-          <div className="row g-4 align-items-stretch">
-            <div className="col-12 col-md-6 d-flex">
-              <div className="bg-color shadow-sm border-0 rounded-4 p-4 w-100">
-                <h4 className="fraunces text-center mb-3 text-dark">
-                  Explore Our <span className="text-red fraunces">Gold Schemes</span>
-                </h4>
-                <div className="d-flex flex-column gap-4">
-                  {schemes.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="d-flex align-items-center bg-white rounded-3 p-3 hover-shadow-sm"
-                    >
-                      <div className="me-3 flex-shrink-0">
-                        <Image src={item.icon} alt={item.title} width={50} height={50} />
-                      </div>
-                      <div>
-                        <h6 className="fraunces mb-1 text-red">{item.title}</h6>
-                        <p className="text-muted small mb-0">{item.description}</p>
-                      </div>
-                    </div>
-                  ))}
+<div className="modern-ui-section py-5">
+    <div className="row g-4 align-items-stretch">
+      
+      {/* Left side - 3 scheme cards in grid */}
+      <div className="col-12 col-md-6">
+        <div className="row g-3 h-100">
+          {schemes.map((item, idx) => (
+            <div
+              key={idx}
+              className={idx < 2 ? "col-12 col-sm-6" : "col-12"} // 2 half width, 1 full width
+            >
+              <div className="scheme-box shadow-sm text-center p-4 h-100 d-flex flex-column justify-content-center">
+                <div className="scheme-icon mb-3 mx-auto">
+                  <Image
+                    src={item.icon}
+                    alt={item.title}
+                    width={70}
+                    height={70}
+                    style={{ objectFit: "contain" }}
+                  />
                 </div>
+                <h6 className="fraunces mb-0">{item.title}</h6>
               </div>
             </div>
+          ))}
+        </div>
+      </div>
 
-            <div className="col-12 col-md-6 d-flex">
-              <div className="bg-color shadow-sm border-0 rounded-4 p-4 w-100 d-flex flex-column justify-content-center align-items-center">
-                <h4 className="fraunces mb-3 text-dark text-center">
-                  Explore Our <span className="text-red fraunces">Gift Card</span> Benefits
-                </h4>
+      {/* Right side - Gift card */}
+      <div className="col-12 col-md-6 d-flex">
+        <div className="gift-feature-card shadow-sm p-4 p-md-5 text-center w-100 d-flex flex-column justify-content-center">
+          <div className="mb-3">
+            <Image
+              src={giftcard}
+              alt="Gift Card"
+              width={300}
+              height={180}
+              style={{ objectFit: "contain", maxWidth: "100%", height: "auto" }}
+            />
+          </div>
+          <h5 className="fraunces mb-2">Gift Card</h5>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
+      </div>
+    <section className="py-5 bg-light text-center">
+      <div className="container">
+        <h3 className="fraunces  mb-5">
+          Scan QR or Tap the links below to download the Suvarnakala App
+
+        </h3>
+
+        <div className="row justify-content-center g-4">
+          {/* Google Play Modern Card */}
+          <div className="col-12 col-md-4">
+            <div className="p-4 bg-white border-radius shadow-sm h-100 d-flex flex-column align-items-center">
+              <div className="p-3 bg-light border-radius shadow-sm mb-3">
                 <Image
-                  src={giftcard}
-                  alt="Gift Card"
-                  className="img-fluid rounded mb-3"
-                  width={500}
-                  height={350}
-                  style={{ objectFit: "contain" }}
+                  src={qrPlaystore}
+                  alt="Google Play QR"
+                  width={200}
+                  height={200}
+                  className="rounded-3"
                 />
               </div>
+              {/* <h6 className="mt-2 mb-3 text-muted">Google Play</h6> */}
+              <a
+                href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={playstore}
+                  alt="Play Store"
+                  width={160}
+                  height={50}
+                  className="rounded-3 shadow-sm"
+                />
+              </a>
+            </div>
+          </div>
+
+          {/* App Store Modern Card */}
+          <div className="col-12 col-md-4">
+            <div className="p-4 bg-white border-radius shadow-sm h-100 d-flex flex-column align-items-center">
+              <div className="p-3 bg-light border-radius shadow-sm mb-3">
+                <Image
+                  src={qrAppstore}
+                  alt="App Store QR"
+                  width={200}
+                  height={200}
+                  className="rounded-3"
+                />
+              </div>
+              {/* <h6 className="mt-2 mb-3 text-muted">App Store</h6> */}
+              <a
+                href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={appstore}
+                  alt="App Store"
+                  width={160}
+                  height={50}
+                  className="rounded-3 shadow-sm"
+                />
+              </a>
             </div>
           </div>
         </div>
       </div>
-      <div className=" text-center py-5 bg-light">
-        <h3 className="fraunces">Unlock Exclusive Gold Offers - Download Our App Today </h3>
-        <div className="d-flex justify-content-center gap-3 mt-4">
-          <a
-            href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image src={playstore} alt="Play Store" width={160} height={50} />
-          </a>
+    </section>
 
-          <a
-            href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image src={appstore} alt="App Store" width={160} height={50} />
-          </a>
-        </div>
-      </div>
     </>
   );
 };

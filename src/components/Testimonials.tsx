@@ -58,23 +58,23 @@ const Testimonials: React.FC = () => {
       {isLoading ? (
         <p className="text-center text-muted">Loading testimonials...</p>
       ) : testimonials && testimonials.length > 0 ? (
-        <Carousel
-          responsive={responsive}
-          infinite={true}
-          autoPlay={true}
-          autoPlaySpeed={4000}
-          arrows={false}
-          containerClass="carousel-container"
-          itemClass="px-1 pb-2"
-          aria-live="polite"
-        >
+          <Carousel
+            responsive={responsive}
+            infinite={true}
+            autoPlay={true}
+            autoPlaySpeed={4000}
+            arrows={false}
+            containerClass="carousel-container"
+            itemClass="px-1 pb-2 "
+            aria-live="polite"
+          >
           {testimonials.map((testimonial, index) => (
             <div
-              className="p-4 bg-white testimonial-card d-flex flex-column text-start position-relative h-100 w-100"
+              className="p-4 bg-white    testimonial-card d-flex flex-column text-start position-relative h-100 w-100"
               role="group"
               aria-label={`Testimonial by ${testimonial.name}`}
             >
-              <div className="d-flex align-items-center mb-3">
+              <div className="d-flex  align-items-center mb-3">
                 <div
                   className="rounded-circle lora d-flex align-items-center justify-content-center me-3"
                   style={{
@@ -92,8 +92,8 @@ const Testimonials: React.FC = () => {
               </div>
 
               <p
-                className="text-secondary mt-0 mb-0"
-                style={{ fontSize: "14px", lineHeight: "1.5" }}
+                className="text-muted mt-0 mb-0"
+                style={{ fontSize: "16px", lineHeight: "1.5" }}
               >
                 “{testimonial.description}”
               </p>

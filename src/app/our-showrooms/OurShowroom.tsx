@@ -3,7 +3,7 @@
 import Image from "next/image";
 import React from "react";
 import { Row, Col, Card } from "react-bootstrap";
-import breadcrumbImage from "../../../public/assets/our-showroom.png";
+import breadcrumbImage from "../../../public/assets/our-showroom.jpg";
 import st1 from "../../../public/assets/showrooms/Satellite/Satellite.jpg";
 import cg1 from "../../../public/assets/showrooms/Cgroad/CG Road.jpg";
 import mn1 from "../../../public/assets/showrooms/Maninagar/Maninagar.jpg";
@@ -91,9 +91,10 @@ const WhySuvarnakala = () => {
         <ShowroomSection
           id="cgroad"
           title="C.G. Road"
-          address="101 National Plaza, Opp. Lal Bunglow, C. G. Road, Ahmedabad, Gujarat - 380 006"
+          address=" National Plaza, Opp. Lal Bunglow, C. G. Road, Ahmedabad, Gujarat - 380006"
+          
           image={cg1}
-          contact="+91 9924902223"
+          contact="+91⁠ 99 2490 2223"
           mapLink="https://maps.app.goo.gl/xN92n1Y9FetfUznd8"
         />
         <ShowroomSection
@@ -101,7 +102,7 @@ const WhySuvarnakala = () => {
           title="Satellite"
           address="Venus Amadeus Jodhpur Cross Road, B.R.T.S Bus Stand, Satellite, Ahmedabad, Gujarat 380015"
           image={st1}
-          contact="+91 7874011144"
+          contact="+91 78740 11144"
           mapLink="https://maps.app.goo.gl/sMtWFAF2yPUSwYXZ6"
         />
         <ShowroomSection
@@ -109,7 +110,7 @@ const WhySuvarnakala = () => {
           title="Maninagar"
           address="Opp. Pintoo Garments, Maninagar Cross Rd, Maninagar, Ahmedabad, Gujarat 380008"
           image={mn1}
-          contact="+91 8511755799"
+          contact="+91 8511 755 799"
           mapLink="https://maps.app.goo.gl/h7oETcXHRToqzaDT8"
         />
       </div>
