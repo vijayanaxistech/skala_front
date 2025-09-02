@@ -11,8 +11,7 @@ import Image3 from "../../../public/assets/icons/coin.png";
 import giftcard from "../../../public/assets/Gift Card 2.png";
 import playstore from "../../../public/assets/googleplay.png";
 import appstore from "../../../public/assets/appstore.png";
-import qrPlaystore from "../../../public/assets/ANDROID_QR.png";
-import qrAppstore from "../../../public/assets/IOS_QR.png";
+import SuvarnakalaApp from "../../../public/assets/Suvarnakala_App Install QRcode.jpeg";
 const Investment = () => {
   const schemes = [
     {
@@ -108,18 +107,18 @@ const Investment = () => {
       {/* Right Side - QR Download Section */}
 <div className="col-12 col-lg-6 d-flex flex-column justify-content-center">
   <section className="py-4 bg-light border-radius shadow-sm text-center h-100 d-flex flex-column justify-content-center">
-    <h3 className="fraunces mb-4">
-      Scan QR or Tap the links below to download the Suvarnakala App
+    <h3 className="fraunces mb-4 px-3">
+      Download our App to Explore our Gold Schemes & Gift Cards
     </h3>
 
     <div className="p-4  border-radius  d-flex flex-column align-items-center">
       {/* Single QR (Android) */}
       <div className="p-3 mb-4">
         <Image
-          src={qrPlaystore}
+          src={SuvarnakalaApp}
           alt="Download App QR"
           width={200}
-          height={200}
+          height={250}
           className="rounded-3"
         />
       </div>
