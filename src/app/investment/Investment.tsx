@@ -61,36 +61,14 @@ const Investment = () => {
         </div>
 
 <div className="modern-ui-section py-5">
+  <div className="container">
     <div className="row g-4 align-items-stretch">
       
-      {/* Left side - 3 scheme cards in grid */}
-      <div className="col-12 col-md-6">
-        <div className="row g-3 h-100">
-          {schemes.map((item, idx) => (
-            <div
-              key={idx}
-              className={idx < 2 ? "col-12 col-sm-6" : "col-12"} // 2 half width, 1 full width
-            >
-              <div className="scheme-box shadow-sm text-center p-4 h-100 d-flex flex-column justify-content-center">
-                <div className="scheme-icon mb-3 mx-auto">
-                  <Image
-                    src={item.icon}
-                    alt={item.title}
-                    width={70}
-                    height={70}
-                    style={{ objectFit: "contain" }}
-                  />
-                </div>
-                <h6 className="fraunces mb-0">{item.title}</h6>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Right side - Gift card */}
-      <div className="col-12 col-md-6 d-flex">
-        <div className="gift-feature-card shadow-sm p-4 p-md-5 text-center w-100 d-flex flex-column justify-content-center">
+      {/* Left Side - Gift Card on top + 3 Schemes below */}
+      <div className="col-12 col-lg-6 d-flex flex-column">
+        
+        {/* Gift Card */}
+        <div className="gift-feature-card bg-light shadow-sm p-4 p-md-5 text-center mb-4">
           <div className="mb-3">
             <Image
               src={giftcard}
@@ -102,81 +80,93 @@ const Investment = () => {
           </div>
           <h5 className="fraunces mb-2">Gift Card</h5>
         </div>
+
+        {/* Gold Schemes */}
+<div className="scheme-box shadow-sm bg-light text-center p-4 h-100 d-flex flex-column justify-content-center">
+  <div className="row g-4">
+    {schemes.map((item, idx) => (
+      <div key={idx} className="col-12 col-sm-4">
+        <div className="d-flex flex-column align-items-center">
+          <div className="scheme-icon mb-3">
+            <Image
+              src={item.icon}
+              alt={item.title}
+              width={70}
+              height={70}
+              style={{ objectFit: "contain" }}
+            />
+          </div>
+          <h6 className="fraunces mb-0">{item.title}</h6>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+      </div>
+
+      {/* Right Side - QR Download Section */}
+<div className="col-12 col-lg-6 d-flex flex-column justify-content-center">
+  <section className="py-4 bg-light border-radius shadow-sm text-center h-100 d-flex flex-column justify-content-center">
+    <h3 className="fraunces mb-4">
+      Scan QR or Tap the links below to download the Suvarnakala App
+    </h3>
+
+    <div className="p-4  border-radius  d-flex flex-column align-items-center">
+      {/* Single QR (Android) */}
+      <div className="p-3 mb-4">
+        <Image
+          src={qrPlaystore}
+          alt="Download App QR"
+          width={200}
+          height={200}
+          className="rounded-3"
+        />
+      </div>
+
+      {/* Store Links */}
+      <div className="d-flex gap-3 flex-wrap justify-content-center">
+        <a
+          href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src={playstore}
+            alt="Play Store"
+            width={150}
+            height={45}
+            className="rounded-3 shadow-sm"
+          />
+        </a>
+
+        <a
+          href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            src={appstore}
+            alt="App Store"
+            width={150}
+            height={45}
+            className="rounded-3 shadow-sm"
+          />
+        </a>
       </div>
     </div>
+  </section>
+</div>
+
+    </div>
+  </div>
 </div>
 
 
 
+
       </div>
-    <section className="py-5 bg-light text-center">
-      <div className="container">
-        <h3 className="fraunces  mb-5">
-          Scan QR or Tap the links below to download the Suvarnakala App
 
-        </h3>
-
-        <div className="row justify-content-center g-4">
-          {/* Google Play Modern Card */}
-          <div className="col-12 col-md-4">
-            <div className="p-4 bg-white border-radius shadow-sm h-100 d-flex flex-column align-items-center">
-              <div className="p-3 bg-light border-radius shadow-sm mb-3">
-                <Image
-                  src={qrPlaystore}
-                  alt="Google Play QR"
-                  width={200}
-                  height={200}
-                  className="rounded-3"
-                />
-              </div>
-              {/* <h6 className="mt-2 mb-3 text-muted">Google Play</h6> */}
-              <a
-                href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src={playstore}
-                  alt="Play Store"
-                  width={160}
-                  height={50}
-                  className="rounded-3 shadow-sm"
-                />
-              </a>
-            </div>
-          </div>
-
-          {/* App Store Modern Card */}
-          <div className="col-12 col-md-4">
-            <div className="p-4 bg-white border-radius shadow-sm h-100 d-flex flex-column align-items-center">
-              <div className="p-3 bg-light border-radius shadow-sm mb-3">
-                <Image
-                  src={qrAppstore}
-                  alt="App Store QR"
-                  width={200}
-                  height={200}
-                  className="rounded-3"
-                />
-              </div>
-              {/* <h6 className="mt-2 mb-3 text-muted">App Store</h6> */}
-              <a
-                href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src={appstore}
-                  alt="App Store"
-                  width={160}
-                  height={50}
-                  className="rounded-3 shadow-sm"
-                />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     </>
   );

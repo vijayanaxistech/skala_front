@@ -3,10 +3,9 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 
-import Popup from "../components/Popup";
+// import Popup from "../components/Popup";
 import Hero from "../components/HeroCarousel";
 import Products from "../components/Events";
-import CredibilitySection from "../components/AboutUs";
 import VideoSection from "../components/VideoSection";
 import ShopbyStyle from "../components/ShopbyStyle";
 import TopTrendingDesigns from "../components/TopTrendingDesigns";
@@ -87,7 +86,7 @@ export default function Home() {
           <meta property="og:image" content={`${BASE_URL}${metadata.ogImage}`} />
         </Head>
       )}
-      <Popup />
+      {/* <Popup /> */}
       <Hero />
       <ShopbyStyle />
       <VideoSection />
