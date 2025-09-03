@@ -203,7 +203,7 @@ const HeroCarousel: React.FC = () => {
                     href={validLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn custom-btn "
+                    className="btn custom-btn mb-4 "
                   >
                     View More
                   </a>

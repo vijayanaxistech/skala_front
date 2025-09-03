@@ -107,9 +107,7 @@ const About = () => {
             </div>
 
             <div className="col-md-7">
-              <h4 className="  mb-3 lora" >
-                Suvarnakala — The Pride of a Woman
-              </h4>
+              <h4 className="  mb-3 lora">Suvarnakala — The Pride of a Woman</h4>
               <p className=" text-justify text-muted">
                 At Suvarnakala, every piece of jewellery is more than just an ornament – it is a
                 reflection of tradition, artistry, and trust. With a legacy built on purity and
@@ -154,7 +152,6 @@ const About = () => {
                   <p className="text-danger fw-semibold small lora">Amazing Value Everyday</p>
                 </div>
               </div>
-     
             </div>
           </div>
         </div>
@@ -182,8 +179,7 @@ const About = () => {
                 </div>
               </h2>
             </div>{" "}
-                      <h4 className="  mb-3 mt-md-5 lora" >
-At Suvarnakala, legacy is an art form.              </h4>
+            <h4 className="  mb-3 mt-md-5 lora">At Suvarnakala, legacy is an art form. </h4>
             <p className="text-justify text-muted">
               For generations, we have crafted jewels that embody timeless elegance, uncompromising
               purity, and enduring value. Each creation is a masterpiece—born of heritage, perfected
@@ -196,38 +192,41 @@ At Suvarnakala, legacy is an art form.              </h4>
           </div>
 
           <div className="col-md-5  mt-md-1 mb-3 text-center position-relative">
-            <Image src={legacyImage} alt="Suvarnakala Store" className="img-fluid mb-5 mb-md-0 border-radius" />
+            <Image
+              src={legacyImage}
+              alt="Suvarnakala Store"
+              className="img-fluid mb-5 mb-md-0 border-radius"
+            />
           </div>
         </div>
       </div>
 
       <div style={{ padding: "30px 0" }} className="bg-light">
-<div className="d-flex flex-wrap align-items-center gap-3 justify-content-center justify-content-md-evenly">
-  {[
-    { img: BIS, text: " ⁠100% BIS hallmarked gold jewellery" },
-    { img: GIA, text: "⁠100% certified diamond jewellery " },
-    { img: EXCHANGE, text: "⁠100% exchange value" },
-  ].map((item, index) => (
-    <div
-      key={index}
-      className="d-flex flex-column align-items-center text-center p-2"
-      style={{ minWidth: "250px" }}
-    >
-      <Image src={item.img} alt={item.text} width={100} height={100} />
-      <span
-        style={{
-          marginTop: "10px",
-          fontWeight: "bold",
-          fontSize: "16px",
-        }}
-        className="lora text-gray"
-      >
-        {item.text}
-      </span>
-    </div>
-  ))}
-</div>
-
+        <div className="d-flex flex-wrap align-items-center gap-3 justify-content-center justify-content-md-evenly">
+          {[
+            { img: BIS, text: " ⁠100% BIS hallmarked gold jewellery" },
+            { img: GIA, text: "⁠100% certified diamond jewellery " },
+            { img: EXCHANGE, text: "⁠100% exchange value" },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="d-flex flex-column align-items-center text-center p-2"
+              style={{ minWidth: "250px" }}
+            >
+              <Image src={item.img} alt={item.text} width={100} height={100} />
+              <span
+                style={{
+                  marginTop: "10px",
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                }}
+                className="lora text-gray"
+              >
+                {item.text}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
 
       <style>{`

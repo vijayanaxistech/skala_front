@@ -41,12 +41,13 @@ const ShowroomSection: React.FC<ShowroomSectionProps> = ({
               alt={`${title} Showroom`}
               style={{ width: "100%", height: "auto" }}
               sizes="(max-width: 768px) 100vw, 70vw"
+              className="border-radius"
             />
           </div>
         </Col>
 
         <Col lg={5}>
-          <Card className="h-100 border shadow-xs rounded-0">
+          <Card className="h-100 border bg-light border-radius">
             <Card.Body className="d-flex flex-column">
               <div>
                 <h3 className="fw-bold lora text-red">{title}</h3>
@@ -62,7 +63,10 @@ const ShowroomSection: React.FC<ShowroomSectionProps> = ({
                 )}
               </div>
               <div className="mt-auto">
-                <button className="directions-btn w-100 rounded-0" onClick={handleGetDirections}>
+                <button
+                  className="directions-btn w-100 border-radius"
+                  onClick={handleGetDirections}
+                >
                   Get Directions
                 </button>
               </div>
@@ -92,7 +96,6 @@ const WhySuvarnakala = () => {
           id="cgroad"
           title="C.G. Road"
           address=" National Plaza, Opp. Lal Bunglow, C. G. Road, Ahmedabad, Gujarat - 380006"
-          
           image={cg1}
           contact="+91⁠ 99 2490 2223"
           mapLink="https://maps.app.goo.gl/xN92n1Y9FetfUznd8"

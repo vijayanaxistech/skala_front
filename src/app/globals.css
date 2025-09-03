@@ -1128,7 +1128,7 @@ textarea::placeholder {
   height: 300px;
   text-align: start;
 }
-.border-radius{
+.border-radius {
   border-radius: 12px;
 }
 
@@ -1155,7 +1155,7 @@ textarea::placeholder {
 
 /* Small screen fixes */
 @media (max-width: 576px) {
-  .scheme-box, 
+  .scheme-box,
   .gift-feature-card {
     padding: 20px;
   }

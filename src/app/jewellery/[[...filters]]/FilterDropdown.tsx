@@ -93,6 +93,8 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
       <button
         className="d-flex align-items-center gap-2 rounded-pill lora"
         onClick={() => setDropdownOpen((prev) => !prev)}
+        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#f8f9fa")}
+        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
         style={{
           padding: "0.4rem 1.3rem",
           fontSize: "16px",

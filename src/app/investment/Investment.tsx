@@ -59,114 +59,96 @@ const Investment = () => {
           </div>
         </div>
 
-<div className="modern-ui-section py-5">
-  <div className="container">
-    <div className="row g-4 align-items-stretch">
-      
-      {/* Left Side - Gift Card on top + 3 Schemes below */}
-      <div className="col-12 col-lg-6 d-flex flex-column">
-        
-        {/* Gift Card */}
-        <div className="gift-feature-card bg-light shadow-sm p-4 p-md-5 text-center mb-4">
-          <div className="mb-3">
-            <Image
-              src={giftcard}
-              alt="Gift Card"
-              width={300}
-              height={180}
-              style={{ objectFit: "contain", maxWidth: "100%", height: "auto" }}
-            />
+        <div className="modern-ui-section py-md-4 py-2">
+          <div className="row g-4 align-items-stretch">
+            {/* Left Side - Gift Card on top + 3 Schemes below */}
+            <div className="col-12 col-lg-6 d-flex flex-column">
+              {/* Gift Card */}
+              <div className="gift-feature-card bg-light border p-4 p-md-5 text-center mb-4">
+                <div className="mb-3">
+                  <Image
+                    src={giftcard}
+                    alt="Gift Card"
+                    width={300}
+                    height={180}
+                    style={{ objectFit: "contain", maxWidth: "100%", height: "auto" }}
+                  />
+                </div>
+                <h5 className="fraunces mb-2">Gift Card</h5>
+              </div>
+
+              {/* Gold Schemes */}
+              <div className="scheme-box border bg-light text-center p-4 h-100 d-flex flex-column justify-content-center">
+                <div className="row g-4">
+                  {schemes.map((item, idx) => (
+                    <div key={idx} className="col-12 col-sm-4">
+                      <div className="d-flex flex-column align-items-center">
+                        <div className="scheme-icon mb-3">
+                          <Image
+                            src={item.icon}
+                            alt={item.title}
+                            width={70}
+                            height={70}
+                            style={{ objectFit: "contain" }}
+                          />
+                        </div>
+                        <h6 className="fraunces mb-0">{item.title}</h6>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - QR Download Section */}
+            <div className="col-12 col-lg-6 d-flex flex-column justify-content-center">
+              <section className="py-4 bg-light border-radius border text-center h-100 d-flex flex-column justify-content-center">
+                <h3 className="fraunces mb-4 px-3">
+                  Download our App to Explore our Gold Schemes & Gift Cards
+                </h3>
+
+                <div className="p-4  border-radius  d-flex flex-column align-items-center">
+                  {/* Single QR (Android) */}
+                  <div className="p-3 mb-4">
+                    <Image src={SuvarnakalaApp} alt="Download App QR" width={200} height={250} />
+                  </div>
+
+                  {/* Store Links */}
+                  <div className="d-flex gap-3 flex-wrap justify-content-center">
+                    <a
+                      href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Image
+                        src={playstore}
+                        alt="Play Store"
+                        width={150}
+                        height={45}
+                        className="rounded-3 shadow-sm"
+                      />
+                    </a>
+
+                    <a
+                      href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Image
+                        src={appstore}
+                        alt="App Store"
+                        width={150}
+                        height={45}
+                        className="rounded-3 shadow-sm"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </section>
+            </div>
           </div>
-          <h5 className="fraunces mb-2">Gift Card</h5>
-        </div>
-
-        {/* Gold Schemes */}
-<div className="scheme-box shadow-sm bg-light text-center p-4 h-100 d-flex flex-column justify-content-center">
-  <div className="row g-4">
-    {schemes.map((item, idx) => (
-      <div key={idx} className="col-12 col-sm-4">
-        <div className="d-flex flex-column align-items-center">
-          <div className="scheme-icon mb-3">
-            <Image
-              src={item.icon}
-              alt={item.title}
-              width={70}
-              height={70}
-              style={{ objectFit: "contain" }}
-            />
-          </div>
-          <h6 className="fraunces mb-0">{item.title}</h6>
         </div>
       </div>
-    ))}
-  </div>
-</div>
-
-      </div>
-
-      {/* Right Side - QR Download Section */}
-<div className="col-12 col-lg-6 d-flex flex-column justify-content-center">
-  <section className="py-4 bg-light border-radius shadow-sm text-center h-100 d-flex flex-column justify-content-center">
-    <h3 className="fraunces mb-4 px-3">
-      Download our App to Explore our Gold Schemes & Gift Cards
-    </h3>
-
-    <div className="p-4  border-radius  d-flex flex-column align-items-center">
-      {/* Single QR (Android) */}
-      <div className="p-3 mb-4">
-        <Image
-          src={SuvarnakalaApp}
-          alt="Download App QR"
-          width={200}
-          height={250}
-          className="rounded-3"
-        />
-      </div>
-
-      {/* Store Links */}
-      <div className="d-flex gap-3 flex-wrap justify-content-center">
-        <a
-          href="https://play.google.com/store/apps/details?id=com.dsoft.suvarnakalajewellers&hl=en_IN"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            src={playstore}
-            alt="Play Store"
-            width={150}
-            height={45}
-            className="rounded-3 shadow-sm"
-          />
-        </a>
-
-        <a
-          href="https://apps.apple.com/in/app/suvarnakala/id6466986702"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            src={appstore}
-            alt="App Store"
-            width={150}
-            height={45}
-            className="rounded-3 shadow-sm"
-          />
-        </a>
-      </div>
-    </div>
-  </section>
-</div>
-
-    </div>
-  </div>
-</div>
-
-
-
-
-      </div>
-
-
     </>
   );
 };

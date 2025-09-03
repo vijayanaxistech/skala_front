@@ -13,7 +13,7 @@ const categories = [{ img: four }, { img: two }, { img: one }, { img: three }];
 export default function CategoryGrid() {
   return (
     <>
-      <div className="p-3 px-md-5 py-md-4 pb-0 pt-4" aria-label="Suvarnakala Jewelry Collections">
+      <div className="p-3 px-md-5 py-md-4 pb-0 pt-4">
         <div className="custom-heading-wrapper d-flex align-items-center mb-4">
           <h2 className="m-0 custom-heading text-wrap me-3">
             <span className="fraunces">

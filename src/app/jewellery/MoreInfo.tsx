@@ -22,8 +22,8 @@ const MoreInfoButton: React.FC<MoreInfoButtonProps> = ({ product }) => {
     `Product Name: ${product.title}%0A` +
     `Metal Type: ${product.jewelleryType}%0A` +
     `Purity : ${product.purity}%0A` +
-    `Gross Weight: ${product.grossWeight}%0A` ;
-    // `View Product: ${productPageUrl}`;
+    `Gross Weight: ${product.grossWeight}%0A`;
+  // `View Product: ${productPageUrl}`;
 
   const phoneNumber = "917874011144";
 

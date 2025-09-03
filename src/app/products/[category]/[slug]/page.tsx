@@ -162,20 +162,21 @@ export default function ProductDetailPage() {
                 </h3>
 
                 <p className="mb-3">
-                  <strong className="dm-serif-text-regular">Category :</strong>{" "}
+                  <strong className=" text-blue dm-serif-text-regular">Category :</strong>{" "}
                   <span className="text-dark">{product.category.name}</span>
                 </p>
                 <p className="mb-3">
-                  <strong className="dm-serif-text-regular">Jewellery Type :</strong>{" "}
+                  <strong className=" text-blue dm-serif-text-regular">Jewellery Type :</strong>{" "}
                   <span className="text-dark">{product.jewelleryType}</span>
                 </p>
                 <p className="mb-3">
-                  <strong className="dm-serif-text-regular">Purity :</strong>{" "}
+                  <strong className="text-blue dm-serif-text-regular">Purity :</strong>{" "}
                   <span className="text-dark">{product.purity}</span>
                 </p>
                 {product.grossWeight && product.grossWeight.trim().toLowerCase() !== "n/a" && (
-                  <p className="card-text text-dark mb-0">
-                    <span className="fraunces">Gross Wt:</span> {product.grossWeight}
+                  <p className="mb-3">
+                    <strong className="text-blue dm-serif-text-regular">Gross Wt:</strong>{" "}
+                    <span className="text-dark">{product.grossWeight}</span>
                   </p>
                 )}
 
@@ -225,10 +226,9 @@ export default function ProductDetailPage() {
                           <Image
                             src={`${BASE_URL}/${item.mainImage}`}
                             alt={item.title}
-                        width={400}
-                        height={400}
-                        className="categoryImage"
-                        style={{ objectFit: "cover", width: "100%", height: "auto" }}
+                            width={300}
+                            height={300}
+                            className="categoryImage"
                           />
                         </div>
                         <div className="p-1">

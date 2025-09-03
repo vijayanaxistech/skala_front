@@ -16,7 +16,10 @@ const PrivacyPolicy = () => {
           collected and used. By accessing the services provided by suvarnakala.com, you agree to
           the collection and use of your data as described in this Privacy Policy. If you have
           questions or concerns, please contact us at{" "}
-          <a href="mailto:support@suvarnakala.com" className="text-blue-600 hover:underline fraunces">
+          <a
+            href="mailto:support@suvarnakala.com"
+            className="text-blue-600 hover:underline fraunces"
+          >
             support@suvarnakala.com
           </a>
           .
@@ -159,7 +162,10 @@ const PrivacyPolicy = () => {
         </h2>
         <p className="text-dark mb-4">
           You can update or correct your information online or by emailing{" "}
-          <a href="mailto:support@suvarnakala.com" className="text-blue-600 hover:underline fraunces">
+          <a
+            href="mailto:support@suvarnakala.com"
+            className="text-blue-600 hover:underline fraunces"
+          >
             support@suvarnakala.com
           </a>
           . To terminate your account, email us with “Please close my suvarnakala.com account” in
@@ -185,7 +191,10 @@ const PrivacyPolicy = () => {
         <h2 className="text-2xl font-semibold text-gray-900 mb-4 fraunces">Contact Us</h2>
         <p className="text-dark">
           For questions or feedback, contact Suvarnakala Pvt. Ltd. at{" "}
-          <a href="mailto:support@suvarnakala.com" className="text-blue-600 hover:underline fraunces">
+          <a
+            href="mailto:support@suvarnakala.com"
+            className="text-blue-600 hover:underline fraunces"
+          >
             support@suvarnakala.com
           </a>
           .
