@@ -91,7 +91,7 @@ export default function ProductDetailPage() {
         const filtered = allProducts.filter(
           (p) => p.category._id === transformed.category._id && p._id !== transformed._id,
         );
-        setSimilarProducts(filtered.slice(0, 3));
+        setSimilarProducts(filtered.slice(0, 4));
       } catch (error) {
         console.error(error);
         router.push("/404");
