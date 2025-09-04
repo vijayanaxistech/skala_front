@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Head from "next/head";
@@ -12,8 +13,9 @@ import MoreInfoButton from "../MoreInfo";
 import { getProducts, getCategories, getDefaultBreadcrumbBanner, BASE_URL } from "@/lib/api";
 import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 import notFoundImg from "../../../../public/assets/product-not-found-101.jpg";
-import { BsChevronLeft } from "react-icons/bs";
-import { BsChevronRight } from "react-icons/bs";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { slugify, unslugify } from "@/lib/slugify"; // Import both slugify and unslugify
+
 interface Category {
   _id: string;
   name: string;
@@ -34,7 +36,7 @@ interface Product {
   occasion: string;
   grossWeight: string;
   netWeight: string;
-  diamondWeight:string;
+  diamondWeight: string;
   mainImage: string;
   subImages: string[];
   metalPurity?: string;
@@ -92,8 +94,8 @@ const ProductsPage: React.FC = () => {
     const pairs: { [key: string]: string } = {};
 
     for (let i = 0; i < filterSegments.length - 1; i += 2) {
-      const key = decodeURIComponent(filterSegments[i]);
-      const val = decodeURIComponent(filterSegments[i + 1]);
+      const key = filterSegments[i];
+      const val = filterSegments[i + 1];
       if (key === "products") pairs["category"] = val;
       else pairs[key] = val;
     }
@@ -104,16 +106,16 @@ const ProductsPage: React.FC = () => {
   useEffect(() => {
     let filtered = [...products];
     if (selectedFilters.category) {
-      filtered = filtered.filter((p) => p.category.name === selectedFilters.category);
+      filtered = filtered.filter((p) => slugify(p.category.name) === selectedFilters.category);
     }
     if (selectedFilters.jewelleryType) {
-      filtered = filtered.filter((p) => p.jewelleryType === selectedFilters.jewelleryType);
+      filtered = filtered.filter((p) => slugify(p.jewelleryType) === selectedFilters.jewelleryType);
     }
     if (selectedFilters.purity) {
-      filtered = filtered.filter((p) => p.purity === selectedFilters.purity);
+      filtered = filtered.filter((p) => slugify(p.purity) === selectedFilters.purity);
     }
     if (selectedFilters.occasion) {
-      filtered = filtered.filter((p) => p.occasion === selectedFilters.occasion);
+      filtered = filtered.filter((p) => slugify(p.occasion) === selectedFilters.occasion);
     }
     setFilteredProducts(filtered);
     setCurrentPage(1);
@@ -124,7 +126,8 @@ const ProductsPage: React.FC = () => {
   const uniqueOccasions = [...new Set(products.map((p) => p.occasion).filter(Boolean))];
   const uniqueCategories = [...new Set(products.map((p) => p.category.name).filter(Boolean))];
 
-  const displayTitle = Object.values(selectedFilters).join(", ") || "Jewellery";
+  // FIX: Unslugify the values before displaying them in the title
+  const displayTitle = Object.values(selectedFilters).map(unslugify).join(", ") || "Jewellery";
 
   useEffect(() => {
     document.title = `${displayTitle} | Suvarnakala Pvt. Ltd`;
@@ -134,7 +137,7 @@ const ProductsPage: React.FC = () => {
   let breadcrumbLink: string | null = null;
 
   if (selectedFilters.category) {
-    const selectedCategory = categories.find((cat) => cat.name === selectedFilters.category);
+    const selectedCategory = categories.find((cat) => slugify(cat.name) === selectedFilters.category);
     if (selectedCategory?.banner) {
       breadcrumbImageSrc = `${BASE_URL}/${selectedCategory.banner}`;
     }
@@ -192,13 +195,13 @@ const ProductsPage: React.FC = () => {
           disabled={currentPage === 1}
           aria-label="Previous"
         >
-          <BsChevronLeft />         </button>
+          <BsChevronLeft />
+        </button>
         {finalPageNumbers.map((number, index) => (
           <button
             key={index}
             onClick={() => typeof number === 'number' && setCurrentPage(number)}
-            className={`pagination-button ${number === '...' ? 'pagination-ellipsis' : ''} ${currentPage === number ? 'active' : ''
-              }`}
+            className={`pagination-button ${number === '...' ? 'pagination-ellipsis' : ''} ${currentPage === number ? 'active' : ''}`}
             disabled={number === '...'}
           >
             {number}
@@ -210,7 +213,8 @@ const ProductsPage: React.FC = () => {
           disabled={currentPage === totalPages}
           aria-label="Next"
         >
-          <BsChevronRight />        </button>
+          <BsChevronRight />
+        </button>
       </div>
     );
   };
@@ -293,7 +297,7 @@ const ProductsPage: React.FC = () => {
               {currentProducts.map((product) => (
                 <Col key={product._id}>
                   <Link
-                    href={`/products/${product.category.name.toLowerCase().replace(/\s+/g, "-")}/${product.title.toLowerCase().replace(/\s+/g, "-")}`}
+                    href={`/products/${slugify(product.category.name)}/${slugify(product.title)}`}
                     className="text-decoration-none"
                   >
                     <div className="product-card h-100 border-0">
@@ -357,12 +361,13 @@ const ProductsPage: React.FC = () => {
                               <span className="fraunces">Gross Wt:</span> {product.grossWeight}
                             </p>
                           )}
-                                                  {product.netWeight &&
+                        {product.netWeight &&
                           product.netWeight.trim().toLowerCase() !== "n/a" && (
                             <p className="card-text text-dark mb-0">
                               <span className="fraunces">Net Wt:</span> {product.netWeight}
                             </p>
-                          )}                        {product.diamondWeight &&
+                          )}
+                        {product.diamondWeight &&
                           product.diamondWeight.trim().toLowerCase() !== "n/a" && (
                             <p className="card-text text-dark mb-0">
                               <span className="fraunces">Diamond Wt :</span> {product.diamondWeight} Cent

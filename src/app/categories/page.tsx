@@ -8,6 +8,7 @@ import { Row, Col } from "react-bootstrap";
 import defaultBreadcrumbImage from "../../../public/assets/collections.jpg";
 import Loader from "@/components/Loader";
 import ScrollToTopButton from "@/components/ScrollToTopOnPageLoad";
+import { slugify } from "@/lib/slugify"; // Import the slugify utility
 
 interface Category {
   _id: string;
@@ -136,7 +137,7 @@ const ShopAllCategories = () => {
               categories.map((item) => (
                 <Col xs={6} lg={3} key={item._id} className=" mb-lg-2">
                   <Link
-                    href={`/jewellery/products/${encodeURIComponent(item.name)}`}
+                    href={`/jewellery/products/${slugify(item.name)}`}
                     className="suvarnakala-category-item text-decoration-none"
                     role="group"
                     aria-label={`Category: ${item.name}`}

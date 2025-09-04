@@ -6,6 +6,7 @@ import { IoIosArrowDown, IoMdClose } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import filter from "../../../../public/assets/icons/filter.svg";
+import { slugify, unslugify } from "@/lib/slugify"; // Import both functions
 
 interface FilterDropdownProps {
   categories: string[];
@@ -26,6 +27,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>("jewellery");
   const router = useRouter();
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -43,10 +45,10 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
   const updateFilter = (filterType: string, filterValue: string) => {
     const newFilters = { ...selectedFilters };
     const internalType = filterType === "jewellery" ? "category" : filterType;
-    newFilters[internalType] = filterValue;
+    newFilters[internalType] = slugify(filterValue); // Use slugify here
     const segments = Object.entries(newFilters).flatMap(([type, value]) => [
-      encodeURIComponent(type === "category" ? "products" : type),
-      encodeURIComponent(value),
+      type === "category" ? "products" : type,
+      value,
     ]);
     router.push(`/jewellery/${segments.join("/")}`, { scroll: false });
     setDropdownOpen(false);
@@ -56,8 +58,8 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     const newFilters = { ...selectedFilters };
     delete newFilters[type];
     const segments = Object.entries(newFilters).flatMap(([t, value]) => [
-      encodeURIComponent(t === "category" ? "products" : t),
-      encodeURIComponent(value),
+      t === "category" ? "products" : t,
+      value,
     ]);
     router.push(segments.length ? `/jewellery/${segments.join("/")}` : "/jewellery", {
       scroll: false,
@@ -76,7 +78,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
           key={item}
           onClick={() => updateFilter(type, item)}
           className={`px-3 py-1 rounded-pill border ${
-            selectedFilters[type === "jewellery" ? "category" : type] === item
+            selectedFilters[type === "jewellery" ? "category" : type] === slugify(item)
               ? "bg-dark text-white"
               : "bg-light text-dark"
           }`}
@@ -150,7 +152,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
                     className="px-3 py-1 rounded-pill border bg-dark text-white d-flex align-items-center"
                     style={{ fontSize: "14px" }}
                   >
-                    {value}
+                    {unslugify(value)} {/* Use unslugify here */}
                     <IoMdClose
                       onClick={() => removeFilter(type)}
                       style={{ cursor: "pointer", marginLeft: "8px" }}

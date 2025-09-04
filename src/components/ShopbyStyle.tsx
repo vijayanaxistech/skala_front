@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BASE_URL, getCategories } from "../lib/api";
+import { slugify } from "@/lib/slugify"; // Import the slugify utility
 
 interface Category {
   _id: string;
@@ -38,7 +39,7 @@ const ShopbyStyle = () => {
   return (
     <div className="p-3 px-md-5 pt-md-4 pb-0 pt-4" aria-label="Suvarnakala Shop by Style Section">
       <div className="custom-heading-wrapper d-flex align-items-center mb-4">
-        <h2 className="m-0 custom-heading  text-wrap me-3 ">
+        <h2 className="m-0 custom-heading text-wrap me-3 ">
           <span className="fraunces">
             Shop by <span className="text-red fraunces ">Style :</span>
           </span>
@@ -48,7 +49,7 @@ const ShopbyStyle = () => {
             <div className="diamond"></div>
           </div>
         </h2>
-        <span className="heading-extension  fraunces">Find Your Perfect Match</span>
+        <span className="heading-extension fraunces">Find Your Perfect Match</span>
       </div>
 
       <div className="categories-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
@@ -60,7 +61,7 @@ const ShopbyStyle = () => {
           <>
             {displayedCategories.map((item, index) => (
               <Link
-                href={`/jewellery/products/${encodeURIComponent(item.name)}`}
+                href={`/jewellery/products/${slugify(item.name)}`}
                 key={item._id}
                 className={`category-item text-decoration-none ${index < 4 ? "top-row" : "bottom-row"}`}
                 role="group"
@@ -98,7 +99,6 @@ const ShopbyStyle = () => {
                   className="text-gray mt-3 fs-4 sm:fs-5 text-center lora"
                   style={{ fontWeight: 100 }}
                 >
-                  {" "}
                   {item.name === "Managalsutra" ? "Mangalsutra" : item.name}
                 </p>
               </Link>
@@ -126,17 +126,11 @@ const ShopbyStyle = () => {
                   userSelect: "none",
                 }}
               >
-                {/* <p
-                  className="fs-5 fw-bold mb-0 lora"
-                  style={{ textTransform: 'uppercase', fontWeight: '300', letterSpacing: '0.1em' }}
-                >
-                  Discover
-                </p> */}
                 <p className="fs-4 lora" style={{ fontWeight: "200", marginTop: "0.25rem" }}>
                   Exclusive Jewellery
                 </p>
               </div>
-              <p className="text-gray mt-3 fs-4  sm:fs-5 text-center lora">View all</p>
+              <p className="text-gray mt-3 fs-4 sm:fs-5 text-center lora">View all</p>
             </Link>
           </>
         )}

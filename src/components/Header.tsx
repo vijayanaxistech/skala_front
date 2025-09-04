@@ -10,14 +10,11 @@ import Goldrate from "./GoldRate";
 import { ToastContainer } from "react-toastify";
 import { getNavbar, getProducts } from "../lib/api";
 import logo from "../../public/assets/Suvarnakala.png";
-// import Image1 from '../../public/assets/category1.jpg';
-// import Image2 from '../../public/assets/category2.jpg';
-// import Image3 from '../../public/assets/category3.jpg';
-// import Image4 from '../../public/assets/category1.jpg';
 import instagramIcon from "../../public/assets/icons/Instagram.svg";
 import whatsappIcon from "../../public/assets/icons/whatsapp.svg";
 import pinterestIcon from "../../public/assets/icons/pinterest.svg";
 import facebookIcon from "../../public/assets/icons/facebook.svg";
+import { slugify } from "../lib/slugify";
 
 interface NavLink {
   _id: string;
@@ -219,7 +216,7 @@ const Header: React.FC = () => {
                             <h6 className="lora">Shop By Category</h6>
                             {categories.map((category) => (
                               <Link
-                                href={`/Jewellery/products/${category}`}
+                                href={`/Jewellery/products/${slugify(category)}`}
                                 key={category}
                                 className="mobile-submenu-item"
                                 onClick={() => {
@@ -235,7 +232,7 @@ const Header: React.FC = () => {
                             <h6 className="lora">Shop By Jewellery</h6>
                             {sortedJewelleryTypes.map((type) => (
                               <Link
-                                href={`/Jewellery/jewelleryType/${type}`}
+                                href={`/Jewellery/jewelleryType/${slugify(type)}`}
                                 key={type}
                                 className="mobile-submenu-item"
                                 onClick={() => {
@@ -251,7 +248,7 @@ const Header: React.FC = () => {
                             <h6 className="lora">Shop By Occasion</h6>
                             {sortedOccasions.map((occasion) => (
                               <Link
-                                href={`/Jewellery/occasion/${occasion}`}
+                                href={`/Jewellery/occasion/${slugify(occasion)}`}
                                 key={occasion}
                                 className="mobile-submenu-item"
                                 onClick={() => {
@@ -267,7 +264,7 @@ const Header: React.FC = () => {
                             <h6 className="lora">Shop By Purity</h6>
                             {purities.map((purity) => (
                               <Link
-                                href={`/Jewellery/purity/${purity}`}
+                                href={`/Jewellery/purity/${slugify(purity)}`}
                                 key={purity}
                                 className="mobile-submenu-item"
                                 onClick={() => {
@@ -352,8 +349,8 @@ const Header: React.FC = () => {
                 const isActive = isBookAppointment
                   ? false
                   : isCollections
-                    ? pathname.startsWith("/jewellery")
-                    : pathname === navLinkPath || pathname.startsWith(navLinkPath + "/");
+                  ? pathname.startsWith("/jewellery")
+                  : pathname === navLinkPath || pathname.startsWith(navLinkPath + "/");
 
                 return (
                   <div
@@ -397,7 +394,7 @@ const Header: React.FC = () => {
                                 {categories.map((category) => (
                                   <li key={category}>
                                     <Link
-                                      href={`/jewellery/products/${category}`}
+                                      href={`/jewellery/products/${slugify(category)}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
                                       onClick={() => {
                                         setShowCollectionsDropdown(false);
@@ -416,7 +413,7 @@ const Header: React.FC = () => {
                                 {sortedJewelleryTypes.map((type) => (
                                   <li key={type}>
                                     <Link
-                                      href={`/jewellery/jewelleryType/${type}`}
+                                      href={`/jewellery/jewelleryType/${slugify(type)}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
                                       onClick={() => {
                                         setShowCollectionsDropdown(false);
@@ -435,7 +432,7 @@ const Header: React.FC = () => {
                                 {sortedOccasions.map((occasion) => (
                                   <li key={occasion}>
                                     <Link
-                                      href={`/jewellery/occasion/${occasion}`}
+                                      href={`/jewellery/occasion/${slugify(occasion)}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
                                       onClick={() => {
                                         setShowCollectionsDropdown(false);
@@ -454,7 +451,7 @@ const Header: React.FC = () => {
                                 {purities.map((purity) => (
                                   <li key={purity}>
                                     <Link
-                                      href={`/jewellery/purity/${purity}`}
+                                      href={`/jewellery/purity/${slugify(purity)}`}
                                       className="lora link-hover-red text-gray text-decoration-none"
                                       onClick={() => {
                                         setShowCollectionsDropdown(false);
@@ -468,20 +465,6 @@ const Header: React.FC = () => {
                               </ul>
                             </div>
                           </div>
-                          {/* <div className="dropdown-right">
-                            <div className="image-grid">
-                              {[Image1, Image2, Image3, Image4].map((img, index) => (
-                                <Image
-                                  key={index}
-                                  src={img}
-                                  alt={`Image ${index + 1}`}
-                                  width={140}
-                                  height={140}
-                                  style={{ objectFit: 'cover' }}
-                                />
-                              ))}
-                            </div>
-                          </div> */}
                         </div>
                       </div>
                     )}
@@ -521,10 +504,6 @@ const Header: React.FC = () => {
         </Container>
       </Navbar>
 
-      <style>{`
-
-
-      `}</style>
     </>
   );
 };
