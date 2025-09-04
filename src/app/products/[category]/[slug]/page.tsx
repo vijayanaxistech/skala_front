@@ -48,6 +48,8 @@ interface Product {
   purity: string;
   occasion: string;
   grossWeight: string;
+  netWeight: string;
+  diamondWeight: string;
   mainImage: string;
   subImages: string[];
 }
@@ -179,6 +181,19 @@ export default function ProductDetailPage() {
                     <span className="text-dark">{product.grossWeight}</span>
                   </p>
                 )}
+                         {product.netWeight && product.netWeight.trim().toLowerCase() !== "n/a" && (
+                  <p className="mb-3">
+                    <strong className="text-blue dm-serif-text-regular">Net Wt:</strong>{" "}
+                    <span className="text-dark">{product.netWeight}</span>
+                  </p>
+                )}               
+                
+                 {product.diamondWeight && product.diamondWeight.trim().toLowerCase() !== "n/a" && (
+                  <p className="mb-3">
+                    <strong className="text-blue dm-serif-text-regular">Diamond Wt:</strong>{" "}
+                    <span className="text-dark">{product.diamondWeight} Cent</span>
+                  </p>
+                )}
 
                 <div className="d-flex align-items-center gap-2 mt-3">
                   <MoreInfoButton
@@ -273,6 +288,16 @@ export default function ProductDetailPage() {
                           {item.grossWeight && item.grossWeight.trim().toLowerCase() !== "n/a" && (
                             <p className="card-text text-dark mb-0">
                               <span className="fraunces">Gross Wt:</span> {item.grossWeight}
+                            </p>
+                          )}
+                          {item.netWeight && item.netWeight.trim().toLowerCase() !== "n/a" && (
+                            <p className="card-text text-dark mb-0">
+                              <span className="fraunces">Net Wt:</span> {item.netWeight}
+                            </p>
+                          )}
+                          {item.diamondWeight && item.diamondWeight.trim().toLowerCase() !== "n/a" && (
+                            <p className="card-text text-dark mb-0">
+                              <span className="fraunces">Diamond Wt:</span> {item.diamondWeight} Cent
                             </p>
                           )}
                         </div>

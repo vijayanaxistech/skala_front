@@ -33,6 +33,8 @@ interface Product {
   purity: string;
   occasion: string;
   grossWeight: string;
+  netWeight: string;
+  diamondWeight:string;
   mainImage: string;
   subImages: string[];
   metalPurity?: string;
@@ -353,6 +355,17 @@ const ProductsPage: React.FC = () => {
                           product.grossWeight.trim().toLowerCase() !== "n/a" && (
                             <p className="card-text text-dark mb-0">
                               <span className="fraunces">Gross Wt:</span> {product.grossWeight}
+                            </p>
+                          )}
+                                                  {product.netWeight &&
+                          product.netWeight.trim().toLowerCase() !== "n/a" && (
+                            <p className="card-text text-dark mb-0">
+                              <span className="fraunces">Net Wt:</span> {product.netWeight}
+                            </p>
+                          )}                        {product.diamondWeight &&
+                          product.diamondWeight.trim().toLowerCase() !== "n/a" && (
+                            <p className="card-text text-dark mb-0">
+                              <span className="fraunces">Diamond Wt :</span> {product.diamondWeight} Cent
                             </p>
                           )}
                       </div>
