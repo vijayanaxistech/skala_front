@@ -102,7 +102,7 @@ const WhySuvarnakala = () => {
 
           <p className="mt-4 text-muted">
             With showrooms at{" "}
-            <strong className="text-dark">CG Road, Satellite, and Maninagar</strong>, Suvarnakala
+            <strong className="text-dark lora fw-bold">CG Road, Satellite, and Maninagar</strong>, Suvarnakala
             continues to be Ahmedabad’s trusted jewellery destination, where every piece tells a
             story of elegance, emotion, and excellence.
           </p>

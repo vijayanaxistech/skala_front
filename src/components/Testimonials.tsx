@@ -70,31 +70,27 @@ const Testimonials: React.FC = () => {
         >
           {testimonials.map((testimonial, index) => (
             <div
-              className="p-4 bg-white    testimonial-card d-flex flex-column text-start position-relative h-100 w-100"
+              className="testimonial-card p-4 rounded-4 shadow-sm bg-white position-relative d-flex flex-column h-100 w-100"
               role="group"
               aria-label={`Testimonial by ${testimonial.name}`}
             >
-              <div className="d-flex  align-items-center mb-3">
-                <div
-                  className="rounded-circle lora d-flex align-items-center justify-content-center me-3"
-                  style={{
-                    width: "45px",
-                    height: "45px",
-                    backgroundColor: "#012f63",
-                    color: "#fff",
-                    fontWeight: 600,
-                    fontSize: "18px",
-                  }}
-                >
-                  {testimonial.name.charAt(0)}
-                </div>
-                <h6 className="m-0 text-dark fw-semibold lora">{testimonial.name}</h6>
-              </div>
+              {/* Quote icon */}
 
-              <p className="text-muted mt-0 mb-0" style={{ fontSize: "16px", lineHeight: "1.5" }}>
+
+              {/* Testimonial text */}
+              <p
+                className="text-muted  mb-auto"
+              >
                 “{testimonial.description}”
               </p>
+
+              {/* Author info at bottom */}
+              <div className="pt-3 border-top mt-3 d-flex justify-content-end">
+                <h6 className="m-0 fw-medium lora text-dark">- {testimonial.name}</h6>
+              </div>
+
             </div>
+
           ))}
         </Carousel>
       ) : (

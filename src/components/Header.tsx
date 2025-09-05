@@ -48,7 +48,7 @@ const Header: React.FC = () => {
   const desiredOrder = ["Home", "About Us", "Jewellery", "Why Us", "Our Showrooms", "Investment"];
 
   const jewelleryTypeOrder = ["Gold", "Diamond"];
-  const collectionOrder = ["Kanyadaan","Shagun", "Sitara"  ];
+  const collectionOrder = ["Kanyadaan", "Shagun", "Sitara"];
 
   useEffect(() => {
     const fetchNavLinks = async () => {
@@ -272,8 +272,8 @@ const Header: React.FC = () => {
                 const isActive = isBookAppointment
                   ? false
                   : name === "Jewellery"
-                  ? pathname.startsWith("/jewellery")
-                  : pathname === navLinkPath || pathname.startsWith(navLinkPath + "/");
+                    ? pathname.startsWith("/jewellery")
+                    : pathname === navLinkPath || pathname.startsWith(navLinkPath + "/");
 
                 return (
                   <div key={name} className="mobile-nav-item">
@@ -323,18 +323,18 @@ const Header: React.FC = () => {
                 const isActive = isBookAppointment
                   ? false
                   : isCollections
-                  ? pathname.startsWith("/jewellery")
-                  : pathname === navLinkPath || pathname.startsWith(navLinkPath + "/");
+                    ? pathname.startsWith("/jewellery")
+                    : pathname === navLinkPath || pathname.startsWith(navLinkPath + "/");
 
                 return (
                   <div key={name} className={`nav-item ${isCollections ? "nav-item-collections" : ""}`} onMouseEnter={isCollections ? handleMouseEnter : undefined} onMouseLeave={isCollections ? handleMouseLeave : undefined}>
                     <Link href={navLinkPath} passHref legacyBehavior={false} className="custom-nav-link navlinks-hover" onClick={(e) => {
-                        if (isBookAppointment) {
-                          e.preventDefault();
-                          handleShowModal();
-                        }
-                        setExpanded(false);
-                      }} style={{ textDecoration: "none" }}>
+                      if (isBookAppointment) {
+                        e.preventDefault();
+                        handleShowModal();
+                      }
+                      setExpanded(false);
+                    }} style={{ textDecoration: "none" }}>
                       <Nav.Link as="span" className={`custom-nav-link navlinks-hover lora ${isActive ? "active-link" : ""}`}>
                         {name}
                       </Nav.Link>
