@@ -12,7 +12,7 @@ interface FilterDropdownProps {
   categories: string[];
   metals: string[];
   purities: string[];
-  occasions: string[];
+  collection: string[];
   selectedFilters: { [key: string]: string };
 }
 
@@ -20,7 +20,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
   categories,
   metals,
   purities,
-  occasions,
+  collection,
   selectedFilters,
 }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -59,6 +59,7 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     delete newFilters[type];
     const segments = Object.entries(newFilters).flatMap(([t, value]) => [
       t === "category" ? "products" : t,
+      t,
       value,
     ]);
     router.push(segments.length ? `/jewellery/${segments.join("/")}` : "/jewellery", {
@@ -71,9 +72,9 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
     setDropdownOpen(false);
   };
 
-  const renderChips = (items: string[], type: string) => (
+  const renderChips = (items: string[] | undefined, type: string) => (
     <div className="d-flex flex-wrap gap-2 mt-2">
-      {items.map((item) => (
+      {items?.map((item) => (
         <span
           key={item}
           onClick={() => updateFilter(type, item)}
@@ -211,24 +212,25 @@ const FilterDropdown: React.FC<FilterDropdownProps> = ({
                 }}
               />
             </div>
-            {expanded === "purity" && renderChips([...purities].sort(), "purity")}
+            {expanded === "purity" && renderChips(purities, "purity")}
           </div>
 
           <div className="mb-3">
             <div
               className="d-flex justify-content-between align-items-center"
-              onClick={() => toggleSection("occasion")}
+              onClick={() => toggleSection("collection")}
               style={{ cursor: "pointer" }}
             >
-              <strong>Occasion</strong>
+              <strong>Collection</strong>
               <IoIosArrowDown
                 style={{
-                  transform: expanded === "occasion" ? "rotate(180deg)" : "rotate(0)",
+                  transform: expanded === "collection" ? "rotate(180deg)" : "rotate(0)",
                   transition: "transform 0.3s",
                 }}
               />
             </div>
-            {expanded === "occasion" && renderChips(occasions, "occasion")}
+            {/* The fix is here. Provide a fallback empty array if `collections` is undefined */}
+            {expanded === "collection" && renderChips(collection, "collection")}
           </div>
         </div>
       )}

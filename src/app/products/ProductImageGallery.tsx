@@ -1,10 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { BASE_URL } from "../../lib/api";
-import { BsChevronLeft } from "react-icons/bs";
-import { BsChevronRight } from "react-icons/bs";
 
 interface ProductImageGalleryProps {
   mainImage: string;
@@ -17,44 +15,42 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
   thumbnailImages,
   productTitle,
 }) => {
+  const allImages = [mainImage, ...thumbnailImages];
   const [selectedImage, setSelectedImage] = useState(mainImage);
-  const [currentIndex, setCurrentIndex] = useState(-1); // -1 represents main image
-  const [isFading, setIsFading] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0); // 0 for main image, then 1, 2... for thumbnails
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handlePrev = () => {
-    setIsFading(true);
-    setTimeout(() => {
-      if (currentIndex === -1 || currentIndex === 0) {
-        // From main image or first thumbnail to last thumbnail
-        setCurrentIndex(thumbnailImages.length - 1);
-        setSelectedImage(thumbnailImages[thumbnailImages.length - 1]);
-      } else {
-        // Previous thumbnail
-        setCurrentIndex(currentIndex - 1);
-        setSelectedImage(thumbnailImages[currentIndex - 1]);
-      }
-      setIsFading(false);
-    }, 300); // Match with CSS transition duration
+  const startAutoSlide = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    intervalRef.current = setInterval(() => {
+      handleNext();
+    }, 3000); // Change image every 3 seconds
+  };
+
+  const stopAutoSlide = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+  };
+
+  useEffect(() => {
+    startAutoSlide();
+    return () => stopAutoSlide(); // Clean up on component unmount
+  }, [allImages, currentIndex]); // Restart timer if images or current index changes
+
+  const handleSelectImage = (image: string, index: number) => {
+    stopAutoSlide(); // Stop auto-slide when a dot is clicked
+    setSelectedImage(image);
+    setCurrentIndex(index);
+    startAutoSlide(); // Restart auto-slide after manual selection
   };
 
   const handleNext = () => {
-    setIsFading(true);
-    setTimeout(() => {
-      if (currentIndex === -1) {
-        // From main image to first thumbnail
-        setCurrentIndex(0);
-        setSelectedImage(thumbnailImages[0]);
-      } else if (currentIndex === thumbnailImages.length - 1) {
-        // From last thumbnail to first thumbnail
-        setCurrentIndex(0);
-        setSelectedImage(thumbnailImages[0]);
-      } else {
-        // Next thumbnail
-        setCurrentIndex(currentIndex + 1);
-        setSelectedImage(thumbnailImages[currentIndex + 1]);
-      }
-      setIsFading(false);
-    }, 300); // Match with CSS transition duration
+    const nextIndex = (currentIndex + 1) % allImages.length;
+    setCurrentIndex(nextIndex);
+    setSelectedImage(allImages[nextIndex]);
   };
 
   return (
@@ -73,52 +69,37 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
               alt={productTitle}
               width={370}
               height={370}
-              className={`img-fluid main-image ${isFading ? "fade-out" : "fade-in"}`}
+              className={`img-fluid main-image`} // Removed fade classes
               style={{
                 objectFit: "contain",
-                transition: "opacity 0.3s ease-in-out, transform 0.3s ease-in-out",
+                // Removed transition property here
               }}
             />
-            <button
-              className="btn btn-light position-absolute"
-              onClick={handlePrev}
+            <div
+              className="d-flex justify-content-center position-absolute w-100"
               style={{
+                bottom: "10px",
                 zIndex: 10,
-                left: "10px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                borderRadius: "50%",
-                width: "40px",
-                height: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                opacity: 0.8,
-                background: "rgba(255, 255, 255, 0.7)",
               }}
             >
-              <BsChevronLeft />
-            </button>
-            <button
-              className="btn btn-light position-absolute"
-              onClick={handleNext}
-              style={{
-                zIndex: 10,
-                right: "10px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                borderRadius: "50%",
-                width: "40px",
-                height: "40px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                opacity: 0.8,
-                background: "rgba(255, 255, 255, 0.7)",
-              }}
-            >
-              <BsChevronRight />{" "}
-            </button>
+              {allImages.map((_, index) => (
+                <span
+                  key={index}
+                  className={`dot ${currentIndex === index ? "active" : ""}`}
+                  onClick={() => handleSelectImage(allImages[index], index)}
+                  style={{
+                    height: "10px",
+                    width: "10px",
+                    margin: "0 5px",
+                    backgroundColor: currentIndex === index ? "#fff" : "rgba(255, 255, 255, 0.5)",
+                    borderRadius: "50%",
+                    display: "inline-block",
+                    cursor: "pointer",
+                    transition: "background-color 0.3s ease", // Keep this for dot color transition
+                  }}
+                ></span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -141,33 +122,17 @@ const ProductImageGallery: React.FC<ProductImageGalleryProps> = ({
               background: "#fff",
               border: selectedImage === img ? "2px solid #ddd" : "1px solid #ddd",
             }}
-            onClick={() => {
-              setIsFading(true);
-              setTimeout(() => {
-                setSelectedImage(img);
-                setCurrentIndex(index);
-                setIsFading(false);
-              }, 300); // Match with CSS transition duration
-            }}
+            onClick={() => handleSelectImage(img, index + 1)} // +1 because main image is at index 0
           />
         ))}
       </div>
 
       <style jsx global>{`
         .image-wrapper:hover .main-image {
-          transform: scale(1.05);
+          transform: none; /* Removed scale on hover */
         }
-        .image-wrapper:hover .btn-light {
-          opacity: 1;
-        }
-        .btn-light:hover {
-          background-color: rgba(224, 224, 224, 0.9) !important;
-        }
-        .fade-in {
-          opacity: 1;
-        }
-        .fade-out {
-          opacity: 0;
+        .dot.active {
+          background-color: #fff; /* Active dot color */
         }
       `}</style>
     </>

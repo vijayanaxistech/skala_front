@@ -79,8 +79,8 @@ export default function Footer() {
                     { name: "Home", href: "/" },
                     { name: "About Us", href: "/about" },
                     { name: "Our Showrooms", href: "/our-showrooms" },
-                    { name: "Disclaimer", href: "/disclaimer" },
-                    { name: "Privacy Policy", href: "/privacy-policy" },
+                    { name: "Why Us", href: "/why-us" },
+                    { name: "Investment", href: "/investment" },
                   ].map((link, index) => (
                     <li key={index} className="mb-1">
                       <Link

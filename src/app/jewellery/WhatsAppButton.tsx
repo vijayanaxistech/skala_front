@@ -19,11 +19,11 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ product }) => {
   // const productPageUrl = `http://localhost:3000/jewelry/${categoryName.toLowerCase().replace(/\s+/g, "-")}/${slug}`;
 
   const messageBody =
-    `Product Inquiry:%0A` +
-    `Product Name: ${product.title}%0A` +
-    `Metal Type: ${product.jewelleryType}%0A` +
-    `Purity : ${product.purity}%0A` +
-    `Gross Weight : ${product.grossWeight}%0A`;
+    `Product Inquiry  %0A` +
+    `Product Name : ${product.title}%0A` +
+    `Metal Type : ${product.jewelleryType}%0A` +
+    `Purity : ${product.purity}%0A` ;
+    // `Gross Weight : ${product.grossWeight}%0A`;
   // `View Product: ${productPageUrl}`;
 
   const phoneNumber = "917874011144";

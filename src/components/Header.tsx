@@ -31,7 +31,7 @@ interface Product {
     name: string;
   };
   purity: string;
-  occasion: string;
+  collection: string;
   jewelleryType: string;
 }
 
@@ -47,22 +47,18 @@ const Header: React.FC = () => {
 
   const desiredOrder = ["Home", "About Us", "Jewellery", "Why Us", "Our Showrooms", "Investment"];
 
-  // Define the specific sort order for Jewellery and Occasions
   const jewelleryTypeOrder = ["Gold", "Diamond"];
-  const occasionOrder = ["Engagement", "Wedding"];
+  const collectionOrder = ["Kanyadaan","Shagun", "Sitara"  ];
 
   useEffect(() => {
     const fetchNavLinks = async () => {
       try {
         const data = await getNavbar();
-        const filteredLinks = data.filter((link: NavLink) => link.name !== "Investment"); // Remove the old filter
+        const filteredLinks = data.filter((link: NavLink) => link.name !== "Investment");
         const sortedLinks = filteredLinks.sort((a: NavLink, b: NavLink) => {
           const aIndex = desiredOrder.indexOf(a.name);
           const bIndex = desiredOrder.indexOf(b.name);
-          return (
-            (aIndex === -1 ? desiredOrder.length : aIndex) -
-            (bIndex === -1 ? desiredOrder.length : bIndex)
-          );
+          return (aIndex === -1 ? desiredOrder.length : aIndex) - (bIndex === -1 ? desiredOrder.length : bIndex);
         });
         setNavLinks(sortedLinks);
       } catch (error) {
@@ -115,27 +111,18 @@ const Header: React.FC = () => {
     setShowMobileCollections((prev) => !prev);
   };
 
-  const categories = Array.from(new Set(products.map((p) => p.category.name))).sort();
-  // Sort jewelleryTypes and occasions based on the predefined order
-  const sortedJewelleryTypes = Array.from(new Set(products.map((p) => p.jewelleryType))).sort(
-    (a, b) => {
-      const aIndex = jewelleryTypeOrder.indexOf(a);
-      const bIndex = jewelleryTypeOrder.indexOf(b);
-      return (
-        (aIndex === -1 ? jewelleryTypeOrder.length : aIndex) -
-        (bIndex === -1 ? jewelleryTypeOrder.length : bIndex)
-      );
-    },
-  );
-  const sortedOccasions = Array.from(new Set(products.map((p) => p.occasion))).sort((a, b) => {
-    const aIndex = occasionOrder.indexOf(a);
-    const bIndex = occasionOrder.indexOf(b);
-    return (
-      (aIndex === -1 ? occasionOrder.length : aIndex) -
-      (bIndex === -1 ? occasionOrder.length : bIndex)
-    );
+  const categories = Array.from(new Set(products.map((p) => p.category?.name))).filter(Boolean).sort();
+  const sortedJewelleryTypes = Array.from(new Set(products.map((p) => p.jewelleryType))).filter(Boolean).sort((a, b) => {
+    const aIndex = jewelleryTypeOrder.indexOf(a);
+    const bIndex = jewelleryTypeOrder.indexOf(b);
+    return (aIndex === -1 ? jewelleryTypeOrder.length : aIndex) - (bIndex === -1 ? jewelleryTypeOrder.length : bIndex);
   });
-  const purities = Array.from(new Set(products.map((p) => p.purity))).sort();
+  const sortedCollections = Array.from(new Set(products.map((p) => p.collection))).filter(Boolean).sort((a, b) => {
+    const aIndex = collectionOrder.indexOf(a);
+    const bIndex = collectionOrder.indexOf(b);
+    return (aIndex === -1 ? collectionOrder.length : aIndex) - (bIndex === -1 ? collectionOrder.length : bIndex);
+  });
+  const purities = Array.from(new Set(products.map((p) => p.purity))).filter(Boolean).sort();
 
   const getNavLinkPath = (name: string): string => {
     if (name === "Investment") return "/investment";
@@ -205,9 +192,7 @@ const Header: React.FC = () => {
                             handleMobileCollectionsToggle();
                           }}
                         >
-                          <i
-                            className={`bi ${showMobileCollections ? "bi-caret-up" : "bi-caret-down"}`}
-                          ></i>
+                          <i className={`bi ${showMobileCollections ? "bi-caret-up" : "bi-caret-down"}`}></i>
                         </span>
                       </Link>
                       {showMobileCollections && (
@@ -245,18 +230,18 @@ const Header: React.FC = () => {
                             ))}
                           </div>
                           <div className="mobile-submenu-section">
-                            <h6 className="lora">Shop By Occasion</h6>
-                            {sortedOccasions.map((occasion) => (
+                            <h6 className="lora">Shop By Collection</h6>
+                            {sortedCollections.map((collection) => (
                               <Link
-                                href={`/Jewellery/occasion/${slugify(occasion)}`}
-                                key={occasion}
+                                href={`/Jewellery/collection/${slugify(collection)}`}
+                                key={collection}
                                 className="mobile-submenu-item"
                                 onClick={() => {
                                   setShowMobileCollections(false);
                                   setExpanded(false);
                                 }}
                               >
-                                <span className="lora">{occasion}</span>
+                                <span className="lora">{collection}</span>
                               </Link>
                             ))}
                           </div>
@@ -284,7 +269,11 @@ const Header: React.FC = () => {
 
                 const navLinkPath = getNavLinkPath(name);
                 const isBookAppointment = name === "Book an Appointment";
-                const isActive = pathname === navLinkPath;
+                const isActive = isBookAppointment
+                  ? false
+                  : name === "Jewellery"
+                  ? pathname.startsWith("/jewellery")
+                  : pathname === navLinkPath || pathname.startsWith(navLinkPath + "/");
 
                 return (
                   <div key={name} className="mobile-nav-item">
@@ -308,23 +297,11 @@ const Header: React.FC = () => {
               {/* Mobile Social Icons */}
               <div className="mobile-social-icons">
                 <Nav.Link href="https://wa.me/917874011144" target="_blank">
-                  <Image
-                    src={whatsappIcon}
-                    alt="WhatsApp"
-                    className="rounded-5"
-                    width={32}
-                    height={32}
-                  />
+                  <Image src={whatsappIcon} alt="WhatsApp" className="rounded-5" width={32} height={32} />
                 </Nav.Link>
 
                 <Nav.Link href="https://www.instagram.com/suvarnakalajewellers" target="_blank">
-                  <Image
-                    src={instagramIcon}
-                    className="rounded-5"
-                    alt="Instagram"
-                    width={31}
-                    height={31}
-                  />
+                  <Image src={instagramIcon} className="rounded-5" alt="Instagram" width={31} height={31} />
                 </Nav.Link>
                 <Nav.Link href=" https://www.facebook.com/Suvarnakala" target="_blank">
                   <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
@@ -337,10 +314,7 @@ const Header: React.FC = () => {
           </div>
 
           {/* Desktop Navbar */}
-          <Navbar.Collapse
-            id="basic-navbar-nav"
-            className="justify-content-center d-none d-lg-flex"
-          >
+          <Navbar.Collapse id="basic-navbar-nav" className="justify-content-center d-none d-lg-flex">
             <Nav className="gap-3 text-center flex-row align-items-center">
               {desiredOrder.map((name, index) => {
                 const navLinkPath = getNavLinkPath(name);
@@ -353,117 +327,96 @@ const Header: React.FC = () => {
                   : pathname === navLinkPath || pathname.startsWith(navLinkPath + "/");
 
                 return (
-                  <div
-                    key={name}
-                    className={`nav-item ${isCollections ? "nav-item-collections" : ""}`}
-                    onMouseEnter={isCollections ? handleMouseEnter : undefined}
-                    onMouseLeave={isCollections ? handleMouseLeave : undefined}
-                  >
-                    <Link
-                      href={navLinkPath}
-                      passHref
-                      legacyBehavior={false}
-                      className="custom-nav-link navlinks-hover"
-                      onClick={(e) => {
+                  <div key={name} className={`nav-item ${isCollections ? "nav-item-collections" : ""}`} onMouseEnter={isCollections ? handleMouseEnter : undefined} onMouseLeave={isCollections ? handleMouseLeave : undefined}>
+                    <Link href={navLinkPath} passHref legacyBehavior={false} className="custom-nav-link navlinks-hover" onClick={(e) => {
                         if (isBookAppointment) {
                           e.preventDefault();
                           handleShowModal();
                         }
                         setExpanded(false);
-                      }}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <Nav.Link
-                        as="span"
-                        className={`custom-nav-link navlinks-hover lora ${isActive ? "active-link" : ""}`}
-                      >
+                      }} style={{ textDecoration: "none" }}>
+                      <Nav.Link as="span" className={`custom-nav-link navlinks-hover lora ${isActive ? "active-link" : ""}`}>
                         {name}
                       </Nav.Link>
                     </Link>
                     {isCollections && (
-                      <div
-                        className={`dropdown-menu-full ${showCollectionsDropdown ? "show" : ""}`}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                      >
+                      <div className={`dropdown-menu-full ${showCollectionsDropdown ? "show" : ""}`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                         <div className="dropdown-content">
-                          <div className="dropdown-left">
-                            <div className="dropdown-section">
-                              <h6 className="lora">Shop By Category</h6>
-                              <ul className="mt-1">
-                                {categories.map((category) => (
-                                  <li key={category}>
-                                    <Link
-                                      href={`/jewellery/products/${slugify(category)}`}
-                                      className="lora link-hover-red text-gray text-decoration-none"
-                                      onClick={() => {
-                                        setShowCollectionsDropdown(false);
-                                        setExpanded(false);
-                                      }}
-                                    >
-                                      {category}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            <div className="dropdown-section">
-                              <h6 className="lora">Shop By Jewellery</h6>
-                              <ul className="mt-1">
-                                {sortedJewelleryTypes.map((type) => (
-                                  <li key={type}>
-                                    <Link
-                                      href={`/jewellery/jewelleryType/${slugify(type)}`}
-                                      className="lora link-hover-red text-gray text-decoration-none"
-                                      onClick={() => {
-                                        setShowCollectionsDropdown(false);
-                                        setExpanded(false);
-                                      }}
-                                    >
-                                      {type}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            <div className="dropdown-section">
-                              <h6 className="lora">Shop By Occasion</h6>
-                              <ul className="mt-1">
-                                {sortedOccasions.map((occasion) => (
-                                  <li key={occasion}>
-                                    <Link
-                                      href={`/jewellery/occasion/${slugify(occasion)}`}
-                                      className="lora link-hover-red text-gray text-decoration-none"
-                                      onClick={() => {
-                                        setShowCollectionsDropdown(false);
-                                        setExpanded(false);
-                                      }}
-                                    >
-                                      {occasion}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                            <div className="dropdown-section">
-                              <h6 className="lora">Shop By Purity</h6>
-                              <ul className="mt-1">
-                                {purities.map((purity) => (
-                                  <li key={purity}>
-                                    <Link
-                                      href={`/jewellery/purity/${slugify(purity)}`}
-                                      className="lora link-hover-red text-gray text-decoration-none"
-                                      onClick={() => {
-                                        setShowCollectionsDropdown(false);
-                                        setExpanded(false);
-                                      }}
-                                    >
-                                      {purity}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
+                          <div className="dropdown-section">
+                            <h6 className="lora">Shop By Category</h6>
+                            <ul className="mt-1">
+                              {categories.map((category) => (
+                                <li key={category}>
+                                  <Link
+                                    href={`/jewellery/products/${slugify(category)}`}
+                                    className="lora link-hover-red text-gray text-decoration-none"
+                                    onClick={() => {
+                                      setShowCollectionsDropdown(false);
+                                      setExpanded(false);
+                                    }}
+                                  >
+                                    {category}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="dropdown-section">
+                            <h6 className="lora">Shop By Jewellery</h6>
+                            <ul className="mt-1">
+                              {sortedJewelleryTypes.map((type) => (
+                                <li key={type}>
+                                  <Link
+                                    href={`/jewellery/jewelleryType/${slugify(type)}`}
+                                    className="lora link-hover-red text-gray text-decoration-none"
+                                    onClick={() => {
+                                      setShowCollectionsDropdown(false);
+                                      setExpanded(false);
+                                    }}
+                                  >
+                                    {type}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="dropdown-section">
+                            <h6 className="lora">Shop By Collection</h6>
+                            <ul className="mt-1">
+                              {sortedCollections.map((collection) => (
+                                <li key={collection}>
+                                  <Link
+                                    href={`/jewellery/collection/${slugify(collection)}`}
+                                    className="lora link-hover-red text-gray text-decoration-none"
+                                    onClick={() => {
+                                      setShowCollectionsDropdown(false);
+                                      setExpanded(false);
+                                    }}
+                                  >
+                                    {collection}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="dropdown-section">
+                            <h6 className="lora">Shop By Purity</h6>
+                            <ul className="mt-1">
+                              {purities.map((purity) => (
+                                <li key={purity}>
+                                  <Link
+                                    href={`/jewellery/purity/${slugify(purity)}`}
+                                    className="lora link-hover-red text-gray text-decoration-none"
+                                    onClick={() => {
+                                      setShowCollectionsDropdown(false);
+                                      setExpanded(false);
+                                    }}
+                                  >
+                                    {purity}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
                           </div>
                         </div>
                       </div>
@@ -476,23 +429,11 @@ const Header: React.FC = () => {
 
           <div className="d-none d-lg-flex align-items-center gap-2 social-icons">
             <Nav.Link href="https://wa.me/917874011144" target="_blank">
-              <Image
-                src={whatsappIcon}
-                alt="WhatsApp"
-                className="rounded-5"
-                width={32}
-                height={32}
-              />
+              <Image src={whatsappIcon} alt="WhatsApp" className="rounded-5" width={32} height={32} />
             </Nav.Link>
 
             <Nav.Link href="https://www.instagram.com/suvarnakalajewellers" target="_blank">
-              <Image
-                src={instagramIcon}
-                className="rounded-5"
-                alt="Instagram"
-                width={31}
-                height={31}
-              />
+              <Image src={instagramIcon} className="rounded-5" alt="Instagram" width={31} height={31} />
             </Nav.Link>
             <Nav.Link href=" https://www.facebook.com/Suvarnakala" target="_blank">
               <Image src={facebookIcon} alt="Facebook" width={35} height={35} />
@@ -503,7 +444,6 @@ const Header: React.FC = () => {
           </div>
         </Container>
       </Navbar>
-
     </>
   );
 };

@@ -28,7 +28,8 @@ interface RawProduct {
   description: string;
   jewelleryType: string;
   purity: string;
-  occasion: string;
+  collection: string;
+  ideal: string;
   grossWeight: string;
   mainImage: string;
   subImage1: string;
@@ -46,7 +47,8 @@ interface Product {
   description: string;
   jewelleryType: string;
   purity: string;
-  occasion: string;
+  collection: string;
+  ideal: string;
   grossWeight: string;
   netWeight: string;
   diamondWeight: string;
@@ -155,9 +157,7 @@ export default function ProductDetailPage() {
 
             <div className="col-12 col-md-6 d-flex flex-column justify-content-center order-md-3 ">
               <div className="px-md-4 px-2 ">
-                <div className="d-flex align-items-center justify-content-between mb-3">
-                  <h6 className="text-red fraunces mb-0">{product.category.name}</h6>
-                </div>
+
 
                 <h3 className="fw-medium fraunces text-blue  mb-3" style={{ fontWeight: "100" }}>
                   {product.title}
@@ -165,30 +165,42 @@ export default function ProductDetailPage() {
 
                 <p className="mb-3">
                   <strong className=" text-blue dm-serif-text-regular">Category :</strong>{" "}
-                  <span className="text-dark">{product.category.name}</span>
+                  <span className="text-red fraunces mb-0 ">{product.category.name}</span>
                 </p>
+                {product.ideal && product.ideal.trim().toLowerCase() !== "n/a" && (
+                  <p className="mb-3">
+                    <strong className="text-blue dm-serif-text-regular">Ideal :</strong>{" "}
+                    <span className="text-red fraunces mb-0"> For {product.ideal}</span>
+                  </p>
+                )}
+                {product.collection && product.collection.trim().toLowerCase() !== "n/a" && (
+                  <p className="mb-3">
+                    <strong className="text-blue dm-serif-text-regular">Collection :</strong>{" "}
+                    <span className="text-red fraunces mb-0">  {product.collection}</span>
+                  </p>
+                )}
                 <p className="mb-3">
                   <strong className=" text-blue dm-serif-text-regular">Jewellery Type :</strong>{" "}
-                  <span className="text-dark">{product.jewelleryType}</span>
+                  <span className="text-red fraunces mb-0">{product.jewelleryType}</span>
                 </p>
                 <p className="mb-3">
                   <strong className="text-blue dm-serif-text-regular">Purity :</strong>{" "}
-                  <span className="text-dark">{product.purity}</span>
+                  <span className="text-red fraunces mb-0">{product.purity}</span>
                 </p>
                 {product.grossWeight && product.grossWeight.trim().toLowerCase() !== "n/a" && (
                   <p className="mb-3">
                     <strong className="text-blue dm-serif-text-regular">Gross Wt:</strong>{" "}
-                    <span className="text-dark">{product.grossWeight}</span>
+                    <span className="text-red fraunces mb-0">{product.grossWeight}</span>
                   </p>
                 )}
-                         {product.netWeight && product.netWeight.trim().toLowerCase() !== "n/a" && (
+                {product.netWeight && product.netWeight.trim().toLowerCase() !== "n/a" && (
                   <p className="mb-3">
                     <strong className="text-blue dm-serif-text-regular">Net Wt:</strong>{" "}
-                    <span className="text-dark">{product.netWeight}</span>
+                    <span className="text-red fraunces mb-0">{product.netWeight}</span>
                   </p>
-                )}               
-                
-                 {product.diamondWeight && product.diamondWeight.trim().toLowerCase() !== "n/a" && (
+                )}
+
+                {product.diamondWeight && product.diamondWeight.trim().toLowerCase() !== "n/a" && (
                   <p className="mb-3">
                     <strong className="text-blue dm-serif-text-regular">Diamond Wt:</strong>{" "}
                     <span className="text-dark">{product.diamondWeight} Cent</span>
@@ -248,7 +260,7 @@ export default function ProductDetailPage() {
                         </div>
                         <div className="p-1">
                           <div className="d-flex justify-content-between align-items-center">
-                            <h6 className="card-title text-dark text-truncate mb-0 fraunces">
+                            <h6 className="card-title text-blue fw-medium text-truncate mb-0 fraunces">
                               {item.title.length > 20
                                 ? item.title.substring(0, 20) + "..."
                                 : item.title}
@@ -278,26 +290,26 @@ export default function ProductDetailPage() {
                               />
                             </div>
                           </div>
-                          <p className="card-text text-dark mb-1">
-                            <span className="fraunces">Jewellery Type:</span> {item.jewelleryType}
+                          <p className="card-text lora text-blue mb-1">
+                            <span className="lora text-blue fw-medium">Jewellery Type :</span> {item.jewelleryType}
                           </p>
-                          <p className="card-text text-dark mb-1">
-                            <span className="fraunces">Purity:</span> {item.purity}
+                          <p className="card-text lora text-blue mb-1">
+                            <span className="lora text-blue fw-medium">Purity :</span> {item.purity}
                           </p>
 
                           {item.grossWeight && item.grossWeight.trim().toLowerCase() !== "n/a" && (
-                            <p className="card-text text-dark mb-0">
-                              <span className="fraunces">Gross Wt:</span> {item.grossWeight}
+                            <p className="card-text lora text-blue mb-0">
+                              <span className="lora text-blue fw-medium">Gross Wt :</span> {item.grossWeight}
                             </p>
                           )}
                           {item.netWeight && item.netWeight.trim().toLowerCase() !== "n/a" && (
-                            <p className="card-text text-dark mb-0">
-                              <span className="fraunces">Net Wt:</span> {item.netWeight}
+                            <p className="card-text lora text-blue mb-0">
+                              <span className="lora text-blue fw-medium">Net Wt :</span> {item.netWeight}
                             </p>
                           )}
                           {item.diamondWeight && item.diamondWeight.trim().toLowerCase() !== "n/a" && (
-                            <p className="card-text text-dark mb-0">
-                              <span className="fraunces">Diamond Wt:</span> {item.diamondWeight} Cent
+                            <p className="card-text lora text-blue mb-0">
+                              <span className="lora text-blue fw-medium">Diamond Wt :</span> {item.diamondWeight} Cent
                             </p>
                           )}
                         </div>

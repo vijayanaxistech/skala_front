@@ -14,7 +14,7 @@ import { getProducts, getCategories, getDefaultBreadcrumbBanner, BASE_URL } from
 import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
 import notFoundImg from "../../../../public/assets/product-not-found-101.jpg";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { slugify, unslugify } from "@/lib/slugify"; // Import both slugify and unslugify
+import { slugify, unslugify } from "@/lib/slugify";
 
 interface Category {
   _id: string;
@@ -33,7 +33,7 @@ interface Product {
   description: string;
   jewelleryType: string;
   purity: string;
-  occasion: string;
+  collection: string;
   grossWeight: string;
   netWeight: string;
   diamondWeight: string;
@@ -73,7 +73,7 @@ const ProductsPage: React.FC = () => {
           ...product,
           purity: product.purity || product.metalPurity || "",
           jewelleryType: product.jewelleryType || "",
-          occasion: product.occasion || "",
+          collection: product.collection || "",
           category: { ...product.category, name: product.category?.name || "" },
         }));
 
@@ -114,8 +114,8 @@ const ProductsPage: React.FC = () => {
     if (selectedFilters.purity) {
       filtered = filtered.filter((p) => slugify(p.purity) === selectedFilters.purity);
     }
-    if (selectedFilters.occasion) {
-      filtered = filtered.filter((p) => slugify(p.occasion) === selectedFilters.occasion);
+    if (selectedFilters.collection) {
+      filtered = filtered.filter((p) => slugify(p.collection) === selectedFilters.collection);
     }
     setFilteredProducts(filtered);
     setCurrentPage(1);
@@ -123,7 +123,7 @@ const ProductsPage: React.FC = () => {
 
   const uniqueMetals = [...new Set(products.map((p) => p.jewelleryType).filter(Boolean))];
   const uniquePurities = [...new Set(products.map((p) => p.purity).filter(Boolean))];
-  const uniqueOccasions = [...new Set(products.map((p) => p.occasion).filter(Boolean))];
+  const uniqueCollections = [...new Set(products.map((p) => p.collection).filter(Boolean))];
   const uniqueCategories = [...new Set(products.map((p) => p.category.name).filter(Boolean))];
 
   // FIX: Unslugify the values before displaying them in the title
@@ -274,7 +274,7 @@ const ProductsPage: React.FC = () => {
               categories={uniqueCategories}
               metals={uniqueMetals}
               purities={uniquePurities}
-              occasions={uniqueOccasions}
+              collection={uniqueCollections}
               selectedFilters={selectedFilters}
             />
           </div>
@@ -285,11 +285,10 @@ const ProductsPage: React.FC = () => {
             <Image
               src={notFoundImg}
               alt="No Products Found"
-              width={160}
-              height={160}
+              width={200}
+              height={200}
               className="w-40 h-40 object-contain mb-6 opacity-90 mx-auto"
             />
-            <h5 className="lora text-dark text-opacity-75">No Products Found...</h5>
           </div>
         ) : (
           <>
@@ -318,7 +317,7 @@ const ProductsPage: React.FC = () => {
 
                       <div className="p-1 mt-2">
                         <div className="d-flex justify-content-between align-items-center">
-                          <h6 className="card-title text-dark text-truncate mb-0 fraunces">
+                          <h6 className="card-title text-blue fw-medium text-truncate mb-0 fraunces">
                             {product.title.length > 20
                               ? product.title.substring(0, 20) + "..."
                               : product.title}
@@ -349,28 +348,28 @@ const ProductsPage: React.FC = () => {
                             />
                           </div>
                         </div>
-                        <p className="card-text text-dark mb-1">
-                          <span className="fraunces">Jewellery Type:</span> {product.jewelleryType}
+                        <p className="card-text lora text-blue  mb-1">
+                          <span className="lora fw-medium text-blue">Jewellery Type :</span> {product.jewelleryType}
                         </p>
-                        <p className="card-text text-dark mb-1">
-                          <span className="fraunces">Purity:</span> {product.purity}
+                        <p className="card-text  lora text-blue  mb-1">
+                          <span className="lora fw-medium text-blue">Purity :</span> {product.purity}
                         </p>
                         {product.grossWeight &&
                           product.grossWeight.trim().toLowerCase() !== "n/a" && (
-                            <p className="card-text text-dark mb-0">
-                              <span className="fraunces">Gross Wt:</span> {product.grossWeight}
+                            <p className="card-text lora text-blue mb-0">
+                              <span className="lora fw-medium text-blue">Gross Wt :</span> {product.grossWeight}
                             </p>
                           )}
                         {product.netWeight &&
                           product.netWeight.trim().toLowerCase() !== "n/a" && (
-                            <p className="card-text text-dark mb-0">
-                              <span className="fraunces">Net Wt:</span> {product.netWeight}
+                            <p className="card-text lora text-blue mb-0">
+                              <span className="lora fw-medium text-blue">Net Wt :</span> {product.netWeight}
                             </p>
                           )}
                         {product.diamondWeight &&
                           product.diamondWeight.trim().toLowerCase() !== "n/a" && (
-                            <p className="card-text text-dark mb-0">
-                              <span className="fraunces">Diamond Wt :</span> {product.diamondWeight} Cent
+                            <p className="card-text lora text-blue mb-0">
+                              <span className="lora fw-medium text-blue">Diamond Wt :</span> {product.diamondWeight} Cent
                             </p>
                           )}
                       </div>
