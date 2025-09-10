@@ -14,9 +14,9 @@ export default function ClientLayoutWrapper({ children }: { children: React.Reac
     return () => clearTimeout(timeout);
   }, []);
 
-  if (loading) {
-    return <Loader />;
-  }
+  // if (loading) {
+  //   return <Loader />;
+  // }
 
   return <>{children}</>;
 }

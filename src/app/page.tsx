@@ -37,13 +37,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [bachatMahotsavImages, setBachatMahotsavImages] = useState<string[]>([]);
   const [metadata, setMetadata] = useState<Metadata | null>(null);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1200);
 
-    return () => clearTimeout(timer);
-  }, []);
   useEffect(() => {
     async function fetchData() {
       try {

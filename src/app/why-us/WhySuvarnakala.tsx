@@ -38,12 +38,12 @@ const feature = [
 const WhySuvarnakala = () => {
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1000);
-    return () => clearTimeout(timer);
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => setLoading(false), 1000);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
 
   return (
     <>

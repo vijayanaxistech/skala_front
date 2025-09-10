@@ -101,9 +101,9 @@ const HeroCarousel: React.FC = () => {
     setCurrentIndex(index + 1); // +1 because of duplicated first slide
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
+    if (isLoading) {
+      return <Loader />;
+    }
 
   return (
     <div

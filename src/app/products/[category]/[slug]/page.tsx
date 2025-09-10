@@ -10,7 +10,7 @@ import WhatsAppButton from "../../../jewellery/WhatsAppButton";
 import MoreInfoButton from "../../../jewellery/MoreInfo";
 import ProductImageGallery from "../../ProductImageGallery";
 import ClientLayoutWrapper from "@/components/ClientLayoutWrapper";
-
+import Loader from "../../../../components/Loader"
 interface Category {
   _id: string;
   name: string;
@@ -110,7 +110,7 @@ export default function ProductDetailPage() {
   if (loading || !product) {
     return (
       <ClientLayoutWrapper>
-        <div className="text-center py-5">Loading...</div>
+<Loader/>
       </ClientLayoutWrapper>
     );
   }

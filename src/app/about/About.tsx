@@ -23,13 +23,13 @@ const About = () => {
   const counterRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1200);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1200);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   useEffect(() => {
     if (!loading && counterRef.current) {
@@ -63,7 +63,7 @@ const About = () => {
     }
   }, [loading]);
 
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
 
   return (
     <>

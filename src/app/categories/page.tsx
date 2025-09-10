@@ -69,7 +69,7 @@ const ShopAllCategories = () => {
     breadcrumbLink = defaultBanner.link.replace(/^https?:\/\/[^\/]+/, "");
   }
 
-  if (loading) return <Loader />;
+  // if (loading) return <Loader />;
 
   return (
     <>
